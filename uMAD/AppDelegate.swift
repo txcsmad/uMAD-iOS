@@ -16,8 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        var viewController: UIViewController = UIViewController()
-        viewController.view.backgroundColor = UIColor.redColor()
+        var viewController = TwitterViewController()
         
         window = UIWindow(frame:UIScreen.mainScreen().bounds)
         window?.rootViewController = viewController
