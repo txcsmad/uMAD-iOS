@@ -3,3 +3,5 @@
 //
 
 @import Parse;
+
+#import <STTwitter/STTwitter.h>
