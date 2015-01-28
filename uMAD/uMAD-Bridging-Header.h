@@ -5,3 +5,4 @@
 @import Parse;
 
 #import <STTwitter/STTwitter.h>
+#import "UIImage+Resize.h"
