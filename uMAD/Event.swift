@@ -9,6 +9,7 @@
 import Foundation
 
 class Event {
+    var sessionName:    String!
     var companyName:    String!
     var room:           String!
     var image:          PFFile!
@@ -21,6 +22,7 @@ class Event {
     var twitterHandle:  String!
     
     init(info: Dictionary<String, AnyObject>) {
+        sessionName = info["sessionName"]       as String!
         companyName = info["companyName"]       as String!
         room = info["room"]                     as String!
         image = info["image"]                   as PFFile!
