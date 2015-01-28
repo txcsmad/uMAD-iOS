@@ -12,8 +12,10 @@ import UIKit
 class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     private var tableView: UITableView!
     private var events: [Event] = [Event]()
-    private var rowsPerSection: [String: Int] = [String: Int]()
+    private var rowsPerSection: [String : Int] = [String : Int]()
     private var sectionHeaders: [String] = [String]()
+    private var thumbnails: [String : UIImage] = [String : UIImage]()
+    private var logos: [String : UIImage] = [String : UIImage]()
     
     override init() {
         super.init()
