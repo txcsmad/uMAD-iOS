@@ -14,6 +14,7 @@
 		64D4AF831A75CEAE0040D3CA /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF821A75CEAE0040D3CA /* EventsViewController.swift */; };
 		64D4AF851A75CF020040D3CA /* SponsorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */; };
 		64D4AF871A75CF1C0040D3CA /* TwitterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF861A75CF1C0040D3CA /* TwitterViewController.swift */; };
+		64FD63791A76FB0700D89106 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FD63781A76FB0700D89106 /* Event.swift */; };
 		AA205FAA5FB53DF9343E091B /* libPods-uMAD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B596628F0847E6A0B2CB8F1 /* libPods-uMAD.a */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		64D4AF821A75CEAE0040D3CA /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SponsorsViewController.swift; sourceTree = "<group>"; };
 		64D4AF861A75CF1C0040D3CA /* TwitterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterViewController.swift; sourceTree = "<group>"; };
+		64FD63781A76FB0700D89106 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,13 +107,14 @@
 			isa = PBXGroup;
 			children = (
 				64D4AF621A75CDA80040D3CA /* AppDelegate.swift */,
-				64D4AF691A75CDA80040D3CA /* Images.xcassets */,
-				64D4AF6B1A75CDA80040D3CA /* LaunchScreen.xib */,
-				64D4AF601A75CDA80040D3CA /* Supporting Files */,
 				64D4AF821A75CEAE0040D3CA /* EventsViewController.swift */,
 				64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */,
 				64D4AF861A75CF1C0040D3CA /* TwitterViewController.swift */,
 				64CBDDAA1A75D133008BB167 /* uMAD-Bridging-Header.h */,
+				64D4AF691A75CDA80040D3CA /* Images.xcassets */,
+				64D4AF6B1A75CDA80040D3CA /* LaunchScreen.xib */,
+				64D4AF601A75CDA80040D3CA /* Supporting Files */,
+				64FD63781A76FB0700D89106 /* Event.swift */,
 			);
 			path = uMAD;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				64D4AF871A75CF1C0040D3CA /* TwitterViewController.swift in Sources */,
 				64D4AF631A75CDA80040D3CA /* AppDelegate.swift in Sources */,
 				64D4AF831A75CEAE0040D3CA /* EventsViewController.swift in Sources */,
+				64FD63791A76FB0700D89106 /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,7 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        var viewController: UIViewController = UIViewController()
+        Parse.setApplicationId("uY4oviE7S1f5tJ4naI4J0BExh6qSTYUwdQCpukoX", clientKey: "Y6X3s9CzWvduMX3P9oTB0mZBEphF9ntdKlj1HEU9")
+        
+        var viewController: EventsViewController = EventsViewController()
         viewController.view.backgroundColor = UIColor.redColor()
         
         window = UIWindow(frame:UIScreen.mainScreen().bounds)
