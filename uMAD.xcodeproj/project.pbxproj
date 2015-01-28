@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32E186081A79A75E004EC0B9 /* TweetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32E186071A79A75E004EC0B9 /* TweetTableViewCell.xib */; };
 		64577EF11A797C7C00AAF1FC /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 64577EF01A797C7C00AAF1FC /* UIImage+Resize.m */; };
 		64D4AF631A75CDA80040D3CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF621A75CDA80040D3CA /* AppDelegate.swift */; };
 		64D4AF6A1A75CDA80040D3CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64D4AF691A75CDA80040D3CA /* Images.xcassets */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		05DDE97D92320F02657C9DD4 /* Pods-uMAD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uMAD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-uMAD/Pods-uMAD.debug.xcconfig"; sourceTree = "<group>"; };
+		32E186071A79A75E004EC0B9 /* TweetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetTableViewCell.xib; sourceTree = "<group>"; };
 		3B596628F0847E6A0B2CB8F1 /* libPods-uMAD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-uMAD.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50E322A7AF2F9158B4D144D0 /* Pods-uMAD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uMAD.release.xcconfig"; path = "Pods/Target Support Files/Pods-uMAD/Pods-uMAD.release.xcconfig"; sourceTree = "<group>"; };
 		64577EEF1A797C7600AAF1FC /* UIImage+Resize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				64D4AF821A75CEAE0040D3CA /* EventsViewController.swift */,
 				64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */,
 				64D4AF861A75CF1C0040D3CA /* TwitterViewController.swift */,
+				32E186071A79A75E004EC0B9 /* TweetTableViewCell.xib */,
 				64CBDDAA1A75D133008BB167 /* uMAD-Bridging-Header.h */,
 				64D4AF691A75CDA80040D3CA /* Images.xcassets */,
 				64D4AF6B1A75CDA80040D3CA /* LaunchScreen.xib */,
@@ -232,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64D4AF6D1A75CDA80040D3CA /* LaunchScreen.xib in Resources */,
+				32E186081A79A75E004EC0B9 /* TweetTableViewCell.xib in Resources */,
 				64D4AF6A1A75CDA80040D3CA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
