@@ -17,6 +17,9 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = "Sponsors"
+        
         // Do any additional setup after loading the view, typically from a nib.
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
@@ -29,7 +32,7 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
         self.view.addSubview(self.collectionView!)
         
         var query = PFQuery(className: "Sponsors")
-        query.orderByAscending("sponsorLevel")
+        query.orderByDescending("sponsorLevel")
         query.findObjectsInBackgroundWithBlock{(objects: [AnyObject]!, error: NSError!) -> Void in
             if error != nil {
             // There was an error
