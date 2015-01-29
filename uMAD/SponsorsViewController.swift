@@ -52,6 +52,13 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
         return sponsorCount
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        var currentSponsor: PFObject = sponsors[indexPath.item]
+        var webLink: String = currentSponsor["companyWebsite"] as String
+        //why unwrap?
+        UIApplication.sharedApplication().openURL(NSURL(string: webLink)!)
+    }
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as UICollectionViewCell
         var currentSponsor: PFObject = sponsors[indexPath.item]
