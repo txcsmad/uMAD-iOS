@@ -101,8 +101,6 @@ class TwitterViewController: UITableViewController {
         refresh.addTarget(self, action: Selector("reloadTweets"), forControlEvents: .ValueChanged)
         refreshControl = refresh
         
-        navigationController?.tabBarItem.title = "Twitter"
-        
         navigationItem.title = "Twitter"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: Selector("composeTweet"))
         

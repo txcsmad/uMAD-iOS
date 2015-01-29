@@ -14,19 +14,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.setApplicationId(PARSE_APPLICATION_ID, clientKey: PARSE_CLIENT_KEY)
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+        UINavigationBar.appearance().barTintColor = UIColor(red: 0.83, green: 0.18, blue: 0.13, alpha: 1.0)
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         var eventsViewController = UINavigationController(rootViewController: EventsViewController())
-        eventsViewController.navigationBar.barTintColor = UIColor(red: 0.83, green: 0.18, blue: 0.13, alpha: 1.0)
-        eventsViewController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         var twitterViewController = UINavigationController(rootViewController: TwitterViewController())
-        twitterViewController.navigationBar.barTintColor = UIColor(red: 0.83, green: 0.18, blue: 0.13, alpha: 1.0)
-        twitterViewController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        twitterViewController.tabBarItem.title = "Twitter"
         
         var sponsorsViewController = UINavigationController(rootViewController: SponsorsViewController())
-        sponsorsViewController.navigationBar.barTintColor = UIColor(red: 0.83, green: 0.18, blue: 0.13, alpha: 1.0)
-        sponsorsViewController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         sponsorsViewController.tabBarItem.title = "Sponsors"
         
         let tabBarController = UITabBarController()
