@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		32E186081A79A75E004EC0B9 /* TweetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32E186071A79A75E004EC0B9 /* TweetTableViewCell.xib */; };
 		64577EF11A797C7C00AAF1FC /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 64577EF01A797C7C00AAF1FC /* UIImage+Resize.m */; };
+		64CD922D1A7A008F00659946 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD922C1A7A008F00659946 /* Constants.swift */; };
+		64CD922F1A7A051E00659946 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD922E1A7A051E00659946 /* EventViewController.swift */; };
 		64D4AF631A75CDA80040D3CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF621A75CDA80040D3CA /* AppDelegate.swift */; };
 		64D4AF6A1A75CDA80040D3CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64D4AF691A75CDA80040D3CA /* Images.xcassets */; };
 		64D4AF6D1A75CDA80040D3CA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64D4AF6B1A75CDA80040D3CA /* LaunchScreen.xib */; };
@@ -16,6 +18,7 @@
 		64D4AF831A75CEAE0040D3CA /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF821A75CEAE0040D3CA /* EventsViewController.swift */; };
 		64D4AF851A75CF020040D3CA /* SponsorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */; };
 		64D4AF871A75CF1C0040D3CA /* TwitterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF861A75CF1C0040D3CA /* TwitterViewController.swift */; };
+		64E59F341A79F2ED00C2B030 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E59F331A79F2ED00C2B030 /* EventTableViewCell.swift */; };
 		64FD63791A76FB0700D89106 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FD63781A76FB0700D89106 /* Event.swift */; };
 		AA205FAA5FB53DF9343E091B /* libPods-uMAD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B596628F0847E6A0B2CB8F1 /* libPods-uMAD.a */; };
 /* End PBXBuildFile section */
@@ -38,6 +41,8 @@
 		64577EEF1A797C7600AAF1FC /* UIImage+Resize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		64577EF01A797C7C00AAF1FC /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		64CBDDAA1A75D133008BB167 /* uMAD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uMAD-Bridging-Header.h"; sourceTree = "<group>"; };
+		64CD922C1A7A008F00659946 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		64CD922E1A7A051E00659946 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		64D4AF5D1A75CDA80040D3CA /* uMAD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uMAD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D4AF611A75CDA80040D3CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64D4AF621A75CDA80040D3CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +54,7 @@
 		64D4AF821A75CEAE0040D3CA /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SponsorsViewController.swift; sourceTree = "<group>"; };
 		64D4AF861A75CF1C0040D3CA /* TwitterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterViewController.swift; sourceTree = "<group>"; };
+		64E59F331A79F2ED00C2B030 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		64FD63781A76FB0700D89106 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,6 +94,43 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		64CD92331A7A073100659946 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				64CD922E1A7A051E00659946 /* EventViewController.swift */,
+				64D4AF821A75CEAE0040D3CA /* EventsViewController.swift */,
+				64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */,
+				64D4AF861A75CF1C0040D3CA /* TwitterViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		64CD92341A7A074400659946 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				32E186071A79A75E004EC0B9 /* TweetTableViewCell.xib */,
+				64E59F331A79F2ED00C2B030 /* EventTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		64CD92351A7A075B00659946 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				64FD63781A76FB0700D89106 /* Event.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		64CD92361A7A076900659946 /* Third Party Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				64577EF01A797C7C00AAF1FC /* UIImage+Resize.m */,
+				64577EEF1A797C7600AAF1FC /* UIImage+Resize.h */,
+			);
+			name = "Third Party Libraries";
+			sourceTree = "<group>";
+		};
 		64D4AF541A75CDA80040D3CA = {
 			isa = PBXGroup;
 			children = (
@@ -111,15 +154,12 @@
 		64D4AF5F1A75CDA80040D3CA /* uMAD */ = {
 			isa = PBXGroup;
 			children = (
-				64577EF01A797C7C00AAF1FC /* UIImage+Resize.m */,
-				64577EEF1A797C7600AAF1FC /* UIImage+Resize.h */,
 				64D4AF621A75CDA80040D3CA /* AppDelegate.swift */,
-				64FD63781A76FB0700D89106 /* Event.swift */,
-				64D4AF821A75CEAE0040D3CA /* EventsViewController.swift */,
-				64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */,
-				64D4AF861A75CF1C0040D3CA /* TwitterViewController.swift */,
-				32E186071A79A75E004EC0B9 /* TweetTableViewCell.xib */,
 				64CBDDAA1A75D133008BB167 /* uMAD-Bridging-Header.h */,
+				64CD92361A7A076900659946 /* Third Party Libraries */,
+				64CD92351A7A075B00659946 /* Models */,
+				64CD92341A7A074400659946 /* Views */,
+				64CD92331A7A073100659946 /* ViewControllers */,
 				64D4AF691A75CDA80040D3CA /* Images.xcassets */,
 				64D4AF6B1A75CDA80040D3CA /* LaunchScreen.xib */,
 				64D4AF601A75CDA80040D3CA /* Supporting Files */,
@@ -131,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				64D4AF611A75CDA80040D3CA /* Info.plist */,
+				64CD922C1A7A008F00659946 /* Constants.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -291,8 +332,11 @@
 				64D4AF871A75CF1C0040D3CA /* TwitterViewController.swift in Sources */,
 				64D4AF631A75CDA80040D3CA /* AppDelegate.swift in Sources */,
 				64D4AF831A75CEAE0040D3CA /* EventsViewController.swift in Sources */,
+				64E59F341A79F2ED00C2B030 /* EventTableViewCell.swift in Sources */,
+				64CD922F1A7A051E00659946 /* EventViewController.swift in Sources */,
 				64FD63791A76FB0700D89106 /* Event.swift in Sources */,
 				64577EF11A797C7C00AAF1FC /* UIImage+Resize.m in Sources */,
+				64CD922D1A7A008F00659946 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

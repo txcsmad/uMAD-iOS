@@ -17,6 +17,9 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = "Sponsors"
+        
         // Do any additional setup after loading the view, typically from a nib.
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
@@ -29,7 +32,7 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
         self.view.addSubview(self.collectionView!)
         
         var query = PFQuery(className: "Sponsors")
-        query.orderByAscending("sponsorLevel")
+        query.orderByDescending("sponsorLevel")
         query.findObjectsInBackgroundWithBlock{(objects: [AnyObject]!, error: NSError!) -> Void in
             if error != nil {
             // There was an error
@@ -49,6 +52,13 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
         return sponsorCount
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        var currentSponsor: PFObject = sponsors[indexPath.item]
+        var webLink: String = currentSponsor["companyWebsite"] as String
+        //why unwrap?
+        UIApplication.sharedApplication().openURL(NSURL(string: webLink)!)
+    }
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as UICollectionViewCell
         var currentSponsor: PFObject = sponsors[indexPath.item]
@@ -59,12 +69,35 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
             if error == nil {
                 let image = UIImage(data:imageData)
                 let logo = UIImageView(image: image)
+                logo.contentMode = UIViewContentMode.ScaleAspectFit
                 logo.frame = CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height)
                 cell.addSubview(logo)
                 cell.setNeedsDisplay()
             }
         }
         return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        var currentSponsor: PFObject = sponsors[indexPath.item]
+        var rating: Int = currentSponsor["sponsorLevel"] as Int
+        
+        var size : CGSize!
+        
+        switch rating{
+        case 0:
+            size = CGSize(width: (view.frame.width/2.3)-10, height: 100)
+            break
+        case 1:
+            size = CGSize(width: (view.frame.width/2.3)-10, height: 100)
+            break
+        case 2:
+            size = CGSize(width: view.frame.width - 20, height: 150)
+        default:
+            size = CGSize(width: (view.frame.width/2.3)-10, height: 100)
+            
+        }
+        return size
     }
     
     

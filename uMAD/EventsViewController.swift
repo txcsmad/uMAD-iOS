@@ -24,14 +24,14 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         navigationItem.title = "Events"
         
         tableView = UITableView(frame: CGRectMake(0, 0, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds)), style: .Plain)
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "EVENTS_TABLEVIEW_CELL_IDENTIFIER")
+        tableView.registerClass(EventTableViewCell.self, forCellReuseIdentifier: "EVENTS_TABLEVIEW_CELL_IDENTIFIER")
         tableView.tableFooterView = UIView(frame: CGRectZero)
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
         
-        var query = PFQuery(className:"Events")
-        query.findObjectsInBackgroundWithBlock {
+        var eventsQuery: PFQuery = PFQuery(className:"Events")
+        eventsQuery.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]!, error: NSError!) -> Void in
             if error == nil {
                 // The find succeeded.
@@ -65,19 +65,12 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     } else {
                         self.rowsPerSection[timeString]! += 1
                     }
-                    
-                    println("Time String: \(timeString) Occured: \(self.rowsPerSection[timeString])")
-                    
                 }
                 
                 self.events = self.events.sorted({
                     (firstEvent: Event, secondEvent: Event) -> Bool in
                     return firstEvent.startTime.description < secondEvent.startTime.description
                 })
-                
-                for event in self.events {
-                    println("Time: \(event.startTime)")
-                }
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     () -> Void in
@@ -86,7 +79,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         self.tableView.reloadData()
                     }, completion: nil)
                 })
-                
             } else {
                 // Log details of the failure
                 println("Error: %@ %@", error, error.userInfo!)
@@ -106,7 +98,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         
         var tabImage: UIImage = UIImage(named: "events.png")!
-        var resizedImage: UIImage = tabImage.resizedImageToSize(CGSizeMake(25.00, 25.00))
+        var resizedImage: UIImage = tabImage.imageScaledToSize(CGSizeMake(25.00, 25.00))
         
         self.tabBarItem.image = resizedImage
         self.tabBarItem.title = "Events"
@@ -143,10 +135,18 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        let index: Int = calculateIndex(indexPath)
+        let event: Event = self.events[index]
+        let companyName: String = event.companyName
+        let logo: UIImage = self.logos[companyName]!
+        var eventViewController: EventViewController = EventViewController(image: logo, event: event)
+        
+        self.navigationController?.pushViewController(eventViewController, animated: true)
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 75.00
+        return EVENTS_TABLEVIEW_CELL_HEIGHT
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -154,11 +154,65 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var index: Int = calculateIndex(indexPath)
+        var cell: EventTableViewCell = tableView.dequeueReusableCellWithIdentifier("EVENTS_TABLEVIEW_CELL_IDENTIFIER", forIndexPath: indexPath) as EventTableViewCell
         
-        var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("EVENTS_TABLEVIEW_CELL_IDENTIFIER", forIndexPath: indexPath) as UITableViewCell
+        let index: Int = calculateIndex(indexPath)
+        let companyName: String = self.events[index].companyName
+        let sessionName: String = self.events[index].sessionName
+        let startTime: NSDate   = self.events[index].startTime
+        let endTime: NSDate     = self.events[index].endTime
+        let room: String        = self.events[index].room
         
-        cell.textLabel?.text = self.events[index].companyName
+        let timeFormatter: NSDateFormatter  = NSDateFormatter()
+        timeFormatter.timeZone              = NSTimeZone(name: "America/Chicago")
+        timeFormatter.dateFormat            = "hh:mm a";
+        let startTimeString: String         = timeFormatter.stringFromDate(startTime)
+        let endTimeString: String           = timeFormatter.stringFromDate(endTime)
+        
+        
+        cell.textLabel?.text        = companyName
+        cell.detailTextLabel?.text  = sessionName
+        cell.timeLabel?.text        = startTimeString + " - " + endTimeString
+        cell.locationLabel?.text    = room
+        cell.imageView?.image       = UIImage(named: "mad_thumbnail.png")?.imageScaledToSize(CGSizeMake(50, 50))
+        
+        var sponsorsQuery: PFQuery = PFQuery(className: "Sponsors")
+        sponsorsQuery.whereKey("companyName", equalTo: companyName)
+        sponsorsQuery.findObjectsInBackgroundWithBlock({
+            (objects: [AnyObject]!, error: NSError!) -> Void in
+            if error == nil {
+                // The find succeeded.
+                println("Successfully retrieved \(objects.count) sponsors.")
+                // Do something with the found objects
+                
+                for object in objects {
+                    var companyName: String = object["companyName"] as String!
+                    
+                    if self.logos[companyName] == nil {
+                        var parseImage: PFFile = object["companyImage"] as PFFile!
+                        parseImage.getDataInBackgroundWithBlock({
+                            (data: NSData!, error: NSError!) -> Void in
+                            self.logos[companyName] = UIImage(data: data)!
+                            println("Downloaded LOGO of \(companyName)")
+                        })
+                    }
+                    
+                    if self.thumbnails[companyName] == nil {
+                        var parseThumbnail: PFFile = object["thumbnail"] as PFFile!
+                        parseThumbnail.getDataInBackgroundWithBlock({
+                            (data: NSData!, error: NSError!) -> Void in
+                            self.thumbnails[companyName] = UIImage(data: data)!
+                            println("Downloaded THUMBNAIL of \(companyName)")
+                            cell.imageView?.image = self.thumbnails[companyName]?.imageScaledToSize(CGSizeMake(50.00, 50.00))
+                        })
+                    }
+                }
+                
+            } else {
+                // Log details of the failure
+                println("Error: %@ %@", error, error.userInfo!)
+            }
+        })
         
         return cell
     }
