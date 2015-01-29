@@ -62,12 +62,35 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
             if error == nil {
                 let image = UIImage(data:imageData)
                 let logo = UIImageView(image: image)
+                logo.contentMode = UIViewContentMode.ScaleAspectFit
                 logo.frame = CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height)
                 cell.addSubview(logo)
                 cell.setNeedsDisplay()
             }
         }
         return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        var currentSponsor: PFObject = sponsors[indexPath.item]
+        var rating: Int = currentSponsor["sponsorLevel"] as Int
+        
+        var size : CGSize!
+        
+        switch rating{
+        case 0:
+            size = CGSize(width: (view.frame.width/2.3)-10, height: 100)
+            break
+        case 1:
+            size = CGSize(width: (view.frame.width/2.3)-10, height: 100)
+            break
+        case 2:
+            size = CGSize(width: view.frame.width - 20, height: 150)
+        default:
+            size = CGSize(width: (view.frame.width/2.3)-10, height: 100)
+            
+        }
+        return size
     }
     
     
