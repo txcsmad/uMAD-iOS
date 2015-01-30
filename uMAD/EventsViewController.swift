@@ -20,16 +20,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override init() {
         super.init()
         
-        view.backgroundColor = UIColor.lightGrayColor()
-        navigationItem.title = "Events"
-        
-        tableView = UITableView(frame: CGRectMake(0, 0, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds)), style: .Plain)
-        tableView.registerClass(EventTableViewCell.self, forCellReuseIdentifier: "EVENTS_TABLEVIEW_CELL_IDENTIFIER")
-        tableView.tableFooterView = UIView(frame: CGRectZero)
-        tableView.delegate = self
-        tableView.dataSource = self
-        view.addSubview(tableView)
-        
         var eventsQuery: PFQuery = PFQuery(className:"Events")
         eventsQuery.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]!, error: NSError!) -> Void in
@@ -97,18 +87,26 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var tabImage: UIImage = UIImage(named: "events.png")!
-        var resizedImage: UIImage = tabImage.imageScaledToSize(CGSizeMake(25.00, 25.00))
+        self.navigationItem.title = "Events"
         
-        self.tabBarItem.image = resizedImage
-        self.tabBarItem.title = "Events"
+        tableView = UITableView(frame: CGRectMake(0, 0, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds)), style: .Plain)
+        tableView.registerClass(EventTableViewCell.self, forCellReuseIdentifier: "EVENTS_TABLEVIEW_CELL_IDENTIFIER")
+        tableView.tableFooterView = UIView(frame: CGRectZero)
+        tableView.delegate = self
+        tableView.dataSource = self
+        view.addSubview(tableView)
     }
     
     func calculateIndex(indexPath: NSIndexPath) -> Int {
         var result: Int = 0
-        for (var i: Int = 0; i < indexPath.section; i++) {
+        for (var i: Int = 0; i <= indexPath.section; i++) {
             var headerString: String = self.sectionHeaders[i]
-            result += self.rowsPerSection[headerString]!
+            
+            if i == indexPath.section {
+                result += indexPath.row
+            } else {
+                result += self.rowsPerSection[headerString]!
+            }
         }
         
         return result
@@ -139,8 +137,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let index: Int = calculateIndex(indexPath)
         let event: Event = self.events[index]
         let companyName: String = event.companyName
-        let logo: UIImage = self.logos[companyName]!
-        var eventViewController: EventViewController = EventViewController(image: logo, event: event)
+        let thumbnail: UIImage = self.thumbnails[companyName] != nil ? self.thumbnails[companyName]! : UIImage(named: "mad_thumbnail.png")!
+        var eventViewController: EventViewController = EventViewController(image: thumbnail, event: event)
         
         self.navigationController?.pushViewController(eventViewController, animated: true)
     }
@@ -174,7 +172,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.detailTextLabel?.text  = sessionName
         cell.timeLabel?.text        = startTimeString + " - " + endTimeString
         cell.locationLabel?.text    = room
-        cell.imageView?.image       = UIImage(named: "mad_thumbnail.png")?.imageScaledToSize(CGSizeMake(50, 50))
+        cell.imageView?.image       = self.thumbnails[companyName] != nil ? self.thumbnails[companyName]?.imageScaledToSize(CGSizeMake(50, 50)) : UIImage(named: "mad_thumbnail.png")?.imageScaledToSize(CGSizeMake(50, 50))
         
         var sponsorsQuery: PFQuery = PFQuery(className: "Sponsors")
         sponsorsQuery.whereKey("companyName", equalTo: companyName)

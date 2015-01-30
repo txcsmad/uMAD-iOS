@@ -42,9 +42,6 @@ class EventTableViewCell: UITableViewCell {
         locationLabel.font = UIFont.systemFontOfSize(10.00)
         locationLabel.textColor = UIColor.lightGrayColor()
         self.contentView.addSubview(locationLabel)
-        
-        println(locationLabel.frame.origin.x + locationLabel.bounds.size.width)
-        println(timeLabel.frame.origin.x + timeLabel.bounds.size.width)
     }
 
     required init(coder aDecoder: NSCoder) {

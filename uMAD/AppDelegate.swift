@@ -4,6 +4,8 @@ import UIKit
 let PARSE_APPLICATION_ID: String = "uY4oviE7S1f5tJ4naI4J0BExh6qSTYUwdQCpukoX"
 let PARSE_CLIENT_KEY: String = "Y6X3s9CzWvduMX3P9oTB0mZBEphF9ntdKlj1HEU9"
 
+let TABBAR_HEIGHT: CGFloat = 49.00
+
 @UIApplicationMain
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,6 +31,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [eventsViewController, twitterViewController, sponsorsViewController]
         tabBarController.tabBar.tintColor = UIColor(red: 0.83, green: 0.18, blue: 0.13, alpha: 1.0)
+        
+        var tabImage: UIImage = UIImage(named: "events.png")!
+        var resizedImage: UIImage = tabImage.imageScaledToSize(CGSizeMake(25.00, 25.00))
+        eventsViewController.tabBarItem = UITabBarItem(title: "Events", image: resizedImage, tag: 0)
+        
+        tabBarController.tabBar.translucent = false
         
         window = UIWindow(frame:UIScreen.mainScreen().bounds)
         window?.rootViewController = tabBarController
