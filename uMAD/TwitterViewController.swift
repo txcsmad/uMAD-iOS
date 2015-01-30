@@ -13,17 +13,7 @@ class TwitterViewController: UITableViewController {
     let twitter = STTwitterAPI(appOnlyWithConsumerKey: TWITTER_CONSUMER_KEY, consumerSecret: TWITTER_CONSUMER_SECRET)
     var tweets = [Tweet]()
     var userProfileImageCache = [String: UIImage]()
-    
-    func attemptToOpenUrl(url: NSURL) {
-        if UIApplication.sharedApplication().canOpenURL(url) {
-            UIApplication.sharedApplication().openURL(url)
-        } else {
-            let alertController = UIAlertController(title: "Oops!", message: "It doesn't look like you have that Twitter client installed.", preferredStyle: .Alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            presentViewController(alertController, animated: true, completion: nil)
-        }
-    }
-    
+
     func composeTweet() {
         let tweetSheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
         tweetSheet.setInitialText(UTCS_MAD_SCREEN_NAME + " ")
@@ -68,6 +58,7 @@ class TwitterViewController: UITableViewController {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: Selector("composeTweet"))
         }
         
+        tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView()
         tableView.registerNib(UINib(nibName: "TweetTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "tweet_cell")
         
@@ -126,6 +117,8 @@ class TwitterViewController: UITableViewController {
     
     // MARK: - UITableViewDelegate
     
+    tableview
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let openInAlertController = UIAlertController(title: "Open Tweet in...", message: nil, preferredStyle: .ActionSheet)
         
@@ -146,7 +139,7 @@ class TwitterViewController: UITableViewController {
         }
         
         openInAlertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action: UIAlertAction!) in
-            tableView.reloadData()
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }))
         
         presentViewController(openInAlertController, animated: true, completion: nil)
