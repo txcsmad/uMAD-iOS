@@ -6,6 +6,9 @@ let PARSE_CLIENT_KEY: String = "Y6X3s9CzWvduMX3P9oTB0mZBEphF9ntdKlj1HEU9"
 
 let TABBAR_HEIGHT: CGFloat = 49.00
 
+let FONT_SIZE: CGFloat = 17.00
+let DETAIL_FONT_SIZE: CGFloat = 12.00
+
 @UIApplicationMain
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
