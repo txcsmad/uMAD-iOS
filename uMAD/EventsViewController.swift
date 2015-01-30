@@ -17,8 +17,57 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private var thumbnails: [String : UIImage] = [String : UIImage]()
     private var logos: [String : UIImage] = [String : UIImage]()
     
+    private let refreshControl: UIRefreshControl = UIRefreshControl()
+    
     override init() {
         super.init()
+        
+        self.reloadData()
+    }
+    
+     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+
+     required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.navigationItem.title = "Events"
+        
+        tableView = UITableView(frame: CGRectMake(0, 0, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds)), style: .Plain)
+        tableView.registerClass(EventTableViewCell.self, forCellReuseIdentifier: "EVENTS_TABLEVIEW_CELL_IDENTIFIER")
+        tableView.tableFooterView = UIView(frame: CGRectZero)
+        tableView.delegate = self
+        tableView.dataSource = self
+        view.addSubview(tableView)
+        
+        refreshControl.addTarget(self, action: Selector("reloadData"), forControlEvents: .ValueChanged)
+        tableView.addSubview(refreshControl)
+    }
+    
+    func calculateIndex(indexPath: NSIndexPath) -> Int {
+        var result: Int = 0
+        for (var i: Int = 0; i <= indexPath.section; i++) {
+            var headerString: String = self.sectionHeaders[i]
+            
+            if i == indexPath.section {
+                result += indexPath.row
+            } else {
+                result += self.rowsPerSection[headerString]!
+            }
+        }
+        
+        return result
+    }
+    
+    func reloadData() {
+        events = [Event]()
+        rowsPerSection = [String : Int]()
+        sectionHeaders = [String]()
         
         var eventsQuery: PFQuery = PFQuery(className:"Events")
         eventsQuery.findObjectsInBackgroundWithBlock {
@@ -66,50 +115,15 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     () -> Void in
                     UIView.transitionWithView(self.tableView, duration: 0.1, options: UIViewAnimationOptions.ShowHideTransitionViews, animations: {
                         () -> Void in
+                        self.refreshControl.endRefreshing()
                         self.tableView.reloadData()
-                    }, completion: nil)
+                        }, completion: nil)
                 })
             } else {
                 // Log details of the failure
                 println("Error: %@ %@", error, error.userInfo!)
             }
         }
-    }
-    
-     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-
-     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.navigationItem.title = "Events"
-        
-        tableView = UITableView(frame: CGRectMake(0, 0, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds)), style: .Plain)
-        tableView.registerClass(EventTableViewCell.self, forCellReuseIdentifier: "EVENTS_TABLEVIEW_CELL_IDENTIFIER")
-        tableView.tableFooterView = UIView(frame: CGRectZero)
-        tableView.delegate = self
-        tableView.dataSource = self
-        view.addSubview(tableView)
-    }
-    
-    func calculateIndex(indexPath: NSIndexPath) -> Int {
-        var result: Int = 0
-        for (var i: Int = 0; i <= indexPath.section; i++) {
-            var headerString: String = self.sectionHeaders[i]
-            
-            if i == indexPath.section {
-                result += indexPath.row
-            } else {
-                result += self.rowsPerSection[headerString]!
-            }
-        }
-        
-        return result
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
