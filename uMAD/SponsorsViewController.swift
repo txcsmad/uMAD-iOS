@@ -61,21 +61,26 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as UICollectionViewCell
-        var currentSponsor: PFObject = sponsors[indexPath.item]
-        var imageFile: PFFile = currentSponsor["companyImage"] as PFFile
         
-        imageFile.getDataInBackgroundWithBlock{
-            (imageData: NSData!, error: NSError!) -> Void in
-            if error == nil {
-                let image = UIImage(data:imageData)
-                let logo = UIImageView(image: image)
-                logo.contentMode = UIViewContentMode.ScaleAspectFit
-                logo.frame = CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height)
-                cell.addSubview(logo)
-                cell.setNeedsDisplay()
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as UICollectionViewCell
+        println("*********START*********\n\(cell.subviews)\n***********END*************")
+        if cell.subviews.count <= 1 {
+            var currentSponsor: PFObject = sponsors[indexPath.item]
+            var imageFile: PFFile = currentSponsor["companyImage"] as PFFile
+            
+            imageFile.getDataInBackgroundWithBlock{
+                (imageData: NSData!, error: NSError!) -> Void in
+                if error == nil {
+                    let image = UIImage(data:imageData)
+                    let logo = UIImageView(image: image)
+                    logo.contentMode = UIViewContentMode.ScaleAspectFit
+                    logo.frame = CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height)
+                    cell.addSubview(logo)
+                    cell.setNeedsDisplay()
+                }
             }
         }
+
         return cell
     }
     
