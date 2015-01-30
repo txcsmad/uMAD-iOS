@@ -89,17 +89,24 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         roomLabel.sizeToFit()
         tableHeaderView.addSubview(roomLabel)
         
+        //Session
+        var sessionLabelOriginX: CGFloat = thumbnailView.frame.origin.x
+        var sessionLabelOriginY: CGFloat = thumbnailView.frame.origin.y + CGRectGetHeight(thumbnailView.bounds) + 20
+        var sessionLabel: UILabel = UILabel(frame: CGRectMake(sessionLabelOriginX, sessionLabelOriginY, CGRectGetWidth(self.view.bounds) - (sessionLabelOriginX * 2.00), CGRectGetHeight(self.view.bounds) * 0.05))
+        sessionLabel.font = UIFont(name: "HelveticaNeue-Bold", size: companyLabel.font.pointSize + 1.50)
+        sessionLabel.text = self.event.sessionName
+        sessionLabel.sizeToFit()
+        tableHeaderView.addSubview(sessionLabel)
+        
         //Description
         var descLabelOriginX: CGFloat = thumbnailView.frame.origin.x
-        var descLabelOriginY: CGFloat = thumbnailView.frame.origin.y + CGRectGetHeight(thumbnailView.bounds) + 20
+        var descLabelOriginY: CGFloat = sessionLabelOriginY + CGRectGetHeight(sessionLabel.bounds) + 5
         var descLabel: UILabel = UILabel(frame: CGRectMake(descLabelOriginX, descLabelOriginY, CGRectGetWidth(self.view.bounds) - (descLabelOriginX * 2.00), CGRectGetHeight(self.view.bounds) * 0.05))
         descLabel.text = self.event.description
         descLabel.numberOfLines = 0
         descLabel.sizeToFit()
         tableHeaderView.addSubview(descLabel)
         
-//        tableHeaderView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - WEBSITE_TABLEVIEW_CELL_HEIGHT - TABBAR_HEIGHT - STATUS_BAR_HEGHT - TABBAR_HEIGHT + 5)
-
         tableHeaderView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), descLabelOriginY + CGRectGetHeight(descLabel.bounds) + 10)
         
         tableView = UITableView(frame: CGRectMake(0, 0, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds)), style: UITableViewStyle.Grouped)
