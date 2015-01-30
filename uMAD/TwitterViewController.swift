@@ -117,8 +117,6 @@ class TwitterViewController: UITableViewController {
     
     // MARK: - UITableViewDelegate
     
-    tableview
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let openInAlertController = UIAlertController(title: "Open Tweet in...", message: nil, preferredStyle: .ActionSheet)
         
