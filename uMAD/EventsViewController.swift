@@ -38,7 +38,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.navigationItem.title = "Events"
         
-        tableView = UITableView(frame: CGRectMake(0, 0, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds)), style: .Plain)
+        tableView = UITableView(frame: CGRectMake(0, 0, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds) - TABBAR_HEIGHT), style: .Plain)
         tableView.registerClass(EventTableViewCell.self, forCellReuseIdentifier: "EVENTS_TABLEVIEW_CELL_IDENTIFIER")
         tableView.tableFooterView = UIView(frame: CGRectZero)
         tableView.delegate = self
