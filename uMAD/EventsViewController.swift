@@ -115,7 +115,12 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     () -> Void in
                     UIView.transitionWithView(self.tableView, duration: 0.1, options: UIViewAnimationOptions.ShowHideTransitionViews, animations: {
                         () -> Void in
-                        self.refreshControl.endRefreshing()
+                        
+                        let delayTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.20 * Double(NSEC_PER_SEC)))
+                        dispatch_after(delayTime, dispatch_get_main_queue()) {
+                            self.refreshControl.endRefreshing()
+                        }
+                        
                         self.tableView.reloadData()
                         }, completion: nil)
                 })
