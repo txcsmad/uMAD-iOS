@@ -21,20 +21,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         var eventsViewController = UINavigationController(rootViewController: EventsViewController())
-        
         var twitterViewController = UINavigationController(rootViewController: TwitterViewController())
-        twitterViewController.tabBarItem.title = "Twitter"
-        
         var sponsorsViewController = UINavigationController(rootViewController: SponsorsViewController())
-        sponsorsViewController.tabBarItem.title = "Sponsors"
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [eventsViewController, twitterViewController, sponsorsViewController]
         tabBarController.tabBar.tintColor = UIColor(red: 0.83, green: 0.18, blue: 0.13, alpha: 1.0)
         
-        var tabImage: UIImage = UIImage(named: "events.png")!
-        var resizedImage: UIImage = tabImage.imageScaledToSize(CGSizeMake(25.00, 25.00))
-        eventsViewController.tabBarItem = UITabBarItem(title: "Events", image: resizedImage, tag: 0)
+        var eventsTabImage: UIImage = UIImage(named: "events.png")!
+        var resizedEventsTabImage: UIImage = eventsTabImage.imageScaledToSize(CGSizeMake(25.00, 25.00))
+        eventsViewController.tabBarItem = UITabBarItem(title: "Events", image: resizedEventsTabImage, tag: 0)
+        
+        var twitterTabImage: UIImage = UIImage(named: "twitter.png")!
+        var resizedTwitterTabImage: UIImage = twitterTabImage.imageScaledToSize(CGSizeMake(25.00, 25.00))
+        twitterViewController.tabBarItem = UITabBarItem(title: "Twitter", image: resizedTwitterTabImage, tag: 0)
+        
+        var sponsorsTabImage: UIImage = UIImage(named: "sponsors.png")!
+        var resizedSponsorsTabImage: UIImage = sponsorsTabImage.imageScaledToSize(CGSizeMake(25.00, 25.00))
+        sponsorsViewController.tabBarItem = UITabBarItem(title: "Sponsors", image: resizedSponsorsTabImage, tag: 0)
         
         tabBarController.tabBar.translucent = false
         
