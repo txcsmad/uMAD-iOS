@@ -42,8 +42,6 @@ class TwitterViewController: UITableViewController {
                 }
 
                 self.tableView.reloadData()
-                
-                self.refreshControl?.endRefreshing()
             })
         }, { (error: NSError!) in
             self.presentAlertControllerForError(error)
