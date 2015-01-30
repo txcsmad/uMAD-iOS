@@ -47,7 +47,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         var companyLabelOriginX: CGFloat = thumbnailView.frame.origin.x + thumbnailView.frame.width + 10
         var companyLabelOriginY: CGFloat = thumbnailView.frame.origin.y
         var companyLabel: UILabel = UILabel(frame: CGRectMake(companyLabelOriginX, companyLabelOriginY, CGRectGetWidth(self.view.bounds) * 0.40, CGRectGetHeight(self.view.bounds) * 0.05))
-        companyLabel.font = UIFont(name: "HelveticaNeue-Bold", size: companyLabel.font.pointSize)
+        companyLabel.font = UIFont(name: "HelveticaNeue-Bold", size: FONT_SIZE)
         companyLabel.text = self.event.companyName
         companyLabel.sizeToFit()
         tableHeaderView.addSubview(companyLabel)
@@ -56,6 +56,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         var speakerLabelOriginX: CGFloat = thumbnailView.frame.origin.x + thumbnailView.frame.width + 10
         var speakerLabelOriginY: CGFloat = companyLabelOriginY + CGRectGetHeight(companyLabel.bounds)
         var speakerLabel: UILabel = UILabel(frame: CGRectMake(speakerLabelOriginX, speakerLabelOriginY, CGRectGetWidth(self.view.bounds) * 0.40, CGRectGetHeight(self.view.bounds) * 0.05))
+        speakerLabel.font = UIFont.systemFontOfSize(FONT_SIZE)
         speakerLabel.text = self.event.speaker
         speakerLabel.sizeToFit()
         tableHeaderView.addSubview(speakerLabel)
@@ -93,7 +94,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         var sessionLabelOriginX: CGFloat = thumbnailView.frame.origin.x
         var sessionLabelOriginY: CGFloat = thumbnailView.frame.origin.y + CGRectGetHeight(thumbnailView.bounds) + 20
         var sessionLabel: UILabel = UILabel(frame: CGRectMake(sessionLabelOriginX, sessionLabelOriginY, CGRectGetWidth(self.view.bounds) - (sessionLabelOriginX * 2.00), CGRectGetHeight(self.view.bounds) * 0.05))
-        sessionLabel.font = UIFont(name: "HelveticaNeue-Bold", size: companyLabel.font.pointSize + 1.50)
+        sessionLabel.font = UIFont(name: "HelveticaNeue-Bold", size: FONT_SIZE + 1.50)
         sessionLabel.text = self.event.sessionName
         sessionLabel.numberOfLines = 0
         sessionLabel.sizeToFit()
@@ -103,6 +104,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         var descLabelOriginX: CGFloat = thumbnailView.frame.origin.x
         var descLabelOriginY: CGFloat = sessionLabelOriginY + CGRectGetHeight(sessionLabel.bounds) + 5
         var descLabel: UILabel = UILabel(frame: CGRectMake(descLabelOriginX, descLabelOriginY, CGRectGetWidth(self.view.bounds) - (descLabelOriginX * 2.00), CGRectGetHeight(self.view.bounds) * 0.05))
+        descLabel.font = UIFont.systemFontOfSize(FONT_SIZE)
         descLabel.text = self.event.description
         descLabel.numberOfLines = 0
         descLabel.sizeToFit()
@@ -148,6 +150,8 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("WEBSITE_TABLEVIEW_CELL", forIndexPath: indexPath) as UITableViewCell
+        
+        cell.textLabel?.font = UIFont.systemFontOfSize(FONT_SIZE)
         
         cell.textLabel?.text = self.event.companyWebsite.absoluteString
         

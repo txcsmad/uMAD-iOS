@@ -170,6 +170,12 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return self.sectionHeaders[section];
     }
     
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        var sectionHeaderView: UITableViewHeaderFooterView = view as UITableViewHeaderFooterView
+        
+        sectionHeaderView.textLabel.font = UIFont.systemFontOfSize(FONT_SIZE)
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: EventTableViewCell = tableView.dequeueReusableCellWithIdentifier("EVENTS_TABLEVIEW_CELL_IDENTIFIER", forIndexPath: indexPath) as EventTableViewCell
         
@@ -186,6 +192,9 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let startTimeString: String         = timeFormatter.stringFromDate(startTime)
         let endTimeString: String           = timeFormatter.stringFromDate(endTime)
         
+        
+        cell.textLabel?.font = UIFont.systemFontOfSize(FONT_SIZE)
+        cell.detailTextLabel?.font = UIFont.systemFontOfSize(DETAIL_FONT_SIZE)
         
         cell.textLabel?.text        = companyName
         cell.detailTextLabel?.text  = sessionName
@@ -230,7 +239,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 println("Error: %@ %@", error, error.userInfo!)
             }
         })
-        
+        println(cell.textLabel?.font.pointSize)
+        println(cell.detailTextLabel?.font.pointSize)
         return cell
     }
     
