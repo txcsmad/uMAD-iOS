@@ -95,6 +95,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         var sessionLabel: UILabel = UILabel(frame: CGRectMake(sessionLabelOriginX, sessionLabelOriginY, CGRectGetWidth(self.view.bounds) - (sessionLabelOriginX * 2.00), CGRectGetHeight(self.view.bounds) * 0.05))
         sessionLabel.font = UIFont(name: "HelveticaNeue-Bold", size: companyLabel.font.pointSize + 1.50)
         sessionLabel.text = self.event.sessionName
+        sessionLabel.numberOfLines = 0
         sessionLabel.sizeToFit()
         tableHeaderView.addSubview(sessionLabel)
         
