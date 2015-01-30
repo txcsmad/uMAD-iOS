@@ -22,7 +22,7 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
         
         // Do any additional setup after loading the view, typically from a nib.
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         layout.itemSize = CGSize(width: 90, height: 120)
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
         collectionView!.dataSource = self
@@ -32,19 +32,20 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
         self.view.addSubview(self.collectionView!)
         
         var query = PFQuery(className: "Sponsors")
+        query.whereKey("sponsorLevel", greaterThanOrEqualTo: 0)
         query.orderByDescending("sponsorLevel")
         query.findObjectsInBackgroundWithBlock{(objects: [AnyObject]!, error: NSError!) -> Void in
             if error != nil {
-            // There was an error
+                // There was an error
             } else {
-            // objects has all the Posts the current user liked.
+                // objects has all the Posts the current user liked.
                 self.sponsors = objects as [PFObject]
                 self.sponsorCount = self.sponsors.count
                 self.collectionView?.reloadData()
             }
         }
-    
-    
+        
+        
         
     }
     
@@ -82,12 +83,11 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
         var currentSponsor: PFObject = sponsors[indexPath.item]
         var rating: Int = currentSponsor["sponsorLevel"] as Int
         
-        var size : CGSize!
+        var size : CGSize
         
         switch rating{
         case 0:
-            size = CGSize(width: (view.frame.width/2.3)-10, height: 100)
-            break
+            size = CGSize(width: (view.frame.width/2.0)-10, height: 100)
         case 1:
             size = CGSize(width: (view.frame.width/2.3)-10, height: 100)
             break
