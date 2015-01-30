@@ -8,6 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		32E186081A79A75E004EC0B9 /* TweetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32E186071A79A75E004EC0B9 /* TweetTableViewCell.xib */; };
+		64294D011A7AE43200B71E6F /* SVWebViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64294CE21A7AE43200B71E6F /* SVWebViewController.strings */; };
+		64294D021A7AE43200B71E6F /* SVModalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64294CEC1A7AE43200B71E6F /* SVModalWebViewController.m */; };
+		64294D031A7AE43200B71E6F /* SVWebViewController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 64294CED1A7AE43200B71E6F /* SVWebViewController.bundle */; };
+		64294D041A7AE43200B71E6F /* SVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64294CEF1A7AE43200B71E6F /* SVWebViewController.m */; };
+		64294D051A7AE43200B71E6F /* SVWebViewControllerActivityChrome-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 64294CF21A7AE43200B71E6F /* SVWebViewControllerActivityChrome-iPad.png */; };
+		64294D061A7AE43200B71E6F /* SVWebViewControllerActivityChrome-iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64294CF31A7AE43200B71E6F /* SVWebViewControllerActivityChrome-iPad@2x.png */; };
+		64294D071A7AE43200B71E6F /* SVWebViewControllerActivityChrome.m in Sources */ = {isa = PBXBuildFile; fileRef = 64294CF51A7AE43200B71E6F /* SVWebViewControllerActivityChrome.m */; };
+		64294D081A7AE43200B71E6F /* SVWebViewControllerActivityChrome@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64294CF61A7AE43200B71E6F /* SVWebViewControllerActivityChrome@2x.png */; };
+		64294D091A7AE43200B71E6F /* SVWebViewControllerActivitySafari-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 64294CF81A7AE43200B71E6F /* SVWebViewControllerActivitySafari-iPad.png */; };
+		64294D0A1A7AE43200B71E6F /* SVWebViewControllerActivitySafari-iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64294CF91A7AE43200B71E6F /* SVWebViewControllerActivitySafari-iPad@2x.png */; };
+		64294D0B1A7AE43200B71E6F /* SVWebViewControllerActivitySafari.m in Sources */ = {isa = PBXBuildFile; fileRef = 64294CFB1A7AE43200B71E6F /* SVWebViewControllerActivitySafari.m */; };
+		64294D0C1A7AE43200B71E6F /* SVWebViewControllerActivitySafari@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64294CFC1A7AE43200B71E6F /* SVWebViewControllerActivitySafari@2x.png */; };
+		64294D0D1A7AE43200B71E6F /* SVWebViewControllerActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 64294CFE1A7AE43200B71E6F /* SVWebViewControllerActivity.m */; };
+		6448E4071A7B067B00FB98CA /* EventHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6448E4061A7B067B00FB98CA /* EventHeaderView.swift */; };
 		64577EF11A797C7C00AAF1FC /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 64577EF01A797C7C00AAF1FC /* UIImage+Resize.m */; };
 		64CD922D1A7A008F00659946 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD922C1A7A008F00659946 /* Constants.swift */; };
 		64CD922F1A7A051E00659946 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD922E1A7A051E00659946 /* EventViewController.swift */; };
@@ -38,6 +52,34 @@
 		32E186071A79A75E004EC0B9 /* TweetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetTableViewCell.xib; sourceTree = "<group>"; };
 		3B596628F0847E6A0B2CB8F1 /* libPods-uMAD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-uMAD.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50E322A7AF2F9158B4D144D0 /* Pods-uMAD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uMAD.release.xcconfig"; path = "Pods/Target Support Files/Pods-uMAD/Pods-uMAD.release.xcconfig"; sourceTree = "<group>"; };
+		64294CE31A7AE43200B71E6F /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
+		64294CE41A7AE43200B71E6F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
+		64294CE51A7AE43200B71E6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
+		64294CE61A7AE43200B71E6F /* es-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-ES"; path = "es-ES.lproj/SVWebViewController.strings"; sourceTree = "<group>"; };
+		64294CE71A7AE43200B71E6F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
+		64294CE81A7AE43200B71E6F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
+		64294CE91A7AE43200B71E6F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
+		64294CEA1A7AE43200B71E6F /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
+		64294CEB1A7AE43200B71E6F /* SVModalWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVModalWebViewController.h; sourceTree = "<group>"; };
+		64294CEC1A7AE43200B71E6F /* SVModalWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVModalWebViewController.m; sourceTree = "<group>"; };
+		64294CED1A7AE43200B71E6F /* SVWebViewController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVWebViewController.bundle; sourceTree = "<group>"; };
+		64294CEE1A7AE43200B71E6F /* SVWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewController.h; sourceTree = "<group>"; };
+		64294CEF1A7AE43200B71E6F /* SVWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewController.m; sourceTree = "<group>"; };
+		64294CF21A7AE43200B71E6F /* SVWebViewControllerActivityChrome-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SVWebViewControllerActivityChrome-iPad.png"; sourceTree = "<group>"; };
+		64294CF31A7AE43200B71E6F /* SVWebViewControllerActivityChrome-iPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SVWebViewControllerActivityChrome-iPad@2x.png"; sourceTree = "<group>"; };
+		64294CF41A7AE43200B71E6F /* SVWebViewControllerActivityChrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewControllerActivityChrome.h; sourceTree = "<group>"; };
+		64294CF51A7AE43200B71E6F /* SVWebViewControllerActivityChrome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewControllerActivityChrome.m; sourceTree = "<group>"; };
+		64294CF61A7AE43200B71E6F /* SVWebViewControllerActivityChrome@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SVWebViewControllerActivityChrome@2x.png"; sourceTree = "<group>"; };
+		64294CF81A7AE43200B71E6F /* SVWebViewControllerActivitySafari-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SVWebViewControllerActivitySafari-iPad.png"; sourceTree = "<group>"; };
+		64294CF91A7AE43200B71E6F /* SVWebViewControllerActivitySafari-iPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SVWebViewControllerActivitySafari-iPad@2x.png"; sourceTree = "<group>"; };
+		64294CFA1A7AE43200B71E6F /* SVWebViewControllerActivitySafari.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewControllerActivitySafari.h; sourceTree = "<group>"; };
+		64294CFB1A7AE43200B71E6F /* SVWebViewControllerActivitySafari.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewControllerActivitySafari.m; sourceTree = "<group>"; };
+		64294CFC1A7AE43200B71E6F /* SVWebViewControllerActivitySafari@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SVWebViewControllerActivitySafari@2x.png"; sourceTree = "<group>"; };
+		64294CFD1A7AE43200B71E6F /* SVWebViewControllerActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewControllerActivity.h; sourceTree = "<group>"; };
+		64294CFE1A7AE43200B71E6F /* SVWebViewControllerActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewControllerActivity.m; sourceTree = "<group>"; };
+		64294CFF1A7AE43200B71E6F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SVWebViewController.strings"; sourceTree = "<group>"; };
+		64294D001A7AE43200B71E6F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SVWebViewController.strings"; sourceTree = "<group>"; };
+		6448E4061A7B067B00FB98CA /* EventHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventHeaderView.swift; sourceTree = "<group>"; };
 		64577EEF1A797C7600AAF1FC /* UIImage+Resize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		64577EF01A797C7C00AAF1FC /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		64CBDDAA1A75D133008BB167 /* uMAD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uMAD-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -94,6 +136,55 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		64294CE11A7AE43200B71E6F /* SVWebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				64294CE21A7AE43200B71E6F /* SVWebViewController.strings */,
+				64294CEB1A7AE43200B71E6F /* SVModalWebViewController.h */,
+				64294CEC1A7AE43200B71E6F /* SVModalWebViewController.m */,
+				64294CED1A7AE43200B71E6F /* SVWebViewController.bundle */,
+				64294CEE1A7AE43200B71E6F /* SVWebViewController.h */,
+				64294CEF1A7AE43200B71E6F /* SVWebViewController.m */,
+				64294CF01A7AE43200B71E6F /* UIActivities */,
+			);
+			path = SVWebViewController;
+			sourceTree = "<group>";
+		};
+		64294CF01A7AE43200B71E6F /* UIActivities */ = {
+			isa = PBXGroup;
+			children = (
+				64294CF11A7AE43200B71E6F /* Chrome */,
+				64294CF71A7AE43200B71E6F /* Safari */,
+				64294CFD1A7AE43200B71E6F /* SVWebViewControllerActivity.h */,
+				64294CFE1A7AE43200B71E6F /* SVWebViewControllerActivity.m */,
+			);
+			path = UIActivities;
+			sourceTree = "<group>";
+		};
+		64294CF11A7AE43200B71E6F /* Chrome */ = {
+			isa = PBXGroup;
+			children = (
+				64294CF21A7AE43200B71E6F /* SVWebViewControllerActivityChrome-iPad.png */,
+				64294CF31A7AE43200B71E6F /* SVWebViewControllerActivityChrome-iPad@2x.png */,
+				64294CF41A7AE43200B71E6F /* SVWebViewControllerActivityChrome.h */,
+				64294CF51A7AE43200B71E6F /* SVWebViewControllerActivityChrome.m */,
+				64294CF61A7AE43200B71E6F /* SVWebViewControllerActivityChrome@2x.png */,
+			);
+			path = Chrome;
+			sourceTree = "<group>";
+		};
+		64294CF71A7AE43200B71E6F /* Safari */ = {
+			isa = PBXGroup;
+			children = (
+				64294CF81A7AE43200B71E6F /* SVWebViewControllerActivitySafari-iPad.png */,
+				64294CF91A7AE43200B71E6F /* SVWebViewControllerActivitySafari-iPad@2x.png */,
+				64294CFA1A7AE43200B71E6F /* SVWebViewControllerActivitySafari.h */,
+				64294CFB1A7AE43200B71E6F /* SVWebViewControllerActivitySafari.m */,
+				64294CFC1A7AE43200B71E6F /* SVWebViewControllerActivitySafari@2x.png */,
+			);
+			path = Safari;
+			sourceTree = "<group>";
+		};
 		64CD92331A7A073100659946 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +201,7 @@
 			children = (
 				32E186071A79A75E004EC0B9 /* TweetTableViewCell.xib */,
 				64E59F331A79F2ED00C2B030 /* EventTableViewCell.swift */,
+				6448E4061A7B067B00FB98CA /* EventHeaderView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -156,6 +248,7 @@
 			children = (
 				64D4AF621A75CDA80040D3CA /* AppDelegate.swift */,
 				64CBDDAA1A75D133008BB167 /* uMAD-Bridging-Header.h */,
+				64294CE11A7AE43200B71E6F /* SVWebViewController */,
 				64CD92361A7A076900659946 /* Third Party Libraries */,
 				64CD92351A7A075B00659946 /* Models */,
 				64CD92341A7A074400659946 /* Views */,
@@ -258,6 +351,15 @@
 			knownRegions = (
 				en,
 				Base,
+				da,
+				de,
+				"es-ES",
+				es,
+				fr,
+				ja,
+				pt,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 64D4AF541A75CDA80040D3CA;
 			productRefGroup = 64D4AF5E1A75CDA80040D3CA /* Products */;
@@ -276,8 +378,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				64D4AF6D1A75CDA80040D3CA /* LaunchScreen.xib in Resources */,
+				64294D011A7AE43200B71E6F /* SVWebViewController.strings in Resources */,
 				32E186081A79A75E004EC0B9 /* TweetTableViewCell.xib in Resources */,
+				64294D051A7AE43200B71E6F /* SVWebViewControllerActivityChrome-iPad.png in Resources */,
+				64294D0A1A7AE43200B71E6F /* SVWebViewControllerActivitySafari-iPad@2x.png in Resources */,
+				64294D0C1A7AE43200B71E6F /* SVWebViewControllerActivitySafari@2x.png in Resources */,
+				64294D061A7AE43200B71E6F /* SVWebViewControllerActivityChrome-iPad@2x.png in Resources */,
+				64294D031A7AE43200B71E6F /* SVWebViewController.bundle in Resources */,
+				64294D081A7AE43200B71E6F /* SVWebViewControllerActivityChrome@2x.png in Resources */,
 				64D4AF6A1A75CDA80040D3CA /* Images.xcassets in Resources */,
+				64294D091A7AE43200B71E6F /* SVWebViewControllerActivitySafari-iPad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,15 +438,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6448E4071A7B067B00FB98CA /* EventHeaderView.swift in Sources */,
 				64D4AF851A75CF020040D3CA /* SponsorsViewController.swift in Sources */,
+				64294D0D1A7AE43200B71E6F /* SVWebViewControllerActivity.m in Sources */,
 				64D4AF871A75CF1C0040D3CA /* TwitterViewController.swift in Sources */,
 				64D4AF631A75CDA80040D3CA /* AppDelegate.swift in Sources */,
 				64D4AF831A75CEAE0040D3CA /* EventsViewController.swift in Sources */,
 				64E59F341A79F2ED00C2B030 /* EventTableViewCell.swift in Sources */,
+				64294D041A7AE43200B71E6F /* SVWebViewController.m in Sources */,
 				64CD922F1A7A051E00659946 /* EventViewController.swift in Sources */,
 				64FD63791A76FB0700D89106 /* Event.swift in Sources */,
 				64577EF11A797C7C00AAF1FC /* UIImage+Resize.m in Sources */,
+				64294D021A7AE43200B71E6F /* SVModalWebViewController.m in Sources */,
 				64CD922D1A7A008F00659946 /* Constants.swift in Sources */,
+				64294D0B1A7AE43200B71E6F /* SVWebViewControllerActivitySafari.m in Sources */,
+				64294D071A7AE43200B71E6F /* SVWebViewControllerActivityChrome.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +475,23 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		64294CE21A7AE43200B71E6F /* SVWebViewController.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64294CE31A7AE43200B71E6F /* da */,
+				64294CE41A7AE43200B71E6F /* de */,
+				64294CE51A7AE43200B71E6F /* en */,
+				64294CE61A7AE43200B71E6F /* es-ES */,
+				64294CE71A7AE43200B71E6F /* es */,
+				64294CE81A7AE43200B71E6F /* fr */,
+				64294CE91A7AE43200B71E6F /* ja */,
+				64294CEA1A7AE43200B71E6F /* pt */,
+				64294CFF1A7AE43200B71E6F /* zh-Hans */,
+				64294D001A7AE43200B71E6F /* zh-Hant */,
+			);
+			name = SVWebViewController.strings;
+			sourceTree = "<group>";
+		};
 		64D4AF6B1A75CDA80040D3CA /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
