@@ -123,6 +123,7 @@ class TwitterViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let alertController = UIAlertController(title: "Open in Twitter", message: nil, preferredStyle: .Alert)
+        alertController.view.tintColor = UIColor(red: 0.83, green: 0.18, blue: 0.13, alpha: 1.0)
         
         alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action: UIAlertAction!) in
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
