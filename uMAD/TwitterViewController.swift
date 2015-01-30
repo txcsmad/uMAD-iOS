@@ -25,15 +25,9 @@ class TwitterViewController: UITableViewController {
     }
     
     func composeTweet() {
-        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
-            let tweetSheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-            tweetSheet.setInitialText(" \(UTCS_MAD_SCREEN_NAME)")
-            presentViewController(tweetSheet, animated: true, completion: nil)
-        } else {
-            let alertController = UIAlertController(title: "Oops!", message: "", preferredStyle: .Alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            presentViewController(alertController, animated: true, completion: nil)
-        }
+        let tweetSheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+        tweetSheet.setInitialText(UTCS_MAD_SCREEN_NAME + " ")
+        presentViewController(tweetSheet, animated: true, completion: nil)
     }
     
     func presentAlertControllerForError(error: NSError) {
@@ -51,8 +45,9 @@ class TwitterViewController: UITableViewController {
             }
 
             dispatch_async(dispatch_get_main_queue(), { () in
-                self.refreshControl?.endRefreshing()
                 self.tableView.reloadData()
+                
+                self.refreshControl?.endRefreshing()
             })
         }, { (error: NSError!) in
             self.presentAlertControllerForError(error)
@@ -69,9 +64,12 @@ class TwitterViewController: UITableViewController {
         refreshControl = refresh
         
         navigationItem.title = "Twitter"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: Selector("composeTweet"))
+        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: Selector("composeTweet"))
+        }
         
-        tableView.registerNib(UINib(nibName: "TweetTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "TweetCell")
+        tableView.tableFooterView = UIView()
+        tableView.registerNib(UINib(nibName: "TweetTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "tweet_cell")
         
         twitter.verifyCredentialsWithSuccessBlock({ (bearerToken: String!) in
             self.reloadTweets()
@@ -87,13 +85,13 @@ class TwitterViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as TweetTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("tweet_cell", forIndexPath: indexPath) as TweetTableViewCell
         
         let tweet = tweets[indexPath.row]
         
         let attributedName = NSMutableAttributedString(string: "\(tweet.user.name) @\(tweet.user.screenName)")
         let screenNameRange = NSMakeRange(countElements(tweet.user.name) + 1, countElements(tweet.user.screenName) + 1)
-        attributedName.addAttribute(NSFontAttributeName, value: UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline), range: screenNameRange)
+        attributedName.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(14), range: screenNameRange)
         attributedName.addAttribute(NSForegroundColorAttributeName, value: UIColor.lightGrayColor(), range: screenNameRange)
         cell.userNameAndScreenNameLabel.attributedText = attributedName
   
@@ -129,27 +127,26 @@ class TwitterViewController: UITableViewController {
     // MARK: - UITableViewDelegate
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let openInAlertController = UIAlertController(title: "Open Tweet in...", message: nil, preferredStyle: .ActionSheet)
+        
         let tweet = tweets[indexPath.row]
         
-        let openInAlertController = UIAlertController(title: "Open Tweet in...", message: "Select the Twitter client you would like to open this Tweet in. If you're unsure what this means, simply selecting Twitter is a safe bet.", preferredStyle: .ActionSheet)
-        
-        openInAlertController.addAction(UIAlertAction(title: "Twitter", style: .Default, handler: { (action: UIAlertAction!) in
-            self.attemptToOpenUrl(NSURL(string: "twitter://status?id=\(tweet.id)")!)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        }))
-        
-        openInAlertController.addAction(UIAlertAction(title: "Tweetbot", style: .Default, handler: { (action: UIAlertAction!) in
-            self.attemptToOpenUrl(NSURL(string: "tweetbot://\(tweet.user.id)/status/\(tweet.id)")!)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        }))
-        
-        openInAlertController.addAction(UIAlertAction(title: "Twitterrific", style: .Default, handler: { (action: UIAlertAction!) in
-            self.attemptToOpenUrl(NSURL(string: "twitterrific:///tweet?id=\(tweet.id)")!)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        }))
+        var clients = [(String, String)]()
+        clients.append(("Twitter", "twitter://status?id=\(tweet.id)"))
+        clients.append(("Tweetbot", "tweetbot://\(tweet.user.id)/status/\(tweet.id)"))
+        clients.append(("Twitterrific", "twitterrific:///tweet?id=\(tweet.id)"))
+
+        for client in clients {
+            if UIApplication.sharedApplication().canOpenURL(NSURL(string: client.1)!) {
+                openInAlertController.addAction(UIAlertAction(title: client.0, style: .Default, handler: { (action: UIAlertAction!) in
+                    UIApplication.sharedApplication().openURL(NSURL(string: client.1)!)
+                    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                }))
+            }
+        }
         
         openInAlertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action: UIAlertAction!) in
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            tableView.reloadData()
         }))
         
         presentViewController(openInAlertController, animated: true, completion: nil)
