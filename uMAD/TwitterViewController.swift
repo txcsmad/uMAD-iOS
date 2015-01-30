@@ -1,59 +1,12 @@
 
 import UIKit
+import Social
 
 let TWITTER_CONSUMER_KEY = "SyuNTOUuYd5EbejRrzTXoNys3"
 let TWITTER_CONSUMER_SECRET = "6TzSt7ruEZCUElzui3U98UxovXm88ZiByPL3ARMBjkUbkIgdv9"
 
-let UTCS_MAD = "utcsmad"
+let UTCS_MAD_SCREEN_NAME = "@utcsmad"
 let TWEET_BATCH_COUNT: UInt = 100
-
-struct Tweet {
-    
-    var createdAt: NSDate
-    var id: String
-    var text: String
-    var user: User
-    
-    init(json: NSDictionary) {
-        var tweet: NSDictionary!
-        if let retweetedStatus = json["retweeted_status"] as? NSDictionary {
-            tweet = retweetedStatus
-        } else {
-            tweet = json
-        }
-        
-        id = tweet["id_str"] as String
-        
-        let createdAtString = tweet["created_at"] as String
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
-        createdAt = dateFormatter.dateFromString(createdAtString)!
-        
-        text = tweet["text"] as String
-        
-        let userDictionary = tweet["user"] as NSDictionary
-        user = User(json: userDictionary)
-    }
-    
-}
-
-struct User {
-    
-    var name: String
-    var screenName: String
-    var profileImageUrl: NSURL
-    
-    init(json: NSDictionary) {
-        name = json["name"] as String
-        
-        screenName = json["screen_name"] as String
-        
-        let profileImageUrlString = json["profile_image_url_https"] as String
-        let biggerProfileImageUrlString = profileImageUrlString.stringByReplacingOccurrencesOfString("normal", withString: "bigger", options: .LiteralSearch, range: nil)
-        profileImageUrl = NSURL(string: biggerProfileImageUrlString)!
-    }
-    
-}
 
 class TwitterViewController: UITableViewController {
     
@@ -72,11 +25,25 @@ class TwitterViewController: UITableViewController {
     }
     
     func composeTweet() {
-        println("Compose tweet")
+        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
+            let tweetSheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+            tweetSheet.setInitialText(" \(UTCS_MAD_SCREEN_NAME)")
+            presentViewController(tweetSheet, animated: true, completion: nil)
+        } else {
+            let alertController = UIAlertController(title: "Oops!", message: "", preferredStyle: .Alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            presentViewController(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func presentAlertControllerForError(error: NSError) {
+        let alertController = UIAlertController(title: "Oops!", message: error.localizedDescription, preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        presentViewController(alertController, animated: true, completion: nil)
     }
     
     func reloadTweets() {
-        twitter.getUserTimelineWithScreenName(UTCS_MAD, count: TWEET_BATCH_COUNT, successBlock: { (response: [AnyObject]!) in
+        twitter.getUserTimelineWithScreenName(UTCS_MAD_SCREEN_NAME, count: TWEET_BATCH_COUNT, successBlock: { (response: [AnyObject]!) in
             self.tweets.removeAll(keepCapacity: true)
             
             for dictionary in response as [NSDictionary] {
@@ -88,7 +55,7 @@ class TwitterViewController: UITableViewController {
                 self.tableView.reloadData()
             })
         }, { (error: NSError!) in
-            UIAlertController.presentErrorAlertControllerInViewController(self, error: error)
+            self.presentAlertControllerForError(error)
         })
     }
     
@@ -109,7 +76,7 @@ class TwitterViewController: UITableViewController {
         twitter.verifyCredentialsWithSuccessBlock({ (bearerToken: String!) in
             self.reloadTweets()
         }, errorBlock: { (error: NSError!) in
-            UIAlertController.presentErrorAlertControllerInViewController(self, error: error)
+            self.presentAlertControllerForError(error)
         })
     }
     
@@ -124,7 +91,11 @@ class TwitterViewController: UITableViewController {
         
         let tweet = tweets[indexPath.row]
         
-        cell.userNameAndScreenNameLabel.text = "\(tweet.user.name) - @\(tweet.user.screenName)"
+        let attributedName = NSMutableAttributedString(string: "\(tweet.user.name) @\(tweet.user.screenName)")
+        let screenNameRange = NSMakeRange(countElements(tweet.user.name) + 1, countElements(tweet.user.screenName) + 1)
+        attributedName.addAttribute(NSFontAttributeName, value: UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline), range: screenNameRange)
+        attributedName.addAttribute(NSForegroundColorAttributeName, value: UIColor.lightGrayColor(), range: screenNameRange)
+        cell.userNameAndScreenNameLabel.attributedText = attributedName
   
         cell.tweetTextLabel.text = tweet.text
         
@@ -159,52 +130,29 @@ class TwitterViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let tweet = tweets[indexPath.row]
+        
         let openInAlertController = UIAlertController(title: "Open Tweet in...", message: "Select the Twitter client you would like to open this Tweet in. If you're unsure what this means, simply selecting Twitter is a safe bet.", preferredStyle: .ActionSheet)
+        
         openInAlertController.addAction(UIAlertAction(title: "Twitter", style: .Default, handler: { (action: UIAlertAction!) in
-            // Twitter
             self.attemptToOpenUrl(NSURL(string: "twitter://status?id=\(tweet.id)")!)
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }))
+        
         openInAlertController.addAction(UIAlertAction(title: "Tweetbot", style: .Default, handler: { (action: UIAlertAction!) in
-            // Tweetbot tweetbot://<screenname>/status/<tweet_id>
-            self.attemptToOpenUrl(NSURL(string: "tweetbot://<screenname>/status/<tweet_id>")!)
+            self.attemptToOpenUrl(NSURL(string: "tweetbot://\(tweet.user.id)/status/\(tweet.id)")!)
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }))
+        
         openInAlertController.addAction(UIAlertAction(title: "Twitterrific", style: .Default, handler: { (action: UIAlertAction!) in
-            // Twitterific
+            self.attemptToOpenUrl(NSURL(string: "twitterrific:///tweet?id=\(tweet.id)")!)
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }))
+        
         openInAlertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action: UIAlertAction!) in
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }))
-        presentViewController(openInAlertController, animated: true, completion: nil)
-    }
-    
-}
-
-class TweetTableViewCell: UITableViewCell {
-
-    @IBOutlet var userProfileImageView: UIImageView!
-    @IBOutlet var userNameAndScreenNameLabel: UILabel!
-    @IBOutlet var createdAtLabel: UILabel!
-    @IBOutlet var tweetTextLabel: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
         
-        userProfileImageView.backgroundColor = UIColor.lightGrayColor()
-        userProfileImageView.layer.cornerRadius = 8
-        userProfileImageView.clipsToBounds = true
-    }
-
-}
-
-extension UIAlertController {
-    
-    class func presentErrorAlertControllerInViewController(viewController: UIViewController, error: NSError) {
-        let alertController = UIAlertController(title: "Oops!", message: error.localizedDescription, preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-        viewController.presentViewController(alertController, animated: true, completion: nil)
+        presentViewController(openInAlertController, animated: true, completion: nil)
     }
     
 }

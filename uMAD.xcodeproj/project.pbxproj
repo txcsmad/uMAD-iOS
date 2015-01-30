@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3219C4561A7AD5AD00C3ADEB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3219C4551A7AD5AD00C3ADEB /* Social.framework */; };
+		3219C4581A7B03E400C3ADEB /* Twitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219C4571A7B03E400C3ADEB /* Twitter.swift */; };
+		3219C45A1A7B067600C3ADEB /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219C4591A7B067600C3ADEB /* TweetTableViewCell.swift */; };
 		32E186081A79A75E004EC0B9 /* TweetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32E186071A79A75E004EC0B9 /* TweetTableViewCell.xib */; };
 		64577EF11A797C7C00AAF1FC /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 64577EF01A797C7C00AAF1FC /* UIImage+Resize.m */; };
 		64CD922D1A7A008F00659946 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD922C1A7A008F00659946 /* Constants.swift */; };
@@ -35,6 +38,9 @@
 
 /* Begin PBXFileReference section */
 		05DDE97D92320F02657C9DD4 /* Pods-uMAD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uMAD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-uMAD/Pods-uMAD.debug.xcconfig"; sourceTree = "<group>"; };
+		3219C4551A7AD5AD00C3ADEB /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		3219C4571A7B03E400C3ADEB /* Twitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Twitter.swift; sourceTree = "<group>"; };
+		3219C4591A7B067600C3ADEB /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
 		32E186071A79A75E004EC0B9 /* TweetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetTableViewCell.xib; sourceTree = "<group>"; };
 		3B596628F0847E6A0B2CB8F1 /* libPods-uMAD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-uMAD.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50E322A7AF2F9158B4D144D0 /* Pods-uMAD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uMAD.release.xcconfig"; path = "Pods/Target Support Files/Pods-uMAD/Pods-uMAD.release.xcconfig"; sourceTree = "<group>"; };
@@ -63,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3219C4561A7AD5AD00C3ADEB /* Social.framework in Frameworks */,
 				AA205FAA5FB53DF9343E091B /* libPods-uMAD.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,6 +87,7 @@
 		40810CBC9317D6633548B7B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3219C4551A7AD5AD00C3ADEB /* Social.framework */,
 				3B596628F0847E6A0B2CB8F1 /* libPods-uMAD.a */,
 			);
 			name = Frameworks;
@@ -110,6 +118,7 @@
 			children = (
 				32E186071A79A75E004EC0B9 /* TweetTableViewCell.xib */,
 				64E59F331A79F2ED00C2B030 /* EventTableViewCell.swift */,
+				3219C4591A7B067600C3ADEB /* TweetTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -118,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				64FD63781A76FB0700D89106 /* Event.swift */,
+				3219C4571A7B03E400C3ADEB /* Twitter.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -334,7 +344,9 @@
 				64D4AF831A75CEAE0040D3CA /* EventsViewController.swift in Sources */,
 				64E59F341A79F2ED00C2B030 /* EventTableViewCell.swift in Sources */,
 				64CD922F1A7A051E00659946 /* EventViewController.swift in Sources */,
+				3219C45A1A7B067600C3ADEB /* TweetTableViewCell.swift in Sources */,
 				64FD63791A76FB0700D89106 /* Event.swift in Sources */,
+				3219C4581A7B03E400C3ADEB /* Twitter.swift in Sources */,
 				64577EF11A797C7C00AAF1FC /* UIImage+Resize.m in Sources */,
 				64CD922D1A7A008F00659946 /* Constants.swift in Sources */,
 			);
