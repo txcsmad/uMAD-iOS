@@ -122,29 +122,26 @@ class TwitterViewController: UITableViewController {
     // MARK: - UITableViewDelegate
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let openInAlertController = UIAlertController(title: "Open Tweet in...", message: nil, preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title: "Open in Twitter", message: nil, preferredStyle: .Alert)
+        alertController.view.tintColor = UIColor(red: 0.83, green: 0.18, blue: 0.13, alpha: 1.0)
         
-        let tweet = tweets[indexPath.row]
-        
-        var clients = [(String, String)]()
-        clients.append(("Twitter", "twitter://status?id=\(tweet.id)"))
-        clients.append(("Tweetbot", "tweetbot://\(tweet.user.id)/status/\(tweet.id)"))
-        clients.append(("Twitterrific", "twitterrific:///tweet?id=\(tweet.id)"))
-
-        for client in clients {
-            if UIApplication.sharedApplication().canOpenURL(NSURL(string: client.1)!) {
-                openInAlertController.addAction(UIAlertAction(title: client.0, style: .Default, handler: { (action: UIAlertAction!) in
-                    UIApplication.sharedApplication().openURL(NSURL(string: client.1)!)
-                    tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                }))
-            }
-        }
-        
-        openInAlertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action: UIAlertAction!) in
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action: UIAlertAction!) in
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }))
         
-        presentViewController(openInAlertController, animated: true, completion: nil)
+        alertController.addAction(UIAlertAction(title: "Open", style: .Default, handler: { (action: UIAlertAction!) in
+            let tweet = self.tweets[indexPath.row]
+            let url = NSURL(string: "twitter://status?id=\(tweet.id)")!
+            UIApplication.sharedApplication().openURL(url)
+            
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }))
+        
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return UIApplication.sharedApplication().canOpenURL(NSURL(string: "twitter://")!)
     }
     
 }
