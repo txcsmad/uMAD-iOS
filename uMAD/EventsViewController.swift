@@ -279,7 +279,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         })
                     }
                     
-                    if self.thumbnails[companyName] == nil {
+                    if self.thumbnails[companyName] == nil || cell.imageView?.image != self.thumbnails[companyName] {
                         var parseThumbnail: PFFile = object["thumbnail"] as PFFile!
                         parseThumbnail.getDataInBackgroundWithBlock({
                             (data: NSData!, error: NSError!) -> Void in
