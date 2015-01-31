@@ -26,9 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var eventsViewController = UINavigationController(rootViewController: EventsViewController())
         var twitterViewController = UINavigationController(rootViewController: TwitterViewController())
         var sponsorsViewController = UINavigationController(rootViewController: SponsorsViewController())
+        var aboutViewController = UINavigationController(rootViewController: AboutViewController())
         
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [eventsViewController, twitterViewController, sponsorsViewController]
+        tabBarController.viewControllers = [eventsViewController, twitterViewController, sponsorsViewController, aboutViewController]
         tabBarController.tabBar.tintColor = UIColor(red: 0.83, green: 0.18, blue: 0.13, alpha: 1.0)
         
         var eventsTabImage: UIImage = UIImage(named: "events.png")!
@@ -42,6 +43,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var sponsorsTabImage: UIImage = UIImage(named: "sponsors.png")!
         var resizedSponsorsTabImage: UIImage = sponsorsTabImage.imageScaledToSize(CGSizeMake(25.00, 25.00))
         sponsorsViewController.tabBarItem = UITabBarItem(title: "Sponsors", image: resizedSponsorsTabImage, tag: 0)
+        
+        var aboutTabImage: UIImage = UIImage(named: "aboutus.png")!
+        var resizedAboutTabImage: UIImage = aboutTabImage.imageScaledToSize(CGSizeMake(25.00, 25.00))
+        aboutViewController.tabBarItem = UITabBarItem(title: "About Us", image: resizedAboutTabImage, tag: 0)
         
         tabBarController.tabBar.translucent = false
         
