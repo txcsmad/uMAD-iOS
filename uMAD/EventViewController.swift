@@ -112,15 +112,15 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         tableHeaderView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), descLabelOriginY + CGRectGetHeight(descLabel.bounds) + 10)
         
-        tableView = UITableView(frame: CGRectMake(0, 0, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds)), style: UITableViewStyle.Grouped)
-        tableView.backgroundColor = UIColor.whiteColor()
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier:"WEBSITE_TABLEVIEW_CELL")
-        tableView.tableHeaderView = tableHeaderView
-        tableView.tableFooterView = UIView(frame: CGRectZero)
-        tableView.contentInset = UIEdgeInsetsMake(1.00, 0, 0, 0)
-        tableView.delegate = self
-        tableView.dataSource = self
-        view.addSubview(tableView)
+        self.tableView = UITableView(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - TABBAR_HEIGHT), style: UITableViewStyle.Grouped)
+        self.tableView.backgroundColor = UIColor.whiteColor()
+        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier:"WEBSITE_TABLEVIEW_CELL")
+        self.tableView.tableHeaderView = tableHeaderView
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        self.tableView.contentInset = UIEdgeInsetsMake(1.00, 0, 0, 0)
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        view.addSubview(self.tableView)
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
