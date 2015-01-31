@@ -61,10 +61,12 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as UICollectionViewCell
-        println("*********START*********\n\(cell.subviews)\n***********END*************")
-        if cell.subviews.count <= 1 {
+        
+        for view in cell.contentView.subviews{
+            view.removeFromSuperview()
+        }
+        
             var currentSponsor: PFObject = sponsors[indexPath.item]
             var imageFile: PFFile = currentSponsor["companyImage"] as PFFile
             
@@ -75,11 +77,10 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
                     let logo = UIImageView(image: image)
                     logo.contentMode = UIViewContentMode.ScaleAspectFit
                     logo.frame = CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height)
-                    cell.addSubview(logo)
+                    cell.contentView.addSubview(logo)
                     cell.setNeedsDisplay()
                 }
             }
-        }
 
         return cell
     }
@@ -92,7 +93,7 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
         
         switch rating{
         case 0:
-            size = CGSize(width: (view.frame.width/2.0)-10, height: 100)
+            size = CGSize(width: (view.frame.width/2.3)-10, height: 100)
         case 1:
             size = CGSize(width: (view.frame.width/2.3)-10, height: 100)
             break
