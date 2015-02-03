@@ -38,15 +38,21 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.navigationItem.title = "Events"
         
-        tableView = UITableView(frame: CGRectMake(0, 0, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds) - TABBAR_HEIGHT), style: .Plain)
-        tableView.registerClass(EventTableViewCell.self, forCellReuseIdentifier: "EVENTS_TABLEVIEW_CELL_IDENTIFIER")
-        tableView.tableFooterView = UIView(frame: CGRectZero)
-        tableView.delegate = self
-        tableView.dataSource = self
-        view.addSubview(tableView)
+        self.tableView = UITableView(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - TABBAR_HEIGHT), style: .Plain)
+        self.tableView.registerClass(EventTableViewCell.self, forCellReuseIdentifier: "EVENTS_TABLEVIEW_CELL_IDENTIFIER")
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        view.addSubview(self.tableView)
         
-        refreshControl.addTarget(self, action: Selector("reloadData"), forControlEvents: .ValueChanged)
-        tableView.addSubview(refreshControl)
+        self.refreshControl.addTarget(self, action: Selector("reloadData"), forControlEvents: .ValueChanged)
+        self.tableView.addSubview(self.refreshControl)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.setToolbarHidden(true, animated: true)
     }
     
     func calculateIndex(indexPath: NSIndexPath) -> Int {
@@ -64,19 +70,46 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return result
     }
     
+    func monthToInt(month: String) -> Int {
+        switch month {
+            case "January":
+                return 0
+            case "February":
+                return 1
+            case "March":
+                return 2
+            case "April":
+                return 3
+            case "May":
+                return 4
+            case "June":
+                return 5
+            case "July":
+                return 6
+            case "August":
+                return 7
+            case "September":
+                return 8
+            case "October":
+                return 9
+            case "November":
+                return 10
+            case "December":
+                return 11
+            default:
+                fatalError("Unidentifiable month string")
+        }
+    }
+    
     func reloadData() {
-        events = [Event]()
-        rowsPerSection = [String : Int]()
-        sectionHeaders = [String]()
+        self.events = [Event]()
+        self.rowsPerSection = [String : Int]()
+        self.sectionHeaders = [String]()
         
         var eventsQuery: PFQuery = PFQuery(className:"Events")
         eventsQuery.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]!, error: NSError!) -> Void in
-            if error == nil {
-                // The find succeeded.
-                println("Successfully retrieved \(objects.count) events.")
-                // Do something with the found objects
-                
+            if error == nil {                
                 for object in objects {
                     var info: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
                     info["sessionName"] = object["sessionName"] as String!
@@ -98,7 +131,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     timeFormatter.timeZone = NSTimeZone(name: "America/Chicago")
                     timeFormatter.dateFormat = "MMMM d - hh:00 a";
                     var timeString: String = timeFormatter.stringFromDate(info["startTime"] as NSDate!)
-                    
+                                        
                     if self.rowsPerSection[timeString] == nil {
                         self.rowsPerSection[timeString] = 1
                     } else {
@@ -109,6 +142,45 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.events = self.events.sorted({
                     (firstEvent: Event, secondEvent: Event) -> Bool in
                     return firstEvent.startTime.description < secondEvent.startTime.description
+                })
+                
+                self.sectionHeaders = []
+                
+                for key in self.rowsPerSection.keys {
+                    self.sectionHeaders.append(key)
+                }
+                
+                self.sectionHeaders = self.sectionHeaders.sorted({
+                    (s1: String, s2: String) -> Bool in
+                    let s1Array: [String] = s1.componentsSeparatedByString(" ")
+                    let s2Array: [String] = s2.componentsSeparatedByString(" ")
+                    
+                    let s1Month: Int = self.monthToInt(s1Array[0])
+                    let s2Month: Int = self.monthToInt(s2Array[0])
+                    let s1Day: Int = s1Array[1].toInt()!
+                    let s2Day: Int = s2Array[1].toInt()!
+                    let s1Split: Int = s1Array[4] == "AM" ? 0 : 1
+                    let s2Split: Int = s2Array[4] == "AM" ? 0 : 1
+                    let s1Time: Int = s1Array[3].componentsSeparatedByString(":")[0].toInt()!
+                    let s2Time: Int = s2Array[3].componentsSeparatedByString(":")[0].toInt()!
+                    
+                    if s1Month == s2Month {
+                        if s1Day == s2Day {
+                            if s1Split == s2Split {
+                                if s1Time == 12 {
+                                    return s1Time < s2Time
+                                }
+                                
+                                return s1Time > s2Time
+                            }
+                            
+                            return s1Split < s2Split
+                        }
+                        
+                        return s1Day < s2Day
+                    }
+                    
+                    return s1Month < s2Month
                 })
                 
                 dispatch_async(dispatch_get_main_queue(), {
@@ -136,17 +208,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        self.sectionHeaders = []
-        
-        for key in self.rowsPerSection.keys {
-            self.sectionHeaders.append(key)
-        }
-        
-        self.sectionHeaders = self.sectionHeaders.sorted({
-            (s1: String, s2: String) -> Bool in
-            return s1 < s2
-        })
-        
         return self.sectionHeaders.count
     }
     
@@ -207,10 +268,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         sponsorsQuery.findObjectsInBackgroundWithBlock({
             (objects: [AnyObject]!, error: NSError!) -> Void in
             if error == nil {
-                // The find succeeded.
-                println("Successfully retrieved \(objects.count) sponsors.")
-                // Do something with the found objects
-                
                 for object in objects {
                     var companyName: String = object["companyName"] as String!
                     
@@ -219,16 +276,14 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         parseImage.getDataInBackgroundWithBlock({
                             (data: NSData!, error: NSError!) -> Void in
                             self.logos[companyName] = UIImage(data: data)!
-                            println("Downloaded LOGO of \(companyName)")
                         })
                     }
                     
-                    if self.thumbnails[companyName] == nil {
+                    if self.thumbnails[companyName] == nil || cell.imageView?.image != self.thumbnails[companyName] {
                         var parseThumbnail: PFFile = object["thumbnail"] as PFFile!
                         parseThumbnail.getDataInBackgroundWithBlock({
                             (data: NSData!, error: NSError!) -> Void in
                             self.thumbnails[companyName] = UIImage(data: data)!
-                            println("Downloaded THUMBNAIL of \(companyName)")
                             cell.imageView?.image = self.thumbnails[companyName]?.imageScaledToSize(CGSizeMake(50.00, 50.00))
                         })
                     }
@@ -239,8 +294,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 println("Error: %@ %@", error, error.userInfo!)
             }
         })
-        println(cell.textLabel?.font.pointSize)
-        println(cell.detailTextLabel?.font.pointSize)
         return cell
     }
     
