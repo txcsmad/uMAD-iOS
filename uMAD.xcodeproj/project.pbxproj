@@ -26,6 +26,9 @@
 		64294D0D1A7AE43200B71E6F /* SVWebViewControllerActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 64294CFE1A7AE43200B71E6F /* SVWebViewControllerActivity.m */; };
 		6448E4071A7B067B00FB98CA /* EventHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6448E4061A7B067B00FB98CA /* EventHeaderView.swift */; };
 		64577EF11A797C7C00AAF1FC /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 64577EF01A797C7C00AAF1FC /* UIImage+Resize.m */; };
+		64ADB37C1A7C81D900E5BC22 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ADB37B1A7C81D900E5BC22 /* AboutViewController.swift */; };
+		64ADB37E1A7CB1DD00E5BC22 /* LicensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ADB37D1A7CB1DD00E5BC22 /* LicensesViewController.swift */; };
+		64ADB3801A7CD36000E5BC22 /* LicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ADB37F1A7CD36000E5BC22 /* LicenseViewController.swift */; };
 		64CD922D1A7A008F00659946 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD922C1A7A008F00659946 /* Constants.swift */; };
 		64CD922F1A7A051E00659946 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD922E1A7A051E00659946 /* EventViewController.swift */; };
 		64D4AF631A75CDA80040D3CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF621A75CDA80040D3CA /* AppDelegate.swift */; };
@@ -88,6 +91,9 @@
 		6448E4061A7B067B00FB98CA /* EventHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventHeaderView.swift; sourceTree = "<group>"; };
 		64577EEF1A797C7600AAF1FC /* UIImage+Resize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		64577EF01A797C7C00AAF1FC /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		64ADB37B1A7C81D900E5BC22 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		64ADB37D1A7CB1DD00E5BC22 /* LicensesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LicensesViewController.swift; sourceTree = "<group>"; };
+		64ADB37F1A7CD36000E5BC22 /* LicenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LicenseViewController.swift; sourceTree = "<group>"; };
 		64CBDDAA1A75D133008BB167 /* uMAD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uMAD-Bridging-Header.h"; sourceTree = "<group>"; };
 		64CD922C1A7A008F00659946 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		64CD922E1A7A051E00659946 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +206,9 @@
 				64D4AF821A75CEAE0040D3CA /* EventsViewController.swift */,
 				64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */,
 				64D4AF861A75CF1C0040D3CA /* TwitterViewController.swift */,
+				64ADB37B1A7C81D900E5BC22 /* AboutViewController.swift */,
+				64ADB37D1A7CB1DD00E5BC22 /* LicensesViewController.swift */,
+				64ADB37F1A7CD36000E5BC22 /* LicenseViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -449,6 +458,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6448E4071A7B067B00FB98CA /* EventHeaderView.swift in Sources */,
+				64ADB37E1A7CB1DD00E5BC22 /* LicensesViewController.swift in Sources */,
 				64D4AF851A75CF020040D3CA /* SponsorsViewController.swift in Sources */,
 				64294D0D1A7AE43200B71E6F /* SVWebViewControllerActivity.m in Sources */,
 				64D4AF871A75CF1C0040D3CA /* TwitterViewController.swift in Sources */,
@@ -460,8 +470,10 @@
 				3219C45A1A7B067600C3ADEB /* TweetTableViewCell.swift in Sources */,
 				64FD63791A76FB0700D89106 /* Event.swift in Sources */,
 				3219C4581A7B03E400C3ADEB /* Twitter.swift in Sources */,
+				64ADB37C1A7C81D900E5BC22 /* AboutViewController.swift in Sources */,
 				64577EF11A797C7C00AAF1FC /* UIImage+Resize.m in Sources */,
 				64294D021A7AE43200B71E6F /* SVModalWebViewController.m in Sources */,
+				64ADB3801A7CD36000E5BC22 /* LicenseViewController.swift in Sources */,
 				64CD922D1A7A008F00659946 /* Constants.swift in Sources */,
 				64294D0B1A7AE43200B71E6F /* SVWebViewControllerActivitySafari.m in Sources */,
 				64294D071A7AE43200B71E6F /* SVWebViewControllerActivityChrome.m in Sources */,

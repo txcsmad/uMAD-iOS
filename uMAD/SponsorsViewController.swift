@@ -24,7 +24,7 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         layout.itemSize = CGSize(width: 90, height: 120)
-        collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: CGRectMake(0, 0, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds) - TABBAR_HEIGHT), collectionViewLayout: layout)
         collectionView!.dataSource = self
         collectionView!.delegate = self
         collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
@@ -62,20 +62,26 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as UICollectionViewCell
-        var currentSponsor: PFObject = sponsors[indexPath.item]
-        var imageFile: PFFile = currentSponsor["companyImage"] as PFFile
         
-        imageFile.getDataInBackgroundWithBlock{
-            (imageData: NSData!, error: NSError!) -> Void in
-            if error == nil {
-                let image = UIImage(data:imageData)
-                let logo = UIImageView(image: image)
-                logo.contentMode = UIViewContentMode.ScaleAspectFit
-                logo.frame = CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height)
-                cell.addSubview(logo)
-                cell.setNeedsDisplay()
-            }
+        for view in cell.contentView.subviews{
+            view.removeFromSuperview()
         }
+        
+            var currentSponsor: PFObject = sponsors[indexPath.item]
+            var imageFile: PFFile = currentSponsor["companyImage"] as PFFile
+            
+            imageFile.getDataInBackgroundWithBlock{
+                (imageData: NSData!, error: NSError!) -> Void in
+                if error == nil {
+                    let image = UIImage(data:imageData)
+                    let logo = UIImageView(image: image)
+                    logo.contentMode = UIViewContentMode.ScaleAspectFit
+                    logo.frame = CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height)
+                    cell.contentView.addSubview(logo)
+                    cell.setNeedsDisplay()
+                }
+            }
+
         return cell
     }
     
@@ -87,7 +93,7 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
         
         switch rating{
         case 0:
-            size = CGSize(width: (view.frame.width/2.0)-10, height: 100)
+            size = CGSize(width: (view.frame.width/2.3)-10, height: 100)
         case 1:
             size = CGSize(width: (view.frame.width/2.3)-10, height: 100)
             break
