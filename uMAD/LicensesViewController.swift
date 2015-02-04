@@ -16,6 +16,8 @@ let UIIMAGERESIZE_LICENSE: String = "Copyright (c) 2013 Marc Charbonneau\n\nPerm
 
 let FLATICON_LICENSE: String = "Calender Icon\nIcon made by Freepik, http://www.freepik.com, from www.flaticon.com is licensed under CC BY 3.0, http://creativecommons.org/licenses/by/3.0/\n\nTwitter Icon\nIcon made by Linh Pham, http://linhpham.me/miu, from www.flaticon.com is licensed under CC BY 3.0, http://creativecommons.org/licenses/by/3.0/\n\nSponsors Icon\nIcon made by Freepik, http://www.freepik.com, from www.flaticon.com is licensed under CC BY 3.0, http://creativecommons.org/licenses/by/3.0/\n\nAbout Us Icon\nIcon made by FreePik, http://www.freepik.com, from www.flaticon.com is licensed under CC BY 3.0, http://creativecommons.org/licenses/by/3.0/"
 
+let COCOAPODS_LICENSE: String = "This project is licensed under the MIT license.\n\nCopyright (c) 2011 - 2014 Eloy Durán <eloy.de.enige@gmail.com>\nCopyright (c) 2012 - 2014 Fabio Pelosin <fabiopelosin@gmail.com>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE."
+
 class LicensesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var tableView: UITableView!
     
@@ -64,16 +66,21 @@ class LicensesViewController: UIViewController, UITableViewDelegate, UITableView
             case 3:
                 licenseName = "FlatIcon"
                 licenseDetails = FLATICON_LICENSE
+            case 4:
+                licenseName = "CocoaPods"
+                licenseDetails = COCOAPODS_LICENSE
             default:
                 fatalError("Unidentifiable cell selected at indexPath.row: \(indexPath.row)")
         }
         
         var licenseViewController: LicenseViewController = LicenseViewController(licenseName: licenseName, licenseDetails: licenseDetails)
+        licenseViewController.title = licenseName
+        
         self.navigationController?.pushViewController(licenseViewController, animated: true)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4;
+        return 5;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -94,6 +101,9 @@ class LicensesViewController: UIViewController, UITableViewDelegate, UITableView
             case 3:
                 cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: FONT_SIZE + 3)
                 cell.textLabel?.text = "FlatIcon"
+            case 4:
+                cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: FONT_SIZE + 3)
+                cell.textLabel?.text = "CocoaPods"
             default:
                 fatalError("Unidentifiable indexPath.row value: \(indexPath.row)")
         }
