@@ -123,6 +123,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     info["companyWebsite"] = NSURL(string: object["companyWebsite"] as String!)!
                     info["twitterHandle"] = object["twitterHandle"] as String!
                     info["image"] = object["image"] as PFFile!
+                    info["companyID"] = object["companyID"] as NSNumber!
                     
                     var event: Event = Event(info: info)
                     self.events.append(event)
@@ -217,7 +218,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let index: Int = calculateIndex(indexPath)
         let event: Event = self.events[index]
         let companyName: String = event.companyName
-        let thumbnail: UIImage = self.thumbnails[companyName] != nil ? self.thumbnails[companyName]! : UIImage(named: "mad_thumbnail.png")!
+        let companyID: String = event.companyID.stringValue
+        let thumbnail: UIImage = self.thumbnails[companyID] != nil ? self.thumbnails[companyID]! : UIImage(named: "mad_thumbnail.png")!
         var eventViewController: EventViewController = EventViewController(image: thumbnail, event: event)
         
         self.navigationController?.pushViewController(eventViewController, animated: true)
@@ -246,6 +248,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let startTime: NSDate   = self.events[index].startTime
         let endTime: NSDate     = self.events[index].endTime
         let room: String        = self.events[index].room
+        let companyIDNumber: NSNumber = self.events[index].companyID
+        let companyIDString: String = self.events[index].companyID.stringValue
         
         let timeFormatter: NSDateFormatter  = NSDateFormatter()
         timeFormatter.timeZone              = NSTimeZone(name: "America/Chicago")
@@ -261,30 +265,31 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.detailTextLabel?.text  = sessionName
         cell.timeLabel?.text        = startTimeString + " - " + endTimeString
         cell.locationLabel?.text    = room
-        cell.imageView?.image       = self.thumbnails[companyName] != nil ? self.thumbnails[companyName]?.imageScaledToSize(CGSizeMake(50, 50)) : UIImage(named: "mad_thumbnail.png")?.imageScaledToSize(CGSizeMake(50, 50))
+        cell.imageView?.image       = self.thumbnails[companyIDString] != nil ? self.thumbnails[companyIDString]?.imageScaledToSize(CGSizeMake(50, 50)) : UIImage(named: "mad_thumbnail.png")?.imageScaledToSize(CGSizeMake(50, 50))
         
         var sponsorsQuery: PFQuery = PFQuery(className: "Sponsors")
-        sponsorsQuery.whereKey("companyName", equalTo: companyName)
+        sponsorsQuery.whereKey("identifierNumber", equalTo: companyIDNumber)
         sponsorsQuery.findObjectsInBackgroundWithBlock({
             (objects: [AnyObject]!, error: NSError!) -> Void in
             if error == nil {
                 for object in objects {
                     var companyName: String = object["companyName"] as String!
+                    var companyIDString: String = (object["identifierNumber"] as NSNumber!).stringValue
                     
-                    if self.logos[companyName] == nil {
+                    if self.logos[companyIDString] == nil {
                         var parseImage: PFFile = object["companyImage"] as PFFile!
                         parseImage.getDataInBackgroundWithBlock({
                             (data: NSData!, error: NSError!) -> Void in
-                            self.logos[companyName] = UIImage(data: data)!
+                            self.logos[companyIDString] = UIImage(data: data)!
                         })
                     }
                     
-                    if self.thumbnails[companyName] == nil || cell.imageView?.image != self.thumbnails[companyName] {
+                    if self.thumbnails[companyIDString] == nil || cell.imageView?.image != self.thumbnails[companyIDString] {
                         var parseThumbnail: PFFile = object["thumbnail"] as PFFile!
                         parseThumbnail.getDataInBackgroundWithBlock({
                             (data: NSData!, error: NSError!) -> Void in
-                            self.thumbnails[companyName] = UIImage(data: data)!
-                            cell.imageView?.image = self.thumbnails[companyName]?.imageScaledToSize(CGSizeMake(50.00, 50.00))
+                            self.thumbnails[companyIDString] = UIImage(data: data)!
+                            cell.imageView?.image = self.thumbnails[companyIDString]?.imageScaledToSize(CGSizeMake(50.00, 50.00))
                         })
                     }
                 }
