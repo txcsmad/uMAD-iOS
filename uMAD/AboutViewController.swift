@@ -71,7 +71,7 @@ class AboutViewController: UIViewController, UITableViewDelegate, UITableViewDat
         var umadLabel: UILabel = UILabel(frame: CGRectMake(umadOriginX, umadOriginY + 5.00, CGRectGetWidth(madImageView.bounds), 25.00))
         umadLabel.font = UIFont.systemFontOfSize(FONT_SIZE)
         umadLabel.textAlignment = NSTextAlignment.Center
-        umadLabel.text = madAbout
+        umadLabel.text = umadAbout
         umadLabel.numberOfLines = 0
         umadLabel.sizeToFit()
         
