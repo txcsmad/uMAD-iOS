@@ -33,7 +33,6 @@
 		64CD922F1A7A051E00659946 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD922E1A7A051E00659946 /* EventViewController.swift */; };
 		64D4AF631A75CDA80040D3CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF621A75CDA80040D3CA /* AppDelegate.swift */; };
 		64D4AF6A1A75CDA80040D3CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64D4AF691A75CDA80040D3CA /* Images.xcassets */; };
-		64D4AF6D1A75CDA80040D3CA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64D4AF6B1A75CDA80040D3CA /* LaunchScreen.xib */; };
 		64D4AF791A75CDA80040D3CA /* uMADTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF781A75CDA80040D3CA /* uMADTests.swift */; };
 		64D4AF831A75CEAE0040D3CA /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF821A75CEAE0040D3CA /* EventsViewController.swift */; };
 		64D4AF851A75CF020040D3CA /* SponsorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */; };
@@ -101,7 +100,6 @@
 		64D4AF611A75CDA80040D3CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64D4AF621A75CDA80040D3CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64D4AF691A75CDA80040D3CA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		64D4AF6C1A75CDA80040D3CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		64D4AF721A75CDA80040D3CA /* uMADTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uMADTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D4AF771A75CDA80040D3CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64D4AF781A75CDA80040D3CA /* uMADTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uMADTests.swift; sourceTree = "<group>"; };
@@ -273,7 +271,6 @@
 				64CD92341A7A074400659946 /* Views */,
 				64CD92331A7A073100659946 /* ViewControllers */,
 				64D4AF691A75CDA80040D3CA /* Images.xcassets */,
-				64D4AF6B1A75CDA80040D3CA /* LaunchScreen.xib */,
 				64D4AF601A75CDA80040D3CA /* Supporting Files */,
 			);
 			path = uMAD;
@@ -396,7 +393,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64D4AF6D1A75CDA80040D3CA /* LaunchScreen.xib in Resources */,
 				64294D011A7AE43200B71E6F /* SVWebViewController.strings in Resources */,
 				32E186081A79A75E004EC0B9 /* TweetTableViewCell.xib in Resources */,
 				64294D051A7AE43200B71E6F /* SVWebViewControllerActivityChrome-iPad.png in Resources */,
@@ -516,14 +512,6 @@
 			name = SVWebViewController.strings;
 			sourceTree = "<group>";
 		};
-		64D4AF6B1A75CDA80040D3CA /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				64D4AF6C1A75CDA80040D3CA /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -609,6 +597,7 @@
 			baseConfigurationReference = 05DDE97D92320F02657C9DD4 /* Pods-uMAD.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = uMAD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -623,6 +612,7 @@
 			baseConfigurationReference = 50E322A7AF2F9158B4D144D0 /* Pods-uMAD.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = uMAD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

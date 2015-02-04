@@ -33,7 +33,7 @@ class AboutViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let madAbout: String  = "We are a student organization at the University of Texas. We are focused on building the UT community by creating a learning environment for all students through ourworkshops, hack nights, conferences, and other awesome events. We want to build the next generation of successful developers, designers, and entrepreneurs."
         
-        let umadAbout: String = "The aim of the University of MAD (uMAD) is to provide an environment to learn, develop, and grow over one special weekend with a mixture of technical sessions taught by industry engineers, tech talks, and coding challenges."
+        let umadAbout: String = "The University of MAD is a daylong conference hosted within the Dept. of Computer Science at the University of Texas at Austin, and intends to provide computer science students a comprehensive overview of core mobile, web, and cloud technologies used in industry everyday. The conference will consist of in-depth technical training sessions led by industry engineers similar to a developer's conference. Similar to Google I/O and Apple WWDC, uMAD is led by engineers and designers from some of the best companies that built some of the most widely used products. Along with attending technical sessions, students will be able to showcase their personal projects to company engineers and recruiters attending the event. Don't worry about your experience level, there will be sessions catered to both both the beginner and advanced developers!"
         
         let madImage: UIImage = UIImage(named: "mad_logo.png")!
         let imageRatio: CGFloat = CGRectGetWidth(view.bounds) / (madImage.size.width + 100.00)
