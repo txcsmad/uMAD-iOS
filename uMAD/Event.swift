@@ -20,6 +20,7 @@ class Event {
     var email:          String!
     var companyWebsite: NSURL!
     var twitterHandle:  String!
+    var companyID:      NSNumber!
     
     init(info: Dictionary<String, AnyObject>) {
         sessionName = info["sessionName"]       as String!
@@ -33,6 +34,7 @@ class Event {
         email = info["email"]                   as String!
         companyWebsite = info["companyWebsite"] as NSURL!
         twitterHandle = info["twitterHandle"]   as String!
+        companyID = info["companyID"]           as NSNumber!
         
     }
 }
