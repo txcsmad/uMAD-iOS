@@ -102,14 +102,14 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func reloadData() {
-        self.events = [Event]()
-        self.rowsPerSection = [String : Int]()
-        self.sectionHeaders = [String]()
-        
         var eventsQuery: PFQuery = PFQuery(className:"Events")
         eventsQuery.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]!, error: NSError!) -> Void in
-            if error == nil {                
+            if error == nil {
+                self.events = [Event]()
+                self.rowsPerSection = [String : Int]()
+                self.sectionHeaders = [String]()
+                
                 for object in objects {
                     var info: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
                     info["sessionName"] = object["sessionName"] as String!
