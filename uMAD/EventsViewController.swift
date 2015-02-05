@@ -286,10 +286,13 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     
                     if self.thumbnails[companyIDString] == nil || cell.imageView?.image != self.thumbnails[companyIDString] {
                         var parseThumbnail: PFFile = object["thumbnail"] as PFFile!
-                        parseThumbnail.getDataInBackgroundWithBlock({
-                            (data: NSData!, error: NSError!) -> Void in
-                            self.thumbnails[companyIDString] = UIImage(data: data)!
-                            cell.imageView?.image = self.thumbnails[companyIDString]?.imageScaledToSize(CGSizeMake(50.00, 50.00))
+                        parseThumbnail.getDataInBackgroundWithBlock({ (data: NSData!, error: NSError!) in
+                            if data != nil {
+                                self.thumbnails[companyIDString] = UIImage(data: data)
+                                cell.imageView?.image = self.thumbnails[companyIDString]?.imageScaledToSize(CGSizeMake(50.00, 50.00))
+                            } else {
+                                println(error.localizedDescription)
+                            }
                         })
                     }
                 }
