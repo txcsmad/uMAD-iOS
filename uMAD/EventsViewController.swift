@@ -1,15 +1,8 @@
-//
-//  EventsViewController.swift
-//  uMAD
-//
-//  Created by Andrew Chun on 1/25/15.
-//  Copyright (c) 2015 com.MAD. All rights reserved.
-//
 
-import Foundation
 import UIKit
 
 class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     private var tableView: UITableView!
     private var events: [Event] = [Event]()
     private var rowsPerSection: [String : Int] = [String : Int]()
@@ -104,7 +97,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func reloadData() {
         var eventsQuery: PFQuery = PFQuery(className:"Events")
         eventsQuery.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]!, error: NSError!) -> Void in
+            (objects: [AnyObject]!, error: NSError!) in
             if error == nil {
                 self.events = [Event]()
                 self.rowsPerSection = [String : Int]()
@@ -184,8 +177,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     return s1Month < s2Month
                 })
                 
-                dispatch_async(dispatch_get_main_queue(), {
-                    () -> Void in
+                dispatch_async(dispatch_get_main_queue(), { () in
                     UIView.transitionWithView(self.tableView, duration: 0.1, options: UIViewAnimationOptions.ShowHideTransitionViews, animations: {
                         () -> Void in
                         
@@ -270,7 +262,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         var sponsorsQuery: PFQuery = PFQuery(className: "Sponsors")
         sponsorsQuery.whereKey("identifierNumber", equalTo: companyIDNumber)
         sponsorsQuery.findObjectsInBackgroundWithBlock({
-            (objects: [AnyObject]!, error: NSError!) -> Void in
+            (objects: [AnyObject]!, error: NSError!) in
             if error == nil {
                 for object in objects {
                     var companyName: String = object["companyName"] as String!
@@ -279,8 +271,10 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     if self.logos[companyIDString] == nil {
                         var parseImage: PFFile = object["companyImage"] as PFFile!
                         parseImage.getDataInBackgroundWithBlock({
-                            (data: NSData!, error: NSError!) -> Void in
-                            self.logos[companyIDString] = UIImage(data: data)!
+                            (data: NSData!, error: NSError!) in
+                            if data != nil {
+                                self.logos[companyIDString] = UIImage(data: data)!
+                            }
                         })
                     }
                     
