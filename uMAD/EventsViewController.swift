@@ -1,15 +1,8 @@
-//
-//  EventsViewController.swift
-//  uMAD
-//
-//  Created by Andrew Chun on 1/25/15.
-//  Copyright (c) 2015 com.MAD. All rights reserved.
-//
 
-import Foundation
 import UIKit
 
 class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     private var tableView: UITableView!
     private var events: [Event] = [Event]()
     private var rowsPerSection: [String : Int] = [String : Int]()
@@ -103,7 +96,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func reloadData() {
         var eventsQuery: PFQuery = PFQuery(className:"Events")
         eventsQuery.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]!, error: NSError!) -> Void in
+            (objects: [AnyObject]!, error: NSError!) in
             if error == nil {
                 self.events = [Event]()
                 self.rowsPerSection = [String : Int]()
@@ -212,8 +205,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     return s1Month < s2Month
                 })
                 
-                dispatch_async(dispatch_get_main_queue(), {
-                    () -> Void in
+                dispatch_async(dispatch_get_main_queue(), { () in
                     UIView.transitionWithView(self.tableView, duration: 0.1, options: UIViewAnimationOptions.ShowHideTransitionViews, animations: {
                         () -> Void in
                         
@@ -316,7 +308,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         var sponsorsQuery: PFQuery = PFQuery(className: "Sponsors")
         sponsorsQuery.whereKey("identifierNumber", equalTo: companyIDNumber)
         sponsorsQuery.findObjectsInBackgroundWithBlock({
-            (objects: [AnyObject]!, error: NSError!) -> Void in
+            (objects: [AnyObject]!, error: NSError!) in
             if error == nil {
                 for object in objects {
                     if let companyIDNumber: NSNumber = object["identifierNumber"] as? NSNumber {
@@ -326,8 +318,12 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                             if let imageFile: PFFile = object["thumbnail"] as? PFFile {
                                 imageFile.getDataInBackgroundWithBlock({
                                     (data: NSData!, error: NSError!) -> Void in
-                                    self.thumbnails[companyIDString] = UIImage(data: data)!
-                                    cell.imageView?.image = self.thumbnails[companyIDString]?.imageScaledToSize(CGSizeMake(50.00, 50.00))
+                                    if data != nil {
+                                        self.thumbnails[companyIDString] = UIImage(data: data)
+                                        cell.imageView?.image = self.thumbnails[companyIDString]?.imageScaledToSize(CGSizeMake(50.00, 50.00))
+                                    } else {
+                                        println(error.localizedDescription)
+                                    }
                                 })
                             }
                         }
