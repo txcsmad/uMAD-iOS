@@ -15,7 +15,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private var rowsPerSection: [String : Int] = [String : Int]()
     private var sectionHeaders: [String] = [String]()
     private var thumbnails: [String : UIImage] = [String : UIImage]()
-    private var logos: [String : UIImage] = [String : UIImage]()
     
     private let refreshControl: UIRefreshControl = UIRefreshControl()
     
@@ -39,7 +38,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.navigationItem.title = "Events"
         
         self.tableView = UITableView(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - TABBAR_HEIGHT), style: .Plain)
-        self.tableView.registerClass(EventTableViewCell.self, forCellReuseIdentifier: "EVENTS_TABLEVIEW_CELL_IDENTIFIER")
+        self.tableView.registerClass(EventTableViewCell.self, forCellReuseIdentifier: EVENTS_TABLEVIEW_CELL_IDENTIFIER)
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -62,8 +61,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             if i == indexPath.section {
                 result += indexPath.row
-            } else {
-                result += self.rowsPerSection[headerString]!
+            } else if let sectionTotal: Int = self.rowsPerSection[headerString] {
+                result += sectionTotal
             }
         }
         
@@ -112,37 +111,70 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 for object in objects {
                     var info: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
-                    info["sessionName"] = object["sessionName"] as String!
-                    info["companyName"] = object["company"] as String!
-                    info["room"] = object["room"] as String!
-                    info["speaker"] = object["speaker"] as String!
-                    info["description"] = object["description"] as String!
-                    info["startTime"] = object["startTime"] as NSDate!
-                    info["endTime"] = object["endTime"] as NSDate!
-                    info["email"] = object["email"] as String!
-                    info["companyWebsite"] = NSURL(string: object["companyWebsite"] as String!)!
-                    info["twitterHandle"] = object["twitterHandle"] as String!
-                    info["image"] = object["image"] as PFFile!
-                    info["companyID"] = object["companyID"] as NSNumber!
+                    
+                    if let sessionName: String = object["sessionName"] as? String {
+                        info["sessionName"] = sessionName
+                    }
+                    
+                    if let companyName: String = object["company"] as? String {
+                        info["companyName"] = companyName
+                    }
+                    
+                    if let room: String = object["room"] as? String {
+                        info["room"] = room
+                    }
+                    
+                    if let speaker: String = object["speaker"] as? String {
+                        info["speaker"] = speaker
+                    }
+                    
+                    if let description: String = object["description"] as? String {
+                        info["description"] = description
+                    }
+                    
+                    if let startTime: NSDate = object["startTime"] as? NSDate {
+                        info["startTime"] = startTime
+                        
+                        var timeFormatter: NSDateFormatter = NSDateFormatter()
+                        timeFormatter.timeZone = NSTimeZone(name: "America/Chicago")
+                        timeFormatter.dateFormat = "MMMM d - hh:00 a";
+                        
+                        var timeString: String = timeFormatter.stringFromDate(startTime)
+                        
+                        if self.rowsPerSection[timeString] == nil {
+                            self.rowsPerSection[timeString] = 1
+                        } else if let rowsPerSection: Int = self.rowsPerSection[timeString] {
+                            self.rowsPerSection[timeString] = rowsPerSection + 1
+                        }
+                    }
+                    
+                    if let endTime: NSDate = object["endTime"] as? NSDate {
+                        info["endTime"] = endTime
+                    }
+                    
+                    if let email: String = object["email"] as? String {
+                        info["email"] = email
+                    }
+                    
+                    if let companyWebsite: NSURL = NSURL(string: object["companyWebsite"] as String) {
+                        info["companyWebsite"] = companyWebsite
+                    }
+                    
+                    if let image: PFFile = object["image"] as? PFFile {
+                        info["image"] = image
+                    }
+                    
+                    if let companyID: NSNumber = object["companyID"] as? NSNumber {
+                        info["companyID"] = companyID
+                    }
                     
                     var event: Event = Event(info: info)
                     self.events.append(event)
-                    
-                    var timeFormatter: NSDateFormatter = NSDateFormatter()
-                    timeFormatter.timeZone = NSTimeZone(name: "America/Chicago")
-                    timeFormatter.dateFormat = "MMMM d - hh:00 a";
-                    var timeString: String = timeFormatter.stringFromDate(info["startTime"] as NSDate!)
-                                        
-                    if self.rowsPerSection[timeString] == nil {
-                        self.rowsPerSection[timeString] = 1
-                    } else {
-                        self.rowsPerSection[timeString]! += 1
-                    }
                 }
                 
                 self.events = self.events.sorted({
                     (firstEvent: Event, secondEvent: Event) -> Bool in
-                    return firstEvent.startTime.description < secondEvent.startTime.description
+                    return firstEvent.startTime?.description < secondEvent.startTime?.description
                 })
                 
                 self.sectionHeaders = []
@@ -168,19 +200,15 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     if s1Month == s2Month {
                         if s1Day == s2Day {
                             if s1Split == s2Split {
-                                if s1Time == 12 {
-                                    return s1Time < s2Time
+                                if s1Time != 12 {
+                                    return s1Time > s2Time
                                 }
-                                
-                                return s1Time > s2Time
+                                return s1Time < s2Time
                             }
-                            
                             return s1Split < s2Split
                         }
-                        
                         return s1Day < s2Day
                     }
-                    
                     return s1Month < s2Month
                 })
                 
@@ -217,9 +245,14 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let index: Int = calculateIndex(indexPath)
         let event: Event = self.events[index]
-        let companyName: String = event.companyName
-        let companyID: String = event.companyID.stringValue
-        let thumbnail: UIImage = self.thumbnails[companyID] != nil ? self.thumbnails[companyID]! : UIImage(named: "mad_thumbnail.png")!
+        var thumbnail: UIImage = UIImage(named: "mad_thumbnail.png")!
+        
+        if let companyID: String = event.companyID?.stringValue {
+            if let mappedThumbnail: UIImage = self.thumbnails[companyID] {
+                thumbnail = mappedThumbnail
+            }
+        }
+        
         var eventViewController: EventViewController = EventViewController(image: thumbnail, event: event)
         
         self.navigationController?.pushViewController(eventViewController, animated: true)
@@ -240,23 +273,30 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: EventTableViewCell = tableView.dequeueReusableCellWithIdentifier("EVENTS_TABLEVIEW_CELL_IDENTIFIER", forIndexPath: indexPath) as EventTableViewCell
+        var cell: EventTableViewCell = tableView.dequeueReusableCellWithIdentifier(EVENTS_TABLEVIEW_CELL_IDENTIFIER, forIndexPath: indexPath) as EventTableViewCell
         
         let index: Int = calculateIndex(indexPath)
-        let companyName: String = self.events[index].companyName
-        let sessionName: String = self.events[index].sessionName
-        let startTime: NSDate   = self.events[index].startTime
-        let endTime: NSDate     = self.events[index].endTime
-        let room: String        = self.events[index].room
-        let companyIDNumber: NSNumber = self.events[index].companyID
-        let companyIDString: String = self.events[index].companyID.stringValue
+        let companyName: String? = self.events[index].companyName
+        let sessionName: String? = self.events[index].sessionName
+        let startTime: NSDate?   = self.events[index].startTime
+        let endTime: NSDate?     = self.events[index].endTime
+        let room: String?        = self.events[index].room
+        let companyIDNumber: NSNumber? = self.events[index].companyID
+        let companyIDString: String? = self.events[index].companyID?.stringValue
         
         let timeFormatter: NSDateFormatter  = NSDateFormatter()
         timeFormatter.timeZone              = NSTimeZone(name: "America/Chicago")
         timeFormatter.dateFormat            = "hh:mm a";
-        let startTimeString: String         = timeFormatter.stringFromDate(startTime)
-        let endTimeString: String           = timeFormatter.stringFromDate(endTime)
+        var startTimeString: String         = "00:00"
+        var endTimeString: String           = "00:00"
         
+        if let time: NSDate = startTime {
+            startTimeString = timeFormatter.stringFromDate(time)
+        }
+        
+        if let time: NSDate = endTime {
+            endTimeString = timeFormatter.stringFromDate(time)
+        }
         
         cell.textLabel?.font = UIFont.systemFontOfSize(FONT_SIZE)
         cell.detailTextLabel?.font = UIFont.systemFontOfSize(DETAIL_FONT_SIZE)
@@ -265,7 +305,13 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.detailTextLabel?.text  = sessionName
         cell.timeLabel?.text        = startTimeString + " - " + endTimeString
         cell.locationLabel?.text    = room
-        cell.imageView?.image       = self.thumbnails[companyIDString] != nil ? self.thumbnails[companyIDString]?.imageScaledToSize(CGSizeMake(50, 50)) : UIImage(named: "mad_thumbnail.png")?.imageScaledToSize(CGSizeMake(50, 50))
+        cell.imageView?.image       = UIImage(named: "mad_thumbnail.png")?.imageScaledToSize(CGSizeMake(50, 50))
+        
+        if let companyIDString: String = companyIDString {
+            if let thumbnail: UIImage = self.thumbnails[companyIDString] {
+                cell.imageView?.image = thumbnail.imageScaledToSize(CGSizeMake(50, 50))
+            }
+        }
         
         var sponsorsQuery: PFQuery = PFQuery(className: "Sponsors")
         sponsorsQuery.whereKey("identifierNumber", equalTo: companyIDNumber)
@@ -273,24 +319,18 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             (objects: [AnyObject]!, error: NSError!) -> Void in
             if error == nil {
                 for object in objects {
-                    var companyName: String = object["companyName"] as String!
-                    var companyIDString: String = (object["identifierNumber"] as NSNumber!).stringValue
-                    
-                    if self.logos[companyIDString] == nil {
-                        var parseImage: PFFile = object["companyImage"] as PFFile!
-                        parseImage.getDataInBackgroundWithBlock({
-                            (data: NSData!, error: NSError!) -> Void in
-                            self.logos[companyIDString] = UIImage(data: data)!
-                        })
-                    }
-                    
-                    if self.thumbnails[companyIDString] == nil || cell.imageView?.image != self.thumbnails[companyIDString] {
-                        var parseThumbnail: PFFile = object["thumbnail"] as PFFile!
-                        parseThumbnail.getDataInBackgroundWithBlock({
-                            (data: NSData!, error: NSError!) -> Void in
-                            self.thumbnails[companyIDString] = UIImage(data: data)!
-                            cell.imageView?.image = self.thumbnails[companyIDString]?.imageScaledToSize(CGSizeMake(50.00, 50.00))
-                        })
+                    if let companyIDNumber: NSNumber = object["identifierNumber"] as? NSNumber {
+                        let companyIDString: String = companyIDNumber.stringValue
+                        
+                        if self.thumbnails[companyIDString] == nil || cell.imageView?.image != self.thumbnails[companyIDString] {
+                            if let imageFile: PFFile = object["thumbnail"] as? PFFile {
+                                imageFile.getDataInBackgroundWithBlock({
+                                    (data: NSData!, error: NSError!) -> Void in
+                                    self.thumbnails[companyIDString] = UIImage(data: data)!
+                                    cell.imageView?.image = self.thumbnails[companyIDString]?.imageScaledToSize(CGSizeMake(50.00, 50.00))
+                                })
+                            }
+                        }
                     }
                 }
                 
