@@ -62,14 +62,22 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableHeaderView.addSubview(speakerLabel)
         
         //Time
-        let startTime: NSDate   = self.event.startTime
-        let endTime: NSDate     = self.event.endTime
+        var startTime: NSDate?   = self.event.startTime
+        var endTime: NSDate?     = self.event.endTime
         
         let timeFormatter: NSDateFormatter  = NSDateFormatter()
         timeFormatter.timeZone              = NSTimeZone(name: "America/Chicago")
         timeFormatter.dateFormat            = "hh:mm a";
-        let startTimeString: String         = timeFormatter.stringFromDate(startTime)
-        let endTimeString: String           = timeFormatter.stringFromDate(endTime)
+        var startTimeString: String        = "00:00"
+        var endTimeString: String          = "00:00"
+        
+        if let time: NSDate = startTime {
+            startTimeString = timeFormatter.stringFromDate(time)
+        }
+        
+        if let time: NSDate = endTime {
+            endTimeString = timeFormatter.stringFromDate(time)
+        }
         
         var timeLabelOriginX: CGFloat = thumbnailView.frame.origin.x + thumbnailView.frame.width + 10
         var timeLabelOriginY: CGFloat = speakerLabelOriginY + CGRectGetHeight(speakerLabel.bounds)
@@ -153,7 +161,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         cell.textLabel?.font = UIFont.systemFontOfSize(FONT_SIZE)
         
-        cell.textLabel?.text = self.event.companyWebsite.absoluteString
+        cell.textLabel?.text = self.event.companyWebsite?.absoluteString
         
         return cell
     }
