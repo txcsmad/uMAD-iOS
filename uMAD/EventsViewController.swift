@@ -1,45 +1,29 @@
 
 import UIKit
 
-class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class EventsViewController: UITableViewController {
     
-    private var tableView: UITableView!
-    private var events: [Event] = [Event]()
-    private var rowsPerSection: [String : Int] = [String : Int]()
-    private var sectionHeaders: [String] = [String]()
-    private var thumbnails: [String : UIImage] = [String : UIImage]()
-    private var logos: [String : UIImage] = [String : UIImage]()
+    private var events = [Event]()
+    private var rowsPerSection = [String: Int]()
+    private var sectionHeaders = [String]()
+    private var thumbnails = [String: UIImage]()
+    private var logos = [String: UIImage]()
     
-    private let refreshControl: UIRefreshControl = UIRefreshControl()
-    
-    override init() {
-        super.init()
-        
-        self.reloadData()
-    }
-    
-     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-
-     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
+    // MARK: - UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.title = "Events"
         
-        self.tableView = UITableView(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - TABBAR_HEIGHT), style: .Plain)
+    
         self.tableView.registerClass(EventTableViewCell.self, forCellReuseIdentifier: "EVENTS_TABLEVIEW_CELL_IDENTIFIER")
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        view.addSubview(self.tableView)
         
-        self.refreshControl.addTarget(self, action: Selector("reloadData"), forControlEvents: .ValueChanged)
-        self.tableView.addSubview(self.refreshControl)
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: Selector("reloadData"), forControlEvents: .ValueChanged)
+        
+        reloadData()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -183,7 +167,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         
                         let delayTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.20 * Double(NSEC_PER_SEC)))
                         dispatch_after(delayTime, dispatch_get_main_queue()) {
-                            self.refreshControl.endRefreshing()
+                            self.refreshControl!.endRefreshing()
                         }
                         
                         self.tableView.reloadData()
@@ -196,15 +180,17 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    // MARK: - UITableViewDataSource
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.rowsPerSection[self.sectionHeaders[section]]!
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return self.sectionHeaders.count
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         let index: Int = calculateIndex(indexPath)
@@ -217,22 +203,22 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.navigationController?.pushViewController(eventViewController, animated: true)
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return EVENTS_TABLEVIEW_CELL_HEIGHT
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.sectionHeaders[section];
     }
     
-    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         var sectionHeaderView: UITableViewHeaderFooterView = view as UITableViewHeaderFooterView
         
         sectionHeaderView.textLabel.font = UIFont.systemFontOfSize(FONT_SIZE)
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: EventTableViewCell = tableView.dequeueReusableCellWithIdentifier("EVENTS_TABLEVIEW_CELL_IDENTIFIER", forIndexPath: indexPath) as EventTableViewCell
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCellWithIdentifier("EVENTS_TABLEVIEW_CELL_IDENTIFIER", forIndexPath: indexPath) as EventTableViewCell
         
         let index: Int = calculateIndex(indexPath)
         let companyName: String = self.events[index].companyName
