@@ -20,20 +20,6 @@
                ReferencedContainer = "container:uMAD.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "64D4AF711A75CDA80040D3CA"
-               BuildableName = "uMADTests.xctest"
-               BlueprintName = "uMADTests"
-               ReferencedContainer = "container:uMAD.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -42,16 +28,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "64D4AF711A75CDA80040D3CA"
-               BuildableName = "uMADTests.xctest"
-               BlueprintName = "uMADTests"
-               ReferencedContainer = "container:uMAD.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
