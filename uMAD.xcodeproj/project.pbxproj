@@ -33,7 +33,6 @@
 		64CD922F1A7A051E00659946 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD922E1A7A051E00659946 /* EventViewController.swift */; };
 		64D4AF631A75CDA80040D3CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF621A75CDA80040D3CA /* AppDelegate.swift */; };
 		64D4AF6A1A75CDA80040D3CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64D4AF691A75CDA80040D3CA /* Images.xcassets */; };
-		64D4AF791A75CDA80040D3CA /* uMADTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF781A75CDA80040D3CA /* uMADTests.swift */; };
 		64D4AF831A75CEAE0040D3CA /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF821A75CEAE0040D3CA /* EventsViewController.swift */; };
 		64D4AF851A75CF020040D3CA /* SponsorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */; };
 		64D4AF871A75CF1C0040D3CA /* TwitterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF861A75CF1C0040D3CA /* TwitterViewController.swift */; };
@@ -41,16 +40,6 @@
 		64FD63791A76FB0700D89106 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FD63781A76FB0700D89106 /* Event.swift */; };
 		AA205FAA5FB53DF9343E091B /* libPods-uMAD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B596628F0847E6A0B2CB8F1 /* libPods-uMAD.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		64D4AF731A75CDA80040D3CA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64D4AF551A75CDA80040D3CA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 64D4AF5C1A75CDA80040D3CA;
-			remoteInfo = uMAD;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		05DDE97D92320F02657C9DD4 /* Pods-uMAD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uMAD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-uMAD/Pods-uMAD.debug.xcconfig"; sourceTree = "<group>"; };
@@ -100,9 +89,6 @@
 		64D4AF611A75CDA80040D3CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64D4AF621A75CDA80040D3CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64D4AF691A75CDA80040D3CA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		64D4AF721A75CDA80040D3CA /* uMADTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uMADTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		64D4AF771A75CDA80040D3CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		64D4AF781A75CDA80040D3CA /* uMADTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uMADTests.swift; sourceTree = "<group>"; };
 		64D4AF821A75CEAE0040D3CA /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SponsorsViewController.swift; sourceTree = "<group>"; };
 		64D4AF861A75CF1C0040D3CA /* TwitterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterViewController.swift; sourceTree = "<group>"; };
@@ -117,13 +103,6 @@
 			files = (
 				3219C4561A7AD5AD00C3ADEB /* Social.framework in Frameworks */,
 				AA205FAA5FB53DF9343E091B /* libPods-uMAD.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64D4AF6F1A75CDA80040D3CA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,7 +223,6 @@
 			isa = PBXGroup;
 			children = (
 				64D4AF5F1A75CDA80040D3CA /* uMAD */,
-				64D4AF751A75CDA80040D3CA /* uMADTests */,
 				64D4AF5E1A75CDA80040D3CA /* Products */,
 				625E4F6AED57B350F716AFBF /* Pods */,
 				40810CBC9317D6633548B7B7 /* Frameworks */,
@@ -255,7 +233,6 @@
 			isa = PBXGroup;
 			children = (
 				64D4AF5D1A75CDA80040D3CA /* uMAD.app */,
-				64D4AF721A75CDA80040D3CA /* uMADTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -285,23 +262,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		64D4AF751A75CDA80040D3CA /* uMADTests */ = {
-			isa = PBXGroup;
-			children = (
-				64D4AF781A75CDA80040D3CA /* uMADTests.swift */,
-				64D4AF761A75CDA80040D3CA /* Supporting Files */,
-			);
-			path = uMADTests;
-			sourceTree = "<group>";
-		};
-		64D4AF761A75CDA80040D3CA /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				64D4AF771A75CDA80040D3CA /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -324,24 +284,6 @@
 			productReference = 64D4AF5D1A75CDA80040D3CA /* uMAD.app */;
 			productType = "com.apple.product-type.application";
 		};
-		64D4AF711A75CDA80040D3CA /* uMADTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 64D4AF7F1A75CDA80040D3CA /* Build configuration list for PBXNativeTarget "uMADTests" */;
-			buildPhases = (
-				64D4AF6E1A75CDA80040D3CA /* Sources */,
-				64D4AF6F1A75CDA80040D3CA /* Frameworks */,
-				64D4AF701A75CDA80040D3CA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				64D4AF741A75CDA80040D3CA /* PBXTargetDependency */,
-			);
-			name = uMADTests;
-			productName = uMADTests;
-			productReference = 64D4AF721A75CDA80040D3CA /* uMADTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -354,10 +296,6 @@
 					64D4AF5C1A75CDA80040D3CA = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = EDLTE65NWH;
-					};
-					64D4AF711A75CDA80040D3CA = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = 64D4AF5C1A75CDA80040D3CA;
 					};
 				};
 			};
@@ -384,7 +322,6 @@
 			projectRoot = "";
 			targets = (
 				64D4AF5C1A75CDA80040D3CA /* uMAD */,
-				64D4AF711A75CDA80040D3CA /* uMADTests */,
 			);
 		};
 /* End PBXProject section */
@@ -404,13 +341,6 @@
 				64294D081A7AE43200B71E6F /* SVWebViewControllerActivityChrome@2x.png in Resources */,
 				64D4AF6A1A75CDA80040D3CA /* Images.xcassets in Resources */,
 				64294D091A7AE43200B71E6F /* SVWebViewControllerActivitySafari-iPad.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64D4AF701A75CDA80040D3CA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,23 +407,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		64D4AF6E1A75CDA80040D3CA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64D4AF791A75CDA80040D3CA /* uMADTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		64D4AF741A75CDA80040D3CA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 64D4AF5C1A75CDA80040D3CA /* uMAD */;
-			targetProxy = 64D4AF731A75CDA80040D3CA /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		64294CE21A7AE43200B71E6F /* SVWebViewController.strings */ = {
@@ -624,40 +538,6 @@
 			};
 			name = Release;
 		};
-		64D4AF801A75CDA80040D3CA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = uMADTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/uMAD.app/uMAD";
-			};
-			name = Debug;
-		};
-		64D4AF811A75CDA80040D3CA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = uMADTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/uMAD.app/uMAD";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -675,15 +555,6 @@
 			buildConfigurations = (
 				64D4AF7D1A75CDA80040D3CA /* Debug */,
 				64D4AF7E1A75CDA80040D3CA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		64D4AF7F1A75CDA80040D3CA /* Build configuration list for PBXNativeTarget "uMADTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				64D4AF801A75CDA80040D3CA /* Debug */,
-				64D4AF811A75CDA80040D3CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
