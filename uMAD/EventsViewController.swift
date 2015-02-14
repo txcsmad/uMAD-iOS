@@ -307,7 +307,7 @@ class EventsViewController: UITableViewController {
                                     if data != nil {
                                         self.thumbnails[companyIDString] = UIImage(data: data)
                                         cell.imageView?.image = self.thumbnails[companyIDString]?.imageScaledToSize(CGSizeMake(50.00, 50.00))
-                                    } else {
+                                    } else if error != nil {
                                         println(error.localizedDescription)
                                     }
                                 })
