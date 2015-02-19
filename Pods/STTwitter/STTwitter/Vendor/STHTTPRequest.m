@@ -20,6 +20,8 @@ NSUInteger const kSTHTTPRequestDefaultTimeout = 30;
 static NSMutableDictionary *localCredentialsStorage = nil;
 static NSMutableArray *localCookiesStorage = nil;
 
+static BOOL globalIgnoreCache = NO;
+
 /**/
 
 @interface STHTTPRequestFileUpload : NSObject
@@ -71,6 +73,10 @@ static NSMutableArray *localCookiesStorage = nil;
 + (STHTTPRequest *)requestWithURLString:(NSString *)urlString {
     NSURL *url = [NSURL URLWithString:urlString];
     return [self requestWithURL:url];
+}
+
++ (void)setGlobalIgnoreCache:(BOOL)ignoreCache {
+    globalIgnoreCache = ignoreCache;
 }
 
 - (STHTTPRequest *)initWithURL:(NSURL *)theURL {
@@ -311,10 +317,15 @@ static NSMutableArray *localCookiesStorage = nil;
 
 // {k2:v2, k1:v1} -> [{k1:v1}, {k2:v2}]
 + (NSArray *)dictionariesSortedByKey:(NSDictionary *)dictionary {
-    NSMutableArray *sortedDictionaries = [NSMutableArray arrayWithCapacity:[dictionary count]];
-    NSArray *sortedKeys = [dictionary keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        return [obj2 compare:obj1];
+    
+    NSArray *keys = [dictionary allKeys];
+    NSArray *sortedKeys = [keys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSComparisonResult result = [obj1 compare:obj2];
+        return result;
     }];
+    
+    NSMutableArray *sortedDictionaries = [NSMutableArray arrayWithCapacity:[dictionary count]];
+    
     for(NSString *key in sortedKeys) {
         NSDictionary *d = @{ key : dictionary[key] };
         [sortedDictionaries addObject:d];
@@ -344,23 +355,9 @@ static NSMutableArray *localCookiesStorage = nil;
 + (NSURL *)appendURL:(NSURL *)url withGETParameters:(NSDictionary *)parameters {
     NSMutableString *urlString = [[NSMutableString alloc] initWithString:[url absoluteString]];
     
-    __block BOOL questionMarkFound = NO;
+    NSString *s = [urlString st_stringByAppendingGETParameters:parameters];
     
-    [parameters enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
-        
-        if(questionMarkFound == NO) {
-            questionMarkFound = [urlString rangeOfString:@"?"].location != NSNotFound;
-        }
-        
-        [urlString appendString: (questionMarkFound ? @"&" : @"?") ];
-        
-        [urlString appendFormat:@"%@=%@",
-         [key st_stringByAddingRFC3986PercentEscapesUsingEncoding:NSUTF8StringEncoding],
-         [value st_stringByAddingRFC3986PercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        
-    }];
-    
-    return [NSURL URLWithString:urlString];
+    return [NSURL URLWithString:s];
 }
 
 - (NSMutableURLRequest *)requestByAddingCredentialsToURL:(BOOL)useCredentialsInURL {
@@ -388,7 +385,13 @@ static NSMutableArray *localCookiesStorage = nil;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:theURL];
     if(_HTTPMethod) [request setHTTPMethod:_HTTPMethod];
     
-    request.timeoutInterval = self.timeoutSeconds;
+    if(globalIgnoreCache || _ignoreCache) {
+        request.cachePolicy = NSURLRequestReloadIgnoringCacheData;
+    }
+    
+    if(self.timeoutSeconds != 0.0) {
+        request.timeoutInterval = self.timeoutSeconds;
+    }
     
     if(_ignoreSharedCookiesStorage) {
         NSArray *cookies = [self sessionCookies];
@@ -647,7 +650,7 @@ static NSMutableArray *localCookiesStorage = nil;
 - (NSString *)curlDescription {
     
     NSMutableArray *ma = [NSMutableArray array];
-    [ma addObject:@"$ curl -i"];
+    [ma addObject:@"\U0001F300 curl -i"];
     
     // -u usernane:password
     
@@ -717,7 +720,7 @@ static NSMutableArray *localCookiesStorage = nil;
     
     // url
     
-    [ma addObject:[NSString stringWithFormat:@"\"%@\"", _url]];
+    [ma addObject:[NSString stringWithFormat:@"\"%@\"", [_request URL]]];
     
     return [ma componentsJoinedByString:@" \\\n"];
 }
@@ -877,6 +880,14 @@ static NSMutableArray *localCookiesStorage = nil;
     });
 }
 
+#pragma mark NSURLConnectionDataDelegate
+
+- (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse {
+    if(globalIgnoreCache || _ignoreCache) return nil;
+    
+    return cachedResponse;
+}
+
 #pragma mark NSURLConnectionDelegate
 
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse {
@@ -993,6 +1004,40 @@ static NSMutableArray *localCookiesStorage = nil;
                                                                                          kCFStringEncodingUTF8));
     return s;
 }
+@end
+
+/**/
+
+@implementation NSString (STUtilities)
+
+- (NSString *)st_stringByAppendingGETParameters:(NSDictionary *)parameters {
+    
+    NSMutableString *ms = [self mutableCopy];
+    
+    __block BOOL questionMarkFound = NO;
+    
+    NSArray *sortedParameters = [STHTTPRequest dictionariesSortedByKey:parameters];
+    
+    [sortedParameters enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
+        
+        NSString *key = [[d allKeys] lastObject];
+        NSString *value = [[[d allValues] lastObject] description];
+        
+        if(questionMarkFound == NO) {
+            questionMarkFound = [ms rangeOfString:@"?"].location != NSNotFound;
+        }
+        
+        [ms appendString: (questionMarkFound ? @"&" : @"?") ];
+        
+        [ms appendFormat:@"%@=%@",
+         [key st_stringByAddingRFC3986PercentEscapesUsingEncoding:NSUTF8StringEncoding],
+         [value st_stringByAddingRFC3986PercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        
+    }];
+    
+    return ms;
+}
+
 @end
 
 /**/

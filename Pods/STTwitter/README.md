@@ -175,6 +175,20 @@ So there are five cases altogether, hence these five methods:
                                     consumerSecret:(NSString *)consumerSecret;
 ```
 
+##### Callbacks URLs
+
+After authenticating in Safari or in a web view, Twitter redirects to the callback URL with some additional parameters. ([Your Twitter app' settings](https://apps.twitter.com/) MUST allow the usage of callbacks by specifying a dummy URL, such as `http://www.cnn.com`.
+This URL is then overriden by the `oauthCallback ` parameter in:
+
+	- (void)postTokenRequest:(void(^)(NSURL *url, NSString *oauthToken))successBlock
+	authenticateInsteadOfAuthorize:(BOOL)authenticateInsteadOfAuthorize
+	              forceLogin:(NSNumber *)forceLogin
+	              screenName:(NSString *)screenName
+	           oauthCallback:(NSString *)oauthCallback
+	              errorBlock:(void(^)(NSError *error))errorBlock;
+
+<img border="1" src="Art/twitter_app_settings.png" width="600" alt="STTwitter Twitter App Settings"></img>
+
 ##### Reverse Authentication
 
 Reference: [https://dev.twitter.com/docs/ios/using-reverse-auth](https://dev.twitter.com/docs/ios/using-reverse-auth)
@@ -258,6 +272,14 @@ There's no need to verify the credentials before each request.
 
 Doing so when the application starts and when the application enters foreground sounds reasonable, though.
 
+##### Timeout
+
+Unless told otherwise, STTwitter will use the underling classes default timeouts.
+
+You can also set the timeout by yourself:
+
+    [twitter setTimeoutInSeconds:5.0];
+
 ##### Remove Asserts in Release Mode
 
 There are several asserts in the code. They are very useful in debug mode but you should not include them in release.
@@ -310,7 +332,7 @@ You may want to use Twitter's own Objective-C library for text processing: [http
 
 ##### Logout
 
-The correct approach to logout a user is setint the `STTwitterAPI` instance to nil.
+The correct approach to logout a user is setting the `STTwitterAPI` instance to nil.
 
 You'll create a new one at the next login.
 
@@ -446,7 +468,7 @@ downloadProgressBlock:(void (^)(id request, id response))downloadProgressBlock
         - uses OS X / iOS frameworks to interact with Twitter API
 
      * STTwitterOSRequest
-        - black-based wrapper around SLRequest's underlying NSURLRequest
+        - block-based wrapper around SLRequest's underlying NSURLRequest
         
      * STTwitterOAuth
         - implements OAuth and xAuth authentication
