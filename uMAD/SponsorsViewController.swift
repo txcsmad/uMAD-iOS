@@ -14,6 +14,8 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
     var collectionView: UICollectionView?
     var sponsorCount = 0
     var sponsors : [PFObject] = []
+    var images: [UIImage] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,13 +42,26 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
             } else {
                 // objects has all the Posts the current user liked.
                 self.sponsors = objects as [PFObject]
-                self.sponsorCount = self.sponsors.count
-                self.collectionView?.reloadData()
+                self.storeImages()
             }
         }
         
         
         
+    }
+    
+    func storeImages(){
+        
+        //There will only ever be a few images to load, so I am loading them synchronously
+        for x in 0...self.sponsors.count - 1{
+            var currentSponsor: PFObject = sponsors[x]
+            var imageFile: PFFile = currentSponsor["companyImage"] as PFFile
+            let imageData : NSData! = imageFile.getData()
+            let image = UIImage(data:imageData)
+            self.images.append(image!)
+        }
+        sponsorCount = self.sponsors.count
+        self.collectionView?.reloadData()
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -67,20 +82,11 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
             view.removeFromSuperview()
         }
         
-            var currentSponsor: PFObject = sponsors[indexPath.item]
-            var imageFile: PFFile = currentSponsor["companyImage"] as PFFile
-            
-            imageFile.getDataInBackgroundWithBlock{
-                (imageData: NSData!, error: NSError!) -> Void in
-                if error == nil {
-                    let image = UIImage(data:imageData)
-                    let logo = UIImageView(image: image)
-                    logo.contentMode = UIViewContentMode.ScaleAspectFit
-                    logo.frame = CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height)
-                    cell.contentView.addSubview(logo)
-                    cell.setNeedsDisplay()
-                }
-            }
+        let logo = UIImageView(image: self.images[indexPath.item])
+        logo.contentMode = UIViewContentMode.ScaleAspectFit
+        logo.frame = CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height)
+        cell.contentView.addSubview(logo)
+        cell.setNeedsDisplay()
 
         return cell
     }
