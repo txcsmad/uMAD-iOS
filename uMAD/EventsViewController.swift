@@ -112,9 +112,12 @@ class EventsViewController: UITableViewController {
                     if let startTime: NSDate = object["startTime"] as? NSDate {
                         info["startTime"] = startTime
                         
+                        println(startTime)
+                        
                         var timeFormatter: NSDateFormatter = NSDateFormatter()
-                        timeFormatter.timeZone = NSTimeZone(name: "America/Chicago")
+                        timeFormatter.timeZone = NSTimeZone(name: "UTC")
                         timeFormatter.dateFormat = "MMMM d - hh:00 a";
+                        println(object["description"]);
                         
                         var timeString: String = timeFormatter.stringFromDate(startTime)
                         
@@ -177,10 +180,10 @@ class EventsViewController: UITableViewController {
                     if s1Month == s2Month {
                         if s1Day == s2Day {
                             if s1Split == s2Split {
-                                if s1Time != 12 {
-                                    return s1Time > s2Time
+                                if s1Time != 12 && s2Time != 12 {
+                                    return s1Time < s2Time
                                 }
-                                return s1Time < s2Time
+                                return s1Time > s2Time
                             }
                             return s1Split < s2Split
                         }
@@ -188,6 +191,10 @@ class EventsViewController: UITableViewController {
                     }
                     return s1Month < s2Month
                 })
+                
+                for foo in self.sectionHeaders {
+                    println(foo);
+                }
                 
                 dispatch_async(dispatch_get_main_queue(), { () in
                     UIView.transitionWithView(self.tableView, duration: 0.1, options: UIViewAnimationOptions.ShowHideTransitionViews, animations: {
@@ -263,7 +270,7 @@ class EventsViewController: UITableViewController {
         let companyIDString: String? = self.events[index].companyID?.stringValue
         
         let timeFormatter: NSDateFormatter  = NSDateFormatter()
-        timeFormatter.timeZone              = NSTimeZone(name: "America/Chicago")
+        timeFormatter.timeZone              = NSTimeZone(name: "UTC")
         timeFormatter.dateFormat            = "hh:mm a";
         var startTimeString: String         = "00:00"
         var endTimeString: String           = "00:00"
