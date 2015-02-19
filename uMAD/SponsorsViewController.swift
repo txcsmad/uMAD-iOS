@@ -42,7 +42,7 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
             } else {
                 // objects has all the Posts the current user liked.
                 self.sponsors = objects as [PFObject]
-                self.storeImages()
+                self.storeImages(0)
             }
         }
         
@@ -50,18 +50,22 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
         
     }
     
-    func storeImages(){
+    func storeImages(x:Int){
         
-        //There will only ever be a few images to load, so I am loading them synchronously
-        for x in 0...self.sponsors.count - 1{
-            var currentSponsor: PFObject = sponsors[x]
-            var imageFile: PFFile = currentSponsor["companyImage"] as PFFile
-            let imageData : NSData! = imageFile.getData()
+        var currentSponsor: PFObject = sponsors[x]
+        var imageFile: PFFile = currentSponsor["companyImage"] as PFFile
+        imageFile.getDataInBackgroundWithBlock{(imageData: NSData!, error: NSError!) -> Void in if error == nil {
             let image = UIImage(data:imageData)
             self.images.append(image!)
+            if (x+1) < self.sponsors.count{
+                self.storeImages(x+1)
+            }else if (x+1) >= self.sponsors.count{
+                self.sponsorCount = self.sponsors.count
+                self.collectionView?.reloadData()
+            }
+            
+            }
         }
-        sponsorCount = self.sponsors.count
-        self.collectionView?.reloadData()
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -87,7 +91,7 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
         logo.frame = CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height)
         cell.contentView.addSubview(logo)
         cell.setNeedsDisplay()
-
+        
         return cell
     }
     
