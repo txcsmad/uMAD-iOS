@@ -11,7 +11,7 @@ class Event: NSObject {
     var endTime:        NSDate?
     var email:          String?
     var companyWebsite: NSURL?
-    var companyID:      NSNumber?
+    var companyID:      Int?
     
     init(info: Dictionary<String, AnyObject>) {
         sessionName = info["sessionName"]       as! String?
@@ -24,7 +24,7 @@ class Event: NSObject {
         endTime = info["endTime"]               as! NSDate?
         email = info["email"]                   as! String?
         companyWebsite = info["companyWebsite"] as! NSURL?
-        companyID = info["companyID"]           as! NSNumber?
+        companyID = info["companyID"]           as! Int?
         
     }
 
@@ -72,7 +72,7 @@ class Event: NSObject {
             info["image"] = image
         }
 
-        if let companyID: NSNumber = parseReturn["companyID"] as? NSNumber {
+        if let companyID: NSNumber = parseReturn["companyID"] as? Int {
             info["companyID"] = companyID
         }
 
