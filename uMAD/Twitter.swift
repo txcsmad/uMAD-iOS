@@ -16,16 +16,16 @@ struct Tweet {
             tweet = json
         }
         
-        id = tweet["id_str"] as String
+        id = tweet["id_str"] as! String
         
-        let createdAtString = tweet["created_at"] as String
+        let createdAtString = tweet["created_at"] as! String
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
         createdAt = dateFormatter.dateFromString(createdAtString)!
         
-        text = tweet["text"] as String
+        text = tweet["text"] as! String
         
-        let userDictionary = tweet["user"] as NSDictionary
+        let userDictionary = tweet["user"] as! NSDictionary
         user = User(json: userDictionary)
     }
     
@@ -39,13 +39,13 @@ struct User {
     var profileImageUrl: NSURL
     
     init(json: NSDictionary) {
-        id = json["id_str"] as String
+        id = json["id_str"] as! String
         
-        name = json["name"] as String
+        name = json["name"] as! String
         
-        screenName = json["screen_name"] as String
+        screenName = json["screen_name"] as! String
         
-        let profileImageUrlString = json["profile_image_url_https"] as String
+        let profileImageUrlString = json["profile_image_url_https"] as! String
         let biggerProfileImageUrlString = profileImageUrlString.stringByReplacingOccurrencesOfString("normal", withString: "bigger", options: .LiteralSearch, range: nil)
         profileImageUrl = NSURL(string: biggerProfileImageUrlString)!
     }

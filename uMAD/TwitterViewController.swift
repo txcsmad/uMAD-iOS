@@ -30,7 +30,7 @@ class TwitterViewController: UITableViewController {
         twitter.getUserTimelineWithScreenName(UTCS_MAD_SCREEN_NAME, count: TWEET_BATCH_COUNT, successBlock: { (response: [AnyObject]!) in
             self.tweets.removeAll(keepCapacity: true)
             
-            for dictionary in response as [NSDictionary] {
+            for dictionary in response as! [NSDictionary] {
                 self.tweets.append(Tweet(json: dictionary))
             }
 
@@ -43,7 +43,7 @@ class TwitterViewController: UITableViewController {
 
                 self.tableView.reloadData()
             })
-        }, { (error: NSError!) in
+        }, errorBlock: { (error: NSError!) in
             self.presentAlertControllerForError(error)
         })
     }
@@ -80,12 +80,12 @@ class TwitterViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("tweet_cell", forIndexPath: indexPath) as TweetTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("tweet_cell", forIndexPath: indexPath) as! TweetTableViewCell
         
         let tweet = tweets[indexPath.row]
         
         let attributedName = NSMutableAttributedString(string: "\(tweet.user.name) @\(tweet.user.screenName)")
-        let screenNameRange = NSMakeRange(countElements(tweet.user.name) + 1, countElements(tweet.user.screenName) + 1)
+        let screenNameRange = NSMakeRange(count(tweet.user.name) + 1, count(tweet.user.screenName) + 1)
         attributedName.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(14), range: screenNameRange)
         attributedName.addAttribute(NSForegroundColorAttributeName, value: UIColor.lightGrayColor(), range: screenNameRange)
         cell.userNameAndScreenNameLabel.attributedText = attributedName

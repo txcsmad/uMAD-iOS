@@ -1,25 +1,11 @@
-//
-//  EventTableViewCell.swift
-//  uMAD
-//
-//  Created by Andrew Chun on 1/28/15.
-//  Copyright (c) 2015 com.MAD. All rights reserved.
-//
-
 import Foundation
 
 class EventTableViewCell: UITableViewCell {
     var timeLabel: UILabel!
     var locationLabel: UILabel!
     var eventName: UILabel!
-    
-    override init() {
-        super.init()
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
+
+
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: UITableViewCellStyle.Subtitle, reuseIdentifier: reuseIdentifier)
