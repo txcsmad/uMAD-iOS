@@ -1,11 +1,3 @@
-//
-//  EventViewController.swift
-//  uMAD
-//
-//  Created by Andrew Chun on 1/29/15.
-//  Copyright (c) 2015 com.MAD. All rights reserved.
-//
-
 import Foundation
 
 let WEBSITE_TABLEVIEW_CELL_HEIGHT: CGFloat = 44.00
@@ -16,15 +8,11 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var event: Event!
     var tableView: UITableView!
     
-    override init() {
-        super.init()
-    }
-    
     init(image: UIImage, event: Event) {
-        super.init()
         
         self.event = event
         self.image = image
+        super.init(nibName: nil, bundle: nil)
     }
     
     override func viewDidLoad() {
@@ -157,7 +145,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("WEBSITE_TABLEVIEW_CELL", forIndexPath: indexPath) as UITableViewCell
+        var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("WEBSITE_TABLEVIEW_CELL", forIndexPath: indexPath) as! UITableViewCell
         
         cell.textLabel?.font = UIFont.systemFontOfSize(FONT_SIZE)
         

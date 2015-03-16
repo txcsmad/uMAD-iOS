@@ -1,20 +1,8 @@
-//
-//  LicenseViewController.swift
-//  uMAD
-//
-//  Created by Andrew Chun on 1/31/15.
-//  Copyright (c) 2015 com.MAD. All rights reserved.
-//
-
 import Foundation
 
 class LicenseViewController: UIViewController {
     var licenseName: String!
     var licenseDetails: String!
-    
-    override init() {
-        fatalError("Must call designated initalizer")
-    }
     
     required init(licenseName: String, licenseDetails: String) {
         super.init(nibName: nil, bundle: nil)

@@ -1,11 +1,3 @@
-//
-//  SponsorsViewController.swift
-//  uMAD
-//
-//  Created by Andrew Chun on 1/25/15.
-//  Copyright (c) 2015 com.MAD. All rights reserved.
-//
-
 import Foundation
 import UIKit
 
@@ -41,7 +33,7 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
                 // There was an error
             } else {
                 // objects has all the Posts the current user liked.
-                self.sponsors = objects as [PFObject]
+                self.sponsors = objects as! [PFObject]
                 self.storeImages(0)
             }
         }
@@ -53,7 +45,7 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
     func storeImages(x:Int){
         
         var currentSponsor: PFObject = sponsors[x]
-        var imageFile: PFFile = currentSponsor["companyImage"] as PFFile
+        var imageFile: PFFile = currentSponsor["companyImage"] as! PFFile
         imageFile.getDataInBackgroundWithBlock{(imageData: NSData!, error: NSError!) -> Void in if error == nil {
             let image = UIImage(data:imageData)
             self.images.append(image!)
@@ -74,13 +66,13 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         var currentSponsor: PFObject = sponsors[indexPath.item]
-        var webLink: String = currentSponsor["companyWebsite"] as String
+        var webLink: String = currentSponsor["companyWebsite"] as! String
         //why unwrap?
         UIApplication.sharedApplication().openURL(NSURL(string: webLink)!)
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! UICollectionViewCell
         
         for view in cell.contentView.subviews{
             view.removeFromSuperview()
@@ -97,7 +89,7 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         var currentSponsor: PFObject = sponsors[indexPath.item]
-        var rating: Int = currentSponsor["sponsorLevel"] as Int
+        var rating: Int = currentSponsor["sponsorLevel"] as! Int
         
         var size : CGSize
         
