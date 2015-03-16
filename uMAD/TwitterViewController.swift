@@ -9,6 +9,16 @@ class TwitterViewController: UITableViewController {
     let twitter = STTwitterAPI(appOnlyWithConsumerKey: TWITTER_CONSUMER_KEY, consumerSecret: TWITTER_CONSUMER_SECRET)
     var tweets = [Tweet]()
     var userProfileImageCache = [String: UIImage]()
+    let dateComponentsFormatter = NSDateComponentsFormatter()
+
+    init() {
+        super.init(style: .Plain)
+        dateComponentsFormatter.unitsStyle = .Abbreviated
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     func composeTweet() {
         let tweetSheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
@@ -88,11 +98,8 @@ class TwitterViewController: UITableViewController {
   
         cell.tweetTextLabel.text = tweet.text
         
-        let dateComponentsFormatter = NSDateComponentsFormatter()
-        dateComponentsFormatter.unitsStyle = .Abbreviated
-        let unitFlags: NSCalendarUnit = .CalendarUnitDay | .CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond
-        let dateComponents = NSCalendar.autoupdatingCurrentCalendar().components(unitFlags, fromDate: tweet.createdAt, toDate: NSDate(), options: nil)
-        cell.createdAtLabel.text = "\(dateComponentsFormatter.stringFromDateComponents(dateComponents)!) ago"
+
+        cell.createdAtLabel.text = timeSinceString(tweet.createdAt)
         
         if let profileImage = userProfileImageCache[tweet.user.screenName] {
             cell.userProfileImageView.image = profileImage
@@ -113,6 +120,17 @@ class TwitterViewController: UITableViewController {
         }
         
         return cell
+    }
+    private func timeSinceString(date: NSDate) -> String{
+        let recentUnitFlags: NSCalendarUnit = .CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond
+        var dateComponents = NSCalendar.autoupdatingCurrentCalendar().components(.CalendarUnitDay, fromDate: date, toDate: NSDate(), options: nil)
+        if dateComponents.day == 0 {
+            dateComponents = NSCalendar.autoupdatingCurrentCalendar().components(recentUnitFlags, fromDate: date, toDate: NSDate(), options: nil)
+
+        }
+
+        return "\(dateComponentsFormatter.stringFromDateComponents(dateComponents)!) ago"
+
     }
     
     // MARK: - UITableViewDelegate

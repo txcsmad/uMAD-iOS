@@ -41,6 +41,7 @@
 		AA205FAA5FB53DF9343E091B /* libPods-uMAD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B596628F0847E6A0B2CB8F1 /* libPods-uMAD.a */; };
 		D41BCD501AB6A53A003AECA8 /* EventReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41BCD4F1AB6A53A003AECA8 /* EventReference.swift */; };
 		D478D1071AB73EBA00563A8A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D478D1061AB73EBA00563A8A /* Config.swift */; };
+		D478D10B1AB7533500563A8A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D478D10A1AB7533500563A8A /* LaunchScreen.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +100,7 @@
 		D41BCD4F1AB6A53A003AECA8 /* EventReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventReference.swift; sourceTree = "<group>"; };
 		D478D1061AB73EBA00563A8A /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		D478D1081AB7422000563A8A /* Config.template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.template.swift; sourceTree = "<group>"; };
+		D478D10A1AB7533500563A8A /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,6 +259,7 @@
 				64D4AF601A75CDA80040D3CA /* Supporting Files */,
 				D478D1061AB73EBA00563A8A /* Config.swift */,
 				D478D1081AB7422000563A8A /* Config.template.swift */,
+				D478D10A1AB7533500563A8A /* LaunchScreen.xib */,
 			);
 			path = uMAD;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				64294D031A7AE43200B71E6F /* SVWebViewController.bundle in Resources */,
 				64294D081A7AE43200B71E6F /* SVWebViewControllerActivityChrome@2x.png in Resources */,
 				64D4AF6A1A75CDA80040D3CA /* Images.xcassets in Resources */,
+				D478D10B1AB7533500563A8A /* LaunchScreen.xib in Resources */,
 				64294D091A7AE43200B71E6F /* SVWebViewControllerActivitySafari-iPad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

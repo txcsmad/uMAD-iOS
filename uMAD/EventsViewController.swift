@@ -1,16 +1,12 @@
-
 import UIKit
 
 class EventsViewController: UITableViewController {
 
     private var events = [Event]()
-    private var sections = [Int: [EventReference]]()// Section index -> arrays of weak references to events
-    private var logos = [String: UIImage]()
+    private var sections = [Int: [EventReference]]() // Section index -> arrays of weak references to events
+    private var logos = [Int: UIImage]() // Company ID -> UImage
     private let sectionHeaderFormatter: NSDateFormatter = NSDateFormatter()
     private let timeFormatter: NSDateFormatter  = NSDateFormatter()
-
-
-    // MARK: - UIViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +33,11 @@ class EventsViewController: UITableViewController {
     }
 
     func reloadData() {
+        fetchEvents()
+        fetchThumbnails()
+    }
+
+    private func fetchEvents(){
         var eventsQuery: PFQuery = PFQuery(className:"Events")
         eventsQuery.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]!, error: NSError!) in
@@ -45,36 +46,60 @@ class EventsViewController: UITableViewController {
                 println("Error: %@ %@", error, error.userInfo!)
                 return
             }
-                self.events = [Event]()
+            self.events = [Event]()
 
-                for object in objects {
-                    self.events.append(Event(parseReturn: object))
-                }
+            for object in objects {
+                self.events.append(Event(parseReturn: object))
+            }
 
-                //Sort the events from earliest to latest
-                self.events = self.events.sorted({
-                    (firstEvent: Event, secondEvent: Event) -> Bool in
-                    let result = firstEvent.startTime!.compare(secondEvent.startTime!)
-                    return  result == .OrderedAscending
-                })
+            //Sort the events from earliest to latest
+            self.events = self.events.sorted({
+                (firstEvent: Event, secondEvent: Event) -> Bool in
+                let result = firstEvent.startTime!.compare(secondEvent.startTime!)
+                return  result == .OrderedAscending
+            })
 
-                self.createSectionedRepresentation()
-                
-                dispatch_async(dispatch_get_main_queue(), { () in
-                    UIView.transitionWithView(self.tableView, duration: 0.1, options: UIViewAnimationOptions.ShowHideTransitionViews, animations: {
-                        () -> Void in
-                        
-                        let delayTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.20 * Double(NSEC_PER_SEC)))
-                        dispatch_after(delayTime, dispatch_get_main_queue()) {
-                            self.refreshControl!.endRefreshing()
-                        }
-                        
-                        self.tableView.reloadData()
-                        }, completion: nil)
-                })
+            self.createSectionedRepresentation()
+
+            dispatch_async(dispatch_get_main_queue(), { () in
+                UIView.transitionWithView(self.tableView, duration: 0.1, options: UIViewAnimationOptions.ShowHideTransitionViews, animations: {
+                    () -> Void in
+
+                    let delayTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.20 * Double(NSEC_PER_SEC)))
+                    dispatch_after(delayTime, dispatch_get_main_queue()) {
+                        self.refreshControl!.endRefreshing()
+                    }
+
+                    self.tableView.reloadData()
+                    }, completion: nil)
+            })
         }
-    }
 
+    }
+    private func fetchThumbnails(){
+        var sponsorsQuery: PFQuery = PFQuery(className: "Sponsors")
+        sponsorsQuery.findObjectsInBackgroundWithBlock({
+            (objects: [AnyObject]!, error: NSError!) in
+            if error != nil {
+                println("Error: %@ %@", error, error.userInfo!)
+            }
+            for object in objects {
+                if let companyID = object["identifierNumber"] as? Int {
+                    if let imageFile: PFFile = object["thumbnail"] as? PFFile {
+                        imageFile.getDataInBackgroundWithBlock({
+                            (data: NSData!, error: NSError!) -> Void in
+                            if data != nil {
+                                self.logos[companyID] = UIImage(data: data)
+                            } else if error != nil {
+                                println(error.localizedDescription)
+                            }
+                        })
+                    }
+                }
+            }
+
+        })
+    }
     private func createSectionedRepresentation(){
         let calendar = NSCalendar.currentCalendar()
         let desiredComponents = (NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitDay)
@@ -116,6 +141,7 @@ class EventsViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return sections.count
     }
+
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header = view as! UITableViewHeaderFooterView
         header.textLabel.font = UIFont(name: "HelveticaNeue-Bold", size: UIFont.systemFontSize())
@@ -129,9 +155,14 @@ class EventsViewController: UITableViewController {
         
 
         let event = section[indexPath.row].referenced!
-        let thumbnail = UIImage(named: "mad_thumbnail.png")!
+
+        var thumbnail = logos[event.companyID!]
+        if thumbnail == nil {
+             thumbnail = UIImage(named: "mad_thumbnail.png")!
+        }
+
         
-        let eventViewController = EventViewController(image: thumbnail, event: event)
+        let eventViewController = EventViewController(image: thumbnail!, event: event)
         
         self.navigationController?.pushViewController(eventViewController, animated: true)
     }
@@ -156,9 +187,7 @@ class EventsViewController: UITableViewController {
         let startTime: NSDate?   = event.startTime
         let endTime: NSDate?     = event.endTime
         let room: String?        = event.room
-        let companyIDNumber: NSNumber? = event.companyID
-        let companyIDString: String? = event.companyID?.stringValue
-        
+        let companyID: Int? = event.companyID
 
         var startTimeString: String         = "00:00"
         var endTimeString: String           = "00:00"
@@ -170,13 +199,17 @@ class EventsViewController: UITableViewController {
         if let endTime: NSDate = endTime {
             endTimeString = timeFormatter.stringFromDate(endTime)
         }
-        
-        cell.textLabel?.font = UIFont.systemFontOfSize(FONT_SIZE)
-        cell.detailTextLabel?.font = UIFont.systemFontOfSize(DETAIL_FONT_SIZE)
+
+        cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
         
         cell.textLabel?.text        = sessionName
         cell.detailTextLabel?.text  = "\(startTimeString) - \(endTimeString) – \(room!)"
+
+
         cell.imageView?.image       =  UIImage(named: "mad_thumbnail.png")?.imageScaledToSize(CGSizeMake(50, 50))
+        let test = logos[companyID!]
+        cell.imageView?.image = logos[companyID!]?.imageScaledToSize(CGSizeMake(50.00, 50.00))
+
         
         return cell
     }
