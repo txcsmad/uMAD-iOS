@@ -1,7 +1,7 @@
 FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/Parse"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Bolts" "${PODS_ROOT}/Headers/Public/Parse" "${PODS_ROOT}/Headers/Public/STTwitter"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Bolts" "${PODS_ROOT}/Headers/Public/Parse" "${PODS_ROOT}/Headers/Public/STTwitter"
 OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Bolts" -isystem "${PODS_ROOT}/Headers/Public/Parse" -isystem "${PODS_ROOT}/Headers/Public/STTwitter"
-OTHER_LDFLAGS = -ObjC -l"Pods-uMAD-Bolts" -l"Pods-uMAD-Parse" -l"Pods-uMAD-STTwitter" -l"sqlite3" -l"z" -framework "Accounts" -framework "AudioToolbox" -framework "CFNetwork" -framework "CoreGraphics" -framework "CoreLocation" -framework "Foundation" -framework "MobileCoreServices" -framework "Parse" -framework "QuartzCore" -framework "Security" -framework "StoreKit" -framework "SystemConfiguration" -framework "Twitter" -framework "UIKit" -weak_framework "Accounts" -weak_framework "Social"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"Pods-uMAD-Bolts" -l"Pods-uMAD-STTwitter" -l"sqlite3" -l"z" -framework "Accounts" -framework "AudioToolbox" -framework "CFNetwork" -framework "CoreGraphics" -framework "CoreLocation" -framework "Foundation" -framework "MobileCoreServices" -framework "Parse" -framework "QuartzCore" -framework "Security" -framework "StoreKit" -framework "SystemConfiguration" -framework "Twitter" -framework "UIKit" -weak_framework "Accounts" -weak_framework "Social"
 OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
 PODS_ROOT = ${SRCROOT}/Pods
