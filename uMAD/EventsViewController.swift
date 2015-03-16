@@ -49,7 +49,6 @@ class EventsViewController: UITableViewController {
 
                 for object in objects {
                     self.events.append(Event(parseReturn: object))
-                    println(self.events.last!.stringDescription())
                 }
 
                 //Sort the events from earliest to latest
@@ -59,37 +58,7 @@ class EventsViewController: UITableViewController {
                     return  result == .OrderedAscending
                 })
 
-                let calendar = NSCalendar.currentCalendar()
-                let desiredComponents = (NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitDay)
-                var currentSection = 0;
-
-                //FIXME: what about the 0 event case?
-                var comparisonIndex = 0;
-                var comparisonEvent = self.events[comparisonIndex]
-                var newSection = [EventReference]()
-                newSection.append(EventReference(event: comparisonEvent))
-                self.sections[currentSection] = newSection
-                var comparisonComponents = calendar.components(desiredComponents, fromDate: comparisonEvent.startTime!)
-                for var i = 1; i < self.events.count; i++ {
-                    let currentEvent = self.events[i]
-
-                    let currentComponents = calendar.components( desiredComponents, fromDate:currentEvent.startTime!)
-                    if comparisonComponents.hour != currentComponents.hour ||
-                        comparisonComponents.day != currentComponents.day {
-                        currentSection++
-                        var newSection = [EventReference]()
-                        newSection.append(EventReference(event: currentEvent))
-                        self.sections[currentSection] = newSection
-                        comparisonIndex++
-                        comparisonEvent = self.events[comparisonIndex]
-                        comparisonComponents = calendar.components(desiredComponents, fromDate: comparisonEvent.startTime!)
-
-                    } else {
-
-                        var section = self.sections[currentSection]!
-                        section.append(EventReference(event: currentEvent))
-                    }
-                }
+                self.createSectionedRepresentation()
                 
                 dispatch_async(dispatch_get_main_queue(), { () in
                     UIView.transitionWithView(self.tableView, duration: 0.1, options: UIViewAnimationOptions.ShowHideTransitionViews, animations: {
@@ -105,9 +74,40 @@ class EventsViewController: UITableViewController {
                 })
         }
     }
-    
+
+    private func createSectionedRepresentation(){
+        let calendar = NSCalendar.currentCalendar()
+        let desiredComponents = (NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitDay)
+        var currentSection = 0
+        //FIXME: what about the 0 event case?
+        var comparisonIndex = 0;
+        var comparisonEvent = self.events[comparisonIndex]
+        var newSection = [EventReference]()
+        newSection.append(EventReference(event: comparisonEvent))
+        self.sections[currentSection] = newSection
+        var comparisonComponents = calendar.components(desiredComponents, fromDate: comparisonEvent.startTime!)
+        for var i = 1; i < self.events.count; i++ {
+            let currentEvent = self.events[i]
+
+            let currentComponents = calendar.components( desiredComponents, fromDate:currentEvent.startTime!)
+            if comparisonComponents.hour != currentComponents.hour ||
+                comparisonComponents.day != currentComponents.day {
+                    currentSection++
+                    var newSection = [EventReference]()
+                    newSection.append(EventReference(event: currentEvent))
+                    self.sections[currentSection] = newSection
+                    comparisonIndex = i
+                    comparisonEvent = self.events[comparisonIndex]
+                    comparisonComponents = calendar.components(desiredComponents, fromDate: comparisonEvent.startTime!)
+
+            } else {
+                self.sections[currentSection]!.append(EventReference(event: currentEvent))
+            }
+        }
+    }
+
     // MARK: - UITableViewDataSource
-    
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let section = sections[section]!
         return section.count
@@ -115,6 +115,11 @@ class EventsViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return sections.count
+    }
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel.font = UIFont(name: "HelveticaNeue-Bold", size: UIFont.systemFontSize())
+        header.textLabel.text = header.textLabel.text!.uppercaseString
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -124,9 +129,9 @@ class EventsViewController: UITableViewController {
         
 
         let event = section[indexPath.row].referenced!
-        let thumbnail: UIImage = UIImage(named: "mad_thumbnail.png")!
+        let thumbnail = UIImage(named: "mad_thumbnail.png")!
         
-        var eventViewController: EventViewController = EventViewController(image: thumbnail, event: event)
+        let eventViewController = EventViewController(image: thumbnail, event: event)
         
         self.navigationController?.pushViewController(eventViewController, animated: true)
     }
@@ -140,12 +145,6 @@ class EventsViewController: UITableViewController {
         let sectionTime = section![0].referenced!.startTime!
         return sectionHeaderFormatter.stringFromDate(sectionTime)
 
-    }
-    
-    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        var sectionHeaderView: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        
-        sectionHeaderView.textLabel.font = UIFont.systemFontOfSize(FONT_SIZE)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -164,22 +163,20 @@ class EventsViewController: UITableViewController {
         var startTimeString: String         = "00:00"
         var endTimeString: String           = "00:00"
         
-        if let time: NSDate = startTime {
-            startTimeString = timeFormatter.stringFromDate(time)
+        if let startTime: NSDate = startTime {
+            startTimeString = timeFormatter.stringFromDate(startTime)
         }
         
-        if let time: NSDate = endTime {
-            endTimeString = timeFormatter.stringFromDate(time)
+        if let endTime: NSDate = endTime {
+            endTimeString = timeFormatter.stringFromDate(endTime)
         }
         
         cell.textLabel?.font = UIFont.systemFontOfSize(FONT_SIZE)
         cell.detailTextLabel?.font = UIFont.systemFontOfSize(DETAIL_FONT_SIZE)
         
-        cell.textLabel?.text        = companyName
-        cell.detailTextLabel?.text  = sessionName
-        cell.timeLabel?.text        = startTimeString + " - " + endTimeString
-        cell.locationLabel?.text    = room
-        cell.imageView?.image       = UIImage(named: "mad_thumbnail.png")?.imageScaledToSize(CGSizeMake(50, 50))
+        cell.textLabel?.text        = sessionName
+        cell.detailTextLabel?.text  = "\(startTimeString) - \(endTimeString) – \(room!)"
+        cell.imageView?.image       =  UIImage(named: "mad_thumbnail.png")?.imageScaledToSize(CGSizeMake(50, 50))
         
         return cell
     }

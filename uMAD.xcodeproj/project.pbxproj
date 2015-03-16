@@ -40,6 +40,7 @@
 		64FD63791A76FB0700D89106 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FD63781A76FB0700D89106 /* Event.swift */; };
 		AA205FAA5FB53DF9343E091B /* libPods-uMAD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B596628F0847E6A0B2CB8F1 /* libPods-uMAD.a */; };
 		D41BCD501AB6A53A003AECA8 /* EventReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41BCD4F1AB6A53A003AECA8 /* EventReference.swift */; };
+		D478D1071AB73EBA00563A8A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D478D1061AB73EBA00563A8A /* Config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,8 @@
 		64E59F331A79F2ED00C2B030 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		64FD63781A76FB0700D89106 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		D41BCD4F1AB6A53A003AECA8 /* EventReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventReference.swift; sourceTree = "<group>"; };
+		D478D1061AB73EBA00563A8A /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		D478D1081AB7422000563A8A /* Config.template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.template.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +255,8 @@
 				64CD92331A7A073100659946 /* ViewControllers */,
 				64D4AF691A75CDA80040D3CA /* Images.xcassets */,
 				64D4AF601A75CDA80040D3CA /* Supporting Files */,
+				D478D1061AB73EBA00563A8A /* Config.swift */,
+				D478D1081AB7422000563A8A /* Config.template.swift */,
 			);
 			path = uMAD;
 			sourceTree = "<group>";
@@ -402,6 +407,7 @@
 				64FD63791A76FB0700D89106 /* Event.swift in Sources */,
 				3219C4581A7B03E400C3ADEB /* Twitter.swift in Sources */,
 				64ADB37C1A7C81D900E5BC22 /* AboutViewController.swift in Sources */,
+				D478D1071AB73EBA00563A8A /* Config.swift in Sources */,
 				64577EF11A797C7C00AAF1FC /* UIImage+Resize.m in Sources */,
 				64294D021A7AE43200B71E6F /* SVModalWebViewController.m in Sources */,
 				64ADB3801A7CD36000E5BC22 /* LicenseViewController.swift in Sources */,

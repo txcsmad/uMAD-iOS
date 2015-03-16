@@ -1,8 +1,4 @@
-
 import UIKit
-
-let PARSE_APPLICATION_ID: String = "uY4oviE7S1f5tJ4naI4J0BExh6qSTYUwdQCpukoX"
-let PARSE_CLIENT_KEY: String = "Y6X3s9CzWvduMX3P9oTB0mZBEphF9ntdKlj1HEU9"
 
 let TABBAR_HEIGHT: CGFloat = 49.00
 
