@@ -1,11 +1,7 @@
-
 import UIKit
 import Social
 
-let TWITTER_CONSUMER_KEY = "SyuNTOUuYd5EbejRrzTXoNys3"
-let TWITTER_CONSUMER_SECRET = "6TzSt7ruEZCUElzui3U98UxovXm88ZiByPL3ARMBjkUbkIgdv9"
 
-let UTCS_MAD_SCREEN_NAME = "@utcsmad"
 let TWEET_BATCH_COUNT: UInt = 100
 
 class TwitterViewController: UITableViewController {
@@ -16,7 +12,7 @@ class TwitterViewController: UITableViewController {
 
     func composeTweet() {
         let tweetSheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-        tweetSheet.setInitialText(UTCS_MAD_SCREEN_NAME + " ")
+        tweetSheet.setInitialText(SCREEN_NAME + " ")
         presentViewController(tweetSheet, animated: true, completion: nil)
     }
     
@@ -27,7 +23,7 @@ class TwitterViewController: UITableViewController {
     }
     
     func reloadTweets() {
-        twitter.getUserTimelineWithScreenName(UTCS_MAD_SCREEN_NAME, count: TWEET_BATCH_COUNT, successBlock: { (response: [AnyObject]!) in
+        twitter.getUserTimelineWithScreenName(SCREEN_NAME, count: TWEET_BATCH_COUNT, successBlock: { (response: [AnyObject]!) in
             self.tweets.removeAll(keepCapacity: true)
             
             for dictionary in response as! [NSDictionary] {
