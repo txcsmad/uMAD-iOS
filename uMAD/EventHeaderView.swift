@@ -31,8 +31,8 @@ class EventHeaderView: UIView {
         }
 
         time.text = startTimeString + " - " + endTimeString
-
     }
+
     override func awakeFromNib() {
     }
 }

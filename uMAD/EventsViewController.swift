@@ -1,7 +1,7 @@
 import UIKit
 
 let EVENTS_TABLEVIEW_CELL_IDENTIFIER: String = "eventsCell"
-let EVENTS_TABLEVIEW_CELL_HEIGHT: CGFloat = 65.00
+let EVENTS_TABLEVIEW_CELL_HEIGHT: CGFloat = 55.00
 
 class EventsViewController: UITableViewController {
 
@@ -205,9 +205,9 @@ class EventsViewController: UITableViewController {
         cell.textLabel?.text        = event.sessionName
         cell.detailTextLabel?.text  = "\(startTimeString) - \(endTimeString) – \(event.room!)"
 
-        cell.imageView?.image       =  UIImage(named: "mad_thumbnail.png")?.imageScaledToSize(CGSizeMake(50, 50))
+        cell.imageView?.image       =  UIImage(named: "mad_thumbnail.png")
         if let logo = logos[event.companyID!]{
-            cell.imageView?.image = logo.imageScaledToSize(CGSizeMake(50.00, 50.00))
+            cell.imageView?.image = logo
         }
 
         
