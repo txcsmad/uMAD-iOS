@@ -1,7 +1,5 @@
 import UIKit
 
-let TABBAR_HEIGHT: CGFloat = 49.00
-
 let FONT_SIZE: CGFloat = 17.00
 let DETAIL_FONT_SIZE: CGFloat = 12.00
 
@@ -27,22 +25,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [eventsViewController, twitterViewController, sponsorsViewController, aboutViewController]
         tabBarController.tabBar.tintColor = UIColor(red: 0.83, green: 0.18, blue: 0.13, alpha: 1.0)
-        
-        var eventsTabImage: UIImage = UIImage(named: "events.png")!
-        var resizedEventsTabImage: UIImage = eventsTabImage.imageScaledToSize(CGSizeMake(25.00, 25.00))
-        eventsViewController.tabBarItem = UITabBarItem(title: "Events", image: resizedEventsTabImage, tag: 0)
-        
-        var twitterTabImage: UIImage = UIImage(named: "twitter.png")!
-        var resizedTwitterTabImage: UIImage = twitterTabImage.imageScaledToSize(CGSizeMake(25.00, 25.00))
-        twitterViewController.tabBarItem = UITabBarItem(title: "Twitter", image: resizedTwitterTabImage, tag: 0)
-        
-        var sponsorsTabImage: UIImage = UIImage(named: "sponsors.png")!
-        var resizedSponsorsTabImage: UIImage = sponsorsTabImage.imageScaledToSize(CGSizeMake(25.00, 25.00))
-        sponsorsViewController.tabBarItem = UITabBarItem(title: "Sponsors", image: resizedSponsorsTabImage, tag: 0)
-        
-        var aboutTabImage: UIImage = UIImage(named: "aboutus.png")!
-        var resizedAboutTabImage: UIImage = aboutTabImage.imageScaledToSize(CGSizeMake(25.00, 25.00))
-        aboutViewController.tabBarItem = UITabBarItem(title: "About Us", image: resizedAboutTabImage, tag: 0)
+
+        eventsViewController.tabBarItem.title = "Events"
+        eventsViewController.tabBarItem.image = UIImage(named: "calendar.png")
+        eventsViewController.tabBarItem.selectedImage = UIImage(named: "calendar-filled.png")
+
+        twitterViewController.tabBarItem.title = "Twitter"
+        twitterViewController.tabBarItem.image = UIImage(named: "twitter.png")
+        twitterViewController.tabBarItem.selectedImage = UIImage(named: "twitter-filled.png")
+
+        sponsorsViewController.tabBarItem.title = "Sponsors"
+        sponsorsViewController.tabBarItem.image = UIImage(named: "sponsors.png")
+        sponsorsViewController.tabBarItem.selectedImage = UIImage(named: "sponsors-filled.png")
+
+        aboutViewController.tabBarItem.title = "About Us"
+        aboutViewController.tabBarItem.image = UIImage(named: "aboutus.png")
+        aboutViewController.tabBarItem.selectedImage = UIImage(named: "aboutus-filled.png")
         
         tabBarController.tabBar.translucent = false
         
