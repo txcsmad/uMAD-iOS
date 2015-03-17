@@ -6,4 +6,3 @@
 
 #import <STTwitter/STTwitter.h>
 #import "SVWebViewController.h"
-#import "UIImage+Resize.h"

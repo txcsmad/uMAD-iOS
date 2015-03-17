@@ -25,7 +25,6 @@
 		64294D0C1A7AE43200B71E6F /* SVWebViewControllerActivitySafari@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64294CFC1A7AE43200B71E6F /* SVWebViewControllerActivitySafari@2x.png */; };
 		64294D0D1A7AE43200B71E6F /* SVWebViewControllerActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 64294CFE1A7AE43200B71E6F /* SVWebViewControllerActivity.m */; };
 		6448E4071A7B067B00FB98CA /* EventHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6448E4061A7B067B00FB98CA /* EventHeaderView.swift */; };
-		64577EF11A797C7C00AAF1FC /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 64577EF01A797C7C00AAF1FC /* UIImage+Resize.m */; };
 		64ADB37C1A7C81D900E5BC22 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ADB37B1A7C81D900E5BC22 /* AboutViewController.swift */; };
 		64ADB37E1A7CB1DD00E5BC22 /* LicensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ADB37D1A7CB1DD00E5BC22 /* LicensesViewController.swift */; };
 		64ADB3801A7CD36000E5BC22 /* LicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ADB37F1A7CD36000E5BC22 /* LicenseViewController.swift */; };
@@ -82,8 +81,6 @@
 		64294CFF1A7AE43200B71E6F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SVWebViewController.strings"; sourceTree = "<group>"; };
 		64294D001A7AE43200B71E6F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SVWebViewController.strings"; sourceTree = "<group>"; };
 		6448E4061A7B067B00FB98CA /* EventHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventHeaderView.swift; sourceTree = "<group>"; };
-		64577EEF1A797C7600AAF1FC /* UIImage+Resize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
-		64577EF01A797C7C00AAF1FC /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		64ADB37B1A7C81D900E5BC22 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		64ADB37D1A7CB1DD00E5BC22 /* LicensesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LicensesViewController.swift; sourceTree = "<group>"; };
 		64ADB37F1A7CD36000E5BC22 /* LicenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LicenseViewController.swift; sourceTree = "<group>"; };
@@ -225,15 +222,6 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		64CD92361A7A076900659946 /* Third Party Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				64577EF01A797C7C00AAF1FC /* UIImage+Resize.m */,
-				64577EEF1A797C7600AAF1FC /* UIImage+Resize.h */,
-			);
-			name = "Third Party Libraries";
-			sourceTree = "<group>";
-		};
 		64D4AF541A75CDA80040D3CA = {
 			isa = PBXGroup;
 			children = (
@@ -258,7 +246,6 @@
 				64D4AF621A75CDA80040D3CA /* AppDelegate.swift */,
 				64CBDDAA1A75D133008BB167 /* uMAD-Bridging-Header.h */,
 				64294CE11A7AE43200B71E6F /* SVWebViewController */,
-				64CD92361A7A076900659946 /* Third Party Libraries */,
 				64CD92351A7A075B00659946 /* Models */,
 				64CD92341A7A074400659946 /* Views */,
 				64CD92331A7A073100659946 /* ViewControllers */,
@@ -421,7 +408,6 @@
 				3219C4581A7B03E400C3ADEB /* Twitter.swift in Sources */,
 				64ADB37C1A7C81D900E5BC22 /* AboutViewController.swift in Sources */,
 				D478D1071AB73EBA00563A8A /* Config.swift in Sources */,
-				64577EF11A797C7C00AAF1FC /* UIImage+Resize.m in Sources */,
 				64294D021A7AE43200B71E6F /* SVModalWebViewController.m in Sources */,
 				64ADB3801A7CD36000E5BC22 /* LicenseViewController.swift in Sources */,
 				64294D0B1A7AE43200B71E6F /* SVWebViewControllerActivitySafari.m in Sources */,
