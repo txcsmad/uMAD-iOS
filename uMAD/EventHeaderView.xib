@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7525" systemVersion="14D98g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" id="iN0-l3-epB" customClass="EventHeaderView" customModule="uMAD" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="274"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" misplaced="YES" text="Company" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXw-f1-Smm">
+                    <rect key="frame" x="98" y="15" width="81" height="22"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" misplaced="YES" text="Speaker" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYA-bL-FfO">
+                    <rect key="frame" x="98" y="37" width="67" height="21"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" misplaced="YES" text="Start time - end time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9l-mC-aEt">
+                    <rect key="frame" x="98" y="60" width="133" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" misplaced="YES" text="BUILDING 0.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIf-au-yfG">
+                    <rect key="frame" x="98" y="77" width="100" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" text="Session Name" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qr0-H5-fDx">
+                    <rect key="frame" x="15" y="124" width="123" height="22"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yeu-CA-Zor">
+                    <rect key="frame" x="15" y="144" width="570" height="20"/>
+                    <attributedString key="attributedText">
+                        <fragment content="Session description">
+                            <attributes>
+                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FC1-40-kGM">
+                    <rect key="frame" x="15" y="15" width="75" height="75"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="75" id="nR6-gH-JFg"/>
+                        <constraint firstAttribute="width" constant="75" id="wgs-Xy-Rga"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="qr0-H5-fDx" firstAttribute="top" secondItem="OIf-au-yfG" secondAttribute="bottom" constant="20" id="2ku-Ow-h9p"/>
+                <constraint firstItem="FC1-40-kGM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="4xz-Vp-kNG"/>
+                <constraint firstItem="uXw-f1-Smm" firstAttribute="leading" secondItem="FC1-40-kGM" secondAttribute="trailing" constant="8" id="7DT-q1-dIQ"/>
+                <constraint firstItem="d9l-mC-aEt" firstAttribute="leading" secondItem="FC1-40-kGM" secondAttribute="trailing" constant="8" id="IrV-X3-ZoD"/>
+                <constraint firstItem="OIf-au-yfG" firstAttribute="top" secondItem="d9l-mC-aEt" secondAttribute="bottom" id="Kl0-JL-RvV"/>
+                <constraint firstItem="FC1-40-kGM" firstAttribute="top" secondItem="uXw-f1-Smm" secondAttribute="top" id="YOF-DB-fvb"/>
+                <constraint firstItem="lYA-bL-FfO" firstAttribute="top" secondItem="uXw-f1-Smm" secondAttribute="bottom" id="bOc-1v-my1"/>
+                <constraint firstItem="Yeu-CA-Zor" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="bWy-pE-Zry"/>
+                <constraint firstItem="Yeu-CA-Zor" firstAttribute="top" secondItem="qr0-H5-fDx" secondAttribute="bottom" constant="8" id="ctd-sO-1UA"/>
+                <constraint firstItem="d9l-mC-aEt" firstAttribute="top" secondItem="lYA-bL-FfO" secondAttribute="bottom" constant="2" id="k6i-wQ-Axo"/>
+                <constraint firstItem="qr0-H5-fDx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="owf-z4-EPS"/>
+                <constraint firstItem="OIf-au-yfG" firstAttribute="leading" secondItem="FC1-40-kGM" secondAttribute="trailing" constant="8" id="q3L-51-up5"/>
+                <constraint firstAttribute="trailing" secondItem="qr0-H5-fDx" secondAttribute="trailing" constant="15" id="r7n-fi-bdf"/>
+                <constraint firstAttribute="bottom" secondItem="Yeu-CA-Zor" secondAttribute="bottom" priority="750" constant="15" id="rWP-xg-MFa"/>
+                <constraint firstItem="FC1-40-kGM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="ssA-Ly-nn6"/>
+                <constraint firstAttribute="trailing" secondItem="Yeu-CA-Zor" secondAttribute="trailing" constant="15" id="uOD-l7-fAl"/>
+                <constraint firstItem="lYA-bL-FfO" firstAttribute="leading" secondItem="FC1-40-kGM" secondAttribute="trailing" constant="8" id="uWx-Bf-puP"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="companyName" destination="uXw-f1-Smm" id="nU5-DK-XAG"/>
+                <outlet property="room" destination="OIf-au-yfG" id="6FN-EO-MDF"/>
+                <outlet property="sessionDescription" destination="Yeu-CA-Zor" id="Em8-Ix-Db3"/>
+                <outlet property="sessionName" destination="qr0-H5-fDx" id="RkR-TQ-dNp"/>
+                <outlet property="sessionThumbnail" destination="FC1-40-kGM" id="zIt-ZT-4Ql"/>
+                <outlet property="speakerName" destination="lYA-bL-FfO" id="s4h-dH-X0g"/>
+                <outlet property="time" destination="d9l-mC-aEt" id="u5S-kX-0XH"/>
+            </connections>
+            <point key="canvasLocation" x="350" y="409"/>
+        </view>
+    </objects>
+</document>
