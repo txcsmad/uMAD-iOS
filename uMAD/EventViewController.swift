@@ -1,5 +1,5 @@
 import Foundation
-
+let WEBSITE_TABLEVIEW_CELL_IDENTIFIER = "websiteCell"
 class EventViewController: UITableViewController {
     var image: UIImage!
     var event: Event!
@@ -15,7 +15,7 @@ class EventViewController: UITableViewController {
         
         navigationItem.title = "Session Info"
         view.backgroundColor = UIColor.whiteColor()
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier:"WEBSITE_TABLEVIEW_CELL")
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier:WEBSITE_TABLEVIEW_CELL_IDENTIFIER)
         let headerView = NSBundle.mainBundle().loadNibNamed("EventHeaderView", owner: self, options: nil)[0] as! EventHeaderView
         headerView.configureFromEvent(event)
         headerView.sessionThumbnail.image = image
@@ -45,7 +45,7 @@ class EventViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("WEBSITE_TABLEVIEW_CELL", forIndexPath: indexPath) as! UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(WEBSITE_TABLEVIEW_CELL_IDENTIFIER, forIndexPath: indexPath) as! UITableViewCell
         
         cell.textLabel?.text = event.companyWebsite?.absoluteString
         

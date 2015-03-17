@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 
+let SPONSORS_CELL_IDENTIFIER = "sponsorCell"
 class SponsorsViewController: UICollectionViewController {
 
     var sponsors = [PFObject]()
@@ -21,7 +22,7 @@ class SponsorsViewController: UICollectionViewController {
         
         navigationItem.title = "Sponsors"
         fetchSponsors()
-        collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: SPONSORS_CELL_IDENTIFIER)
         collectionView!.backgroundColor = UIColor.whiteColor()
     }
 
@@ -77,7 +78,7 @@ class SponsorsViewController: UICollectionViewController {
     }
     
      override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! UICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(SPONSORS_CELL_IDENTIFIER, forIndexPath: indexPath) as! UICollectionViewCell
         
         for view in cell.contentView.subviews{
             view.removeFromSuperview()

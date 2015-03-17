@@ -1,5 +1,8 @@
 import UIKit
 
+let EVENTS_TABLEVIEW_CELL_IDENTIFIER: String = "eventsCell"
+let EVENTS_TABLEVIEW_CELL_HEIGHT: CGFloat = 65.00
+
 class EventsViewController: UITableViewController {
 
     private var events = [Event]()
@@ -182,7 +185,7 @@ class EventsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("EVENTS_TABLEVIEW_CELL_IDENTIFIER", forIndexPath: indexPath) as! UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(EVENTS_TABLEVIEW_CELL_IDENTIFIER, forIndexPath: indexPath) as! UITableViewCell
         let section = sections[indexPath.section]
         let event = section![indexPath.row].referenced!
 

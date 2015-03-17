@@ -1,6 +1,6 @@
 import Foundation
 
-let ABOUT_TABLEVIEW_CELL_IDENTIFIER: String = "ABOUT_TABLEVIEW_CELL_IDENTIFIER"
+let ABOUT_TABLEVIEW_CELL_IDENTIFIER: String = "aboutcell"
 
 class AboutViewController: UITableViewController {
 
