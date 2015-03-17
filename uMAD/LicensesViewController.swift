@@ -10,11 +10,10 @@ let FLATICON_LICENSE: String = "Calender Icon\nIcon made by Freepik, http://www.
 
 let COCOAPODS_LICENSE: String = "This project is licensed under the MIT license.\n\nCopyright (c) 2011 - 2014 Eloy Durán <eloy.de.enige@gmail.com>\nCopyright (c) 2012 - 2014 Fabio Pelosin <fabiopelosin@gmail.com>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE."
 
-class LicensesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var tableView: UITableView!
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+class LicensesViewController: UITableViewController {
+
+    init(){
+        super.init(style: .Grouped)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -30,12 +29,9 @@ class LicensesViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView = UITableView(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)))
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "LICENSE_TABLEVIEW_CELL")
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.view.addSubview(self.tableView)
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         var licenseName: String
@@ -67,30 +63,23 @@ class LicensesViewController: UIViewController, UITableViewDelegate, UITableView
         self.navigationController?.pushViewController(licenseViewController, animated: true)
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5;
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("LICENSE_TABLEVIEW_CELL", forIndexPath: indexPath) as! UITableViewCell
-        
-        println(indexPath.row)
         
         switch indexPath.row {
             case 0:
-                cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: FONT_SIZE + 3)
                 cell.textLabel?.text = "STTwitter"
             case 1:
-                cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: FONT_SIZE + 3)
                 cell.textLabel?.text = "SVWebViewController"
             case 2:
-                cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: FONT_SIZE + 3)
                 cell.textLabel?.text = "UIImage+Resize"
             case 3:
-                cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: FONT_SIZE + 3)
                 cell.textLabel?.text = "FlatIcon"
             case 4:
-                cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: FONT_SIZE + 3)
                 cell.textLabel?.text = "CocoaPods"
             default:
                 fatalError("Unidentifiable indexPath.row value: \(indexPath.row)")

@@ -15,10 +15,10 @@ class EventsViewController: UITableViewController {
 
         timeFormatter.timeZone              = NSTimeZone(name: "UTC")
         timeFormatter.dateFormat            = "hh:mm a";
-        self.navigationItem.title = "Events"
+        navigationItem.title = "Events"
         
-        self.tableView.registerClass(EventTableViewCell.self, forCellReuseIdentifier: EVENTS_TABLEVIEW_CELL_IDENTIFIER)
-        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        tableView.registerClass(EventTableViewCell.self, forCellReuseIdentifier: EVENTS_TABLEVIEW_CELL_IDENTIFIER)
+        tableView.tableFooterView = UIView(frame: CGRectZero)
         
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: Selector("reloadData"), forControlEvents: .ValueChanged)
@@ -29,7 +29,7 @@ class EventsViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.setToolbarHidden(true, animated: true)
+        navigationController?.setToolbarHidden(true, animated: true)
     }
 
     func reloadData() {
@@ -82,6 +82,7 @@ class EventsViewController: UITableViewController {
             (objects: [AnyObject]!, error: NSError!) in
             if error != nil {
                 println("Error: %@ %@", error, error.userInfo!)
+                return
             }
             for object in objects {
                 if let companyID = object["identifierNumber"] as? Int {
@@ -90,6 +91,8 @@ class EventsViewController: UITableViewController {
                             (data: NSData!, error: NSError!) -> Void in
                             if data != nil {
                                 self.logos[companyID] = UIImage(data: data)
+                                //FIXME: It's inefficient to do this so many times
+                                self.tableView.reloadData()
                             } else if error != nil {
                                 println(error.localizedDescription)
                             }
@@ -179,36 +182,30 @@ class EventsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("EVENTS_TABLEVIEW_CELL_IDENTIFIER", forIndexPath: indexPath) as! EventTableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("EVENTS_TABLEVIEW_CELL_IDENTIFIER", forIndexPath: indexPath) as! UITableViewCell
         let section = sections[indexPath.section]
         let event = section![indexPath.row].referenced!
-        let companyName: String? = event.companyName
-        let sessionName: String? = event.sessionName
-        let startTime: NSDate?   = event.startTime
-        let endTime: NSDate?     = event.endTime
-        let room: String?        = event.room
-        let companyID: Int? = event.companyID
 
         var startTimeString: String         = "00:00"
         var endTimeString: String           = "00:00"
         
-        if let startTime: NSDate = startTime {
+        if let startTime: NSDate = event.startTime {
             startTimeString = timeFormatter.stringFromDate(startTime)
         }
         
-        if let endTime: NSDate = endTime {
+        if let endTime: NSDate = event.endTime {
             endTimeString = timeFormatter.stringFromDate(endTime)
         }
 
         cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
         
-        cell.textLabel?.text        = sessionName
-        cell.detailTextLabel?.text  = "\(startTimeString) - \(endTimeString) – \(room!)"
-
+        cell.textLabel?.text        = event.sessionName
+        cell.detailTextLabel?.text  = "\(startTimeString) - \(endTimeString) – \(event.room!)"
 
         cell.imageView?.image       =  UIImage(named: "mad_thumbnail.png")?.imageScaledToSize(CGSizeMake(50, 50))
-        let test = logos[companyID!]
-        cell.imageView?.image = logos[companyID!]?.imageScaledToSize(CGSizeMake(50.00, 50.00))
+        if let logo = logos[event.companyID!]{
+            cell.imageView?.image = logo.imageScaledToSize(CGSizeMake(50.00, 50.00))
+        }
 
         
         return cell
