@@ -42,6 +42,7 @@ class EventsViewController: UITableViewController {
 
     private func fetchEvents(){
         var eventsQuery: PFQuery = PFQuery(className:"Events")
+        eventsQuery.orderByAscending("startTime")
         eventsQuery.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]!, error: NSError!) in
             if error != nil {
@@ -54,13 +55,6 @@ class EventsViewController: UITableViewController {
             for object in objects {
                 self.events.append(Event(parseReturn: object))
             }
-
-            //Sort the events from earliest to latest
-            self.events = self.events.sorted({
-                (firstEvent: Event, secondEvent: Event) -> Bool in
-                let result = firstEvent.startTime!.compare(secondEvent.startTime!)
-                return  result == .OrderedAscending
-            })
 
             self.createSectionedRepresentation()
 
