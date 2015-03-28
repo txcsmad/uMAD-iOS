@@ -37,6 +37,8 @@
 		64FD63791A76FB0700D89106 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FD63781A76FB0700D89106 /* Event.swift */; };
 		AA205FAA5FB53DF9343E091B /* libPods-uMAD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B596628F0847E6A0B2CB8F1 /* libPods-uMAD.a */; };
 		D41BCD501AB6A53A003AECA8 /* EventReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41BCD4F1AB6A53A003AECA8 /* EventReference.swift */; };
+		D435614E1AC62ACE00F7789D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D435614D1AC62ACE00F7789D /* libsqlite3.dylib */; };
+		D43561501AC62EDA00F7789D /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = D435614F1AC62EDA00F7789D /* Company.swift */; };
 		D478D1071AB73EBA00563A8A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D478D1061AB73EBA00563A8A /* Config.swift */; };
 		D478D10B1AB7533500563A8A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D478D10A1AB7533500563A8A /* LaunchScreen.xib */; };
 		D48AD7371AB7821D00F669D7 /* AboutTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D48AD7361AB7821D00F669D7 /* AboutTableHeaderView.xib */; };
@@ -95,6 +97,8 @@
 		64D4AF861A75CF1C0040D3CA /* TwitterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterViewController.swift; sourceTree = "<group>"; };
 		64FD63781A76FB0700D89106 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		D41BCD4F1AB6A53A003AECA8 /* EventReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventReference.swift; sourceTree = "<group>"; };
+		D435614D1AC62ACE00F7789D /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		D435614F1AC62EDA00F7789D /* Company.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		D478D1061AB73EBA00563A8A /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		D478D1081AB7422000563A8A /* Config.template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.template.swift; sourceTree = "<group>"; };
 		D478D10A1AB7533500563A8A /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D435614E1AC62ACE00F7789D /* libsqlite3.dylib in Frameworks */,
 				3219C4561A7AD5AD00C3ADEB /* Social.framework in Frameworks */,
 				AA205FAA5FB53DF9343E091B /* libPods-uMAD.a in Frameworks */,
 			);
@@ -120,6 +125,7 @@
 		40810CBC9317D6633548B7B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D435614D1AC62ACE00F7789D /* libsqlite3.dylib */,
 				3219C4551A7AD5AD00C3ADEB /* Social.framework */,
 				3B596628F0847E6A0B2CB8F1 /* libPods-uMAD.a */,
 			);
@@ -215,6 +221,7 @@
 		64CD92351A7A075B00659946 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D435614F1AC62EDA00F7789D /* Company.swift */,
 				64FD63781A76FB0700D89106 /* Event.swift */,
 				3219C4571A7B03E400C3ADEB /* Twitter.swift */,
 				D41BCD4F1AB6A53A003AECA8 /* EventReference.swift */,
@@ -299,7 +306,7 @@
 				TargetAttributes = {
 					64D4AF5C1A75CDA80040D3CA = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = RB2R7U7P8Z;
+						DevelopmentTeam = 2627WG76ES;
 					};
 				};
 			};
@@ -398,6 +405,7 @@
 				64294D0D1A7AE43200B71E6F /* SVWebViewControllerActivity.m in Sources */,
 				64D4AF871A75CF1C0040D3CA /* TwitterViewController.swift in Sources */,
 				64D4AF631A75CDA80040D3CA /* AppDelegate.swift in Sources */,
+				D43561501AC62EDA00F7789D /* Company.swift in Sources */,
 				D48AD7391AB783B300F669D7 /* AboutTableHeaderView.swift in Sources */,
 				64D4AF831A75CEAE0040D3CA /* EventsViewController.swift in Sources */,
 				64294D041A7AE43200B71E6F /* SVWebViewController.m in Sources */,

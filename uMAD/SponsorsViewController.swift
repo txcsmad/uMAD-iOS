@@ -2,10 +2,9 @@ import Foundation
 import UIKit
 
 let SPONSORS_CELL_IDENTIFIER = "sponsorCell"
-class SponsorsViewController: UICollectionViewController {
+class SponsorsViewController: UICollectionViewController, CompanyDelegate {
 
-    var sponsors = [PFObject]()
-    var images = [UIImage?]()
+    var sponsors = [Company]()
 
     init(){
         let layout = UICollectionViewFlowLayout()
@@ -27,7 +26,7 @@ class SponsorsViewController: UICollectionViewController {
     }
 
     private func fetchSponsors(){
-        var query = PFQuery(className: "Sponsors")
+        var query = PFQuery(className: "Company")
         query.whereKey("sponsorLevel", greaterThanOrEqualTo: 0)
         query.orderByDescending("sponsorLevel")
         query.findObjectsInBackgroundWithBlock{(objects: [AnyObject]!, error: NSError!) -> Void in
@@ -35,46 +34,30 @@ class SponsorsViewController: UICollectionViewController {
                 // There was an error
             } else {
                 // objects has all the Posts the current user liked.
-                self.sponsors = objects as! [PFObject]
-                self.storeImages()
+                for object in objects {
+                    let object = object as! PFObject
+                    let company = Company(parseReturn: object)
+                    company.delegate = self
+                    self.sponsors.append(company)
+                }
                 self.collectionView!.reloadData()
             }
         }
     }
-    
-    func storeImages(){
-        self.images = [UIImage?](count: sponsors.count, repeatedValue: nil)
 
-        for var i = 0; i < sponsors.count; i++ {
-            var currentSponsor = sponsors[i]
-            let indexForBlock = i
-            var imageFile = currentSponsor["companyImage"] as! PFFile
-            imageFile.getDataInBackgroundWithBlock{
-                (imageData: NSData!, error: NSError!) in
-                if error != nil {
-                    return
-                }
-                let image = UIImage(data:imageData)
-                self.images[indexForBlock] = image
-                self.collectionView!.reloadItemsAtIndexPaths([NSIndexPath(forItem: indexForBlock, inSection: 0)])
-            }
-        }
-
-    }
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
 
      override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return sponsors.count
     }
     
      override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        var currentSponsor: PFObject = sponsors[indexPath.item]
-        var webLink = currentSponsor["companyWebsite"] as! String
+        let currentSponsor = sponsors[indexPath.item]
 
-        UIApplication.sharedApplication().openURL(NSURL(string: webLink)!)
+        UIApplication.sharedApplication().openURL(currentSponsor.website)
     }
     
      override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -83,12 +66,13 @@ class SponsorsViewController: UICollectionViewController {
         for view in cell.contentView.subviews{
             view.removeFromSuperview()
         }
-        if images[indexPath.item] != nil {
-        let logo = UIImageView(image: images[indexPath.item])
-        logo.contentMode = UIViewContentMode.ScaleAspectFit
-        logo.frame = CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height)
-        cell.contentView.addSubview(logo)
-        cell.setNeedsDisplay()
+        let image = sponsors[indexPath.item].image
+        if image != nil {
+            let logo = UIImageView(image: image!)
+            logo.contentMode = UIViewContentMode.ScaleAspectFit
+            logo.frame = CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height)
+            cell.contentView.addSubview(logo)
+            cell.setNeedsDisplay()
         }
 
         return cell
@@ -96,7 +80,7 @@ class SponsorsViewController: UICollectionViewController {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         var currentSponsor = sponsors[indexPath.item]
-        var level = currentSponsor["sponsorLevel"] as! Int
+        var level = currentSponsor.sponsorLevel
         
         var size : CGSize
         
@@ -112,5 +96,9 @@ class SponsorsViewController: UICollectionViewController {
             
         }
         return size
+    }
+    func didGetData() {
+        println("got data")
+        collectionView?.reloadData()
     }
 }

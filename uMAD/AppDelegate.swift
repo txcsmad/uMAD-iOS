@@ -2,7 +2,7 @@ import UIKit
 
 let FONT_SIZE: CGFloat = 17.00
 let DETAIL_FONT_SIZE: CGFloat = 12.00
-
+let TINT_COLOR = UIColor(hue: 359.0, saturation: 0.91, brightness: 0.83, alpha: 1.0)
 @UIApplicationMain
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -10,10 +10,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        Parse.enableLocalDatastore()
         Parse.setApplicationId(PARSE_APPLICATION_ID, clientKey: PARSE_CLIENT_KEY)
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
-        UINavigationBar.appearance().barTintColor = UIColor(red: 0.83, green: 0.18, blue: 0.13, alpha: 1.0)
+        UINavigationBar.appearance().barTintColor = TINT_COLOR
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
@@ -24,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [eventsViewController, twitterViewController, sponsorsViewController, aboutViewController]
-        tabBarController.tabBar.tintColor = UIColor(red: 0.83, green: 0.18, blue: 0.13, alpha: 1.0)
+        tabBarController.view.tintColor = TINT_COLOR
 
         eventsViewController.tabBarItem.title = "Events"
         eventsViewController.tabBarItem.image = UIImage(named: "calendar.png")

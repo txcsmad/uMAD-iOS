@@ -9,12 +9,13 @@ class EventHeaderView: UIView {
     @IBOutlet weak var sessionName: UILabel!
     @IBOutlet weak var sessionThumbnail: UIImageView!
     
-    func configureFromEvent(event: Event){
-        companyName.text = event.companyName
+    func configure(event: Event, company: Company){
+        companyName.text = company.name
         room.text = event.room
         speakerName.text = event.speaker
         sessionDescription.text = event.descriptionText
-        sessionName.text = event.sessionName
+        sessionName.text = event.name
+        layoutSubviews()
 
         let timeFormatter  = NSDateFormatter()
         timeFormatter.timeZone = NSTimeZone(name: "UTC")
@@ -22,13 +23,8 @@ class EventHeaderView: UIView {
         var startTimeString: String        = "00:00"
         var endTimeString: String          = "00:00"
 
-        if let time = event.startTime {
-            startTimeString = timeFormatter.stringFromDate(time)
-        }
-
-        if let time = event.endTime {
-            endTimeString = timeFormatter.stringFromDate(time)
-        }
+        startTimeString = timeFormatter.stringFromDate(event.startTime)
+        endTimeString = timeFormatter.stringFromDate(event.endTime)
 
         time.text = startTimeString + " - " + endTimeString
     }

@@ -22,7 +22,21 @@ class AboutViewController: UITableViewController {
         tableView.tableHeaderView = headerView
         tableView.backgroundColor = UIColor.whiteColor()
     }
-    
+
+    //HAX: We need to wait for the description text to get laid out, then we can adjust
+    //the size of frame to extend to just below the text. There should be a better way to
+    //accomplish this, but this the best I can seem to do.
+    override func viewDidLayoutSubviews() {
+        let header = tableView.tableHeaderView as! AboutTableHeaderView
+        let newHeight = header.umadAbout.frame.size.height + header.umadAbout.frame.origin.y + 50
+
+        if newHeight != tableView.tableHeaderView!.frame.height {
+            header.frame.size.height = newHeight
+            tableView.tableHeaderView! = header
+            view.layoutSubviews()
+        }
+
+    }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }

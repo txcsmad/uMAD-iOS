@@ -12,3 +12,5 @@ Hosting a conference? We put together this app for our annual developer conferen
 Rename the `Config.template.swift` file to `Config.swift`. Fill in each of the variables with the proper keys from Twitter and Parse. You will also want to sub in your own icon and tint color, as well as change out the information on the about page. Pull down the dependencies by running `pod install` in the project repo.
 
 #### Parse Table Structure
+
+We've exported the tables we used for uMAD 2015 and included them in the `Sample Data` directory. Import these on the Parse dashboard for your app and you should be up and running.

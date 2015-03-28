@@ -7,17 +7,17 @@ class EventsViewController: UITableViewController {
 
     private var events = [Event]()
     private var sections = [Int: [EventReference]]() // Section index -> arrays of weak references to events
-    private var logos = [Int: UIImage]() // Company ID -> UImage
+    private var companies = [String: Company]() // Company ID -> UImage
     private let sectionHeaderFormatter: NSDateFormatter = NSDateFormatter()
     private let timeFormatter: NSDateFormatter  = NSDateFormatter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         sectionHeaderFormatter.timeZone = NSTimeZone(name: "UTC")
-        sectionHeaderFormatter.dateFormat = "MMMM d - hh:00 a";
+        sectionHeaderFormatter.dateFormat = "EEEE - hh:00 a";
 
-        timeFormatter.timeZone              = NSTimeZone(name: "UTC")
-        timeFormatter.dateFormat            = "hh:mm a";
+        timeFormatter.timeZone = NSTimeZone(name: "UTC")
+        timeFormatter.dateFormat = "hh:mm a";
         navigationItem.title = "Events"
         
         tableView.registerClass(EventTableViewCell.self, forCellReuseIdentifier: EVENTS_TABLEVIEW_CELL_IDENTIFIER)
@@ -41,18 +41,22 @@ class EventsViewController: UITableViewController {
     }
 
     private func fetchEvents(){
-        var eventsQuery: PFQuery = PFQuery(className:"Events")
-        eventsQuery.orderByAscending("startTime")
-        eventsQuery.findObjectsInBackgroundWithBlock {
+
+        var eventQuery = PFQuery(className:"Event")
+        //eventsQuery.fromLocalDatastore()
+        eventQuery.orderByAscending("startTime")
+        eventQuery.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]!, error: NSError!) in
             if error != nil {
                 // Log details of the failure
                 println("Error: %@ %@", error, error.userInfo!)
                 return
-            }
+            } 
             self.events = [Event]()
 
             for object in objects {
+                let object = object as! PFObject
+                //object.pinInBackground()
                 self.events.append(Event(parseReturn: object))
             }
 
@@ -73,48 +77,42 @@ class EventsViewController: UITableViewController {
         }
 
     }
+
     private func fetchThumbnails(){
-        var sponsorsQuery: PFQuery = PFQuery(className: "Sponsors")
-        sponsorsQuery.findObjectsInBackgroundWithBlock({
+        var companiesQuery = PFQuery(className: "Company")
+        //sponsorsQuery.fromLocalDatastore()
+        companiesQuery.findObjectsInBackgroundWithBlock({
             (objects: [AnyObject]!, error: NSError!) in
             if error != nil {
                 println("Error: %@ %@", error, error.userInfo!)
                 return
             }
             for object in objects {
-                if let companyID = object["identifierNumber"] as? Int {
-                    if let imageFile: PFFile = object["thumbnail"] as? PFFile {
-                        imageFile.getDataInBackgroundWithBlock({
-                            (data: NSData!, error: NSError!) -> Void in
-                            if data != nil {
-                                self.logos[companyID] = UIImage(data: data)
-                                //FIXME: It's inefficient to do this so many times
-                                self.tableView.reloadData()
-                            } else if error != nil {
-                                println(error.localizedDescription)
-                            }
-                        })
-                    }
-                }
+                let object = object as! PFObject
+                let company = Company(parseReturn: object)
+                self.companies[company.objectID] = company
             }
 
         })
     }
+
     private func createSectionedRepresentation(){
+        if events.count == 0 {
+            return
+        }
         let calendar = NSCalendar.currentCalendar()
         let desiredComponents = (NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitDay)
         var currentSection = 0
-        //FIXME: what about the 0 event case?
         var comparisonIndex = 0;
         var comparisonEvent = self.events[comparisonIndex]
         var newSection = [EventReference]()
         newSection.append(EventReference(event: comparisonEvent))
         self.sections[currentSection] = newSection
-        var comparisonComponents = calendar.components(desiredComponents, fromDate: comparisonEvent.startTime!)
+        var comparisonComponents = calendar.components(desiredComponents, fromDate: comparisonEvent.startTime)
         for var i = 1; i < self.events.count; i++ {
             let currentEvent = self.events[i]
 
-            let currentComponents = calendar.components( desiredComponents, fromDate:currentEvent.startTime!)
+            let currentComponents = calendar.components( desiredComponents, fromDate:currentEvent.startTime)
             if comparisonComponents.hour != currentComponents.hour ||
                 comparisonComponents.day != currentComponents.day {
                     currentSection++
@@ -123,7 +121,7 @@ class EventsViewController: UITableViewController {
                     self.sections[currentSection] = newSection
                     comparisonIndex = i
                     comparisonEvent = self.events[comparisonIndex]
-                    comparisonComponents = calendar.components(desiredComponents, fromDate: comparisonEvent.startTime!)
+                    comparisonComponents = calendar.components(desiredComponents, fromDate: comparisonEvent.startTime)
 
             } else {
                 self.sections[currentSection]!.append(EventReference(event: currentEvent))
@@ -152,17 +150,14 @@ class EventsViewController: UITableViewController {
         let section = sections[indexPath.section]!
 
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
 
         let event = section[indexPath.row].referenced!
-
-        var thumbnail = logos[event.companyID!]
+        let eventCompany = companies[event.company.objectId]
+        var thumbnail = eventCompany?.thumbnail
         if thumbnail == nil {
              thumbnail = UIImage(named: "mad_thumbnail.png")!
         }
-
-        
-        let eventViewController = EventViewController(image: thumbnail!, event: event)
+        let eventViewController = EventViewController( event: event, company: eventCompany!, image: thumbnail!)
         
         self.navigationController?.pushViewController(eventViewController, animated: true)
     }
@@ -173,7 +168,7 @@ class EventsViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let section = sections[section]
-        let sectionTime = section![0].referenced!.startTime!
+        let sectionTime = section![0].referenced!.startTime
         return sectionHeaderFormatter.stringFromDate(sectionTime)
 
     }
@@ -183,24 +178,19 @@ class EventsViewController: UITableViewController {
         let section = sections[indexPath.section]
         let event = section![indexPath.row].referenced!
 
-        var startTimeString: String         = "00:00"
-        var endTimeString: String           = "00:00"
-        
-        if let startTime: NSDate = event.startTime {
-            startTimeString = timeFormatter.stringFromDate(startTime)
-        }
-        
-        if let endTime: NSDate = event.endTime {
-            endTimeString = timeFormatter.stringFromDate(endTime)
-        }
+        var startTimeString = "00:00"
+        var endTimeString = "00:00"
+
+        startTimeString = timeFormatter.stringFromDate(event.startTime)
+        endTimeString = timeFormatter.stringFromDate(event.endTime)
 
         cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
         
-        cell.textLabel?.text        = event.sessionName
-        cell.detailTextLabel?.text  = "\(startTimeString) - \(endTimeString) – \(event.room!)"
+        cell.textLabel?.text = event.name
+        cell.detailTextLabel?.text = "\(startTimeString) - \(endTimeString) – \(event.room)"
 
-        cell.imageView?.image       =  UIImage(named: "mad_thumbnail.png")
-        if let logo = logos[event.companyID!]{
+        cell.imageView?.image =  UIImage(named: "mad_thumbnail.png")
+        if let logo = companies[event.company.objectId]?.thumbnail {
             cell.imageView?.image = logo
         }
 
