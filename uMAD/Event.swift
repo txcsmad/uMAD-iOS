@@ -20,7 +20,7 @@ class Event: NSObject {
         startTime = parseReturn["startTime"] as! NSDate
         endTime = parseReturn["endTime"] as! NSDate
         email = parseReturn["email"] as! String
-        objectID = parseReturn.objectId
+        objectID = parseReturn.objectId!
         topicTags = parseReturn["topicTags"] as! [String]
         company = parseReturn["company"] as! PFObject
         

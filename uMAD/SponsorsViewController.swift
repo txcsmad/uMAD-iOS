@@ -27,19 +27,21 @@ class SponsorsViewController: UICollectionViewController, CompanyDelegate {
 
     private func fetchSponsors(){
         var query = PFQuery(className: "Company")
-        query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+        query.cachePolicy = .CacheThenNetwork
         query.whereKey("sponsorLevel", greaterThanOrEqualTo: 0)
         query.orderByDescending("sponsorLevel")
-        query.findObjectsInBackgroundWithBlock{(objects: [AnyObject]!, error: NSError!) -> Void in
+        query.findObjectsInBackgroundWithBlock(){
+            (objects: [AnyObject]?, error: NSError?) -> Void in
             if error != nil {
                 // There was an error
             } else {
-                // objects has all the Posts the current user liked.
-                for object in objects {
-                    let object = object as! PFObject
-                    let company = Company(parseReturn: object)
-                    company.delegate = self
-                    self.sponsors.append(company)
+                if objects != nil {
+                    for object in objects! {
+                        let object = object as! PFObject
+                        let company = Company(parseReturn: object)
+                        company.delegate = self
+                        self.sponsors.append(company)
+                    }
                 }
                 self.collectionView!.reloadData()
             }
