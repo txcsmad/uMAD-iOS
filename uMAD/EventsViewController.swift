@@ -8,8 +8,10 @@ class EventsViewController: UITableViewController {
     private var events = [Event]()
     private var sections = [Int: [EventReference]]() // Section index -> arrays of weak references to events
     private var companies = [String: Company]() // Company ID -> UImage
-    private let sectionHeaderFormatter: NSDateFormatter = NSDateFormatter()
-    private let timeFormatter: NSDateFormatter  = NSDateFormatter()
+    private let sectionHeaderFormatter = NSDateFormatter()
+    private let timeFormatter = NSDateFormatter()
+
+    private let searchController = UISearchController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +21,7 @@ class EventsViewController: UITableViewController {
         timeFormatter.timeZone = NSTimeZone(name: "UTC")
         timeFormatter.dateFormat = "hh:mm a";
         navigationItem.title = "Events"
-        
+
         tableView.registerClass(EventTableViewCell.self, forCellReuseIdentifier: EVENTS_TABLEVIEW_CELL_IDENTIFIER)
         tableView.tableFooterView = UIView(frame: CGRectZero)
         
@@ -43,6 +45,7 @@ class EventsViewController: UITableViewController {
     private func fetchEvents(){
 
         var eventQuery = PFQuery(className:"Event")
+        eventQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
         //eventsQuery.fromLocalDatastore()
         eventQuery.orderByAscending("startTime")
         eventQuery.findObjectsInBackgroundWithBlock {
@@ -80,6 +83,7 @@ class EventsViewController: UITableViewController {
 
     private func fetchThumbnails(){
         var companiesQuery = PFQuery(className: "Company")
+        companiesQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
         //sponsorsQuery.fromLocalDatastore()
         companiesQuery.findObjectsInBackgroundWithBlock({
             (objects: [AnyObject]!, error: NSError!) in
@@ -194,7 +198,6 @@ class EventsViewController: UITableViewController {
             cell.imageView?.image = logo
         }
 
-        
         return cell
     }
 }
