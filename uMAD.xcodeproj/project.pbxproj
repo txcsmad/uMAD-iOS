@@ -37,7 +37,6 @@
 		64FD63791A76FB0700D89106 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FD63781A76FB0700D89106 /* Event.swift */; };
 		AA205FAA5FB53DF9343E091B /* libPods-uMAD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B596628F0847E6A0B2CB8F1 /* libPods-uMAD.a */; };
 		D41BCD501AB6A53A003AECA8 /* EventReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41BCD4F1AB6A53A003AECA8 /* EventReference.swift */; };
-		D435614E1AC62ACE00F7789D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D435614D1AC62ACE00F7789D /* libsqlite3.dylib */; };
 		D43561501AC62EDA00F7789D /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = D435614F1AC62EDA00F7789D /* Company.swift */; };
 		D478D1071AB73EBA00563A8A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D478D1061AB73EBA00563A8A /* Config.swift */; };
 		D478D10B1AB7533500563A8A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D478D10A1AB7533500563A8A /* LaunchScreen.xib */; };
@@ -113,7 +112,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D435614E1AC62ACE00F7789D /* libsqlite3.dylib in Frameworks */,
 				3219C4561A7AD5AD00C3ADEB /* Social.framework in Frameworks */,
 				AA205FAA5FB53DF9343E091B /* libPods-uMAD.a in Frameworks */,
 			);

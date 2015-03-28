@@ -27,6 +27,7 @@ class SponsorsViewController: UICollectionViewController, CompanyDelegate {
 
     private func fetchSponsors(){
         var query = PFQuery(className: "Company")
+        query.cachePolicy = kPFCachePolicyCacheThenNetwork;
         query.whereKey("sponsorLevel", greaterThanOrEqualTo: 0)
         query.orderByDescending("sponsorLevel")
         query.findObjectsInBackgroundWithBlock{(objects: [AnyObject]!, error: NSError!) -> Void in
@@ -98,7 +99,6 @@ class SponsorsViewController: UICollectionViewController, CompanyDelegate {
         return size
     }
     func didGetData() {
-        println("got data")
         collectionView?.reloadData()
     }
 }
