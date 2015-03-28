@@ -45,22 +45,24 @@ class EventsViewController: UITableViewController {
     private func fetchEvents(){
 
         var eventQuery = PFQuery(className:"Event")
-        eventQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+        eventQuery.cachePolicy = .CacheThenNetwork;
         //eventsQuery.fromLocalDatastore()
         eventQuery.orderByAscending("startTime")
         eventQuery.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]!, error: NSError!) in
+            (objects: [AnyObject]?, error: NSError?) in
             if error != nil {
                 // Log details of the failure
-                println("Error: %@ %@", error, error.userInfo!)
+                println("Error: %@ %@", error, error!.userInfo!)
                 return
             } 
             self.events = [Event]()
 
-            for object in objects {
-                let object = object as! PFObject
-                //object.pinInBackground()
-                self.events.append(Event(parseReturn: object))
+            if objects != nil {
+                for object in objects! {
+                    let object = object as! PFObject
+                    //object.pinInBackground()
+                    self.events.append(Event(parseReturn: object))
+                }
             }
 
             self.createSectionedRepresentation()
@@ -83,21 +85,23 @@ class EventsViewController: UITableViewController {
 
     private func fetchThumbnails(){
         var companiesQuery = PFQuery(className: "Company")
-        companiesQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+        companiesQuery.cachePolicy = .CacheThenNetwork
         //sponsorsQuery.fromLocalDatastore()
-        companiesQuery.findObjectsInBackgroundWithBlock({
-            (objects: [AnyObject]!, error: NSError!) in
+        companiesQuery.findObjectsInBackgroundWithBlock {
+            (objects: [AnyObject]?, error: NSError?) -> Void in
             if error != nil {
-                println("Error: %@ %@", error, error.userInfo!)
+                println("Error: %@ %@", error, error!.userInfo!)
                 return
             }
-            for object in objects {
-                let object = object as! PFObject
-                let company = Company(parseReturn: object)
-                self.companies[company.objectID] = company
+            if objects != nil {
+                for object in objects! {
+                    let object = object as! PFObject
+                    let company = Company(parseReturn: object)
+                    self.companies[company.objectID] = company
+                }
             }
 
-        })
+        }
     }
 
     private func createSectionedRepresentation(){
@@ -156,7 +160,7 @@ class EventsViewController: UITableViewController {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
         let event = section[indexPath.row].referenced!
-        let eventCompany = companies[event.company.objectId]
+        let eventCompany = companies[event.company.objectId!]
         var thumbnail = eventCompany?.thumbnail
         if thumbnail == nil {
              thumbnail = UIImage(named: "mad_thumbnail.png")!
@@ -194,7 +198,7 @@ class EventsViewController: UITableViewController {
         cell.detailTextLabel?.text = "\(startTimeString) - \(endTimeString) – \(event.room)"
 
         cell.imageView?.image =  UIImage(named: "mad_thumbnail.png")
-        if let logo = companies[event.company.objectId]?.thumbnail {
+        if let logo = companies[event.company.objectId!]?.thumbnail {
             cell.imageView?.image = logo
         }
 

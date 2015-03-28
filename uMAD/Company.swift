@@ -19,20 +19,20 @@ class Company: NSObject {
         twitterHandle = parseReturn["twitterHandle"] as! String
         website = NSURL(string: parseReturn["website"] as! String)!
         sponsorLevel = parseReturn["sponsorLevel"] as! Int
-        objectID = parseReturn.objectId
+        objectID = parseReturn.objectId!
 
         super.init()
         let imageFile = parseReturn["image"] as! PFFile
         imageFile.getDataInBackgroundWithBlock({
-            (data: NSData!, error: NSError!) -> Void in
-                self.image = UIImage(data: data)!
+            (data: NSData?, error: NSError?) -> Void in
+                self.image = UIImage(data: data!)!
             self.delegate?.didGetData()
 
         })
         let thumbnailFile = parseReturn["thumbnail"] as! PFFile
         thumbnailFile.getDataInBackgroundWithBlock({
-            (data: NSData!, error: NSError!) -> Void in
-            self.thumbnail = UIImage(data: data)!
+            (data: NSData?, error: NSError?) -> Void in
+            self.thumbnail = UIImage(data: data!)!
             self.delegate?.didGetData()
         })
 
