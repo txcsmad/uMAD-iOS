@@ -9,17 +9,15 @@ class EventsViewController: UITableViewController {
     private var sections = [Int: [EventReference]]() // Section index -> arrays of weak references to events
     private var companies = [String: Company]() // Company ID -> UImage
     private let sectionHeaderFormatter = NSDateFormatter()
-    private let timeFormatter = NSDateFormatter()
 
     private let searchController = UISearchController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         sectionHeaderFormatter.timeZone = NSTimeZone(name: "UTC")
-        sectionHeaderFormatter.dateFormat = "EEEE - hh:00 a";
+        sectionHeaderFormatter.dateFormat = "EEEE - hh:mm a";
 
-        timeFormatter.timeZone = NSTimeZone(name: "UTC")
-        timeFormatter.dateFormat = "hh:mm a";
+
         navigationItem.title = "Events"
 
         tableView.registerClass(EventTableViewCell.self, forCellReuseIdentifier: EVENTS_TABLEVIEW_CELL_IDENTIFIER)
@@ -39,7 +37,7 @@ class EventsViewController: UITableViewController {
 
     func reloadData() {
         fetchEvents()
-        fetchThumbnails()
+        fetchCompanies()
     }
 
     private func fetchEvents(){
@@ -83,7 +81,7 @@ class EventsViewController: UITableViewController {
 
     }
 
-    private func fetchThumbnails(){
+    private func fetchCompanies(){
         var companiesQuery = PFQuery(className: "Company")
         companiesQuery.cachePolicy = .CacheThenNetwork
         //sponsorsQuery.fromLocalDatastore()
@@ -182,26 +180,13 @@ class EventsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier(EVENTS_TABLEVIEW_CELL_IDENTIFIER, forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(EVENTS_TABLEVIEW_CELL_IDENTIFIER, forIndexPath: indexPath) as! EventTableViewCell
+
         let section = sections[indexPath.section]
         let event = section![indexPath.row].referenced!
-
-        var startTimeString = "00:00"
-        var endTimeString = "00:00"
-
-        startTimeString = timeFormatter.stringFromDate(event.startTime)
-        endTimeString = timeFormatter.stringFromDate(event.endTime)
-
-        cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
+        let company = companies[event.company.objectId!]
+        cell.configure(event, company: company)
         
-        cell.textLabel?.text = event.name
-        cell.detailTextLabel?.text = "\(startTimeString) - \(endTimeString) – \(event.room)"
-
-        cell.imageView?.image =  UIImage(named: "mad_thumbnail.png")
-        if let logo = companies[event.company.objectId!]?.thumbnail {
-            cell.imageView?.image = logo
-        }
-
         return cell
     }
 }
