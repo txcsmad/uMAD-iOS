@@ -20,12 +20,13 @@ class SponsorsViewController: UICollectionViewController, CompanyDelegate {
         super.viewDidLoad()
         
         navigationItem.title = "Sponsors"
-        fetchSponsors()
         collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: SPONSORS_CELL_IDENTIFIER)
         collectionView!.backgroundColor = UIColor.whiteColor()
+        fetchSponsors()
     }
 
     private func fetchSponsors(){
+
         var query = PFQuery(className: "Company")
         query.cachePolicy = .CacheThenNetwork
         query.whereKey("sponsorLevel", greaterThanOrEqualTo: 0)
@@ -36,6 +37,7 @@ class SponsorsViewController: UICollectionViewController, CompanyDelegate {
                 // There was an error
             } else {
                 if objects != nil {
+                    self.sponsors = [Company]()
                     for object in objects! {
                         let object = object as! PFObject
                         let company = Company(parseReturn: object)
