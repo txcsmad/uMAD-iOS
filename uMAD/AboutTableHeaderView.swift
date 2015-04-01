@@ -17,7 +17,7 @@ class AboutTableHeaderView: UIView {
             eventMap.hidden = false
             let viewRegion = MKCoordinateRegionMakeWithDistance(eventLocation!, 500, 500)
             let adjustedRegion = eventMap.regionThatFits(viewRegion)
-            eventMap.setRegion(adjustedRegion, animated: true)
+            eventMap.setRegion(adjustedRegion, animated: false)
             eventMap.scrollEnabled = false
             eventMap.zoomEnabled = false
 

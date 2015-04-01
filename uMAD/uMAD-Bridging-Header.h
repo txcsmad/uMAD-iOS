@@ -6,3 +6,4 @@
 
 #import <STTwitter/STTwitter.h>
 #import "SVWebViewController.h"
+#import <ParseUI/ParseUI.h>

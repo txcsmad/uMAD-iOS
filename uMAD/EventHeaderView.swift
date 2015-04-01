@@ -7,10 +7,15 @@ class EventHeaderView: UIView {
     @IBOutlet weak var room: UILabel!
     @IBOutlet weak var sessionDescription: UILabel!
     @IBOutlet weak var sessionName: UILabel!
-    @IBOutlet weak var sessionThumbnail: UIImageView!
+    @IBOutlet weak var sessionThumbnail: PFImageView!
     
-    func configure(event: Event, company: Company){
-        companyName.text = company.name
+    func configure(event: Event){
+        event.company.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
+            self.sessionThumbnail.file = event.company.thumbnail
+            self.companyName.text = event.company.name
+            self.setNeedsDisplay()
+        }
+
         room.text = event.room
         speakerName.text = event.speaker
         sessionDescription.text = event.descriptionText
@@ -19,12 +24,10 @@ class EventHeaderView: UIView {
 
         let timeFormatter  = NSDateFormatter()
         timeFormatter.timeZone = NSTimeZone(name: "UTC")
-        timeFormatter.dateFormat            = "hh:mm a";
-        var startTimeString: String        = "00:00"
-        var endTimeString: String          = "00:00"
+        timeFormatter.dateFormat = "hh:mm a"
 
-        startTimeString = timeFormatter.stringFromDate(event.startTime)
-        endTimeString = timeFormatter.stringFromDate(event.endTime)
+        let startTimeString = timeFormatter.stringFromDate(event.startTime)
+        let endTimeString = timeFormatter.stringFromDate(event.endTime)
 
         time.text = startTimeString + " - " + endTimeString
     }

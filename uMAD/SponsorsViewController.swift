@@ -2,9 +2,9 @@ import Foundation
 import UIKit
 
 let SPONSORS_CELL_IDENTIFIER = "sponsorCell"
-class SponsorsViewController: UICollectionViewController, CompanyDelegate {
+class SponsorsViewController: UICollectionViewController {
 
-    var sponsors = [Company]()
+    var sponsors: [Company]?
 
     init(){
         let layout = UICollectionViewFlowLayout()
@@ -21,33 +21,23 @@ class SponsorsViewController: UICollectionViewController, CompanyDelegate {
         super.viewDidLoad()
         
         navigationItem.title = "Sponsors"
-        collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: SPONSORS_CELL_IDENTIFIER)
+        collectionView!.registerClass(PFCollectionViewCell.self, forCellWithReuseIdentifier: SPONSORS_CELL_IDENTIFIER)
         collectionView!.backgroundColor = UIColor.whiteColor()
         fetchSponsors()
     }
 
     private func fetchSponsors(){
-
         var query = PFQuery(className: "Company")
         query.cachePolicy = .CacheThenNetwork
         query.whereKey("sponsorLevel", greaterThanOrEqualTo: 0)
         query.orderByDescending("sponsorLevel")
-        query.findObjectsInBackgroundWithBlock(){
-            (objects: [AnyObject]?, error: NSError?) -> Void in
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error != nil {
+                return
                 // There was an error
-            } else {
-                if objects != nil {
-                    self.sponsors = [Company]()
-                    for object in objects! {
-                        let object = object as! PFObject
-                        let company = Company(parseReturn: object)
-                        company.delegate = self
-                        self.sponsors.append(company)
-                    }
-                }
-                self.collectionView!.reloadData()
             }
+            self.sponsors = objects as! [Company]?
+            self.collectionView!.reloadData()
         }
     }
 
@@ -57,36 +47,31 @@ class SponsorsViewController: UICollectionViewController, CompanyDelegate {
     }
 
      override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sponsors.count
+        if sponsors != nil {
+            return sponsors!.count
+        }
+        return 0
     }
     
      override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let currentSponsor = sponsors[indexPath.item]
+        let currentSponsor = sponsors![indexPath.item]
 
-        UIApplication.sharedApplication().openURL(currentSponsor.website)
+        UIApplication.sharedApplication().openURL(currentSponsor.websiteURL)
     }
     
      override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(SPONSORS_CELL_IDENTIFIER, forIndexPath: indexPath) as! UICollectionViewCell
-        
-        for view in cell.contentView.subviews{
-            view.removeFromSuperview()
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(SPONSORS_CELL_IDENTIFIER, forIndexPath: indexPath) as! PFCollectionViewCell
+        let company = sponsors![indexPath.item]
+        cell.imageView.file = company.image
+        cell.imageView.loadInBackground { (image, error) -> Void in
+            self.collectionView?.reloadItemsAtIndexPaths([indexPath])
         }
-        let image = sponsors[indexPath.item].image
-        if image != nil {
-            let logo = UIImageView(image: image!)
-            logo.contentMode = UIViewContentMode.ScaleAspectFit
-            logo.frame = CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height)
-            cell.contentView.addSubview(logo)
-            cell.setNeedsDisplay()
-        }
-
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        var currentSponsor = sponsors[indexPath.item]
-        var level = currentSponsor.sponsorLevel
+        let currentSponsor = sponsors![indexPath.item]
+        let level = currentSponsor.sponsorLevel
         
         var size : CGSize
         

@@ -21,12 +21,12 @@ class LicensesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Licenses"
-        self.view.backgroundColor = UIColor.whiteColor()
+        navigationItem.title = "Licenses"
+        view.backgroundColor = UIColor.whiteColor()
         
-        self.tableView = UITableView(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)))
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "LICENSE_TABLEVIEW_CELL")
-        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        tableView = UITableView(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)))
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "LICENSE_TABLEVIEW_CELL")
+        tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -63,8 +63,8 @@ class LicensesViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("LICENSE_TABLEVIEW_CELL", forIndexPath: indexPath) as! UITableViewCell
-        
+        var cell = tableView.dequeueReusableCellWithIdentifier("LICENSE_TABLEVIEW_CELL", forIndexPath: indexPath) as! UITableViewCell
+            cell.accessoryType = .DisclosureIndicator
         switch indexPath.row {
             case 0:
                 cell.textLabel?.text = "STTwitter"

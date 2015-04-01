@@ -1,29 +1,20 @@
 import Foundation
 
-class Event: NSObject {
-    let name: String
-    let room: String
-    let speaker: String
-    let descriptionText: String
-    let startTime: NSDate
-    let endTime: NSDate
-    let email: String
-    let objectID: String
-    let topicTags: [String]
-    let company: PFObject
-    
-    init(parseReturn: PFObject) {
-        name = parseReturn["name"] as! String
-        room = parseReturn["room"] as! String
-        speaker = parseReturn["speaker"] as! String
-        descriptionText = parseReturn["description"] as! String
-        startTime = parseReturn["startTime"] as! NSDate
-        endTime = parseReturn["endTime"] as! NSDate
-        email = parseReturn["email"] as! String
-        objectID = parseReturn.objectId!
-        topicTags = parseReturn["topicTags"] as! [String]
-        company = parseReturn["company"] as! PFObject
-        
+class Event: PFObject, PFSubclassing {
+    @NSManaged var name: String
+    @NSManaged var room: String
+    @NSManaged var speaker: String
+    @NSManaged var descriptionText: String
+    @NSManaged var startTime: NSDate
+    @NSManaged var endTime: NSDate
+    @NSManaged var email: String
+    @NSManaged var objectID: String
+    @NSManaged var topicTags: [String]
+    @NSManaged var company: Company
+
+
+    static func parseClassName() -> String {
+        return "Event"
     }
 
    func stringDescription() -> String {
