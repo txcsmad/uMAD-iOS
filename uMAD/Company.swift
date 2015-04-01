@@ -1,46 +1,28 @@
 import Foundation
 
-protocol CompanyDelegate {
-    func didGetData()
-}
 
-class Company: NSObject {
-    let name: String
-    let sponsorLevel: Int
-    let website: NSURL
-    let twitterHandle: String
-    let objectID: String
-    var image: UIImage?
-    var thumbnail: UIImage?
-    var delegate: CompanyDelegate?
+class Company: PFObject, PFSubclassing {
+    @NSManaged var name: String
+    @NSManaged var sponsorLevel: Int
+    @NSManaged var website: String
+    @NSManaged var twitterHandle: String
+    @NSManaged var objectID: String
+    @NSManaged var image: PFFile
+    @NSManaged var thumbnail: PFFile
 
-    init(parseReturn: PFObject) {
-        name = parseReturn["name"] as! String
-        twitterHandle = parseReturn["twitterHandle"] as! String
-        website = NSURL(string: parseReturn["website"] as! String)!
-        sponsorLevel = parseReturn["sponsorLevel"] as! Int
-        objectID = parseReturn.objectId!
-
-        super.init()
-        let imageFile = parseReturn["image"] as! PFFile
-        imageFile.getDataInBackgroundWithBlock({
-            (data: NSData?, error: NSError?) -> Void in
-                self.image = UIImage(data: data!)!
-            self.delegate?.didGetData()
-
-        })
-        let thumbnailFile = parseReturn["thumbnail"] as! PFFile
-        thumbnailFile.getDataInBackgroundWithBlock({
-            (data: NSData?, error: NSError?) -> Void in
-            self.thumbnail = UIImage(data: data!)!
-            self.delegate?.didGetData()
-        })
-
+    var websiteURL:NSURL {
+        get{
+            return NSURL(string: website)!
+        }
     }
-
-
+    
+    static func parseClassName() -> String {
+        return "Company"
+    }
    func stringDescription() -> String {
         return "\(name)"
     }
+
+
 
 }

@@ -10,20 +10,20 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mad_logo" translatesAutoresizingMaskIntoConstraints="NO" id="bZd-ez-NKI">
-                    <rect key="frame" x="50" y="10" width="500" height="100"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="organization-image" translatesAutoresizingMaskIntoConstraints="NO" id="bZd-ez-NKI">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="GoZ-Qf-Gx4"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="What is MAD?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEF-z2-8Z3">
-                    <rect key="frame" x="15" y="125" width="570" height="20"/>
+                    <rect key="frame" x="15" y="115" width="570" height="20"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeo-NE-mf9">
-                    <rect key="frame" x="15" y="149" width="570" height="20"/>
+                    <rect key="frame" x="15" y="139" width="570" height="20"/>
                     <attributedString key="attributedText">
                         <fragment content="About MAD">
                             <attributes>
@@ -35,8 +35,8 @@
                     </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" misplaced="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h30-4F-zK3">
-                    <rect key="frame" x="15" y="395" width="570" height="20"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h30-4F-zK3">
+                    <rect key="frame" x="15" y="368" width="570" height="20"/>
                     <attributedString key="attributedText">
                         <fragment content="About MAD">
                             <attributes>
@@ -48,14 +48,14 @@
                     </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" misplaced="YES" text="What is uMAD?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9F-ar-RrI">
-                    <rect key="frame" x="15" y="371" width="570" height="20"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="What is uMAD?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9F-ar-RrI">
+                    <rect key="frame" x="15" y="344" width="570" height="20"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="CRH-NG-7j5">
-                    <rect key="frame" x="0.0" y="208" width="600" height="155"/>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="CRH-NG-7j5">
+                    <rect key="frame" x="0.0" y="174" width="600" height="155"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="155" id="9go-1i-sJ4"/>
                     </constraints>
@@ -65,20 +65,20 @@
             <constraints>
                 <constraint firstItem="xeo-NE-mf9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="0BE-gQ-KX7"/>
                 <constraint firstItem="JEF-z2-8Z3" firstAttribute="top" secondItem="bZd-ez-NKI" secondAttribute="bottom" constant="15" id="31c-xg-2tT"/>
-                <constraint firstItem="w9F-ar-RrI" firstAttribute="top" secondItem="CRH-NG-7j5" secondAttribute="bottom" constant="8" id="8pN-2r-315"/>
+                <constraint firstItem="w9F-ar-RrI" firstAttribute="top" secondItem="CRH-NG-7j5" secondAttribute="bottom" constant="15" id="8pN-2r-315"/>
                 <constraint firstItem="CRH-NG-7j5" firstAttribute="top" secondItem="h30-4F-zK3" secondAttribute="bottom" constant="8" id="F2c-4K-LVa"/>
                 <constraint firstItem="xeo-NE-mf9" firstAttribute="top" secondItem="JEF-z2-8Z3" secondAttribute="bottom" constant="4" id="HSp-JD-G2U"/>
                 <constraint firstItem="CRH-NG-7j5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="JNu-ki-vCN"/>
                 <constraint firstItem="JEF-z2-8Z3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="K9j-Ln-Onm"/>
-                <constraint firstAttribute="trailing" secondItem="bZd-ez-NKI" secondAttribute="trailing" constant="50" id="KH3-Zj-TR2"/>
-                <constraint firstItem="bZd-ez-NKI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="OOd-RX-YnW"/>
+                <constraint firstAttribute="trailing" secondItem="bZd-ez-NKI" secondAttribute="trailing" priority="750" id="KH3-Zj-TR2"/>
+                <constraint firstItem="bZd-ez-NKI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" priority="750" id="OOd-RX-YnW"/>
                 <constraint firstItem="w9F-ar-RrI" firstAttribute="top" secondItem="xeo-NE-mf9" secondAttribute="bottom" constant="16" id="PfT-4u-cYi"/>
                 <constraint firstAttribute="trailing" secondItem="JEF-z2-8Z3" secondAttribute="trailing" constant="15" id="Rmf-Ce-EHx"/>
                 <constraint firstAttribute="trailing" secondItem="xeo-NE-mf9" secondAttribute="trailing" constant="15" id="Ssc-gp-20q"/>
                 <constraint firstAttribute="trailing" secondItem="w9F-ar-RrI" secondAttribute="trailing" constant="15" id="aYR-re-prn"/>
                 <constraint firstItem="h30-4F-zK3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="cov-dc-dPW"/>
-                <constraint firstItem="bZd-ez-NKI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="50" id="dTK-bw-trU"/>
-                <constraint firstItem="CRH-NG-7j5" firstAttribute="top" secondItem="xeo-NE-mf9" secondAttribute="bottom" constant="8" id="hpm-L6-hWE"/>
+                <constraint firstItem="bZd-ez-NKI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" priority="750" id="dTK-bw-trU"/>
+                <constraint firstItem="CRH-NG-7j5" firstAttribute="top" secondItem="xeo-NE-mf9" secondAttribute="bottom" constant="15" id="hpm-L6-hWE"/>
                 <constraint firstItem="w9F-ar-RrI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="jZn-st-cW8"/>
                 <constraint firstAttribute="trailing" secondItem="CRH-NG-7j5" secondAttribute="trailing" id="kmi-cg-aze"/>
                 <constraint firstAttribute="bottom" secondItem="CRH-NG-7j5" secondAttribute="bottom" constant="8" id="lX6-hA-6Cs"/>
@@ -103,6 +103,6 @@
         </view>
     </objects>
     <resources>
-        <image name="mad_logo" width="1773" height="568"/>
+        <image name="organization-image" width="2048" height="633"/>
     </resources>
 </document>

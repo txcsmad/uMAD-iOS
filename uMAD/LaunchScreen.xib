@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7525" systemVersion="14D113c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7525" systemVersion="14D127a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
     </dependencies>
@@ -10,7 +10,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="umad_logo" translatesAutoresizingMaskIntoConstraints="NO" id="ATm-QE-xZl">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="event_logo" translatesAutoresizingMaskIntoConstraints="NO" id="ATm-QE-xZl">
                     <rect key="frame" x="174" y="173" width="253" height="253"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="250" id="Frq-fa-hPE"/>
@@ -26,6 +26,6 @@
         </view>
     </objects>
     <resources>
-        <image name="umad_logo" width="250" height="254"/>
+        <image name="event_logo" width="4074" height="4133"/>
     </resources>
 </document>

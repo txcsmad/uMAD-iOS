@@ -1,15 +1,15 @@
 import Foundation
 let WEBSITE_TABLEVIEW_CELL_IDENTIFIER = "websiteCell"
 class EventViewController: UITableViewController {
-    let image: UIImage
     weak var event: Event!
-    weak var company: Company!
-
-    init(event: Event, company: Company, image: UIImage) {
+    var eventURL: NSURL?
+    init(event: Event) {
         self.event = event
-        self.company = company
-        self.image = image
         super.init(style: .Grouped)
+        event.company.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
+            self.eventURL = self.event.company.websiteURL
+            self.tableView.reloadData()
+        }
     }
 
     override func viewDidLoad() {
@@ -19,8 +19,7 @@ class EventViewController: UITableViewController {
         view.backgroundColor = UIColor.whiteColor()
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier:WEBSITE_TABLEVIEW_CELL_IDENTIFIER)
         let headerView = NSBundle.mainBundle().loadNibNamed("EventHeaderView", owner: self, options: nil)[0] as! EventHeaderView
-        headerView.configure(event, company: company)
-        headerView.sessionThumbnail.image = image
+        headerView.configure(event)
         tableView.tableHeaderView = headerView
 
         view.layoutSubviews()
@@ -51,20 +50,26 @@ class EventViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
-        var webViewController = SVWebViewController(URL: company.website)
-        webViewController.view.backgroundColor = UIColor.whiteColor()
-        
-        self.navigationController?.pushViewController(webViewController, animated: true)
+
+        if eventURL != nil {
+            let webViewController = SVWebViewController(URL: event.company.websiteURL)
+            webViewController.view.backgroundColor = UIColor.whiteColor()
+            navigationController?.pushViewController(webViewController, animated: true)
+        }
+
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if eventURL != nil {
+            return 1
+        }
+        return 0
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier(WEBSITE_TABLEVIEW_CELL_IDENTIFIER, forIndexPath: indexPath) as! UITableViewCell
-        cell.textLabel?.text = company.website.absoluteString
+        let cell = tableView.dequeueReusableCellWithIdentifier(WEBSITE_TABLEVIEW_CELL_IDENTIFIER, forIndexPath: indexPath) as! UITableViewCell
+        cell.accessoryType = .DisclosureIndicator
+        cell.textLabel?.text = eventURL?.absoluteString
         return cell
     }
 }

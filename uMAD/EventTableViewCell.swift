@@ -1,6 +1,6 @@
 import Foundation
 
-class EventTableViewCell: UITableViewCell {
+class EventTableViewCell: PFTableViewCell {
     static let formatter = NSDateFormatter()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -10,7 +10,7 @@ class EventTableViewCell: UITableViewCell {
         EventTableViewCell.formatter.dateFormat = "hh:mm a"
     }
 
-    func configure(event: Event, company: Company?) {
+    func configure(event: Event) {
         let startTimeString = EventTableViewCell.formatter.stringFromDate(event.startTime)
         let endTimeString = EventTableViewCell.formatter.stringFromDate(event.endTime)
 
@@ -19,8 +19,15 @@ class EventTableViewCell: UITableViewCell {
         textLabel?.text = event.name
         detailTextLabel?.text = "\(startTimeString) - \(endTimeString) – \(event.room)"
 
-        imageView?.image =  UIImage(named: "mad_thumbnail.png")
-        imageView?.image = company?.thumbnail
+        imageView?.contentMode = .ScaleAspectFit
+        imageView?.image = UIImage(named: "placeholder.png")
+        event.company.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
+            self.imageView?.file = event.company.thumbnail
+            self.imageView?.loadInBackground({ (image: UIImage?, error: NSError?) -> Void in
+                self.setNeedsDisplay()
+            })
+        }
+
 
     }
 

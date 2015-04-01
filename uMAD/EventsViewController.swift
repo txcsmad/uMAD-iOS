@@ -5,9 +5,8 @@ let EVENTS_TABLEVIEW_CELL_HEIGHT: CGFloat = 55.00
 
 class EventsViewController: UITableViewController {
 
-    private var events = [Event]()
+    private var events: [Event]?
     private var sections = [Int: [Event]]() // Section index -> arrays of weak references to events
-    private var companies = [String: Company]() // Company ID -> UImage
     private let sectionHeaderFormatter = NSDateFormatter()
 
     private let searchController = UISearchController()
@@ -16,7 +15,6 @@ class EventsViewController: UITableViewController {
         super.viewDidLoad()
         sectionHeaderFormatter.timeZone = NSTimeZone(name: "UTC")
         sectionHeaderFormatter.dateFormat = "EEEE - hh:mm a";
-
 
         navigationItem.title = "Events"
 
@@ -37,7 +35,6 @@ class EventsViewController: UITableViewController {
 
     func reloadData() {
         fetchEvents()
-        fetchCompanies()
     }
 
     private func fetchEvents(){
@@ -52,16 +49,8 @@ class EventsViewController: UITableViewController {
                 // Log details of the failure
                 println("Error: %@ %@", error, error!.userInfo!)
                 return
-            } 
-            self.events = [Event]()
-
-            if objects != nil {
-                for object in objects! {
-                    let object = object as! PFObject
-                    //object.pinInBackground()
-                    self.events.append(Event(parseReturn: object))
-                }
             }
+            self.events = objects as! [Event]?
 
             self.createSectionedRepresentation()
 
@@ -81,42 +70,21 @@ class EventsViewController: UITableViewController {
 
     }
 
-    private func fetchCompanies(){
-        var companiesQuery = PFQuery(className: "Company")
-        companiesQuery.cachePolicy = .CacheThenNetwork
-        //sponsorsQuery.fromLocalDatastore()
-        companiesQuery.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]?, error: NSError?) -> Void in
-            if error != nil {
-                println("Error: %@ %@", error, error!.userInfo!)
-                return
-            }
-            if objects != nil {
-                for object in objects! {
-                    let object = object as! PFObject
-                    let company = Company(parseReturn: object)
-                    self.companies[company.objectID] = company
-                }
-            }
-
-        }
-    }
-
     private func createSectionedRepresentation(){
-        if events.count == 0 {
+        if events == nil {
             return
         }
         let calendar = NSCalendar.currentCalendar()
         let desiredComponents = (NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitDay)
         var currentSection = 0
         var comparisonIndex = 0;
-        var comparisonEvent = self.events[comparisonIndex]
+        var comparisonEvent = events![comparisonIndex]
         var newSection = [Event]()
         newSection.append(comparisonEvent)
-        self.sections[currentSection] = newSection
+        sections[currentSection] = newSection
         var comparisonComponents = calendar.components(desiredComponents, fromDate: comparisonEvent.startTime)
-        for var i = 1; i < self.events.count; i++ {
-            let currentEvent = self.events[i]
+        for var i = 1; i < events!.count; i++ {
+            let currentEvent = events![i]
 
             let currentComponents = calendar.components( desiredComponents, fromDate:currentEvent.startTime)
             if comparisonComponents.hour != currentComponents.hour ||
@@ -124,13 +92,13 @@ class EventsViewController: UITableViewController {
                     currentSection++
                     var newSection = [Event]()
                     newSection.append(currentEvent)
-                    self.sections[currentSection] = newSection
+                    sections[currentSection] = newSection
                     comparisonIndex = i
-                    comparisonEvent = self.events[comparisonIndex]
+                    comparisonEvent = events![comparisonIndex]
                     comparisonComponents = calendar.components(desiredComponents, fromDate: comparisonEvent.startTime)
 
             } else {
-                self.sections[currentSection]!.append( currentEvent)
+                sections[currentSection]!.append( currentEvent)
             }
         }
     }
@@ -158,14 +126,9 @@ class EventsViewController: UITableViewController {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
         let event = section[indexPath.row]
-        let eventCompany = companies[event.company.objectId!]
-        var thumbnail = eventCompany?.thumbnail
-        if thumbnail == nil {
-             thumbnail = UIImage(named: "mad_thumbnail.png")!
-        }
-        let eventViewController = EventViewController( event: event, company: eventCompany!, image: thumbnail!)
+        let eventViewController = EventViewController(event: event)
         
-        self.navigationController?.pushViewController(eventViewController, animated: true)
+        navigationController?.pushViewController(eventViewController, animated: true)
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -184,8 +147,7 @@ class EventsViewController: UITableViewController {
 
         let section = sections[indexPath.section]
         let event = section![indexPath.row]
-        let company = companies[event.company.objectId!]
-        cell.configure(event, company: company)
+        cell.configure(event)
         
         return cell
     }
