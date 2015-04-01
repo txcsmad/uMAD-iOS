@@ -1,4 +1,5 @@
 import UIKit
+import ParseCrashReporting
 
 let FONT_SIZE: CGFloat = 17.00
 let DETAIL_FONT_SIZE: CGFloat = 12.00
@@ -10,17 +11,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        ParseCrashReporting.enable()
         Parse.setApplicationId(PARSE_APPLICATION_ID, clientKey: PARSE_CLIENT_KEY)
+        PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
+
+        PFConfig.getConfigInBackgroundWithBlock(nil)
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         UINavigationBar.appearance().barTintColor = TINT_COLOR
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
-        var eventsViewController = UINavigationController(rootViewController: EventsViewController())
-        var twitterViewController = UINavigationController(rootViewController: TwitterViewController())
-        var sponsorsViewController = UINavigationController(rootViewController: SponsorsViewController())
-        var aboutViewController = UINavigationController(rootViewController: AboutViewController())
+        let eventsViewController = UINavigationController(rootViewController: EventsViewController())
+        let twitterViewController = UINavigationController(rootViewController: TwitterViewController())
+        let sponsorsViewController = UINavigationController(rootViewController: SponsorsViewController())
+        let aboutViewController = UINavigationController(rootViewController: AboutViewController())
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [eventsViewController, twitterViewController, sponsorsViewController, aboutViewController]

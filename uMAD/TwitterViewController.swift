@@ -57,6 +57,7 @@ class TwitterViewController: UITableViewController {
     // MARK: - UIViewController
     
     override func viewDidLoad() {
+        PFAnalytics.trackEventInBackground("openedTwitterTab", dimensions:nil, block: nil)
         super.viewDidLoad()
         
         let refresh = UIRefreshControl()

@@ -6,7 +6,7 @@ let EVENTS_TABLEVIEW_CELL_HEIGHT: CGFloat = 55.00
 class EventsViewController: UITableViewController {
 
     private var events = [Event]()
-    private var sections = [Int: [EventReference]]() // Section index -> arrays of weak references to events
+    private var sections = [Int: [Event]]() // Section index -> arrays of weak references to events
     private var companies = [String: Company]() // Company ID -> UImage
     private let sectionHeaderFormatter = NSDateFormatter()
 
@@ -111,8 +111,8 @@ class EventsViewController: UITableViewController {
         var currentSection = 0
         var comparisonIndex = 0;
         var comparisonEvent = self.events[comparisonIndex]
-        var newSection = [EventReference]()
-        newSection.append(EventReference(event: comparisonEvent))
+        var newSection = [Event]()
+        newSection.append(comparisonEvent)
         self.sections[currentSection] = newSection
         var comparisonComponents = calendar.components(desiredComponents, fromDate: comparisonEvent.startTime)
         for var i = 1; i < self.events.count; i++ {
@@ -122,15 +122,15 @@ class EventsViewController: UITableViewController {
             if comparisonComponents.hour != currentComponents.hour ||
                 comparisonComponents.day != currentComponents.day {
                     currentSection++
-                    var newSection = [EventReference]()
-                    newSection.append(EventReference(event: currentEvent))
+                    var newSection = [Event]()
+                    newSection.append(currentEvent)
                     self.sections[currentSection] = newSection
                     comparisonIndex = i
                     comparisonEvent = self.events[comparisonIndex]
                     comparisonComponents = calendar.components(desiredComponents, fromDate: comparisonEvent.startTime)
 
             } else {
-                self.sections[currentSection]!.append(EventReference(event: currentEvent))
+                self.sections[currentSection]!.append( currentEvent)
             }
         }
     }
@@ -157,7 +157,7 @@ class EventsViewController: UITableViewController {
 
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
-        let event = section[indexPath.row].referenced!
+        let event = section[indexPath.row]
         let eventCompany = companies[event.company.objectId!]
         var thumbnail = eventCompany?.thumbnail
         if thumbnail == nil {
@@ -174,7 +174,7 @@ class EventsViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let section = sections[section]
-        let sectionTime = section![0].referenced!.startTime
+        let sectionTime = section![0].startTime
         return sectionHeaderFormatter.stringFromDate(sectionTime)
 
     }
@@ -183,7 +183,7 @@ class EventsViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(EVENTS_TABLEVIEW_CELL_IDENTIFIER, forIndexPath: indexPath) as! EventTableViewCell
 
         let section = sections[indexPath.section]
-        let event = section![indexPath.row].referenced!
+        let event = section![indexPath.row]
         let company = companies[event.company.objectId!]
         cell.configure(event, company: company)
         

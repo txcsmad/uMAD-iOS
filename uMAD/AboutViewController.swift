@@ -1,4 +1,5 @@
 import Foundation
+import CoreLocation
 
 let ABOUT_TABLEVIEW_CELL_IDENTIFIER: String = "aboutcell"
 
@@ -11,14 +12,28 @@ class AboutViewController: UITableViewController {
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    override func viewWillAppear(animated: Bool) {
+
+        
+    }
     override func viewDidLoad() {
+        PFAnalytics.trackEventInBackground("openedAboutTab", dimensions:nil, block: nil)
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.whiteColor()
         self.navigationItem.title = "About Us"
 
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: ABOUT_TABLEVIEW_CELL_IDENTIFIER)
-        let headerView = NSBundle.mainBundle().loadNibNamed("AboutTableHeaderView", owner: self, options: nil)[0] as! UIView
+        let headerView = NSBundle.mainBundle().loadNibNamed("AboutTableHeaderView", owner: self, options: nil)[0] as! AboutTableHeaderView
+        let configuration = PFConfig.currentConfig()
+
+        headerView.eventAbout.text = configuration["conferenceAboutText"] as! String?
+        headerView.organizationAbout.text = configuration["organizationAboutText"] as! String?
+        let geoPoint = configuration["conferenceLocation"] as! PFGeoPoint
+        let coordinate = CLLocationCoordinate2D(latitude: geoPoint.latitude, longitude: geoPoint.longitude)
+        headerView.eventLocation = coordinate
+        headerView.eventLocationName = configuration["conferenceLocationName"] as! String?
+        headerView.configure()
         tableView.tableHeaderView = headerView
         tableView.backgroundColor = UIColor.whiteColor()
     }
@@ -28,7 +43,7 @@ class AboutViewController: UITableViewController {
     //accomplish this, but this the best I can seem to do.
     override func viewDidLayoutSubviews() {
         let header = tableView.tableHeaderView as! AboutTableHeaderView
-        let newHeight = header.umadAbout.frame.size.height + header.umadAbout.frame.origin.y + 50
+        let newHeight = header.eventAbout.frame.size.height + header.eventAbout.frame.origin.y + 50
 
         if newHeight != tableView.tableHeaderView!.frame.height {
             header.frame.size.height = newHeight
