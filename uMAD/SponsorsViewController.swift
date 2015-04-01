@@ -17,6 +17,7 @@ class SponsorsViewController: UICollectionViewController, CompanyDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     override func viewDidLoad() {
+        PFAnalytics.trackEventInBackground("openedSponsorsTab", dimensions:nil, block: nil)
         super.viewDidLoad()
         
         navigationItem.title = "Sponsors"

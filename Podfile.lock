@@ -2,18 +2,22 @@ PODS:
   - Bolts (1.1.4)
   - Parse (1.7.0):
     - Bolts (~> 1.1)
+  - ParseCrashReporting (1.7.0):
+    - Parse (~> 1.7.0)
   - STTwitter (0.2.0)
   - SVWebViewController (HEAD based on 1.0)
 
 DEPENDENCIES:
-  - Parse (~> 1.6)
-  - STTwitter (~> 0.1)
+  - Parse (~> 1.7.0)
+  - ParseCrashReporting
+  - STTwitter (~> 0.2.0)
   - SVWebViewController (HEAD)
 
 SPEC CHECKSUMS:
-  Bolts: dd9fb8433d67f5acc3b6b4d1379bbc5513d716c1
+  Bolts: f8e2f94edbf9fec7bb8de5ecaaa3aa6b7de6f64e
   Parse: 3c2d4e6ade7b59d31c0bc8106340c6b81b31bc0f
-  STTwitter: 743ead8a65466ec0fe9b64cd2811de5590a0ed76
-  SVWebViewController: fbf917baa92744c54cfb89a52a4c056e409973a4
+  ParseCrashReporting: 9118391db9867e693bb6a8fb45000a95fab09681
+  STTwitter: 4fda61d0a96c707f94df85677b1a4aedbcec6fcd
+  SVWebViewController: c36dda7326e81fcae0abf5d02bf7bbf7e41be901
 
 COCOAPODS: 0.36.1

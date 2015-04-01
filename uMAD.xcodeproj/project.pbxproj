@@ -23,14 +23,15 @@
 		64D4AF871A75CF1C0040D3CA /* TwitterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF861A75CF1C0040D3CA /* TwitterViewController.swift */; };
 		64FD63791A76FB0700D89106 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FD63781A76FB0700D89106 /* Event.swift */; };
 		AA205FAA5FB53DF9343E091B /* libPods-uMAD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B596628F0847E6A0B2CB8F1 /* libPods-uMAD.a */; };
-		D41BCD501AB6A53A003AECA8 /* EventReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41BCD4F1AB6A53A003AECA8 /* EventReference.swift */; };
 		D43561501AC62EDA00F7789D /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = D435614F1AC62EDA00F7789D /* Company.swift */; };
 		D478D1071AB73EBA00563A8A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D478D1061AB73EBA00563A8A /* Config.swift */; };
 		D478D10B1AB7533500563A8A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D478D10A1AB7533500563A8A /* LaunchScreen.xib */; };
-		D48AD7371AB7821D00F669D7 /* AboutTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D48AD7361AB7821D00F669D7 /* AboutTableHeaderView.xib */; };
 		D48AD7391AB783B300F669D7 /* AboutTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48AD7381AB783B300F669D7 /* AboutTableHeaderView.swift */; };
 		D48AD73D1AB78F8800F669D7 /* EventHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D48AD73C1AB78F8800F669D7 /* EventHeaderView.xib */; };
 		D4BD32291AB7AB6E004C0811 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BD32281AB7AB6E004C0811 /* EventTableViewCell.swift */; };
+		D4D48A7A1ACB9A4400E03D22 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D48A781ACB969700E03D22 /* MapKit.framework */; };
+		D4D48A7C1ACB9A7300E03D22 /* AboutTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4D48A7B1ACB9A7300E03D22 /* AboutTableHeaderView.xib */; };
+		D4D48A7E1ACB9AAB00E03D22 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D48A7D1ACB9AAB00E03D22 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,16 +56,17 @@
 		64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SponsorsViewController.swift; sourceTree = "<group>"; };
 		64D4AF861A75CF1C0040D3CA /* TwitterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterViewController.swift; sourceTree = "<group>"; };
 		64FD63781A76FB0700D89106 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		D41BCD4F1AB6A53A003AECA8 /* EventReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventReference.swift; sourceTree = "<group>"; };
 		D435614D1AC62ACE00F7789D /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		D435614F1AC62EDA00F7789D /* Company.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		D478D1061AB73EBA00563A8A /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		D478D1081AB7422000563A8A /* Config.template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.template.swift; sourceTree = "<group>"; };
 		D478D10A1AB7533500563A8A /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
-		D48AD7361AB7821D00F669D7 /* AboutTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutTableHeaderView.xib; sourceTree = "<group>"; };
 		D48AD7381AB783B300F669D7 /* AboutTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTableHeaderView.swift; sourceTree = "<group>"; };
 		D48AD73C1AB78F8800F669D7 /* EventHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventHeaderView.xib; sourceTree = "<group>"; };
 		D4BD32281AB7AB6E004C0811 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		D4D48A781ACB969700E03D22 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		D4D48A7B1ACB9A7300E03D22 /* AboutTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutTableHeaderView.xib; sourceTree = "<group>"; };
+		D4D48A7D1ACB9AAB00E03D22 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4D48A7E1ACB9AAB00E03D22 /* CoreLocation.framework in Frameworks */,
+				D4D48A7A1ACB9A4400E03D22 /* MapKit.framework in Frameworks */,
 				3219C4561A7AD5AD00C3ADEB /* Social.framework in Frameworks */,
 				AA205FAA5FB53DF9343E091B /* libPods-uMAD.a in Frameworks */,
 			);
@@ -83,6 +87,8 @@
 		40810CBC9317D6633548B7B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4D48A7D1ACB9AAB00E03D22 /* CoreLocation.framework */,
+				D4D48A781ACB969700E03D22 /* MapKit.framework */,
 				D435614D1AC62ACE00F7789D /* libsqlite3.dylib */,
 				3219C4551A7AD5AD00C3ADEB /* Social.framework */,
 				3B596628F0847E6A0B2CB8F1 /* libPods-uMAD.a */,
@@ -102,13 +108,13 @@
 		64CD92331A7A073100659946 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				64CD922E1A7A051E00659946 /* EventViewController.swift */,
-				64D4AF821A75CEAE0040D3CA /* EventsViewController.swift */,
-				64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */,
-				64D4AF861A75CF1C0040D3CA /* TwitterViewController.swift */,
 				64ADB37B1A7C81D900E5BC22 /* AboutViewController.swift */,
+				64D4AF821A75CEAE0040D3CA /* EventsViewController.swift */,
+				64CD922E1A7A051E00659946 /* EventViewController.swift */,
 				64ADB37D1A7CB1DD00E5BC22 /* LicensesViewController.swift */,
 				64ADB37F1A7CD36000E5BC22 /* LicenseViewController.swift */,
+				64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */,
+				64D4AF861A75CF1C0040D3CA /* TwitterViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -116,13 +122,13 @@
 		64CD92341A7A074400659946 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				32E186071A79A75E004EC0B9 /* TweetTableViewCell.xib */,
-				6448E4061A7B067B00FB98CA /* EventHeaderView.swift */,
-				3219C4591A7B067600C3ADEB /* TweetTableViewCell.swift */,
-				D48AD7361AB7821D00F669D7 /* AboutTableHeaderView.xib */,
 				D48AD7381AB783B300F669D7 /* AboutTableHeaderView.swift */,
+				D4D48A7B1ACB9A7300E03D22 /* AboutTableHeaderView.xib */,
+				6448E4061A7B067B00FB98CA /* EventHeaderView.swift */,
 				D48AD73C1AB78F8800F669D7 /* EventHeaderView.xib */,
 				D4BD32281AB7AB6E004C0811 /* EventTableViewCell.swift */,
+				3219C4591A7B067600C3ADEB /* TweetTableViewCell.swift */,
+				32E186071A79A75E004EC0B9 /* TweetTableViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -133,7 +139,6 @@
 				D435614F1AC62EDA00F7789D /* Company.swift */,
 				64FD63781A76FB0700D89106 /* Event.swift */,
 				3219C4571A7B03E400C3ADEB /* Twitter.swift */,
-				D41BCD4F1AB6A53A003AECA8 /* EventReference.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -250,11 +255,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D48AD7371AB7821D00F669D7 /* AboutTableHeaderView.xib in Resources */,
 				32E186081A79A75E004EC0B9 /* TweetTableViewCell.xib in Resources */,
 				D48AD73D1AB78F8800F669D7 /* EventHeaderView.xib in Resources */,
 				64D4AF6A1A75CDA80040D3CA /* Images.xcassets in Resources */,
 				D478D10B1AB7533500563A8A /* LaunchScreen.xib in Resources */,
+				D4D48A7C1ACB9A7300E03D22 /* AboutTableHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,7 +312,6 @@
 				D43561501AC62EDA00F7789D /* Company.swift in Sources */,
 				D48AD7391AB783B300F669D7 /* AboutTableHeaderView.swift in Sources */,
 				64D4AF831A75CEAE0040D3CA /* EventsViewController.swift in Sources */,
-				D41BCD501AB6A53A003AECA8 /* EventReference.swift in Sources */,
 				64CD922F1A7A051E00659946 /* EventViewController.swift in Sources */,
 				3219C45A1A7B067600C3ADEB /* TweetTableViewCell.swift in Sources */,
 				64FD63791A76FB0700D89106 /* Event.swift in Sources */,
