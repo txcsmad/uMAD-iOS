@@ -63,8 +63,15 @@ class SponsorsViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(SPONSORS_CELL_IDENTIFIER, forIndexPath: indexPath) as! PFCollectionViewCell
         let company = sponsors![indexPath.item]
         cell.imageView.file = company.image
+        cell.imageView.contentMode = .ScaleAspectFit
+        //HAX: Shouldn't really need the placeholder here, but 
+        //the cells reload very strangely without it
+        cell.imageView.image =  UIImage(named: "placeholder")
         cell.imageView.loadInBackground { (image, error) -> Void in
-            self.collectionView?.reloadItemsAtIndexPaths([indexPath])
+            //This line also seems to be important. Won't load with correct
+            //aspect ration otherwise.
+            cell.imageView.contentMode = .ScaleAspectFit
+            cell.setNeedsDisplay()
         }
         return cell
     }

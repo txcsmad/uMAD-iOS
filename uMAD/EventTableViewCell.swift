@@ -20,7 +20,7 @@ class EventTableViewCell: PFTableViewCell {
         detailTextLabel?.text = "\(startTimeString) - \(endTimeString) – \(event.room)"
 
         imageView?.contentMode = .ScaleAspectFit
-        imageView?.image = UIImage(named: "placeholder.png")
+        imageView?.image = UIImage(named: "placeholder")
         event.company.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
             self.imageView?.file = event.company.thumbnail
             self.imageView?.loadInBackground({ (image: UIImage?, error: NSError?) -> Void in

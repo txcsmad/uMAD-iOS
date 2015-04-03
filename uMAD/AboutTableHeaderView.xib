@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7525" systemVersion="14D127a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7525" systemVersion="14D130a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
     </dependencies>
@@ -56,9 +56,13 @@
                 </label>
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="CRH-NG-7j5">
                     <rect key="frame" x="0.0" y="174" width="600" height="155"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="height" constant="155" id="9go-1i-sJ4"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="CJX-aJ-rF9" appends="YES" id="y3g-XB-haO"/>
+                    </connections>
                 </mapView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -71,7 +75,7 @@
                 <constraint firstItem="CRH-NG-7j5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="JNu-ki-vCN"/>
                 <constraint firstItem="JEF-z2-8Z3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="K9j-Ln-Onm"/>
                 <constraint firstAttribute="trailing" secondItem="bZd-ez-NKI" secondAttribute="trailing" priority="750" id="KH3-Zj-TR2"/>
-                <constraint firstItem="bZd-ez-NKI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" priority="750" id="OOd-RX-YnW"/>
+                <constraint firstItem="bZd-ez-NKI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="OOd-RX-YnW"/>
                 <constraint firstItem="w9F-ar-RrI" firstAttribute="top" secondItem="xeo-NE-mf9" secondAttribute="bottom" constant="16" id="PfT-4u-cYi"/>
                 <constraint firstAttribute="trailing" secondItem="JEF-z2-8Z3" secondAttribute="trailing" constant="15" id="Rmf-Ce-EHx"/>
                 <constraint firstAttribute="trailing" secondItem="xeo-NE-mf9" secondAttribute="trailing" constant="15" id="Ssc-gp-20q"/>
@@ -101,6 +105,11 @@
             </connections>
             <point key="canvasLocation" x="176" y="286"/>
         </view>
+        <tapGestureRecognizer id="CJX-aJ-rF9">
+            <connections>
+                <action selector="mapWasTapped" destination="iN0-l3-epB" id="dV0-t3-bgR"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="organization-image" width="2048" height="633"/>

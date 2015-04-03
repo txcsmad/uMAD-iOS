@@ -6,9 +6,8 @@ let EVENTS_TABLEVIEW_CELL_HEIGHT: CGFloat = 55.00
 class EventsViewController: UITableViewController {
 
     private var events: [Event]?
-    private var sections = [Int: [Event]]() // Section index -> arrays of weak references to events
+    private var sections = [Int: [Event]]()
     private let sectionHeaderFormatter = NSDateFormatter()
-
     private let searchController = UISearchController()
 
     override func viewDidLoad() {
@@ -41,7 +40,6 @@ class EventsViewController: UITableViewController {
 
         var eventQuery = PFQuery(className:"Event")
         eventQuery.cachePolicy = .CacheThenNetwork;
-        //eventsQuery.fromLocalDatastore()
         eventQuery.orderByAscending("startTime")
         eventQuery.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]?, error: NSError?) in
@@ -98,7 +96,7 @@ class EventsViewController: UITableViewController {
                     comparisonComponents = calendar.components(desiredComponents, fromDate: comparisonEvent.startTime)
 
             } else {
-                sections[currentSection]!.append( currentEvent)
+                sections[currentSection]!.append(currentEvent)
             }
         }
     }
