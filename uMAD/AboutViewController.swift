@@ -1,7 +1,7 @@
 import Foundation
 import CoreLocation
 
-let ABOUT_TABLEVIEW_CELL_IDENTIFIER: String = "aboutcell"
+let aboutTableViewCellIdentifier = "aboutcell"
 
 class AboutViewController: UITableViewController {
 
@@ -23,7 +23,7 @@ class AboutViewController: UITableViewController {
         self.view.backgroundColor = UIColor.whiteColor()
         self.navigationItem.title = "About Us"
 
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: ABOUT_TABLEVIEW_CELL_IDENTIFIER)
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: aboutTableViewCellIdentifier)
         let headerView = NSBundle.mainBundle().loadNibNamed("AboutTableHeaderView", owner: self, options: nil)[0] as! AboutTableHeaderView
         let configuration = PFConfig.currentConfig()
 
@@ -38,12 +38,15 @@ class AboutViewController: UITableViewController {
         tableView.backgroundColor = UIColor.whiteColor()
     }
 
+    override func viewWillLayoutSubviews() {
+    }
+
     //HAX: We need to wait for the description text to get laid out, then we can adjust
     //the size of frame to extend to just below the text. There should be a better way to
     //accomplish this, but this the best I can seem to do.
     override func viewDidLayoutSubviews() {
         let header = tableView.tableHeaderView as! AboutTableHeaderView
-        let newHeight = header.eventAbout.frame.size.height + header.eventAbout.frame.origin.y + 50
+        let newHeight = header.organizationAbout.frame.size.height + header.organizationAbout.frame.origin.y + 30
 
         if newHeight != tableView.tableHeaderView!.frame.height {
             header.frame.size.height = newHeight
@@ -65,7 +68,7 @@ class AboutViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier(ABOUT_TABLEVIEW_CELL_IDENTIFIER, forIndexPath: indexPath) as! UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(aboutTableViewCellIdentifier, forIndexPath: indexPath) as! UITableViewCell
         cell.accessoryType = .DisclosureIndicator
         if indexPath.row == 0 {
             cell.textLabel?.text = "Licenses"

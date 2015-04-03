@@ -3,7 +3,7 @@ import ParseCrashReporting
 
 let FONT_SIZE: CGFloat = 17.00
 let DETAIL_FONT_SIZE: CGFloat = 12.00
-let TINT_COLOR = UIColor(hue: 359.0, saturation: 0.91, brightness: 0.83, alpha: 1.0)
+let tintColor = UIColor(hue: 359.0, saturation: 0.91, brightness: 0.83, alpha: 1.0)
 @UIApplicationMain
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,13 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ParseCrashReporting.enable()
         Event.registerSubclass()
         Company.registerSubclass()
-        Parse.setApplicationId(PARSE_APPLICATION_ID, clientKey: PARSE_CLIENT_KEY)
+        Parse.setApplicationId(Config.parseAppID, clientKey: Config.parseClientKey)
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
 
         PFConfig.getConfigInBackgroundWithBlock(nil)
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
-        UINavigationBar.appearance().barTintColor = TINT_COLOR
+        UINavigationBar.appearance().barTintColor = tintColor
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [eventsViewController, twitterViewController, sponsorsViewController, aboutViewController]
-        tabBarController.view.tintColor = TINT_COLOR
+        tabBarController.view.tintColor = tintColor
 
         eventsViewController.tabBarItem.title = "Events"
         eventsViewController.tabBarItem.image = UIImage(named: "calendar.png")
@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         sponsorsViewController.tabBarItem.image = UIImage(named: "sponsors.png")
         sponsorsViewController.tabBarItem.selectedImage = UIImage(named: "sponsors-filled.png")
 
-        aboutViewController.tabBarItem.title = "About Us"
+        aboutViewController.tabBarItem.title = "About"
         aboutViewController.tabBarItem.image = UIImage(named: "aboutus.png")
         aboutViewController.tabBarItem.selectedImage = UIImage(named: "aboutus-filled.png")
         

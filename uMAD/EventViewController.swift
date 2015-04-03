@@ -1,5 +1,5 @@
 import Foundation
-let WEBSITE_TABLEVIEW_CELL_IDENTIFIER = "websiteCell"
+let websiteCellIdentifier = "websiteCell"
 class EventViewController: UITableViewController {
     weak var event: Event!
     var eventURL: NSURL?
@@ -17,11 +17,11 @@ class EventViewController: UITableViewController {
         
         navigationItem.title = "Session Info"
         view.backgroundColor = UIColor.whiteColor()
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier:WEBSITE_TABLEVIEW_CELL_IDENTIFIER)
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier:websiteCellIdentifier)
         let headerView = NSBundle.mainBundle().loadNibNamed("EventHeaderView", owner: self, options: nil)[0] as! EventHeaderView
+        headerView.sessionDescription.preferredMaxLayoutWidth = 300
         headerView.configure(event)
         tableView.tableHeaderView = headerView
-
         view.layoutSubviews()
         tableView.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: tableView.frame.width, height: 20.0) )
         tableView.contentInset = UIEdgeInsetsMake(1.00, 0, 0, 0)
@@ -40,7 +40,6 @@ class EventViewController: UITableViewController {
         if newHeight != tableView.tableHeaderView!.frame.height {
             header.frame.size.height = newHeight
             tableView.tableHeaderView! = header
-            view.layoutSubviews()
         }
 
     }
@@ -67,7 +66,7 @@ class EventViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(WEBSITE_TABLEVIEW_CELL_IDENTIFIER, forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(websiteCellIdentifier, forIndexPath: indexPath) as! UITableViewCell
         cell.accessoryType = .DisclosureIndicator
         cell.textLabel?.text = eventURL?.absoluteString
         return cell

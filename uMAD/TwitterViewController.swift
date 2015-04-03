@@ -1,12 +1,11 @@
 import UIKit
 import Social
 
-
-let TWEET_BATCH_COUNT: UInt = 100
+let tweetBatchCount: UInt = 100
 
 class TwitterViewController: UITableViewController {
     
-    let twitter = STTwitterAPI(appOnlyWithConsumerKey: TWITTER_CONSUMER_KEY, consumerSecret: TWITTER_CONSUMER_SECRET)
+    let twitter = STTwitterAPI(appOnlyWithConsumerKey: Config.twitterConsumerKey, consumerSecret: Config.twitterConsumerSecret)
     var tweets = [Tweet]()
     var userProfileImageCache = [String: UIImage]()
     let dateComponentsFormatter = NSDateComponentsFormatter()
@@ -22,7 +21,7 @@ class TwitterViewController: UITableViewController {
 
     func composeTweet() {
         let tweetSheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-        tweetSheet.setInitialText(SCREEN_NAME + " ")
+        tweetSheet.setInitialText(Config.twitterHandle + " ")
         presentViewController(tweetSheet, animated: true, completion: nil)
     }
     
@@ -33,7 +32,7 @@ class TwitterViewController: UITableViewController {
     }
     
     func reloadTweets() {
-        twitter.getUserTimelineWithScreenName(SCREEN_NAME, count: TWEET_BATCH_COUNT, successBlock: { (response: [AnyObject]!) in
+        twitter.getUserTimelineWithScreenName(Config.twitterHandle, count: tweetBatchCount, successBlock: { (response: [AnyObject]!) in
             self.tweets.removeAll(keepCapacity: true)
             
             for dictionary in response as! [NSDictionary] {
