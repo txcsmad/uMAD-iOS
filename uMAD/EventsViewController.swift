@@ -1,7 +1,6 @@
 import UIKit
 
-let EVENTS_TABLEVIEW_CELL_IDENTIFIER: String = "eventsCell"
-let EVENTS_TABLEVIEW_CELL_HEIGHT: CGFloat = 55.00
+let eventCellIdentifier = "eventsCell"
 
 class EventsViewController: UITableViewController {
 
@@ -17,7 +16,7 @@ class EventsViewController: UITableViewController {
 
         navigationItem.title = "Events"
 
-        tableView.registerClass(EventTableViewCell.self, forCellReuseIdentifier: EVENTS_TABLEVIEW_CELL_IDENTIFIER)
+        tableView.registerClass(EventTableViewCell.self, forCellReuseIdentifier: eventCellIdentifier)
         tableView.tableFooterView = UIView(frame: CGRectZero)
         
         refreshControl = UIRefreshControl()
@@ -128,20 +127,19 @@ class EventsViewController: UITableViewController {
         
         navigationController?.pushViewController(eventViewController, animated: true)
     }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return EVENTS_TABLEVIEW_CELL_HEIGHT
-    }
-    
+
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let section = sections[section]
         let sectionTime = section![0].startTime
         return sectionHeaderFormatter.stringFromDate(sectionTime)
 
     }
-    
+
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 55.0
+    }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(EVENTS_TABLEVIEW_CELL_IDENTIFIER, forIndexPath: indexPath) as! EventTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(eventCellIdentifier, forIndexPath: indexPath) as! EventTableViewCell
 
         let section = sections[indexPath.section]
         let event = section![indexPath.row]

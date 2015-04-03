@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-let SPONSORS_CELL_IDENTIFIER = "sponsorCell"
+let sponsorCellIdentifier = "sponsorCell"
 class SponsorsViewController: UICollectionViewController {
 
     var sponsors: [Company]?
@@ -21,7 +21,7 @@ class SponsorsViewController: UICollectionViewController {
         super.viewDidLoad()
         
         navigationItem.title = "Sponsors"
-        collectionView!.registerClass(PFCollectionViewCell.self, forCellWithReuseIdentifier: SPONSORS_CELL_IDENTIFIER)
+        collectionView!.registerClass(PFCollectionViewCell.self, forCellWithReuseIdentifier: sponsorCellIdentifier)
         collectionView!.backgroundColor = UIColor.whiteColor()
         fetchSponsors()
     }
@@ -60,7 +60,7 @@ class SponsorsViewController: UICollectionViewController {
     }
     
      override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(SPONSORS_CELL_IDENTIFIER, forIndexPath: indexPath) as! PFCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(sponsorCellIdentifier, forIndexPath: indexPath) as! PFCollectionViewCell
         let company = sponsors![indexPath.item]
         cell.imageView.file = company.image
         cell.imageView.contentMode = .ScaleAspectFit
