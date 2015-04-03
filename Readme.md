@@ -19,7 +19,7 @@ We've exported the tables we used for uMAD 2015 and included them in the `Sample
 If you'd like to use the About tab, you'll want to fill in some information in the Config panel of the Parse dashboard. 
 
 Parameter               | Type
-----------------------
+-----------------|------
 conferenceAbout         | String
 conferenceLocation      | GeoPoint
 conferenceLocationName | String
