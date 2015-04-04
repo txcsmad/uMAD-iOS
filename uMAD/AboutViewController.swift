@@ -21,7 +21,7 @@ class AboutViewController: UITableViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.whiteColor()
-        self.navigationItem.title = "About Us"
+        self.navigationItem.title = "About"
 
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: aboutTableViewCellIdentifier)
         let headerView = NSBundle.mainBundle().loadNibNamed("AboutTableHeaderView", owner: self, options: nil)[0] as! AboutTableHeaderView
