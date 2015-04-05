@@ -17,22 +17,17 @@ class EventsViewController: UITableViewController {
         navigationItem.title = "Events"
 
         tableView.registerClass(EventTableViewCell.self, forCellReuseIdentifier: eventCellIdentifier)
-        tableView.tableFooterView = UIView(frame: CGRectZero)
         
         refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: Selector("reloadData"), forControlEvents: .ValueChanged)
+        refreshControl?.addTarget(self, action: Selector("fetchEvents"), forControlEvents: .ValueChanged)
         
-        reloadData()
+        fetchEvents()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationController?.setToolbarHidden(true, animated: true)
-    }
-
-    func reloadData() {
-        fetchEvents()
     }
 
     private func fetchEvents(){
@@ -55,11 +50,10 @@ class EventsViewController: UITableViewController {
                 UIView.transitionWithView(self.tableView, duration: 0.1, options: UIViewAnimationOptions.ShowHideTransitionViews, animations: {
                     () -> Void in
 
-                    let delayTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.20 * Double(NSEC_PER_SEC)))
+                    let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.20 * Double(NSEC_PER_SEC)))
                     dispatch_after(delayTime, dispatch_get_main_queue()) {
                         self.refreshControl!.endRefreshing()
                     }
-
                     self.tableView.reloadData()
                     }, completion: nil)
             })

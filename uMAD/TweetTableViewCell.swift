@@ -23,23 +23,35 @@ class TweetTableViewCell: UITableViewCell {
 
     func configure(tweet: Tweet){
         let timeSince = timeSinceString(tweet.createdAt)
-        let attributedHeader = NSMutableAttributedString(string: "\(tweet.user.name) @\(tweet.user.screenName) \(timeSince)")
-        let screenNameRange = NSMakeRange(count(tweet.user.name) + 1, count(timeSince) + 1)
-        let timeSinceRange = NSMakeRange(screenNameRange.length + screenNameRange.location, count(tweet.user.screenName) + 1)
+        let attributedHeader = NSMutableAttributedString(string: "\(tweet.user.name) @\(tweet.user.screenName)\t\(timeSince)")
+        let userNameRange = NSMakeRange(0, count(tweet.user.name))
+
+        //Plus one to account for the @
+        let screenNameRange = NSMakeRange(userNameRange.location + userNameRange.length + 1, count(tweet.user.screenName) + 1)
+
+        //Plus one to account for the tab
+        let timeSinceRange = NSMakeRange(screenNameRange.length + screenNameRange.location, count(timeSince) + 1)
         let screenNameAndTimeSinceRange = NSMakeRange(screenNameRange.location, screenNameRange.length + timeSinceRange.length)
         attributedHeader.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(12), range: screenNameAndTimeSinceRange)
         attributedHeader.addAttribute(NSForegroundColorAttributeName, value: UIColor.lightGrayColor(), range: screenNameAndTimeSinceRange)
 
-        let paragraphStyle = NSMutableParagraphStyle()
+        let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         paragraphStyle.alignment = .Left
-        let tab = NSTextTab(textAlignment: .Right, location: CGFloat(screenNameRange.location), options: nil)
-        paragraphStyle.tabStops = [tab]
+        let leftTab = NSTextTab(textAlignment: .Left, location: 0.0, options: nil)
+        let rightTab = NSTextTab(textAlignment: .Right, location: 240.0, options: nil)
+        paragraphStyle.tabStops = [leftTab,rightTab]
 
-        attributedHeader.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: timeSinceRange)
+        attributedHeader.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributedHeader.length))
+
         header.attributedText = attributedHeader
 
-        tweetText.text = tweet.text
-
+        let modifiedTweetText = NSMutableAttributedString(string: tweet.text)
+        for (url, range) in tweet.images {
+            let replacementString = String(count: range.length, repeatedValue: Character("\0"))
+            modifiedTweetText.replaceCharactersInRange(range, withAttributedString: NSAttributedString(string: replacementString))
+            //println(m)
+        }
+        tweetText.attributedText = modifiedTweetText
     }
 
     private func timeSinceString(date: NSDate) -> String{

@@ -11,7 +11,8 @@ struct User {
         screenName = json["screen_name"] as! String
 
         let profileImageUrlString = json["profile_image_url_https"] as! String
-        profileImageUrl = NSURL(string: profileImageUrlString)!
+        let biggerProfileImageUrlString = profileImageUrlString.stringByReplacingOccurrencesOfString("normal", withString: "bigger", options: .LiteralSearch, range: nil)
+        profileImageUrl = NSURL(string: biggerProfileImageUrlString)!
     }
 
     static func getUser(json: NSDictionary) -> User {

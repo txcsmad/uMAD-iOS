@@ -6,6 +6,7 @@ class TimelineManager {
     var consumerSecret: String?
     var tweets = [Tweet]()
     var users = [String:User]()
+    var userProfileImageCache = [String: UIImage]()
     var twitterHandle: String?
     var tweetBatchCount: UInt = 50
     var apiInterface: STTwitterAPI?

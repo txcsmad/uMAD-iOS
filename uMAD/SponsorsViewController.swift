@@ -55,7 +55,7 @@ class SponsorsViewController: UICollectionViewController {
     
      override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let currentSponsor = sponsors![indexPath.item]
-
+        PFAnalytics.trackEventInBackground("openedSponsorWebsite", dimensions:nil, block: nil)
         UIApplication.sharedApplication().openURL(currentSponsor.websiteURL)
     }
     
@@ -94,8 +94,5 @@ class SponsorsViewController: UICollectionViewController {
             
         }
         return size
-    }
-    func didGetData() {
-        collectionView?.reloadData()
     }
 }
