@@ -49,7 +49,7 @@ struct Tweet {
         if mediaDicts != nil {
             for mediaDict in mediaDicts!   {
                 let indices = mediaDict["indices"] as! [Int]
-                let range = NSMakeRange(indices[0], indices[1])
+                let range = NSMakeRange(indices[0], indices[1] - indices[0])
                 let url = NSURL(string: mediaDict["media_url_https"] as! String)!
                 tempImages.append((url, range))
             }

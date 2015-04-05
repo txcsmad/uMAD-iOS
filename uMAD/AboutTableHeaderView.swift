@@ -58,6 +58,8 @@ class AboutTableHeaderView: UIView {
             let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
             // Get the "Current User Location" MKMapItem
             let currentLocationMapItem = MKMapItem.mapItemForCurrentLocation()
+
+            PFAnalytics.trackEventInBackground("openedDirections", dimensions:nil, block: nil)
             // Pass the current location and destination map items to the Maps app
             // Set the direction mode in the launchOptions dictionary
             MKMapItem.openMapsWithItems([currentLocationMapItem, mapItem],

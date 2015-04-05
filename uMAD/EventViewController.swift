@@ -53,6 +53,7 @@ class EventViewController: UITableViewController {
         if eventURL != nil {
             let webViewController = SVWebViewController(URL: event.company.websiteURL)
             webViewController.view.backgroundColor = UIColor.whiteColor()
+            PFAnalytics.trackEventInBackground("openedSponsorWebsite", dimensions:nil, block: nil)
             navigationController?.pushViewController(webViewController, animated: true)
         }
 
