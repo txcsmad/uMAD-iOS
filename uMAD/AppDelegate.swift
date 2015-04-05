@@ -19,10 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         PFConfig.getConfigInBackgroundWithBlock(nil)
         
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+
         UINavigationBar.appearance().barTintColor = tintColor
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+
         
         let eventsViewController = UINavigationController(rootViewController: EventsViewController())
         let twitterViewController = UINavigationController(rootViewController: TwitterViewController())
@@ -31,8 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [eventsViewController, twitterViewController, sponsorsViewController, aboutViewController]
-        tabBarController.view.tintColor = tintColor
-
+        
         eventsViewController.tabBarItem.title = "Events"
         eventsViewController.tabBarItem.image = UIImage(named: "calendar.png")
         eventsViewController.tabBarItem.selectedImage = UIImage(named: "calendar-filled.png")
@@ -55,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = tabBarController
         
         window?.makeKeyAndVisible()
+        window?.tintColor = tintColor
         
         return true
     }

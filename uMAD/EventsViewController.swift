@@ -44,7 +44,7 @@ class EventsViewController: UITableViewController {
             (objects: [AnyObject]?, error: NSError?) in
             if error != nil {
                 // Log details of the failure
-                println("Error: %@ %@", error, error!.userInfo!)
+                //println("Error: %@ %@", error, error!.userInfo!)
                 return
             }
             self.events = objects as! [Event]?
