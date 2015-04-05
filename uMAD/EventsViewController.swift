@@ -2,15 +2,26 @@ import UIKit
 
 let eventCellIdentifier = "eventsCell"
 
-class EventsViewController: UITableViewController {
+class EventsViewController: UITableViewController, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate {
 
     private var events: [Event]?
-    private var sections = [Int: [Event]]()
+    private var sections = [[Event]]()
+    private var filteredEvents: [Event]?
+    private var filteredSections = [[Event]]()
     private let sectionHeaderFormatter = NSDateFormatter()
-    private let searchController = UISearchController()
+    private var searchController: UISearchController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.scopeButtonTitles = ["All","Android","iOS","Web"]
+        searchController.searchBar.placeholder = "Search Events"
+        searchController.searchBar.delegate = self
+        tableView.tableHeaderView = searchController.searchBar
+        definesPresentationContext = true
+
         sectionHeaderFormatter.timeZone = NSTimeZone(name: "UTC")
         sectionHeaderFormatter.dateFormat = "EEEE - hh:mm a";
 
@@ -30,7 +41,7 @@ class EventsViewController: UITableViewController {
         navigationController?.setToolbarHidden(true, animated: true)
     }
 
-    private func fetchEvents(){
+    func fetchEvents(){
 
         var eventQuery = PFQuery(className:"Event")
         eventQuery.cachePolicy = .CacheThenNetwork;
@@ -44,7 +55,7 @@ class EventsViewController: UITableViewController {
             }
             self.events = objects as! [Event]?
 
-            self.createSectionedRepresentation()
+            self.sections = self.createSectionedRepresentation(self.events!)
 
             dispatch_async(dispatch_get_main_queue(), { () in
                 UIView.transitionWithView(self.tableView, duration: 0.1, options: UIViewAnimationOptions.ShowHideTransitionViews, animations: {
@@ -61,21 +72,23 @@ class EventsViewController: UITableViewController {
 
     }
 
-    private func createSectionedRepresentation(){
-        if events == nil {
-            return
+    private func createSectionedRepresentation(events: [Event]) -> [[Event]] {
+        var newSections = [[Event]]()
+        if events.count == 0 {
+            return newSections
         }
+
         let calendar = NSCalendar.currentCalendar()
         let desiredComponents = (NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitDay)
         var currentSection = 0
-        var comparisonIndex = 0;
-        var comparisonEvent = events![comparisonIndex]
+        var comparisonIndex = 0
+        var comparisonEvent = events[comparisonIndex]
         var newSection = [Event]()
         newSection.append(comparisonEvent)
-        sections[currentSection] = newSection
+        newSections.append(newSection)
         var comparisonComponents = calendar.components(desiredComponents, fromDate: comparisonEvent.startTime)
-        for var i = 1; i < events!.count; i++ {
-            let currentEvent = events![i]
+        for var i = 1; i < events.count; i++ {
+            let currentEvent = events[i]
 
             let currentComponents = calendar.components( desiredComponents, fromDate:currentEvent.startTime)
             if comparisonComponents.hour != currentComponents.hour ||
@@ -83,26 +96,28 @@ class EventsViewController: UITableViewController {
                     currentSection++
                     var newSection = [Event]()
                     newSection.append(currentEvent)
-                    sections[currentSection] = newSection
+                    newSections.append(newSection)
                     comparisonIndex = i
-                    comparisonEvent = events![comparisonIndex]
+                    comparisonEvent = events[comparisonIndex]
                     comparisonComponents = calendar.components(desiredComponents, fromDate: comparisonEvent.startTime)
 
             } else {
-                sections[currentSection]!.append(currentEvent)
+                newSections[currentSection].append(currentEvent)
             }
         }
+        return newSections
     }
 
     // MARK: - UITableViewDataSource
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = sections[section]!
+        let section = (searchController.active) ? filteredSections[section] : sections[section]
         return section.count
+        
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return sections.count
+        return (searchController.active) ? filteredSections.count : sections.count
     }
 
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -112,7 +127,8 @@ class EventsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let section = sections[indexPath.section]!
+        
+        let section = (searchController.active) ? filteredSections[indexPath.section] : sections[indexPath.section]
 
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
@@ -123,8 +139,8 @@ class EventsViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let section = sections[section]
-        let sectionTime = section![0].startTime
+        let section = (searchController.active) ? filteredSections[section] : sections[section]
+        let sectionTime = section[0].startTime
         return sectionHeaderFormatter.stringFromDate(sectionTime)
 
     }
@@ -133,12 +149,42 @@ class EventsViewController: UITableViewController {
         return 55.0
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(eventCellIdentifier, forIndexPath: indexPath) as! EventTableViewCell
+        let cell = self.tableView.dequeueReusableCellWithIdentifier(eventCellIdentifier, forIndexPath: indexPath) as! EventTableViewCell
 
-        let section = sections[indexPath.section]
-        let event = section![indexPath.row]
+        let section = (searchController.active) ? filteredSections[indexPath.section] : sections[indexPath.section]
+        let event = section[indexPath.row]
         cell.configure(event)
         
         return cell
     }
+
+    //MARK: - Search
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        let searchString = searchController.searchBar.text
+        filterContentForSearchText(searchString, scope: searchController.searchBar.selectedScopeButtonIndex)
+        tableView.reloadData()
+    }
+    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int){
+        updateSearchResultsForSearchController(searchController)
+    }
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        updateSearchResultsForSearchController(searchController)
+    }
+    func filterContentForSearchText(searchText: String, scope: Int) {
+        let buttonTitles = searchController.searchBar.scopeButtonTitles as! [String]
+        let scopeString = buttonTitles[scope]
+        filteredEvents = events!.filter({( event: Event) -> Bool in
+            let categoryMatch = (scopeString == "All") || (event.topicTagsSet.contains(scopeString))
+            if searchText != "" {
+                event.name.rangeOfString("tesuteo!")
+                let stringMatch = event.name.rangeOfString(searchText, options: .CaseInsensitiveSearch)
+                return categoryMatch && (stringMatch != nil)
+            } else {
+                return categoryMatch
+            }
+        })
+
+        filteredSections = createSectionedRepresentation(filteredEvents!)
+    }
+
 }
