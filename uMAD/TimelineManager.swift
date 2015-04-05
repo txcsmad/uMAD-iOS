@@ -13,6 +13,7 @@ class TimelineManager {
     private init(){
 
     }
+    
     func configure(consumerKey: String, consumerSecret: String, twitterHandle: String, successBlock: (String!) -> (), errorBlock: (NSError!) -> ()){
         self.consumerKey = consumerKey
         self.consumerSecret = consumerSecret

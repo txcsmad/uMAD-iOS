@@ -4,11 +4,10 @@ import Social
 class TwitterViewController: UITableViewController {
     
     var userProfileImageCache = [String: UIImage]()
-    let dateComponentsFormatter = NSDateComponentsFormatter()
 
     init() {
         super.init(style: .Plain)
-        dateComponentsFormatter.unitsStyle = .Abbreviated
+
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -44,7 +43,6 @@ class TwitterViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         tableView.registerNib(UINib(nibName: "TweetTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "tweet_cell")
 
-        
     }
     
     // MARK: - UITableViewDataSource
@@ -58,15 +56,7 @@ class TwitterViewController: UITableViewController {
         
         let tweet = TimelineManager.instance.tweets[indexPath.row]
         
-        let attributedName = NSMutableAttributedString(string: "\(tweet.user.name) @\(tweet.user.screenName)")
-        let screenNameRange = NSMakeRange(count(tweet.user.name) + 1, count(tweet.user.screenName) + 1)
-        attributedName.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(14), range: screenNameRange)
-        attributedName.addAttribute(NSForegroundColorAttributeName, value: UIColor.lightGrayColor(), range: screenNameRange)
-        cell.userNameAndScreenNameLabel.attributedText = attributedName
-  
-        cell.tweetTextLabel.text = tweet.text
-        
-        cell.createdAtLabel.text = timeSinceString(tweet.createdAt)
+        cell.configure(tweet)
         
         if let profileImage = userProfileImageCache[tweet.user.screenName] {
             cell.userProfileImageView.image = profileImage
@@ -85,27 +75,32 @@ class TwitterViewController: UITableViewController {
                 }
             })
         }
-        
-        return cell
-    }
-    private func timeSinceString(date: NSDate) -> String{
-        let recentUnitFlags: NSCalendarUnit = .CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond
-        var dateComponents = NSCalendar.autoupdatingCurrentCalendar().components(.CalendarUnitDay, fromDate: date, toDate: NSDate(), options: nil)
-        if dateComponents.day == 0 {
-            dateComponents = NSCalendar.autoupdatingCurrentCalendar().components(recentUnitFlags, fromDate: date, toDate: NSDate(), options: nil)
 
+        for url in tweet.urls {
         }
 
-        return "\(dateComponentsFormatter.stringFromDateComponents(dateComponents)!) ago"
+        for (imageURL, range) in tweet.images {
+            cell.tweetImage.hidden = false
+            cell.imageHeight.constant = 100
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () in
+                if let imageData = NSData(contentsOfURL: imageURL) {
+                    let image = UIImage(data: imageData)
 
+                    dispatch_async(dispatch_get_main_queue(), { () in
+                        cell.tweetImage.image = image
+                        cell.setNeedsDisplay()
+                    })
+                }
+            })
+        }
+        
+        return cell
     }
     
     // MARK: - UITableViewDelegate
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let alertController = UIAlertController(title: "Open in Twitter", message: nil, preferredStyle: .Alert)
-        alertController.view.tintColor = UIColor(red: 0.83, green: 0.18, blue: 0.13, alpha: 1.0)
-        
+        let alertController = UIAlertController(title: "Open in Twitter", message: nil, preferredStyle: .Alert)        
         alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action: UIAlertAction!) in
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }))
