@@ -1,12 +1,8 @@
 import UIKit
 import Social
 
-let tweetBatchCount: UInt = 100
-
 class TwitterViewController: UITableViewController {
     
-    let twitter = STTwitterAPI(appOnlyWithConsumerKey: Config.twitterConsumerKey, consumerSecret: Config.twitterConsumerSecret)
-    var tweets = [Tweet]()
     var userProfileImageCache = [String: UIImage]()
     let dateComponentsFormatter = NSDateComponentsFormatter()
 
@@ -18,52 +14,28 @@ class TwitterViewController: UITableViewController {
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    func composeTweet() {
-        let tweetSheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-        tweetSheet.setInitialText(Config.twitterHandle + " ")
-        presentViewController(tweetSheet, animated: true, completion: nil)
-    }
-    
-    func presentAlertControllerForError(error: NSError) {
-        let alertController = UIAlertController(title: "Oops!", message: error.localizedDescription, preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-        presentViewController(alertController, animated: true, completion: nil)
-    }
-    
-    func reloadTweets() {
-        twitter.getUserTimelineWithScreenName(Config.twitterHandle, count: tweetBatchCount, successBlock: { (response: [AnyObject]!) in
-            self.tweets.removeAll(keepCapacity: true)
-            
-            for dictionary in response as! [NSDictionary] {
-                self.tweets.append(Tweet(json: dictionary))
-            }
-
-            dispatch_async(dispatch_get_main_queue(), { () in
-            
-                let delayTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.2 * Double(NSEC_PER_SEC)))
-                dispatch_after(delayTime, dispatch_get_main_queue()) {
-                    self.refreshControl!.endRefreshing()
-                }
-
-                self.tableView.reloadData()
-            })
-        }, errorBlock: { (error: NSError!) in
-            self.presentAlertControllerForError(error)
-        })
-    }
     
     // MARK: - UIViewController
     
     override func viewDidLoad() {
         PFAnalytics.trackEventInBackground("openedTwitterTab", dimensions:nil, block: nil)
         super.viewDidLoad()
-        
+        TimelineManager.instance.configure(Config.twitterConsumerKey, consumerSecret: Config.twitterConsumerSecret, twitterHandle: Config.twitterHandle, successBlock: { _ in
+            TimelineManager.instance.loadTweets({ _ in
+                self.tableView.reloadData()
+            }, errorBlock: { (error) -> () in
+                self.presentAlertControllerForError(error)
+            })
+        }) { (error) -> () in
+            self.presentAlertControllerForError(error)
+        }
         let refresh = UIRefreshControl()
         refresh.addTarget(self, action: Selector("reloadTweets"), forControlEvents: .ValueChanged)
         refreshControl = refresh
         
         navigationItem.title = "Twitter"
+
+
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: Selector("composeTweet"))
         }
@@ -71,24 +43,20 @@ class TwitterViewController: UITableViewController {
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView()
         tableView.registerNib(UINib(nibName: "TweetTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "tweet_cell")
+
         
-        twitter.verifyCredentialsWithSuccessBlock({ (bearerToken: String!) in
-            self.reloadTweets()
-        }, errorBlock: { (error: NSError!) in
-            self.presentAlertControllerForError(error)
-        })
     }
     
     // MARK: - UITableViewDataSource
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tweets.count
+        return TimelineManager.instance.tweets.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("tweet_cell", forIndexPath: indexPath) as! TweetTableViewCell
         
-        let tweet = tweets[indexPath.row]
+        let tweet = TimelineManager.instance.tweets[indexPath.row]
         
         let attributedName = NSMutableAttributedString(string: "\(tweet.user.name) @\(tweet.user.screenName)")
         let screenNameRange = NSMakeRange(count(tweet.user.name) + 1, count(tweet.user.screenName) + 1)
@@ -98,7 +66,6 @@ class TwitterViewController: UITableViewController {
   
         cell.tweetTextLabel.text = tweet.text
         
-
         cell.createdAtLabel.text = timeSinceString(tweet.createdAt)
         
         if let profileImage = userProfileImageCache[tweet.user.screenName] {
@@ -144,7 +111,7 @@ class TwitterViewController: UITableViewController {
         }))
         
         alertController.addAction(UIAlertAction(title: "Open", style: .Default, handler: { (action: UIAlertAction!) in
-            let tweet = self.tweets[indexPath.row]
+            let tweet = TimelineManager.instance.tweets[indexPath.row]
             let url = NSURL(string: "twitter://status?id=\(tweet.id)")!
             UIApplication.sharedApplication().openURL(url)
             
@@ -157,5 +124,21 @@ class TwitterViewController: UITableViewController {
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return UIApplication.sharedApplication().canOpenURL(NSURL(string: "twitter://")!)
     }
-    
+
+    func composeTweet() {
+        let tweetSheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+        tweetSheet.setInitialText(Config.twitterHandle + " ")
+        presentViewController(tweetSheet, animated: true, completion: nil)
+    }
+
+    func presentAlertControllerForError(error: NSError) {
+        let alertController = UIAlertController(title: "Oops!", message: error.localizedDescription, preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+
+    func reloadTweets() {
+
+    }
+
 }
