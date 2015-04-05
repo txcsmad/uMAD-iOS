@@ -63,7 +63,6 @@ class AboutViewController: UITableViewController {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         var licenseViewController: LicensesViewController = LicensesViewController()
-        
         navigationController?.pushViewController(licenseViewController, animated: true)
     }
     

@@ -12,6 +12,11 @@ class Event: PFObject, PFSubclassing {
     @NSManaged var topicTags: [String]
     @NSManaged var company: Company
 
+    var topicTagsSet: Set<String> {
+        get {
+            return Set<String>(topicTags)
+        }
+    }
 
     static func parseClassName() -> String {
         return "Event"
