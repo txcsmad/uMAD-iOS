@@ -5,13 +5,6 @@ let aboutTableViewCellIdentifier = "aboutcell"
 
 class AboutViewController: UITableViewController {
 
-    init(){
-        super.init(style: .Grouped)
-    }
-
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     override func viewWillAppear(animated: Bool) {
 
         
