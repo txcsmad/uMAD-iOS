@@ -50,8 +50,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         aboutViewController.tabBarItem.image = UIImage(named: "aboutus.png")
         aboutViewController.tabBarItem.selectedImage = UIImage(named: "aboutus-filled.png")
         
-        tabBarController.tabBar.translucent = false
-        
         window = UIWindow(frame:UIScreen.mainScreen().bounds)
         window?.rootViewController = tabBarController
         

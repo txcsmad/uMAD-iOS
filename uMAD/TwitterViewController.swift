@@ -3,16 +3,6 @@ import Social
 
 class TwitterViewController: UITableViewController {
 
-
-    init() {
-        super.init(style: .Plain)
-
-    }
-
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     // MARK: - UIViewController
     
     override func viewDidLoad() {
