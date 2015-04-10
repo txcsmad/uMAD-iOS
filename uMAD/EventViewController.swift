@@ -3,21 +3,19 @@ let websiteCellIdentifier = "websiteCell"
 class EventViewController: UITableViewController {
     weak var event: Event!
     var eventURL: NSURL?
-    init(event: Event) {
-        self.event = event
-        super.init(style: .Grouped)
-        event.company.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
-            self.eventURL = self.event.company.websiteURL
-            self.tableView.reloadData()
-        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationItem.title = "Session Info"
         view.backgroundColor = UIColor.whiteColor()
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier:websiteCellIdentifier)
+
+        event.company.fetchIfNeededInBackgroundWithBlock { (company, error) -> Void in
+            let company = company as! Company
+            self.eventURL = company.websiteURL
+            self.tableView.reloadData()
+        }
+        if event != nil {
         let headerView = NSBundle.mainBundle().loadNibNamed("EventHeaderView", owner: self, options: nil)[0] as! EventHeaderView
         headerView.sessionDescription.preferredMaxLayoutWidth = 300
         headerView.configure(event)
@@ -25,6 +23,7 @@ class EventViewController: UITableViewController {
         view.layoutSubviews()
         tableView.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: tableView.frame.width, height: 20.0) )
         tableView.contentInset = UIEdgeInsetsMake(1.00, 0, 0, 0)
+        }
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -42,9 +41,6 @@ class EventViewController: UITableViewController {
             tableView.tableHeaderView! = header
         }
 
-    }
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

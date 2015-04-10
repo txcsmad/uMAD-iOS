@@ -22,13 +22,16 @@ class AboutViewController: UITableViewController {
 
         headerView.eventAbout.text = configuration["conferenceAboutText"] as! String?
         headerView.organizationAbout.text = configuration["organizationAboutText"] as! String?
-        let geoPoint = configuration["conferenceLocation"] as! PFGeoPoint
-        let coordinate = CLLocationCoordinate2D(latitude: geoPoint.latitude, longitude: geoPoint.longitude)
-        headerView.eventLocation = coordinate
-        headerView.eventLocationName = configuration["conferenceLocationName"] as! String?
+        let geoPoint = configuration["conferenceLocation"] as! PFGeoPoint?
+        if geoPoint != nil {
+            let coordinate = CLLocationCoordinate2D(latitude: geoPoint!.latitude, longitude: geoPoint!.longitude)
+            headerView.eventLocation = coordinate
+            headerView.eventLocationName = configuration["conferenceLocationName"] as! String?
+        }
         headerView.configure()
         tableView.tableHeaderView = headerView
         tableView.backgroundColor = UIColor.whiteColor()
+        tableView.tableFooterView = UIView(frame: CGRectZero)
     }
 
     override func viewWillLayoutSubviews() {

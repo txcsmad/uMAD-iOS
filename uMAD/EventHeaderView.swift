@@ -13,7 +13,9 @@ class EventHeaderView: UIView {
         event.company.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
             self.sessionThumbnail.file = event.company.thumbnail
             self.companyName.text = event.company.name
-            self.setNeedsDisplay()
+            self.sessionThumbnail.loadInBackground({ (image, error) -> Void in
+                self.setNeedsDisplay()
+            })
         }
 
         room.text = event.room
