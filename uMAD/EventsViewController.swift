@@ -47,7 +47,7 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
         eventQuery.cachePolicy = .CacheThenNetwork;
         eventQuery.orderByAscending("startTime")
         eventQuery.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]?, error: NSError?) in
+            (objects, error) in
             if error != nil {
                 // Log details of the failure
                 //println("Error: %@ %@", error, error!.userInfo!)
@@ -132,9 +132,9 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
 
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
-        let event = section[indexPath.row]
-        let eventViewController = EventViewController(event: event)
-        
+        let event: Event = section[indexPath.row]
+        let eventViewController = EventViewController()
+        eventViewController.event = event
         navigationController?.pushViewController(eventViewController, animated: true)
     }
 

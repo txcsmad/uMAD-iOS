@@ -49,7 +49,6 @@ class TweetTableViewCell: UITableViewCell {
         for (url, range) in tweet.images {
             let replacementString = String(count: range.length, repeatedValue: Character("\0"))
             modifiedTweetText.replaceCharactersInRange(range, withAttributedString: NSAttributedString(string: replacementString))
-            //println(m)
         }
         tweetText.attributedText = modifiedTweetText
     }
