@@ -16,7 +16,7 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.scopeButtonTitles = ["All","Android","iOS","Web"]
+        searchController.searchBar.scopeButtonTitles = ["All"]
         searchController.searchBar.placeholder = "Search Events"
         searchController.searchBar.delegate = self
         tableView.tableHeaderView = searchController.searchBar
@@ -57,7 +57,10 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
 
             self.sections = self.createSectionedRepresentation(self.events!)
 
-            dispatch_async(dispatch_get_main_queue(), { () in
+
+
+            dispatch_async(dispatch_get_main_queue(), { _ in
+                self.searchController.searchBar.scopeButtonTitles = self.getTopTags()
                 UIView.transitionWithView(self.tableView, duration: 0.1, options: UIViewAnimationOptions.ShowHideTransitionViews, animations: {
                     () -> Void in
 
@@ -106,6 +109,29 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
             }
         }
         return newSections
+    }
+
+    func getTopTags() -> [String]? {
+        if self.events == nil {
+            return nil
+        }
+        else {
+            var tags = [String: Int]()
+            for event in self.events! {
+                for tag in event.topicTagsSet {
+                    let oldValue = tags[tag] ?? 0
+                    tags[tag] = 1 + oldValue
+                }
+            }
+            let byDescendingOccurrences = sorted(tags){ $0.1 > $1.1 }
+            let numTags = count(byDescendingOccurrences)
+            var scopeTags = [String]()
+            scopeTags.append("All")
+            for var i = 0; i < 3 && (i < numTags - 1); i++ {
+                scopeTags.append(byDescendingOccurrences[i].0)
+            }
+            return scopeTags
+        }
     }
 
     // MARK: - UITableViewDataSource
