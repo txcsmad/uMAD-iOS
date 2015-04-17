@@ -1,77 +1,79 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C81f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7525" systemVersion="14D130a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweet_cell" rowHeight="76" id="H6v-At-E5f" customClass="TweetTableViewCell" customModule="uMAD" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="395" height="76"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweet_cell" rowHeight="196" id="H6v-At-E5f" customClass="TweetTableViewCell" customModule="uMAD" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="395" height="196"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H6v-At-E5f" id="tWo-po-8qs">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="87a-DA-6gq">
-                        <rect key="frame" x="16" y="8" width="48" height="48"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="87a-DA-6gq">
+                        <rect key="frame" x="10" y="8" width="48" height="48"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="48" id="aU3-Te-FlT"/>
                             <constraint firstAttribute="width" constant="48" id="map-aM-ecR"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jack Dorsey @jack" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6sl-Zx-Sns">
-                        <rect key="frame" x="72" y="8" width="307" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6sl-Zx-Sns">
+                        <rect key="frame" x="66" y="8" width="319" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="JSy-Yu-AhW"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Jack Dorsey @jack 1d">
+                                <attributes>
+                                    <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <font key="NSFont" size="16" name="HelveticaNeue-Bold"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="just setting up my twtter" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eic-Bx-84Y">
-                        <rect key="frame" x="72" y="28" width="307" height="19"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 m" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhe-ln-in5">
-                        <rect key="frame" x="72" y="47" width="307" height="20"/>
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gso-xt-nIR">
+                        <rect key="frame" x="66" y="36" width="311" height="110"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="s3M-0U-jN8"/>
+                            <constraint firstAttribute="height" constant="130" id="UD8-eK-FdF"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="just setting up my twtter" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eic-Bx-84Y">
+                        <rect key="frame" x="66" y="28" width="319" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="vhe-ln-in5" secondAttribute="trailing" constant="16" id="6YU-vB-lYt"/>
-                    <constraint firstItem="vhe-ln-in5" firstAttribute="top" secondItem="Eic-Bx-84Y" secondAttribute="bottom" id="CYh-Fb-Tac"/>
-                    <constraint firstAttribute="bottom" secondItem="vhe-ln-in5" secondAttribute="bottom" constant="8" id="FlQ-GQ-AxN"/>
+                    <constraint firstItem="Gso-xt-nIR" firstAttribute="top" secondItem="Eic-Bx-84Y" secondAttribute="bottom" constant="8" id="3n3-FU-jXe"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Gso-xt-nIR" secondAttribute="trailing" constant="10" id="G0I-ba-J0T"/>
                     <constraint firstItem="6sl-Zx-Sns" firstAttribute="top" secondItem="tWo-po-8qs" secondAttribute="top" constant="8" id="GPk-Rs-6DV"/>
-                    <constraint firstItem="Eic-Bx-84Y" firstAttribute="top" secondItem="vhe-ln-in5" secondAttribute="bottom" id="NAl-JW-TQd"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Gso-xt-nIR" secondAttribute="bottom" constant="8" id="KLT-Ho-7pF"/>
                     <constraint firstItem="6sl-Zx-Sns" firstAttribute="leading" secondItem="87a-DA-6gq" secondAttribute="trailing" constant="8" id="NYt-Jo-vLG"/>
                     <constraint firstItem="Eic-Bx-84Y" firstAttribute="top" secondItem="6sl-Zx-Sns" secondAttribute="bottom" id="gpu-EA-aiC"/>
-                    <constraint firstAttribute="trailing" secondItem="6sl-Zx-Sns" secondAttribute="trailing" constant="16" id="hpA-yZ-Ag3"/>
+                    <constraint firstAttribute="trailing" secondItem="6sl-Zx-Sns" secondAttribute="trailing" constant="10" id="hpA-yZ-Ag3"/>
                     <constraint firstItem="Eic-Bx-84Y" firstAttribute="leading" secondItem="87a-DA-6gq" secondAttribute="trailing" constant="8" id="pkJ-pA-3PW"/>
-                    <constraint firstAttribute="trailing" secondItem="Eic-Bx-84Y" secondAttribute="trailing" constant="16" id="qh2-Ad-Y04"/>
+                    <constraint firstAttribute="trailing" secondItem="Eic-Bx-84Y" secondAttribute="trailing" constant="10" id="qh2-Ad-Y04"/>
+                    <constraint firstItem="Eic-Bx-84Y" firstAttribute="leading" secondItem="Gso-xt-nIR" secondAttribute="leading" id="quR-ak-pia"/>
                     <constraint firstItem="87a-DA-6gq" firstAttribute="top" secondItem="tWo-po-8qs" secondAttribute="top" constant="8" id="uSi-ou-eei"/>
-                    <constraint firstItem="87a-DA-6gq" firstAttribute="leading" secondItem="tWo-po-8qs" secondAttribute="leading" constant="16" id="x2O-nk-HDJ"/>
-                    <constraint firstItem="vhe-ln-in5" firstAttribute="leading" secondItem="87a-DA-6gq" secondAttribute="trailing" constant="8" id="ynd-RK-6X4"/>
+                    <constraint firstItem="87a-DA-6gq" firstAttribute="leading" secondItem="tWo-po-8qs" secondAttribute="leading" constant="10" id="x2O-nk-HDJ"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="NAl-JW-TQd"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <connections>
-                <outlet property="createdAtLabel" destination="vhe-ln-in5" id="6kf-d6-NBE"/>
-                <outlet property="tweetTextLabel" destination="Eic-Bx-84Y" id="y5D-gx-aVR"/>
-                <outlet property="userNameAndScreenNameLabel" destination="6sl-Zx-Sns" id="QxI-xc-jHS"/>
-                <outlet property="userProfileImageView" destination="87a-DA-6gq" id="IjP-HT-Nkn"/>
+                <outlet property="header" destination="6sl-Zx-Sns" id="wOx-i4-Zsf"/>
+                <outlet property="imageHeight" destination="UD8-eK-FdF" id="2k9-wu-lTy"/>
+                <outlet property="tweetImage" destination="Gso-xt-nIR" id="rHf-2c-WUU"/>
+                <outlet property="tweetText" destination="Eic-Bx-84Y" id="5CM-6r-dey"/>
+                <outlet property="userProfileImageView" destination="87a-DA-6gq" id="UFq-Pb-Wn9"/>
             </connections>
-            <point key="canvasLocation" x="497.5" y="276"/>
+            <point key="canvasLocation" x="499.5" y="361"/>
         </tableViewCell>
     </objects>
 </document>

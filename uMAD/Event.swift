@@ -1,38 +1,29 @@
-//
-//  Event.swift
-//  uMAD
-//
-//  Created by Andrew Chun on 1/26/15.
-//  Copyright (c) 2015 com.MAD. All rights reserved.
-//
-
 import Foundation
 
-class Event {
-    var sessionName:    String?
-    var companyName:    String?
-    var room:           String?
-    var image:          PFFile?
-    var speaker:        String?
-    var description:    String?
-    var startTime:      NSDate?
-    var endTime:        NSDate?
-    var email:          String?
-    var companyWebsite: NSURL?
-    var companyID:      NSNumber?
-    
-    init(info: Dictionary<String, AnyObject>) {
-        sessionName = info["sessionName"]       as String?
-        companyName = info["companyName"]       as String?
-        room = info["room"]                     as String?
-        image = info["image"]                   as PFFile?
-        speaker = info["speaker"]               as String?
-        description = info["description"]       as String?
-        startTime = info["startTime"]           as NSDate?
-        endTime = info["endTime"]               as NSDate?
-        email = info["email"]                   as String?
-        companyWebsite = info["companyWebsite"] as NSURL?
-        companyID = info["companyID"]           as NSNumber?
-        
+class Event: PFObject, PFSubclassing {
+    @NSManaged var name: String
+    @NSManaged var room: String
+    @NSManaged var speaker: String
+    @NSManaged var descriptionText: String
+    @NSManaged var startTime: NSDate
+    @NSManaged var endTime: NSDate
+    @NSManaged var email: String
+    @NSManaged var objectID: String
+    @NSManaged var topicTags: [String]
+    @NSManaged var company: Company
+
+    var topicTagsSet: Set<String> {
+        get {
+            return Set<String>(topicTags)
+        }
     }
+
+    static func parseClassName() -> String {
+        return "Event"
+    }
+
+   func stringDescription() -> String {
+        return "\(name)"
+    }
+
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7525" systemVersion="14D127a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="event_logo" translatesAutoresizingMaskIntoConstraints="NO" id="ATm-QE-xZl">
+                    <rect key="frame" x="174" y="173" width="253" height="253"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="250" id="Frq-fa-hPE"/>
+                        <constraint firstAttribute="width" constant="250" id="mgS-Lg-e5i"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.82745098039215681" green="0.18431372549019609" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="ATm-QE-xZl" secondAttribute="centerX" id="PGg-wx-mXg"/>
+                <constraint firstAttribute="centerY" secondItem="ATm-QE-xZl" secondAttribute="centerY" id="k7M-P9-B6S"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="event_logo" width="4074" height="4133"/>
+    </resources>
+</document>

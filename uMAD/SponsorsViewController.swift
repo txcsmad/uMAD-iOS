@@ -1,112 +1,92 @@
-//
-//  SponsorsViewController.swift
-//  uMAD
-//
-//  Created by Andrew Chun on 1/25/15.
-//  Copyright (c) 2015 com.MAD. All rights reserved.
-//
-
 import Foundation
 import UIKit
 
-class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
-    
-    var collectionView: UICollectionView?
-    var sponsorCount = 0
-    var sponsors : [PFObject] = []
-    var images: [UIImage] = []
-    
-    
+let sponsorCellIdentifier = "sponsorCell"
+class SponsorsViewController: UICollectionViewController {
+
+    var sponsors: [Company]?
+
+    init(){
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        layout.itemSize = CGSize(width: 90, height: 120)
+        super.init(collectionViewLayout: layout)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     override func viewDidLoad() {
+        PFAnalytics.trackEventInBackground("openedSponsorsTab", dimensions:nil, block: nil)
         super.viewDidLoad()
         
         navigationItem.title = "Sponsors"
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        layout.itemSize = CGSize(width: 90, height: 120)
-        collectionView = UICollectionView(frame: CGRectMake(0, 0, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds) - TABBAR_HEIGHT), collectionViewLayout: layout)
-        collectionView!.dataSource = self
-        collectionView!.delegate = self
-        collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView!.registerClass(PFCollectionViewCell.self, forCellWithReuseIdentifier: sponsorCellIdentifier)
         collectionView!.backgroundColor = UIColor.whiteColor()
-        self.view.addSubview(self.collectionView!)
-        
-        var query = PFQuery(className: "Sponsors")
+        fetchSponsors()
+    }
+
+    private func fetchSponsors(){
+        var query = PFQuery(className: "Company")
+        query.cachePolicy = .CacheThenNetwork
         query.whereKey("sponsorLevel", greaterThanOrEqualTo: 0)
         query.orderByDescending("sponsorLevel")
-        query.findObjectsInBackgroundWithBlock{(objects: [AnyObject]!, error: NSError!) -> Void in
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error != nil {
+                return
                 // There was an error
-            } else {
-                // objects has all the Posts the current user liked.
-                self.sponsors = objects as [PFObject]
-                self.storeImages(0)
             }
-        }
-        
-        
-        
-    }
-    
-    func storeImages(x:Int){
-        
-        var currentSponsor: PFObject = sponsors[x]
-        var imageFile: PFFile = currentSponsor["companyImage"] as PFFile
-        imageFile.getDataInBackgroundWithBlock{(imageData: NSData!, error: NSError!) -> Void in if error == nil {
-            let image = UIImage(data:imageData)
-            self.images.append(image!)
-            if (x+1) < self.sponsors.count{
-                self.storeImages(x+1)
-            }else if (x+1) >= self.sponsors.count{
-                self.sponsorCount = self.sponsors.count
-                self.collectionView?.reloadData()
-            }
-            
-            }
+            self.sponsors = objects as! [Company]?
+            self.collectionView!.reloadData()
         }
     }
-    
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sponsorCount
+
+
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
     }
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        var currentSponsor: PFObject = sponsors[indexPath.item]
-        var webLink: String = currentSponsor["companyWebsite"] as String
-        //why unwrap?
-        UIApplication.sharedApplication().openURL(NSURL(string: webLink)!)
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as UICollectionViewCell
-        
-        for view in cell.contentView.subviews{
-            view.removeFromSuperview()
+
+     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if sponsors != nil {
+            return sponsors!.count
         }
-        
-        let logo = UIImageView(image: self.images[indexPath.item])
-        logo.contentMode = UIViewContentMode.ScaleAspectFit
-        logo.frame = CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height)
-        cell.contentView.addSubview(logo)
-        cell.setNeedsDisplay()
-        
+        return 0
+    }
+    
+     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let currentSponsor = sponsors![indexPath.item]
+        PFAnalytics.trackEventInBackground("openedSponsorWebsite", dimensions:nil, block: nil)
+        UIApplication.sharedApplication().openURL(currentSponsor.websiteURL)
+    }
+    
+     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(sponsorCellIdentifier, forIndexPath: indexPath) as! PFCollectionViewCell
+        let company = sponsors![indexPath.item]
+        cell.imageView.file = company.image
+        cell.imageView.contentMode = .ScaleAspectFit
+        //HAX: Shouldn't really need the placeholder here, but 
+        //the cells reload very strangely without it
+        cell.imageView.image =  UIImage(named: "placeholder")
+        cell.imageView.loadInBackground { (image, error) -> Void in
+            //This line also seems to be important. Won't load with correct
+            //aspect ration otherwise.
+            cell.imageView.contentMode = .ScaleAspectFit
+            cell.setNeedsDisplay()
+        }
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        var currentSponsor: PFObject = sponsors[indexPath.item]
-        var rating: Int = currentSponsor["sponsorLevel"] as Int
+        let currentSponsor = sponsors![indexPath.item]
+        let level = currentSponsor.sponsorLevel
         
         var size : CGSize
         
-        switch rating{
+        switch level{
         case 0:
             size = CGSize(width: (view.frame.width/2.3)-10, height: 100)
         case 1:
             size = CGSize(width: (view.frame.width/2.3)-10, height: 100)
-            break
         case 2:
             size = CGSize(width: view.frame.width - 20, height: 150)
         default:
@@ -115,7 +95,4 @@ class SponsorsViewController: UIViewController,UICollectionViewDelegateFlowLayou
         }
         return size
     }
-    
-    
-    
 }

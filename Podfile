@@ -1,9 +1,9 @@
-# Uncomment this line to define a global platform for your project
-# platform :ios, '6.0'
-
 target 'uMAD' do
 
-pod 'Parse', '~> 1.6'
-pod 'STTwitter', '~> 0.1'
+pod 'Parse', '~> 1.7.0'
+pod 'ParseUI', '~> 1.1.3'
+pod 'ParseCrashReporting'
+pod 'STTwitter', '~> 0.2.0'
+pod 'SVWebViewController', :head
 
 end

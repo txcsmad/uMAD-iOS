@@ -1,0 +1,673 @@
+{ "results": [
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+
+        "company": {
+            "__type": "Pointer",
+            "className": "Company",
+            "objectId": "ACQED5u2tz"
+        },
+        "createdAt": "2015-01-30T18:51:07.582Z",
+        "descriptionText": "Finding performance improvements in your app is important to delivering a great user experience. We'll learn how to measure some key performance metrics using Apple Instruments. We'll also talk about a couple of simple ways to streamline your application.",
+        "email": "charlie@tilt.com",
+        "endTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T17:00:00.000Z"
+        },
+        "name": "Profiling iOS App Performance",
+        "objectId": "6gMw8SQaRV",
+        "room": "GDC 1.304",
+        "speaker": "Charlie Nowacek",
+        "startTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T16:00:00.000Z"
+        },
+        "topicTags": [
+            "iOS"
+        ],
+        "updatedAt": "2015-03-28T04:45:46.556Z"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+
+        "company": {
+            "__type": "Pointer",
+            "className": "Company",
+            "objectId": "lwLDSN3m8m"
+        },
+        "createdAt": "2015-01-30T20:48:34.426Z",
+        "descriptionText": "Ever wonder how Facebook built such a smooth and responsive user interface in their Paper app? The Paper team built a whole new UI API on top of UIKit and Core Animation called AsyncDisplayKit. It does all the UI work off the main thread. Since the release of Paper, the team has open sourced this cutting edge library. Join us as we walk through the basics of building silky smooth screens using AsyncDisplayKit. ",
+        "email": "rene.cacheaux@mutualmobile.com",
+        "endTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T18:00:00.000Z"
+        },
+        "name": "Building Super Responsive UIs using AsyncDisplayKit",
+        "objectId": "SAnDTKVQes",
+        "room": "GDC 6.302",
+        "speaker": "Rene Cacheaeux",
+        "startTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T17:00:00.000Z"
+        },
+        "topicTags": [
+            "iOS"
+        ],
+        "updatedAt": "2015-03-28T04:45:49.227Z"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+        "company": {
+            "__type": "Pointer",
+            "className": "Company",
+            "objectId": "ACQED5u2tz"
+        },
+        "createdAt": "2015-01-25T23:43:15.733Z",
+        "descriptionText": "Ready to build apps for the latest Apple hardware? Let's build a simple application for the upcoming Apple Watch. Learn about the basics of WatchKit and how to integrate its features to extend your existing applications. (Requires XCode 6.2 Beta)",
+        "email": "charlie@tilt.com",
+        "endTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T19:00:00.000Z"
+        },
+        "name": "Building Apple Watch apps with WatchKit",
+        "objectId": "prsRl7AIXT",
+        "room": "GDC 6.302",
+        "speaker": "Charlie Nowacek",
+        "startTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T18:00:00.000Z"
+        },
+        "topicTags": [
+            "iOS"
+        ],
+        "updatedAt": "2015-03-28T01:37:03.630Z"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+        "company": {
+            "__type": "Pointer",
+            "className": "Company",
+            "objectId": "sR0DVYUH5M"
+        },
+        "createdAt": "2015-01-26T06:53:54.891Z",
+        "descriptionText": "You’ve got a big idea and you’ve got ... at least some of the coding chops to build it, but you have no idea how to actually produce an app, a brand, a product. Well neither did the three fresh-out-of-college software engineers behind the newly launched iOS app Frolic when they started at RetailMeNot six months ago. Come hear two of them talk about the path to learning not only the full-stack of engineering skills necessary to launch an app but also the often more critical, softer sciences needed for launch—everything from user testing and design to branding, marketing and intellectual property protection. This is a crash course in concept-to-market for the young engineer with big ideas taught by other young engineers with big ideas.",
+        "email": "rwickersham@rmn.com",
+        "endTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T19:00:00.000Z"
+        },
+        "name": "How to Start Frolicking: Concept-to-Market by Young Engineers for Young Engineers",
+        "objectId": "XxMbfW3ATY",
+        "room": "GDC 2.216",
+        "speaker": "Tripp Wickersham, Mira Chen",
+        "startTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T18:00:00.000Z"
+        },
+        "topicTags": [
+            "Other"
+        ],
+        "updatedAt": "2015-03-28T01:16:52.622Z"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+
+        "company": {
+            "__type": "Pointer",
+            "className": "Company",
+            "objectId": "5J3Zt0KKDU"
+        },
+        "createdAt": "2015-02-19T08:57:58.998Z",
+        "descriptionText": "This is the uMAD Keynote! The speakers include Comyar Zaheri (Our old MAD President), Bruce Porter (Chair), and Jason Seats (Partner @Techstars)!",
+        "email": "mad@cs.utexas.edu",
+        "endTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T12:00:00.000Z"
+        },
+        "name": "Keynote",
+        "objectId": "7DFDRLGpvl",
+        "room": "Welch 2.224",
+        "speaker": "Comyar, Bruce, Jason",
+        "startTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T11:00:00.000Z"
+        },
+        "topicTags": [
+            "MAD"
+        ],
+        "updatedAt": "2015-03-28T05:02:48.720Z"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+
+        "company": {
+            "__type": "Pointer",
+            "className": "Company",
+            "objectId": "5J3Zt0KKDU"
+        },
+        "createdAt": "2015-02-19T09:02:15.819Z",
+        "descriptionText": "Eat all the great lunch food!",
+        "email": "mad@cs.utexas.edu",
+        "endTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T13:00:00.000Z"
+        },
+        "name": "Lunch / Career Fair",
+        "objectId": "ZfmBpNUKNz",
+        "room": "GDC Atrium",
+        "speaker": "Everyone",
+        "startTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T12:00:00.000Z"
+        },
+        "topicTags": [
+            "MAD"
+        ],
+        "updatedAt": "2015-03-28T04:45:30.730Z"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+
+        "company": {
+            "__type": "Pointer",
+            "className": "Company",
+            "objectId": "5J3Zt0KKDU"
+        },
+        "createdAt": "2015-02-19T08:55:15.380Z",
+        "descriptionText": "Check-in at the front of the GDC. You MUST bring your uMAD badge!",
+        "email": "mad@cs.utexas.edu",
+        "endTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T11:00:00.000Z"
+        },
+        "name": "Check-in",
+        "objectId": "ZSVwbjIY1L",
+        "room": "GDC Atrium",
+        "speaker": "MAD",
+        "startTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T10:00:00.000Z"
+        },
+        "topicTags": [
+            "MAD"
+        ],
+        "updatedAt": "2015-04-05T17:24:24.439Z"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+
+        "company": {
+            "__type": "Pointer",
+            "className": "Company",
+            "objectId": "K9wYKp0vtt"
+        },
+        "createdAt": "2015-01-31T18:36:41.276Z",
+        "descriptionText": "How to access Android sensor values, e.g., accelerometers, magnetic sensor, GPS data, barometric pressure",
+        "email": "ccornelius@google.com",
+        "endTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T18:00:00.000Z"
+        },
+        "name": "Android Sensors Workshop",
+        "objectId": "VYzgVzon7O",
+        "room": "GDC 2.216",
+        "speaker": "Craig Cornelius",
+        "startTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T17:00:00.000Z"
+        },
+        "topicTags": [
+            "Android"
+        ],
+        "updatedAt": "2015-03-28T04:46:12.455Z"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+
+        "company": {
+            "__type": "Pointer",
+            "className": "Company",
+            "objectId": "K9wYKp0vtt"
+        },
+        "createdAt": "2015-01-31T18:33:30.917Z",
+        "descriptionText": "\"Google Scale Development\" --  It contrasts traditional Big-Metal-Relational-Database development (East Coast Development) with the kinds of things that Google/Facebook/.... do (West Coast Development). ",
+        "email": "jshilling@google.com",
+        "endTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T14:00:00.000Z"
+        },
+        "name": "East Coast vs West Coast Web App Development",
+        "objectId": "bN1h8d1Da8",
+        "room": "GDC 2.216",
+        "speaker": "John Shilling",
+        "startTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T13:00:00.000Z"
+        },
+        "topicTags": [
+            "Web"
+        ],
+        "updatedAt": "2015-03-28T04:46:21.649Z"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+
+        "company": {
+            "__type": "Pointer",
+            "className": "Company",
+            "objectId": "5J3Zt0KKDU"
+        },
+        "createdAt": "2015-02-19T08:51:04.727Z",
+        "descriptionText": "An interactive, beginner level talk on what a web framework is, the client server model, and how to program an introductory Python Flask web application, which can help you build bigger things like a larger web application or your own API.",
+        "email": "mad@cs.utexas.edu",
+        "endTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T18:00:00.000Z"
+        },
+        "name": "Introduction to Web Development with Python",
+        "objectId": "meKzvW0neZ",
+        "room": "GDC 1.304",
+        "speaker": "Taylor Barnett",
+        "startTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T17:00:00.000Z"
+        },
+        "topicTags": [
+            "Web"
+        ],
+        "updatedAt": "2015-03-28T04:46:18.800Z"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+
+        "company": {
+            "__type": "Pointer",
+            "className": "Company",
+            "objectId": "5J3Zt0KKDU"
+        },
+        "createdAt": "2015-02-19T09:03:55.399Z",
+        "descriptionText": "Dinner and a great closing ceremony by the CEO of Mutual Mobile, Mickey Ristoph!",
+        "email": "mad@cs.utexas.edu",
+        "endTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T20:00:00.000Z"
+        },
+        "name": "Closing Ceremony",
+        "objectId": "2pY0tFtcPt",
+        "room": "GDC 2.216",
+        "speaker": "Mickey Ristoph",
+        "startTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T19:00:00.000Z"
+        },
+        "topicTags": [
+            "MAD"
+        ],
+        "updatedAt": "2015-04-01T02:45:08.886Z"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+
+        "company": {
+            "__type": "Pointer",
+            "className": "Company",
+            "objectId": "5J3Zt0KKDU"
+        },
+        "createdAt": "2015-02-19T09:00:11.436Z",
+        "descriptionText": "Eat all the yummy cookies from Tiffs Treats and check out some of the projects our students are showcasing!",
+        "email": "mad@cs.utexas.edu",
+        "endTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T16:00:00.000Z"
+        },
+        "name": "Project Showcase",
+        "objectId": "05AIUlZYYo",
+        "room": "GDC 3rd Floor",
+        "speaker": "Students",
+        "startTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T15:00:00.000Z"
+        },
+        "topicTags": [
+            "MAD"
+        ],
+        "updatedAt": "2015-03-28T04:45:32.621Z"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+
+        "company": {
+            "__type": "Pointer",
+            "className": "Company",
+            "objectId": "NwoQcS78Qa"
+        },
+        "createdAt": "2015-02-19T08:34:17.994Z",
+        "descriptionText": "With the release of Xcode 6, Apple has brought the power of Interface Builder to a new level. In this workshop, Hunter will demonstrate how to use Interface Builder to rapidly prototype iOS applications. He’ll also cover combining Xcode 6’s new features with CoreAnimation to design customizable UI elements. Participants will complete this workshop with a new perspective on leveraging Interface Builder to achieve a more visual and productive workflow.",
+        "email": "hbridges@jawbone.com",
+        "endTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T17:00:00.000Z"
+        },
+        "name": "Blasting Off Your Designs With Interface Builder",
+        "objectId": "7WKKmHROIh",
+        "room": "GDC 6.302",
+        "speaker": "Hunter Bridges",
+        "startTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T16:00:00.000Z"
+        },
+        "topicTags": [
+            "iOS"
+        ],
+        "updatedAt": "2015-03-28T04:45:52.564Z"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+
+        "company": {
+            "__type": "Pointer",
+            "className": "Company",
+            "objectId": "0g2fGZwAbJ"
+        },
+        "createdAt": "2015-02-19T08:15:05.614Z",
+        "descriptionText": "Join us while we walk through creating an iOS app that pulls gifs from the giphy.com API, displays them on an iPhone, and allows simple sharing to your friends. Check out https://github.com/buzzfeed/gifme for the repo, and ask questions as we go.",
+        "email": "matt.greenwell@buzzfeed.com",
+        "endTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T15:00:00.000Z"
+        },
+        "name": "The Gift of Gifs - A Crash Course in iOS Development",
+        "objectId": "WOzTiwLnG7",
+        "room": "GDC 1.304",
+        "speaker": "Matt Greenwell, William Kalish",
+        "startTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T14:00:00.000Z"
+        },
+        "topicTags": [
+            "iOS"
+        ],
+        "updatedAt": "2015-03-28T04:45:54.410Z"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+
+        "company": {
+            "__type": "Pointer",
+            "className": "Company",
+            "objectId": "lwLDSN3m8m"
+        },
+        "createdAt": "2015-02-19T08:11:32.190Z",
+        "descriptionText": "Never built an app? No problem; come learn the basics of building iOS apps using Apple’s development tools. We’ll walk through building a very basic app from nothing to something. You’ll get hands on experience with Xcode, Interface Builder, and Swift — Apple’s new programming language.",
+        "email": "rene.cacheaux@mutualmobile.com",
+        "endTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T14:00:00.000Z"
+        },
+        "name": "iOS App Development 101",
+        "objectId": "3kRUMVQSRr",
+        "room": "GDC 1.304",
+        "speaker": "Rene Cacheaux",
+        "startTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T13:00:00.000Z"
+        },
+        "topicTags": [
+            "iOS"
+        ],
+        "updatedAt": "2015-03-28T04:45:57.090Z"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+
+        "company": {
+            "__type": "Pointer",
+            "className": "Company",
+            "objectId": "5J3Zt0KKDU"
+        },
+        "createdAt": "2015-02-19T08:47:14.691Z",
+        "descriptionText": "Learn about the basics of Android App Development!",
+        "email": "sai.avala@utexas.edu",
+        "endTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T14:00:00.000Z"
+        },
+        "name": "Android 101",
+        "objectId": "mfH2op0ldY",
+        "room": "GDC 6.302",
+        "speaker": "Sai Avala",
+        "startTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T13:00:00.000Z"
+        },
+        "topicTags": [
+            "Android"
+        ],
+        "updatedAt": "2015-03-28T04:46:05.071Z"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+
+        "company": {
+            "__type": "Pointer",
+            "className": "Company",
+            "objectId": "VPyrnZrgft"
+        },
+        "createdAt": "2015-02-19T08:31:38.526Z",
+        "descriptionText": "Being able to code a solid app is just table stakes.\n\nHow do you make decisions when building an app that will let you make sure it grows? We'll look at techniques in design, analytics, and experimentation to grow weekend projects into potential businesses.",
+        "email": "aroldan@hubspot.com",
+        "endTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T15:00:00.000Z"
+        },
+        "name": "Designing Mobile Apps for Growth",
+        "objectId": "8G5D8B4Ug8",
+        "room": "GDC 2.216",
+        "speaker": "Anthony Roldan",
+        "startTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T14:00:00.000Z"
+        },
+        "topicTags": [
+            "Android",
+            "iOS"
+        ],
+        "updatedAt": "2015-03-28T04:46:06.908Z"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+
+        "company": {
+            "__type": "Pointer",
+            "className": "Company",
+            "objectId": "HWxiOz66cU"
+        },
+        "createdAt": "2015-02-19T08:27:44.510Z",
+        "descriptionText": "A demo application to showcase the popular photos on Instagram using the Instagram endpoints. We will be using 3rd party networking libraries like Picasso (for loading images) and Async-Http (for network requests). Assumption is to have a fair knowledge of Android architecture/building blocks so that it is easier to follow along.",
+        "email": "ptrived@visa.com",
+        "endTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T19:00:00.000Z"
+        },
+        "name": "InstaFamous – Android client for the popular Instagram feed",
+        "objectId": "v2XyuNsNZH",
+        "room": "GDC 1.304",
+        "speaker": "Prerak Trivedi",
+        "startTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T18:00:00.000Z"
+        },
+        "topicTags": [
+            "Android"
+        ],
+        "updatedAt": "2015-04-05T17:56:36.702Z"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+
+        "company": {
+            "__type": "Pointer",
+            "className": "Company",
+            "objectId": "sR0DVYUH5M"
+        },
+        "createdAt": "2015-02-19T08:24:25.247Z",
+        "descriptionText": "Come learn useful and practical Android development tips​ ​from the mobile team at RetailMeNot. We'll also be covering some of our favorite third-party libraries and how you can use them in your own projects.\n",
+        "email": "rwickersham@rmn.com",
+        "endTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T15:00:00.000Z"
+        },
+        "name": "Android Libraries, Tips \u0026 Tricks",
+        "objectId": "8tgiQXx1DS",
+        "room": "GDC 6.302",
+        "speaker": "Anthony Taormina",
+        "startTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T14:00:00.000Z"
+        },
+        "topicTags": [
+            "Android"
+        ],
+        "updatedAt": "2015-03-28T04:46:10.536Z"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+
+        "company": {
+            "__type": "Pointer",
+            "className": "Company",
+            "objectId": "VPyrnZrgft"
+        },
+        "createdAt": "2015-02-19T10:38:22.846Z",
+        "descriptionText": "One of the core building blocks of mobile apps is the network request. How do we get data from web services and render it in our app?\n\nWe'll take a look at a few libraries and patterns -- Google's Volley and Jackson -- that can make your model layer clean, fast, and readable.",
+        "email": "aroldan@hubspot.com",
+        "endTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T17:00:00.000Z"
+        },
+        "name": "Code and Time-Efficient Network Request for Android",
+        "objectId": "StI6zZGnlz",
+        "room": "GDC 2.216",
+        "speaker": "Anthony Roldan",
+        "startTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T16:00:00.000Z"
+        },
+        "topicTags": [
+            "Android"
+        ],
+        "updatedAt": "2015-03-28T04:46:27.739Z"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+
+        "company": {
+            "__type": "Pointer",
+            "className": "Company",
+            "objectId": "yzyGk7YX36"
+        },
+        "createdAt": "2015-02-20T05:00:42.437Z",
+        "descriptionText": "The lovely women of WiCS will be sharing their experiences as women in the tech field.",
+        "email": "wicscorporate@gmail.com",
+        "endTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T16:00:00.000Z"
+        },
+        "name": "WiCS Lean In",
+        "objectId": "edIOs4lx4b",
+        "room": "GDC 2.210",
+        "speaker": "WiCS",
+        "startTime": {
+            "__type": "Date",
+            "iso": "2015-02-21T15:00:00.000Z"
+        },
+        "topicTags": [
+            "WiCS"
+        ],
+        "updatedAt": "2015-03-28T04:53:13.716Z"
+    }
+] }

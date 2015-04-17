@@ -1,0 +1,357 @@
+{ "results": [
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+        "createdAt": "2015-02-20T05:07:47.906Z",
+        "name": "WiCS",
+        "objectId": "yzyGk7YX36",
+        "sponsorLevel": -1,
+        "thumbnail": {
+            "__type": "File",
+            "name": "tfss-4590300c-8366-4b7d-86bf-4c87d7512cbc-tfss-f600577f-4b4b-4064-acee-57ca19932c54-wics_logo.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-4590300c-8366-4b7d-86bf-4c87d7512cbc-tfss-f600577f-4b4b-4064-acee-57ca19932c54-wics_logo.png"
+        },
+        "twitterHandle": "@wics_utexas",
+        "updatedAt": "2015-04-09T01:40:28.366Z",
+        "website": "http://www.cs.utexas.edu/~wics/"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+        "createdAt": "2015-02-19T08:45:36.419Z",
+        "image": {
+            "__type": "File",
+            "name": "tfss-e70d6da0-065a-4e88-a7d2-6fa7eec92a07-out-7.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-e70d6da0-065a-4e88-a7d2-6fa7eec92a07-out-7.png"
+        },
+        "name": "MAD",
+        "objectId": "5J3Zt0KKDU",
+        "sponsorLevel": -1,
+        "thumbnail": {
+            "__type": "File",
+            "name": "tfss-70560d81-d8fe-4e89-9059-a714df7f8187-tfss-d791de9c-d6fe-4445-969b-19d937ee622a-mad_logo.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-70560d81-d8fe-4e89-9059-a714df7f8187-tfss-d791de9c-d6fe-4445-969b-19d937ee622a-mad_logo.png"
+        },
+        "twitterHandle": "@utcsmad",
+        "updatedAt": "2015-04-09T01:46:01.346Z",
+        "website": "http://umad.me"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+        "createdAt": "2015-02-10T00:17:34.654Z",
+        "image": {
+            "__type": "File",
+            "name": "tfss-d34ddb5a-79bd-4870-8177-518ad3f3f1ff-out-4.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-d34ddb5a-79bd-4870-8177-518ad3f3f1ff-out-4.png"
+        },
+        "name": "Yodle",
+        "objectId": "shcoGmLXo8",
+        "sponsorLevel": 0,
+        "thumbnail": {
+            "__type": "File",
+            "name": "tfss-d61a420e-1595-46ac-8bde-71f807f670ae-tfss-fd8ee8a5-df8b-45f1-870b-9341bc43da48-yodle_thumbnail.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-d61a420e-1595-46ac-8bde-71f807f670ae-tfss-fd8ee8a5-df8b-45f1-870b-9341bc43da48-yodle_thumbnail.png"
+        },
+        "twitterHandle": "@yodle",
+        "updatedAt": "2015-04-09T01:47:37.718Z",
+        "website": "http://www.yodle.com/"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+        "createdAt": "2015-01-29T23:33:57.580Z",
+        "image": {
+            "__type": "File",
+            "name": "tfss-6246c662-41ef-4df9-a02a-75af43d419ac-out-8.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-6246c662-41ef-4df9-a02a-75af43d419ac-out-8.png"
+        },
+        "name": "Jawbone",
+        "objectId": "NwoQcS78Qa",
+        "sponsorLevel": -1,
+        "thumbnail": {
+            "__type": "File",
+            "name": "tfss-5cba1241-8ea3-4137-b3ee-a2ee8d54a275-tfss-6a9fcb47-1219-4259-8445-6e4fbb845d64-jawbone_thumbnail.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-5cba1241-8ea3-4137-b3ee-a2ee8d54a275-tfss-6a9fcb47-1219-4259-8445-6e4fbb845d64-jawbone_thumbnail.png"
+        },
+        "twitterHandle": "@jawbone",
+        "updatedAt": "2015-04-09T01:45:54.910Z",
+        "website": "https://jawbone.com/"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+        "createdAt": "2015-01-26T05:08:31.072Z",
+        "image": {
+            "__type": "File",
+            "name": "tfss-649a702b-1e11-4655-9242-348b8b7bd773-out.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-649a702b-1e11-4655-9242-348b8b7bd773-out.png"
+        },
+        "name": "RetailMeNot",
+        "objectId": "sR0DVYUH5M",
+        "sponsorLevel": 1,
+        "thumbnail": {
+            "__type": "File",
+            "name": "tfss-652050c6-ac53-48bf-b4a8-aeadec04ac4a-tfss-a90cb41b-70d7-4a53-936a-5fcf4d252f05-retailmenot_thumbnail.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-652050c6-ac53-48bf-b4a8-aeadec04ac4a-tfss-a90cb41b-70d7-4a53-936a-5fcf4d252f05-retailmenot_thumbnail.png"
+        },
+        "twitterHandle": "@retailmenot",
+        "updatedAt": "2015-04-09T01:46:47.507Z",
+        "website": "https://www.retailmenot.com/"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+        "createdAt": "2015-01-26T05:28:45.544Z",
+        "image": {
+            "__type": "File",
+            "name": "tfss-c4938e66-d68e-43b9-a5f6-08b955f0dc07-a16z.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-c4938e66-d68e-43b9-a5f6-08b955f0dc07-a16z.png"
+        },
+        "name": "Andreessen Horowitz",
+        "objectId": "V4Svwy9ABn",
+        "sponsorLevel": 2,
+        "thumbnail": {
+            "__type": "File",
+            "name": "tfss-0a95ca03-2823-43c4-a09e-fe73245b0277-tfss-b5efe8d8-5f92-4f73-b589-a8fe73a57ac5-a16z_thumbnail.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-0a95ca03-2823-43c4-a09e-fe73245b0277-tfss-b5efe8d8-5f92-4f73-b589-a8fe73a57ac5-a16z_thumbnail.png"
+        },
+        "twitterHandle": "@a16z",
+        "updatedAt": "2015-04-09T01:41:06.666Z",
+        "website": "https://a16z.com/"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+        "createdAt": "2015-01-26T05:31:14.266Z",
+        "image": {
+            "__type": "File",
+            "name": "tfss-30bd256d-5fe1-4e00-92f9-3c87aa11268d-out-10.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-30bd256d-5fe1-4e00-92f9-3c87aa11268d-out-10.png"
+        },
+        "name": "Google",
+        "objectId": "K9wYKp0vtt",
+        "sponsorLevel": 1,
+        "thumbnail": {
+            "__type": "File",
+            "name": "tfss-ee0f6265-f480-4f65-808d-5f73ea9ac1e5-tfss-a326b890-98b9-4b22-a9bb-bec6d08444a7-google_thumbnail.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-ee0f6265-f480-4f65-808d-5f73ea9ac1e5-tfss-a326b890-98b9-4b22-a9bb-bec6d08444a7-google_thumbnail.png"
+        },
+        "twitterHandle": "@google",
+        "updatedAt": "2015-04-09T01:45:17.400Z",
+        "website": "https://www.google.com/intl/en/about/"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+        "createdAt": "2015-01-26T05:38:47.712Z",
+        "image": {
+            "__type": "File",
+            "name": "tfss-76bf2b5e-63f6-4104-8a93-f176a61aa988-out-9.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-76bf2b5e-63f6-4104-8a93-f176a61aa988-out-9.png"
+        },
+        "name": "HubSpot",
+        "objectId": "VPyrnZrgft",
+        "sponsorLevel": 1,
+        "thumbnail": {
+            "__type": "File",
+            "name": "tfss-c17943c1-f057-4762-93b4-693afdef5049-tfss-a08a5a9b-9828-49f9-b967-e6d22a80a66c-hubspot_thumbnail.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-c17943c1-f057-4762-93b4-693afdef5049-tfss-a08a5a9b-9828-49f9-b967-e6d22a80a66c-hubspot_thumbnail.png"
+        },
+        "twitterHandle": "@hubspot",
+        "updatedAt": "2015-04-09T01:45:41.788Z",
+        "website": "https://www.hubspot.com/"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+        "createdAt": "2015-01-26T05:39:23.290Z",
+        "image": {
+            "__type": "File",
+            "name": "tfss-0acda528-1ac9-431f-9531-74b54956299d-out-3.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-0acda528-1ac9-431f-9531-74b54956299d-out-3.png"
+        },
+        "name": "Visa",
+        "objectId": "HWxiOz66cU",
+        "sponsorLevel": 1,
+        "thumbnail": {
+            "__type": "File",
+            "name": "tfss-1c383104-41dd-4a76-aae0-bc54416ce3bd-tfss-83cf269f-2a66-4d50-af85-95abb7c25499-visa_thumbnail.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-1c383104-41dd-4a76-aae0-bc54416ce3bd-tfss-83cf269f-2a66-4d50-af85-95abb7c25499-visa_thumbnail.png"
+        },
+        "twitterHandle": "@visa",
+        "updatedAt": "2015-04-09T01:47:09.722Z",
+        "website": "https://usa.visa.com/index.jsp"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+        "createdAt": "2015-01-26T05:39:49.226Z",
+        "image": {
+            "__type": "File",
+            "name": "tfss-98f143ab-7662-47b1-8b39-c36a0c8d645c-gm.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-98f143ab-7662-47b1-8b39-c36a0c8d645c-gm.png"
+        },
+        "name": "General Motors",
+        "objectId": "UzBEHW5nE5",
+        "sponsorLevel": 1,
+        "thumbnail": {
+            "__type": "File",
+            "name": "tfss-6410c0ef-16b3-421c-9015-75feaf1f53de-tfss-2d605347-1780-4973-96cd-f77459327896-general_motors_thumbnail.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-6410c0ef-16b3-421c-9015-75feaf1f53de-tfss-2d605347-1780-4973-96cd-f77459327896-general_motors_thumbnail.png"
+        },
+        "twitterHandle": "@gm",
+        "updatedAt": "2015-04-09T01:41:28.258Z",
+        "website": "https://www.gm.com/"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+        "createdAt": "2015-01-26T05:40:53.530Z",
+        "image": {
+            "__type": "File",
+            "name": "tfss-14b8de47-2f61-46e8-acbe-8f0ef70bfe94-out-2.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-14b8de47-2f61-46e8-acbe-8f0ef70bfe94-out-2.png"
+        },
+        "name": "Tilt",
+        "objectId": "ACQED5u2tz",
+        "sponsorLevel": 1,
+        "thumbnail": {
+            "__type": "File",
+            "name": "tfss-9e5de751-5d59-4c66-93d1-03364cb3aab5-tfss-63506321-bce3-4a20-86a5-5ce5ea135672-tilt_thumbnail.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-9e5de751-5d59-4c66-93d1-03364cb3aab5-tfss-63506321-bce3-4a20-86a5-5ce5ea135672-tilt_thumbnail.png"
+        },
+        "twitterHandle": "@tilt",
+        "updatedAt": "2015-04-09T01:47:04.232Z",
+        "website": "https://www.tilt.com/"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+        "createdAt": "2015-01-26T05:41:06.919Z",
+        "image": {
+            "__type": "File",
+            "name": "tfss-4ade8f18-15a0-4ced-8ac3-83680a0d37e2-out-5.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-4ade8f18-15a0-4ced-8ac3-83680a0d37e2-out-5.png"
+        },
+        "name": "Mutual Mobile",
+        "objectId": "lwLDSN3m8m",
+        "sponsorLevel": 1,
+        "thumbnail": {
+            "__type": "File",
+            "name": "tfss-f0e02c9f-e7d6-415f-a4c8-3d1ad7ade9bd-tfss-45c32adc-99ca-449b-a569-87ca2135d448-mutual_mobile_thumbnail.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-f0e02c9f-e7d6-415f-a4c8-3d1ad7ade9bd-tfss-45c32adc-99ca-449b-a569-87ca2135d448-mutual_mobile_thumbnail.png"
+        },
+        "twitterHandle": "@mutualmobile",
+        "updatedAt": "2015-04-09T01:46:15.188Z",
+        "website": "http://www.mutualmobile.com/"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+        "createdAt": "2015-01-26T05:43:55.575Z",
+        "image": {
+            "__type": "File",
+            "name": "tfss-b8a3d8be-80e8-4616-b595-a784a5920ff9-out-6.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-b8a3d8be-80e8-4616-b595-a784a5920ff9-out-6.png"
+        },
+        "name": "Microsoft",
+        "objectId": "e6mMIcumtS",
+        "sponsorLevel": 0,
+        "thumbnail": {
+            "__type": "File",
+            "name": "tfss-15deb4e0-62bb-4be8-806e-79b656dcd82e-tfss-93acfb1f-b099-4dbe-93e9-8ad7afefaaea-microsoft_thumbnail.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-15deb4e0-62bb-4be8-806e-79b656dcd82e-tfss-93acfb1f-b099-4dbe-93e9-8ad7afefaaea-microsoft_thumbnail.png"
+        },
+        "twitterHandle": "@microsoft",
+        "updatedAt": "2015-04-09T01:46:08.749Z",
+        "website": "https://www.microsoft.com/en-us/default.aspx"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+        "createdAt": "2015-01-26T05:44:38.522Z",
+        "image": {
+            "__type": "File",
+            "name": "tfss-5f7ed124-47e1-4ff9-8358-60aab2c7239f-out-11.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-5f7ed124-47e1-4ff9-8358-60aab2c7239f-out-11.png"
+        },
+        "name": "Goldman Sachs",
+        "objectId": "5TkUyGkqFd",
+        "sponsorLevel": 0,
+        "thumbnail": {
+            "__type": "File",
+            "name": "tfss-e3ccaf27-bf40-4d33-8f09-d1d3b043bd59-tfss-e0f7b0a8-7539-400f-8a1d-7547b531c4f9-goldman_sachs_thumbnail.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-e3ccaf27-bf40-4d33-8f09-d1d3b043bd59-tfss-e0f7b0a8-7539-400f-8a1d-7547b531c4f9-goldman_sachs_thumbnail.png"
+        },
+        "twitterHandle": "@goldmansachs",
+        "updatedAt": "2015-04-09T01:45:10.721Z",
+        "website": "https://www.goldmansachs.com/"
+    },
+	{
+        "ACL": {
+            "*": {
+                "read": true
+            }
+        },
+        "createdAt": "2015-01-29T23:32:37.831Z",
+        "image": {
+            "__type": "File",
+            "name": "tfss-f84daa36-ab91-43fe-a971-fec4a1cd455b-out-13.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-f84daa36-ab91-43fe-a971-fec4a1cd455b-out-13.png"
+        },
+        "name": "BuzzFeed",
+        "objectId": "0g2fGZwAbJ",
+        "sponsorLevel": -1,
+        "thumbnail": {
+            "__type": "File",
+            "name": "tfss-56e4dab4-9b58-405e-ac25-ed7c102a5d2a-tfss-fa35eaad-094c-46f7-8b82-7e5ea26e4b20-buzzfeed_thumbnail.png",
+            "url": "http://files.parsetfss.com/1ac6a802-50f5-4599-b6b1-f84dff26b7fd/tfss-56e4dab4-9b58-405e-ac25-ed7c102a5d2a-tfss-fa35eaad-094c-46f7-8b82-7e5ea26e4b20-buzzfeed_thumbnail.png"
+        },
+        "twitterHandle": "@buzzfeed",
+        "updatedAt": "2015-04-09T01:49:34.085Z",
+        "website": "http://www.buzzfeed.com/"
+    }
+] }

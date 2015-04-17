@@ -1,20 +1,39 @@
-//
-//  EventHeaderView.swift
-//  uMAD
-//
-//  Created by Andrew Chun on 1/29/15.
-//  Copyright (c) 2015 com.MAD. All rights reserved.
-//
-
 import Foundation
 
-class EventHeaderView: UIView {
+class EventHeaderView: UITableViewCell {
+    @IBOutlet weak var companyName: UILabel!
+    @IBOutlet weak var speakerName: UILabel!
+    @IBOutlet weak var time: UILabel!
+    @IBOutlet weak var room: UILabel!
+    @IBOutlet weak var sessionDescription: UILabel!
+    @IBOutlet weak var sessionName: UILabel!
+    @IBOutlet weak var sessionThumbnail: PFImageView!
     
-    override init() {
-        super.init()
+    func configure(event: Event){
+        event.company.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
+            self.sessionThumbnail.file = event.company.thumbnail
+            self.companyName.text = event.company.name
+            self.sessionThumbnail.loadInBackground({ (image, error) -> Void in
+                self.setNeedsDisplay()
+            })
+        }
+
+        room.text = event.room
+        speakerName.text = event.speaker
+        sessionDescription.text = event.descriptionText
+        sessionName.text = event.name
+        layoutSubviews()
+
+        let timeFormatter  = NSDateFormatter()
+        timeFormatter.timeZone = NSTimeZone(name: "UTC")
+        timeFormatter.dateFormat = "hh:mm a"
+
+        let startTimeString = timeFormatter.stringFromDate(event.startTime)
+        let endTimeString = timeFormatter.stringFromDate(event.endTime)
+
+        time.text = startTimeString + " - " + endTimeString
     }
 
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func awakeFromNib() {
     }
 }
