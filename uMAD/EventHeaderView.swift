@@ -1,6 +1,6 @@
 import Foundation
 
-class EventHeaderView: UIView {
+class EventHeaderView: UITableViewCell {
     @IBOutlet weak var companyName: UILabel!
     @IBOutlet weak var speakerName: UILabel!
     @IBOutlet weak var time: UILabel!

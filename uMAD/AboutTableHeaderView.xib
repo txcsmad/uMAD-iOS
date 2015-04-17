@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7525" systemVersion="14D130a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14E7f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,13 +10,13 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="457"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="organization-image" translatesAutoresizingMaskIntoConstraints="NO" id="bZd-ez-NKI">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" image="organization-image" translatesAutoresizingMaskIntoConstraints="NO" id="bZd-ez-NKI">
                     <rect key="frame" x="0.0" y="178" width="600" height="110"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="110" id="GoZ-Qf-Gx4"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeo-NE-mf9">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" ambiguous="YES" misplaced="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeo-NE-mf9">
                     <rect key="frame" x="15" y="143" width="570" height="20"/>
                     <attributedString key="attributedText">
                         <fragment content="About the event">
@@ -29,7 +29,7 @@
                     </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h30-4F-zK3">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" ambiguous="YES" misplaced="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h30-4F-zK3">
                     <rect key="frame" x="15" y="327" width="570" height="20"/>
                     <attributedString key="attributedText">
                         <fragment content="About the organization">
@@ -42,7 +42,7 @@
                     </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="Who are we?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9F-ar-RrI">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" ambiguous="YES" misplaced="YES" text="Who are we?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9F-ar-RrI">
                     <rect key="frame" x="15" y="303" width="570" height="20"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -66,6 +66,7 @@
                 <constraint firstItem="IQ8-5m-vpL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Je0-gS-ebX"/>
                 <constraint firstAttribute="trailing" secondItem="bZd-ez-NKI" secondAttribute="trailing" id="KH3-Zj-TR2"/>
                 <constraint firstItem="w9F-ar-RrI" firstAttribute="top" secondItem="bZd-ez-NKI" secondAttribute="bottom" constant="15" id="LHu-ce-wnC"/>
+                <constraint firstAttribute="bottom" secondItem="h30-4F-zK3" secondAttribute="bottom" constant="8" id="QHD-CX-jnP"/>
                 <constraint firstAttribute="trailing" secondItem="xeo-NE-mf9" secondAttribute="trailing" constant="15" id="Ssc-gp-20q"/>
                 <constraint firstItem="IQ8-5m-vpL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Yol-gY-WP9"/>
                 <constraint firstAttribute="trailing" secondItem="w9F-ar-RrI" secondAttribute="trailing" constant="15" id="aYR-re-prn"/>

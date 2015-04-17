@@ -2,7 +2,7 @@ import Foundation
 import MapKit
 import CoreLocation
 
-class AboutTableHeaderView: UIView {
+class AboutTableHeaderView: UITableViewCell {
     @IBOutlet var eventAbout: UILabel!
     @IBOutlet var organizationAbout: UILabel!
     @IBOutlet var organizationImage: UIImageView!
