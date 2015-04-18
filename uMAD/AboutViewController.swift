@@ -42,12 +42,23 @@ class AboutViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
+    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return indexPath.row == 1
+    }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
-        var licenseViewController: LicensesViewController = LicensesViewController()
-        navigationController?.pushViewController(licenseViewController, animated: true)
+        switch indexPath.row {
+        case 0:
+            tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        case 1:
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
+            var licenseViewController: LicensesViewController = LicensesViewController()
+            navigationController?.pushViewController(licenseViewController, animated: true)
+        default:
+            println("Unknow index")
+        }
+
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
