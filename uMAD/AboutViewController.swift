@@ -8,14 +8,14 @@ class AboutViewController: UITableViewController {
     init(){
         super.init(style: .Grouped)
     }
-    override init!(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     override init(style: UITableViewStyle) {
         super.init(style: .Grouped)
     }
 
-    required init!(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     override func viewWillAppear(animated: Bool) {
@@ -53,10 +53,10 @@ class AboutViewController: UITableViewController {
         case 1:
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
-            var licenseViewController: LicensesViewController = LicensesViewController()
+            let licenseViewController: LicensesViewController = LicensesViewController()
             navigationController?.pushViewController(licenseViewController, animated: true)
         default:
-            println("Unknow index")
+            print("Unknow index")
         }
 
     }
@@ -79,7 +79,7 @@ class AboutViewController: UITableViewController {
             headerView.configure()
             cell = headerView
         case 1:
-            cell = tableView.dequeueReusableCellWithIdentifier(aboutTableViewCellIdentifier, forIndexPath: indexPath) as! UITableViewCell
+            cell = tableView.dequeueReusableCellWithIdentifier(aboutTableViewCellIdentifier, forIndexPath: indexPath) as UITableViewCell
             cell.accessoryType = .DisclosureIndicator
             cell.textLabel?.text = "Licenses"
         default:

@@ -24,21 +24,21 @@ class TweetTableViewCell: UITableViewCell {
     func configure(tweet: Tweet){
         let timeSince = timeSinceString(tweet.createdAt)
         let attributedHeader = NSMutableAttributedString(string: "\(tweet.user.name) @\(tweet.user.screenName)\t\(timeSince)")
-        let userNameRange = NSMakeRange(0, count(tweet.user.name))
+        let userNameRange = NSMakeRange(0, tweet.user.name.characters.count)
 
         //Plus one to account for the @
-        let screenNameRange = NSMakeRange(userNameRange.location + userNameRange.length + 1, count(tweet.user.screenName) + 1)
+        let screenNameRange = NSMakeRange(userNameRange.location + userNameRange.length + 1, tweet.user.screenName.characters.count + 1)
 
         //Plus one to account for the tab
-        let timeSinceRange = NSMakeRange(screenNameRange.length + screenNameRange.location, count(timeSince) + 1)
+        let timeSinceRange = NSMakeRange(screenNameRange.length + screenNameRange.location, timeSince.characters.count + 1)
         let screenNameAndTimeSinceRange = NSMakeRange(screenNameRange.location, screenNameRange.length + timeSinceRange.length)
         attributedHeader.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(12), range: screenNameAndTimeSinceRange)
         attributedHeader.addAttribute(NSForegroundColorAttributeName, value: UIColor.lightGrayColor(), range: screenNameAndTimeSinceRange)
 
         let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         paragraphStyle.alignment = .Left
-        let leftTab = NSTextTab(textAlignment: .Left, location: 0.0, options: nil)
-        let rightTab = NSTextTab(textAlignment: .Right, location: 240.0, options: nil)
+        let leftTab = NSTextTab(textAlignment: .Left, location: CGFloat(0.0), options: [:])
+        let rightTab = NSTextTab(textAlignment: .Right, location: 240.0, options: [:])
         paragraphStyle.tabStops = [leftTab,rightTab]
 
         attributedHeader.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributedHeader.length))
@@ -46,7 +46,7 @@ class TweetTableViewCell: UITableViewCell {
         header.attributedText = attributedHeader
 
         let modifiedTweetText = NSMutableAttributedString(string: tweet.text)
-        for (url, range) in tweet.images {
+        for (_, range) in tweet.images {
             let replacementString = String(count: range.length, repeatedValue: Character("\0"))
             modifiedTweetText.replaceCharactersInRange(range, withAttributedString: NSAttributedString(string: replacementString))
         }
@@ -54,10 +54,11 @@ class TweetTableViewCell: UITableViewCell {
     }
 
     private func timeSinceString(date: NSDate) -> String{
-        let recentUnitFlags: NSCalendarUnit = .CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond
-        var dateComponents = NSCalendar.autoupdatingCurrentCalendar().components(.CalendarUnitDay, fromDate: date, toDate: NSDate(), options: nil)
+        let recentUnitFlags: NSCalendarUnit = [.Hour, .Minute, .Second]
+
+        var dateComponents = NSCalendar.autoupdatingCurrentCalendar().components([.Day], fromDate: date, toDate: NSDate(), options: [])
         if dateComponents.day == 0 {
-            dateComponents = NSCalendar.autoupdatingCurrentCalendar().components(recentUnitFlags, fromDate: date, toDate: NSDate(), options: nil)
+            dateComponents = NSCalendar.autoupdatingCurrentCalendar().components(recentUnitFlags, fromDate: date, toDate: NSDate(), options: [])
 
         }
 

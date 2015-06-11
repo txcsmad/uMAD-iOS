@@ -43,7 +43,7 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
 
     func fetchEvents(){
 
-        var eventQuery = PFQuery(className:"Event")
+        let eventQuery = PFQuery(className:"Event")
         eventQuery.cachePolicy = .CacheThenNetwork;
         eventQuery.orderByAscending("startTime")
         eventQuery.findObjectsInBackgroundWithBlock {
@@ -82,7 +82,7 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
         }
 
         let calendar = NSCalendar.currentCalendar()
-        let desiredComponents = (NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitDay)
+        let desiredComponents: NSCalendarUnit = ([NSCalendarUnit.Hour, NSCalendarUnit.Day])
         var currentSection = 0
         var comparisonIndex = 0
         var comparisonEvent = events[comparisonIndex]
@@ -123,8 +123,8 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
                     tags[tag] = 1 + oldValue
                 }
             }
-            let byDescendingOccurrences = sorted(tags){ $0.1 > $1.1 }
-            let numTags = count(byDescendingOccurrences)
+            let byDescendingOccurrences = tags.sort{ $0.1 > $1.1 }
+            let numTags = byDescendingOccurrences.count
             var scopeTags = [String]()
             scopeTags.append("All")
             for var i = 0; i < 3 && (i < numTags - 1); i++ {
@@ -148,8 +148,8 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
 
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header = view as! UITableViewHeaderFooterView
-        header.textLabel.font = UIFont(name: "HelveticaNeue-Bold", size: UIFont.systemFontSize())
-        header.textLabel.text = header.textLabel.text!.uppercaseString
+        header.textLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: UIFont.systemFontSize())
+        header.textLabel!.text = header.textLabel!.text!.uppercaseString
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -187,7 +187,7 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
     //MARK: - Search
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchString = searchController.searchBar.text
-        filterContentForSearchText(searchString, scope: searchController.searchBar.selectedScopeButtonIndex)
+        filterContentForSearchText(searchString!, scope: searchController.searchBar.selectedScopeButtonIndex)
         tableView.reloadData()
     }
     func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int){
@@ -197,7 +197,7 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
         updateSearchResultsForSearchController(searchController)
     }
     func filterContentForSearchText(searchText: String, scope: Int) {
-        let buttonTitles = searchController.searchBar.scopeButtonTitles as! [String]
+        let buttonTitles = searchController.searchBar.scopeButtonTitles!
         let scopeString = buttonTitles[scope]
         filteredEvents = events!.filter({( event: Event) -> Bool in
             let categoryMatch = (scopeString == "All") || (event.topicTagsSet.contains(scopeString))

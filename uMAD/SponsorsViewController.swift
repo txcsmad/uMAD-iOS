@@ -27,7 +27,7 @@ class SponsorsViewController: UICollectionViewController {
     }
 
     private func fetchSponsors(){
-        var query = PFQuery(className: "Company")
+        let query = PFQuery(className: "Company")
         query.cachePolicy = .CacheThenNetwork
         query.whereKey("sponsorLevel", greaterThanOrEqualTo: 0)
         query.orderByDescending("sponsorLevel")

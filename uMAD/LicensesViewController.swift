@@ -44,7 +44,7 @@ class LicensesViewController: UITableViewController {
                 fatalError("Unidentifiable cell selected at indexPath.row: \(indexPath.row)")
         }
         
-        var licenseViewController: LicenseViewController = LicenseViewController(licenseName: licenseName, licenseDetails: licenseDetails)
+        let licenseViewController: LicenseViewController = LicenseViewController(licenseName: licenseName, licenseDetails: licenseDetails)
         licenseViewController.title = licenseName
         
         self.navigationController?.pushViewController(licenseViewController, animated: true)
@@ -55,7 +55,7 @@ class LicensesViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("LICENSE_TABLEVIEW_CELL", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("LICENSE_TABLEVIEW_CELL", forIndexPath: indexPath) as UITableViewCell
             cell.accessoryType = .DisclosureIndicator
         switch indexPath.row {
             case 0:

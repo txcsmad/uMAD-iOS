@@ -63,7 +63,7 @@ class TwitterViewController: UITableViewController {
             }
         }
 
-        for url in tweet.urls {
+        for _ in tweet.urls {
         }
 
         for (imageURL, range) in tweet.images {

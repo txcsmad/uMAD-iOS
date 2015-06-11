@@ -7,14 +7,14 @@ class EventViewController: UITableViewController {
     init(){
         super.init(style: .Grouped)
     }
-    override init!(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     override init(style: UITableViewStyle) {
         super.init(style: .Grouped)
     }
 
-    required init!(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
