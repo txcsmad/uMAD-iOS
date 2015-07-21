@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import SafariServices
 
 let sponsorCellIdentifier = "sponsorCell"
 class SponsorsViewController: UICollectionViewController {
@@ -41,7 +42,6 @@ class SponsorsViewController: UICollectionViewController {
         }
     }
 
-
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -55,10 +55,11 @@ class SponsorsViewController: UICollectionViewController {
     
      override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let currentSponsor = sponsors![indexPath.item]
+        let webViewController = SFSafariViewController(URL: currentSponsor.websiteURL)
         PFAnalytics.trackEventInBackground("openedSponsorWebsite", dimensions:nil, block: nil)
-        UIApplication.sharedApplication().openURL(currentSponsor.websiteURL)
+        navigationController?.pushViewController(webViewController, animated: true)
     }
-    
+
      override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(sponsorCellIdentifier, forIndexPath: indexPath) as! PFCollectionViewCell
         let company = sponsors![indexPath.item]

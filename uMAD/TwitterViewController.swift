@@ -29,6 +29,7 @@ class TwitterViewController: UITableViewController {
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView()
         tableView.registerNib(UINib(nibName: "TweetTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "tweet_cell")
+        tableView.registerNib(UINib(nibName: "TweetTableViewCellWithImage", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "tweet_cell_with_image")
 
     }
     
@@ -39,10 +40,24 @@ class TwitterViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("tweet_cell", forIndexPath: indexPath) as! TweetTableViewCell
         
         let tweet = TimelineManager.instance.tweets[indexPath.row]
-        
+
+        let identifier: String
+        if tweet.images.count > 0 {
+            identifier = "tweet_cell_with_image"
+
+        } else {
+            identifier = "tweet_cell"
+        }
+        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! TweetTableViewCell
+        assert({ () -> Bool in
+            if let container = cell.imagesContainer {
+                return container.subviews.count == 0
+            }
+            return true
+            }())
+
         cell.configure(tweet)
         
         if let profileImage = TimelineManager.instance.userProfileImageCache[tweet.user.screenName] {
@@ -67,15 +82,17 @@ class TwitterViewController: UITableViewController {
         }
 
         for (imageURL, range) in tweet.images {
-            cell.tweetImage.hidden = false
-            cell.imageHeight.constant = 120
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) { _ in
                 if let imageData = NSData(contentsOfURL: imageURL) {
                     let image = UIImage(data: imageData)
 
                     dispatch_async(dispatch_get_main_queue()) { _ in
-                        cell.tweetImage.image = image
-                        cell.setNeedsDisplay()
+                        let imageView = UIImageView(image: image)
+                        imageView.contentMode = .ScaleAspectFill
+                        imageView.clipsToBounds = true
+                        imageView.layer.cornerRadius = 4.0
+                        cell.imagesContainer!.addArrangedSubview(imageView)
+                        cell.layoutSubviews()
                     }
                 }
             }
@@ -97,27 +114,18 @@ class TwitterViewController: UITableViewController {
             twitterInstalled = false
             targetURL = "https://twitter.com/"
         }
-        let targetAppName = twitterInstalled ? "Twitter" : "Safari"
-        let alertController = UIAlertController(title: "Open in \(targetAppName)", message: nil, preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action: UIAlertAction!) in
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        }))
-        
-        alertController.addAction(UIAlertAction(title: "Open", style: .Default, handler: { (action: UIAlertAction!) in
-            let tweet = TimelineManager.instance.tweets[indexPath.row]
-            let url: NSURL
-            if twitterInstalled {
-               url = NSURL(string: "\(targetURL)\(tweet.id)")!
-            } else {
-                url = NSURL(string: "\(targetURL)\(tweet.user.screenName)/status/\(tweet.id)")!
-            }
 
-            UIApplication.sharedApplication().openURL(url)
-            
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        }))
+        let tweet = TimelineManager.instance.tweets[indexPath.row]
+        let url: NSURL
+        if twitterInstalled {
+           url = NSURL(string: "\(targetURL)\(tweet.id)")!
+        } else {
+            url = NSURL(string: "\(targetURL)\(tweet.user.screenName)/status/\(tweet.id)")!
+        }
+
+        UIApplication.sharedApplication().openURL(url)
         
-        presentViewController(alertController, animated: true, completion: nil)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {

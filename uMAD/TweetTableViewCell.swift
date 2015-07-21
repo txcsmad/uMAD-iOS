@@ -5,8 +5,7 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet var userProfileImageView: UIImageView!
     @IBOutlet var header: UILabel!
     @IBOutlet var tweetText: UILabel!
-    @IBOutlet var tweetImage: UIImageView!
-    @IBOutlet var imageHeight: NSLayoutConstraint!
+    @IBOutlet var imagesContainer: UIStackView?
 
     static let dateComponentsFormatter: NSDateComponentsFormatter = {
         let formatter = NSDateComponentsFormatter()
@@ -18,7 +17,6 @@ class TweetTableViewCell: UITableViewCell {
         super.awakeFromNib()
 
         userProfileImageView.layer.cornerRadius = 4
-        tweetImage.layer.cornerRadius = 4
     }
 
     func configure(tweet: Tweet){
@@ -67,10 +65,13 @@ class TweetTableViewCell: UITableViewCell {
     }
 
     override func prepareForReuse() {
-        tweetImage.image = nil
-        tweetImage.hidden = true
         userProfileImageView.image = nil
-        imageHeight.constant = 0
+        if let imagesContainer = imagesContainer {
+            for view in imagesContainer.arrangedSubviews {
+                imagesContainer.removeArrangedSubview(view)
+                view.removeFromSuperview()
+            }
+        }
     }
     
 }

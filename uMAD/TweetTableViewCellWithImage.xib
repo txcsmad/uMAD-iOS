@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8152.3" systemVersion="15A178w" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8124.4"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweet_cell_with_image" rowHeight="196" id="H6v-At-E5f" customClass="TweetTableViewCell" customModule="uMAD" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="395" height="196"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H6v-At-E5f" id="tWo-po-8qs">
+                <rect key="frame" x="0.0" y="0.0" width="395" height="195"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="byB-1F-cZs">
+                        <rect key="frame" x="8" y="13" width="379" height="169"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="87a-DA-6gq">
+                                <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="aU3-Te-FlT"/>
+                                    <constraint firstAttribute="width" constant="48" id="map-aM-ecR"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="Bnn-Y8-uBs">
+                                <rect key="frame" x="58" y="0.0" width="321" height="169"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6sl-Zx-Sns">
+                                        <rect key="frame" x="0.0" y="0.0" width="321" height="20"/>
+                                        <animations/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Jack Dorsey @jack 1d">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <font key="NSFont" size="16" name="HelveticaNeue-Bold"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="just setting up my twtter" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eic-Bx-84Y">
+                                        <rect key="frame" x="0.0" y="20" width="321" height="17"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" misplaced="YES" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7B9-zY-VKW">
+                                        <rect key="frame" x="0.0" y="37" width="321" height="132"/>
+                                        <animations/>
+                                    </stackView>
+                                </subviews>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstItem="6sl-Zx-Sns" firstAttribute="top" secondItem="Bnn-Y8-uBs" secondAttribute="top" id="2Vi-3M-VT2"/>
+                                    <constraint firstAttribute="trailing" secondItem="Eic-Bx-84Y" secondAttribute="trailing" id="7Sp-ks-C3L"/>
+                                    <constraint firstItem="Eic-Bx-84Y" firstAttribute="leading" secondItem="Bnn-Y8-uBs" secondAttribute="leading" id="Gxg-0m-uIm"/>
+                                    <constraint firstItem="7B9-zY-VKW" firstAttribute="leading" secondItem="Bnn-Y8-uBs" secondAttribute="leading" id="Kg5-Hu-MgP"/>
+                                    <constraint firstAttribute="bottom" secondItem="7B9-zY-VKW" secondAttribute="bottom" id="Pug-SW-mqF"/>
+                                    <constraint firstItem="Eic-Bx-84Y" firstAttribute="top" secondItem="6sl-Zx-Sns" secondAttribute="bottom" priority="750" id="cG9-Qs-2EU"/>
+                                    <constraint firstAttribute="trailing" secondItem="7B9-zY-VKW" secondAttribute="trailing" id="iBs-Dl-0hM"/>
+                                    <constraint firstItem="7B9-zY-VKW" firstAttribute="top" secondItem="Eic-Bx-84Y" secondAttribute="bottom" id="zOE-C5-TuF"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Bnn-Y8-uBs" secondAttribute="bottom" id="9MY-hg-O8M"/>
+                            <constraint firstItem="Bnn-Y8-uBs" firstAttribute="top" secondItem="byB-1F-cZs" secondAttribute="top" id="ZW4-pN-hwh"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <animations/>
+                <constraints>
+                    <constraint firstItem="byB-1F-cZs" firstAttribute="leading" secondItem="tWo-po-8qs" secondAttribute="leadingMargin" id="0rx-7q-SJI"/>
+                    <constraint firstItem="byB-1F-cZs" firstAttribute="top" secondItem="tWo-po-8qs" secondAttribute="topMargin" constant="5" id="N9k-9c-AI2"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="byB-1F-cZs" secondAttribute="trailing" id="WZn-Rm-wpn"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="byB-1F-cZs" secondAttribute="bottom" constant="5" id="h2b-1n-a6x"/>
+                </constraints>
+            </tableViewCellContentView>
+            <animations/>
+            <connections>
+                <outlet property="header" destination="6sl-Zx-Sns" id="wOx-i4-Zsf"/>
+                <outlet property="imagesContainer" destination="7B9-zY-VKW" id="lCS-Zy-1c4"/>
+                <outlet property="tweetText" destination="Eic-Bx-84Y" id="5CM-6r-dey"/>
+                <outlet property="userProfileImageView" destination="87a-DA-6gq" id="UFq-Pb-Wn9"/>
+            </connections>
+            <point key="canvasLocation" x="499.5" y="361"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -15,7 +15,7 @@ class AboutViewController: UITableViewController {
         super.init(style: .Grouped)
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     override func viewWillAppear(animated: Bool) {

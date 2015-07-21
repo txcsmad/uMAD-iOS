@@ -49,8 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         aboutViewController.tabBarItem.title = "About"
         aboutViewController.tabBarItem.image = UIImage(named: "aboutus.png")
         aboutViewController.tabBarItem.selectedImage = UIImage(named: "aboutus-filled.png")
-        
-        window = UIWindow(frame:UIScreen.mainScreen().bounds)
+
+        window = UIWindow()
         window?.rootViewController = tabBarController
         
         window?.makeKeyAndVisible()
