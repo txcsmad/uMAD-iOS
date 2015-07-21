@@ -54,10 +54,8 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
                 return
             }
             self.events = objects as! [Event]?
-
-            self.sections = self.createSectionedRepresentation(self.events!)
-
-
+            let test = self.events!
+            self.sections = self.events!.createSectionedRepresentation()
 
             dispatch_async(dispatch_get_main_queue(), { _ in
                 self.searchController.searchBar.scopeButtonTitles = self.getTopTags()
@@ -73,42 +71,6 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
             })
         }
 
-    }
-
-    private func createSectionedRepresentation(events: [Event]) -> [[Event]] {
-        var newSections = [[Event]]()
-        if events.count == 0 {
-            return newSections
-        }
-
-        let calendar = NSCalendar.currentCalendar()
-        let desiredComponents: NSCalendarUnit = ([NSCalendarUnit.Hour, NSCalendarUnit.Day])
-        var currentSection = 0
-        var comparisonIndex = 0
-        var comparisonEvent = events[comparisonIndex]
-        var newSection = [Event]()
-        newSection.append(comparisonEvent)
-        newSections.append(newSection)
-        var comparisonComponents = calendar.components(desiredComponents, fromDate: comparisonEvent.startTime)
-        for var i = 1; i < events.count; i++ {
-            let currentEvent = events[i]
-
-            let currentComponents = calendar.components( desiredComponents, fromDate:currentEvent.startTime)
-            if comparisonComponents.hour != currentComponents.hour ||
-                comparisonComponents.day != currentComponents.day {
-                    currentSection++
-                    var newSection = [Event]()
-                    newSection.append(currentEvent)
-                    newSections.append(newSection)
-                    comparisonIndex = i
-                    comparisonEvent = events[comparisonIndex]
-                    comparisonComponents = calendar.components(desiredComponents, fromDate: comparisonEvent.startTime)
-
-            } else {
-                newSections[currentSection].append(currentEvent)
-            }
-        }
-        return newSections
     }
 
     func getTopTags() -> [String]? {
@@ -202,7 +164,6 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
         filteredEvents = events!.filter({( event: Event) -> Bool in
             let categoryMatch = (scopeString == "All") || (event.topicTagsSet.contains(scopeString))
             if searchText != "" {
-                event.name.rangeOfString("tesuteo!")
                 let stringMatch = event.name.rangeOfString(searchText, options: .CaseInsensitiveSearch)
                 return categoryMatch && (stringMatch != nil)
             } else {
@@ -210,7 +171,7 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
             }
         })
 
-        filteredSections = createSectionedRepresentation(filteredEvents!)
+        filteredSections = filteredEvents!.createSectionedRepresentation()
     }
 
 }
