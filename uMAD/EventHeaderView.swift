@@ -1,4 +1,5 @@
 import Foundation
+import ParseUI
 
 class EventHeaderView: UITableViewCell {
     @IBOutlet weak var companyName: UILabel!

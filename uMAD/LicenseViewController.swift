@@ -21,12 +21,12 @@ class LicenseViewController: UIViewController {
         view.backgroundColor = UIColor.whiteColor()
         
         let nameLabel: UILabel = UILabel(frame: CGRectMake(CGRectGetWidth(self.view.bounds) * 0.05, CGRectGetHeight(self.view.bounds) * 0.02, CGRectGetWidth(self.view.bounds) * 0.90, 20.00))
-        nameLabel.font = UIFont(name: "HelveticaNeue-Bold", size: FONT_SIZE + 3)
+        nameLabel.font = UIFont.boldSystemFontOfSize(17.0)
         nameLabel.text = self.licenseName
         nameLabel.sizeToFit()
 
         let detailsLabel: UILabel = UILabel(frame: CGRectMake(CGRectGetWidth(self.view.bounds) * 0.05, CGRectGetHeight(nameLabel.bounds) + nameLabel.frame.origin.y + CGRectGetHeight(self.view.bounds) * 0.02, CGRectGetWidth(self.view.bounds) * 0.90, 20.00))
-        detailsLabel.font = UIFont.systemFontOfSize(FONT_SIZE - 3)
+        detailsLabel.font = UIFont.systemFontOfSize(9)
         detailsLabel.text = self.licenseDetails
         detailsLabel.numberOfLines = 0
         detailsLabel.sizeToFit()

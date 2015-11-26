@@ -2,44 +2,63 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>armv7</string>
-	</array>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.1</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>d46e537f9d42c0439a71113b42d57d4b727f2564</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict>
+					<key>consumerKey</key>
+					<string>DNE6XS2GztfMd3eyYqaVV1d0E</string>
+					<key>consumerSecret</key>
+					<string>euQc3h2yMU35Oj9uAlDgpouSDOPeitADdZTZS1AX3i66i1iJXK</string>
+				</dict>
+				<key>KitName</key>
+				<string>Twitter</string>
+			</dict>
+		</array>
+	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.0.1</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

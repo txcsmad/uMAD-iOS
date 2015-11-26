@@ -1,9 +1,9 @@
 import UIKit
 import ParseCrashReporting
+import Fabric
+import TwitterKit
 
-let FONT_SIZE: CGFloat = 17.00
-let DETAIL_FONT_SIZE: CGFloat = 12.00
-let tintColor = UIColor(hue: 359.0, saturation: 0.91, brightness: 0.83, alpha: 1.0)
+
 @UIApplicationMain
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -11,6 +11,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+        Fabric.with([Twitter.self])
         ParseCrashReporting.enable()
         Event.registerSubclass()
         Company.registerSubclass()
@@ -21,13 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
 
-        UINavigationBar.appearance().barTintColor = tintColor
+        UINavigationBar.appearance().barTintColor = Config.tintColor
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-
         
         let eventsViewController = UINavigationController(rootViewController: EventsViewController())
-        let twitterViewController = UINavigationController(rootViewController: TwitterViewController())
+        let twitterViewController = UINavigationController(rootViewController: TimelineViewController())
         let sponsorsViewController = UINavigationController(rootViewController: SponsorsViewController())
         let aboutViewController = UINavigationController(rootViewController: AboutViewController())
         
@@ -54,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = tabBarController
         
         window?.makeKeyAndVisible()
-        window?.tintColor = tintColor
+        window?.tintColor = Config.tintColor
         
         return true
     }

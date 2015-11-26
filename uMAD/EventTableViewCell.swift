@@ -1,4 +1,5 @@
 import Foundation
+import ParseUI
 
 class EventTableViewCell: PFTableViewCell {
     static let formatter: NSDateFormatter = {
