@@ -1,6 +1,7 @@
-import Foundation
+import UIKit
 import MapKit
 import CoreLocation
+import Parse
 
 class AboutTableHeaderView: UITableViewCell {
     @IBOutlet var eventAbout: UILabel!

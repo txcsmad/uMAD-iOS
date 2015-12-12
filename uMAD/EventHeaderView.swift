@@ -1,4 +1,5 @@
 import Foundation
+import Parse
 import ParseUI
 
 class EventHeaderView: UITableViewCell {

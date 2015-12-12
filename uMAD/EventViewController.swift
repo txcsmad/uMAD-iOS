@@ -1,5 +1,6 @@
-import Foundation
+import UIKit
 import SafariServices
+import Parse
 
 let websiteCellIdentifier = "websiteCell"
 class EventViewController: UITableViewController {

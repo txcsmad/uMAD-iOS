@@ -1,4 +1,4 @@
-import Foundation
+import Parse
 
 
 class Company: PFObject, PFSubclassing {

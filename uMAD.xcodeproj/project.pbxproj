@@ -52,7 +52,6 @@
 		64ADB37B1A7C81D900E5BC22 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		64ADB37D1A7CB1DD00E5BC22 /* LicensesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LicensesViewController.swift; sourceTree = "<group>"; };
 		64ADB37F1A7CD36000E5BC22 /* LicenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LicenseViewController.swift; sourceTree = "<group>"; };
-		64CBDDAA1A75D133008BB167 /* uMAD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uMAD-Bridging-Header.h"; sourceTree = "<group>"; };
 		64CD922E1A7A051E00659946 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		64D4AF5D1A75CDA80040D3CA /* uMAD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uMAD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D4AF611A75CDA80040D3CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -187,7 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				64D4AF621A75CDA80040D3CA /* AppDelegate.swift */,
-				64CBDDAA1A75D133008BB167 /* uMAD-Bridging-Header.h */,
 				64CD92351A7A075B00659946 /* Models */,
 				64CD92341A7A074400659946 /* Views */,
 				64CD92331A7A073100659946 /* ViewControllers */,
@@ -527,7 +525,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "MAD.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "uMAD/uMAD-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -548,7 +546,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "MAD.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "uMAD/uMAD-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};

@@ -1,4 +1,4 @@
-import Foundation
+import Parse
 
 class Event: PFObject, PFSubclassing, Separable {
     @NSManaged var name: String

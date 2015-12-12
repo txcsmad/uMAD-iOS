@@ -1,4 +1,5 @@
 import UIKit
+import Parse
 import Fabric
 import TwitterKit
 

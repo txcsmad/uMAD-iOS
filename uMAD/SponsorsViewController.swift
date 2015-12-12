@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import SafariServices
+import Parse
 import ParseUI
 
 let sponsorCellIdentifier = "sponsorCell"
