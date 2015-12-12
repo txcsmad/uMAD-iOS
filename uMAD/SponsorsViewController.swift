@@ -1,5 +1,7 @@
 import Foundation
 import UIKit
+import SafariServices
+import ParseUI
 
 let sponsorCellIdentifier = "sponsorCell"
 class SponsorsViewController: UICollectionViewController {
@@ -27,7 +29,7 @@ class SponsorsViewController: UICollectionViewController {
     }
 
     private func fetchSponsors(){
-        var query = PFQuery(className: "Company")
+        let query = PFQuery(className: "Company")
         query.cachePolicy = .CacheThenNetwork
         query.whereKey("sponsorLevel", greaterThanOrEqualTo: 0)
         query.orderByDescending("sponsorLevel")
@@ -40,7 +42,6 @@ class SponsorsViewController: UICollectionViewController {
             self.collectionView!.reloadData()
         }
     }
-
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -55,10 +56,11 @@ class SponsorsViewController: UICollectionViewController {
     
      override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let currentSponsor = sponsors![indexPath.item]
+        let webViewController = SFSafariViewController(URL: currentSponsor.websiteURL)
         PFAnalytics.trackEventInBackground("openedSponsorWebsite", dimensions:nil, block: nil)
-        UIApplication.sharedApplication().openURL(currentSponsor.websiteURL)
+        navigationController?.pushViewController(webViewController, animated: true)
     }
-    
+
      override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(sponsorCellIdentifier, forIndexPath: indexPath) as! PFCollectionViewCell
         let company = sponsors![indexPath.item]

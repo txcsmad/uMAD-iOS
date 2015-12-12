@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14E7f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,73 +11,100 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="457"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" image="organization-image" translatesAutoresizingMaskIntoConstraints="NO" id="bZd-ez-NKI">
-                    <rect key="frame" x="0.0" y="178" width="600" height="110"/>
+                <stackView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Cb1-Ih-lgG">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="447"/>
+                    <subviews>
+                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="IQ8-5m-vpL">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="128"/>
+                            <animations/>
+                            <gestureRecognizers/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="128" id="8g7-HI-xLR"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="8g7-HI-xLR"/>
+                                </mask>
+                            </variation>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="AMR-HI-Gxs" appends="YES" id="2ta-Kp-mZL"/>
+                            </connections>
+                        </mapView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeo-NE-mf9">
+                            <rect key="frame" x="0.0" y="178" width="600" height="19"/>
+                            <animations/>
+                            <attributedString key="attributedText">
+                                <fragment content="About the event">
+                                    <attributes>
+                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" image="organization-image" translatesAutoresizingMaskIntoConstraints="NO" id="bZd-ez-NKI">
+                            <rect key="frame" x="0.0" y="247" width="600" height="110"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="110" id="GoZ-Qf-Gx4"/>
+                            </constraints>
+                        </imageView>
+                        <stackView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="23l-Yb-I0X">
+                            <rect key="frame" x="0.0" y="407" width="600" height="40"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="Who are we?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9F-ar-RrI">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
+                                    <animations/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" layoutMarginsFollowReadableWidth="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h30-4F-zK3">
+                                    <rect key="frame" x="0.0" y="20" width="600" height="20"/>
+                                    <animations/>
+                                    <attributedString key="attributedText">
+                                        <fragment content="About the organization">
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <animations/>
+                        </stackView>
+                    </subviews>
+                    <animations/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="110" id="GoZ-Qf-Gx4"/>
+                        <constraint firstAttribute="trailing" secondItem="xeo-NE-mf9" secondAttribute="trailing" id="8ff-k3-gaq"/>
+                        <constraint firstAttribute="trailingMargin" secondItem="xeo-NE-mf9" secondAttribute="trailing" constant="8" id="B8D-o6-r4Z"/>
+                        <constraint firstItem="xeo-NE-mf9" firstAttribute="leading" secondItem="Cb1-Ih-lgG" secondAttribute="leading" id="BVz-ds-wBS"/>
+                        <constraint firstItem="xeo-NE-mf9" firstAttribute="leading" secondItem="Cb1-Ih-lgG" secondAttribute="leadingMargin" id="aOs-mx-xn4"/>
+                        <constraint firstItem="xeo-NE-mf9" firstAttribute="leading" secondItem="Cb1-Ih-lgG" secondAttribute="leadingMargin" constant="8" id="qbS-YR-2Po"/>
+                        <constraint firstAttribute="trailingMargin" secondItem="xeo-NE-mf9" secondAttribute="trailing" id="ujM-7K-YZX"/>
                     </constraints>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" ambiguous="YES" misplaced="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeo-NE-mf9">
-                    <rect key="frame" x="15" y="143" width="570" height="20"/>
-                    <attributedString key="attributedText">
-                        <fragment content="About the event">
-                            <attributes>
-                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <font key="NSFont" size="17" name="HelveticaNeue"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                            </attributes>
-                        </fragment>
-                    </attributedString>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" ambiguous="YES" misplaced="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h30-4F-zK3">
-                    <rect key="frame" x="15" y="327" width="570" height="20"/>
-                    <attributedString key="attributedText">
-                        <fragment content="About the organization">
-                            <attributes>
-                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <font key="NSFont" size="17" name="HelveticaNeue"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                            </attributes>
-                        </fragment>
-                    </attributedString>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" ambiguous="YES" misplaced="YES" text="Who are we?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9F-ar-RrI">
-                    <rect key="frame" x="15" y="303" width="570" height="20"/>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="IQ8-5m-vpL">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="128"/>
-                    <gestureRecognizers/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="128" id="8g7-HI-xLR"/>
-                    </constraints>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="AMR-HI-Gxs" appends="YES" id="2ta-Kp-mZL"/>
-                    </connections>
-                </mapView>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="8ff-k3-gaq"/>
+                            <exclude reference="BVz-ds-wBS"/>
+                            <exclude reference="aOs-mx-xn4"/>
+                            <exclude reference="ujM-7K-YZX"/>
+                        </mask>
+                    </variation>
+                </stackView>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="xeo-NE-mf9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="BAv-gY-BrW"/>
-                <constraint firstAttribute="trailing" secondItem="IQ8-5m-vpL" secondAttribute="trailing" id="DrV-wD-u6p"/>
-                <constraint firstItem="IQ8-5m-vpL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Je0-gS-ebX"/>
-                <constraint firstAttribute="trailing" secondItem="bZd-ez-NKI" secondAttribute="trailing" id="KH3-Zj-TR2"/>
-                <constraint firstItem="w9F-ar-RrI" firstAttribute="top" secondItem="bZd-ez-NKI" secondAttribute="bottom" constant="15" id="LHu-ce-wnC"/>
-                <constraint firstAttribute="bottom" secondItem="h30-4F-zK3" secondAttribute="bottom" constant="8" id="QHD-CX-jnP"/>
-                <constraint firstAttribute="trailing" secondItem="xeo-NE-mf9" secondAttribute="trailing" constant="15" id="Ssc-gp-20q"/>
-                <constraint firstItem="IQ8-5m-vpL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Yol-gY-WP9"/>
-                <constraint firstAttribute="trailing" secondItem="w9F-ar-RrI" secondAttribute="trailing" constant="15" id="aYR-re-prn"/>
-                <constraint firstItem="h30-4F-zK3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="cov-dc-dPW"/>
-                <constraint firstItem="bZd-ez-NKI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dTK-bw-trU"/>
-                <constraint firstItem="w9F-ar-RrI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="jZn-st-cW8"/>
-                <constraint firstItem="xeo-NE-mf9" firstAttribute="top" secondItem="IQ8-5m-vpL" secondAttribute="bottom" constant="15" id="khd-3F-50o"/>
-                <constraint firstAttribute="trailing" secondItem="h30-4F-zK3" secondAttribute="trailing" constant="15" id="m8b-sz-Wtz"/>
-                <constraint firstItem="h30-4F-zK3" firstAttribute="top" secondItem="w9F-ar-RrI" secondAttribute="bottom" constant="4" id="y9W-Gl-FiQ"/>
-                <constraint firstItem="bZd-ez-NKI" firstAttribute="top" secondItem="xeo-NE-mf9" secondAttribute="bottom" constant="15" id="zR0-eT-Hyr"/>
+                <constraint firstItem="Cb1-Ih-lgG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Do1-TN-TNy"/>
+                <constraint firstItem="Cb1-Ih-lgG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Xzc-vR-2mk"/>
+                <constraint firstAttribute="bottom" secondItem="Cb1-Ih-lgG" secondAttribute="bottom" constant="10" id="dVn-zY-YTT"/>
+                <constraint firstAttribute="trailing" secondItem="Cb1-Ih-lgG" secondAttribute="trailing" id="mfI-RM-Nn0"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
@@ -89,6 +117,7 @@
         </view>
         <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="CRH-NG-7j5">
             <rect key="frame" x="0.0" y="0.0" width="600" height="155"/>
+            <animations/>
             <gestureRecognizers/>
             <constraints>
                 <constraint firstAttribute="height" constant="155" id="9go-1i-sJ4"/>
@@ -98,6 +127,7 @@
         <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="p52-NC-B5E">
             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <animations/>
         </mapView>
         <tapGestureRecognizer id="AMR-HI-Gxs">
             <connections>

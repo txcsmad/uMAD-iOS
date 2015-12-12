@@ -43,7 +43,7 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
 
     func fetchEvents(){
 
-        var eventQuery = PFQuery(className:"Event")
+        let eventQuery = PFQuery(className:"Event")
         eventQuery.cachePolicy = .CacheThenNetwork;
         eventQuery.orderByAscending("startTime")
         eventQuery.findObjectsInBackgroundWithBlock {
@@ -54,10 +54,8 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
                 return
             }
             self.events = objects as! [Event]?
-
-            self.sections = self.createSectionedRepresentation(self.events!)
-
-
+            let test = self.events!
+            self.sections = self.events!.createSectionedRepresentation()
 
             dispatch_async(dispatch_get_main_queue(), { _ in
                 self.searchController.searchBar.scopeButtonTitles = self.getTopTags()
@@ -75,42 +73,6 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
 
     }
 
-    private func createSectionedRepresentation(events: [Event]) -> [[Event]] {
-        var newSections = [[Event]]()
-        if events.count == 0 {
-            return newSections
-        }
-
-        let calendar = NSCalendar.currentCalendar()
-        let desiredComponents = (NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitDay)
-        var currentSection = 0
-        var comparisonIndex = 0
-        var comparisonEvent = events[comparisonIndex]
-        var newSection = [Event]()
-        newSection.append(comparisonEvent)
-        newSections.append(newSection)
-        var comparisonComponents = calendar.components(desiredComponents, fromDate: comparisonEvent.startTime)
-        for var i = 1; i < events.count; i++ {
-            let currentEvent = events[i]
-
-            let currentComponents = calendar.components( desiredComponents, fromDate:currentEvent.startTime)
-            if comparisonComponents.hour != currentComponents.hour ||
-                comparisonComponents.day != currentComponents.day {
-                    currentSection++
-                    var newSection = [Event]()
-                    newSection.append(currentEvent)
-                    newSections.append(newSection)
-                    comparisonIndex = i
-                    comparisonEvent = events[comparisonIndex]
-                    comparisonComponents = calendar.components(desiredComponents, fromDate: comparisonEvent.startTime)
-
-            } else {
-                newSections[currentSection].append(currentEvent)
-            }
-        }
-        return newSections
-    }
-
     func getTopTags() -> [String]? {
         if self.events == nil {
             return nil
@@ -123,8 +85,8 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
                     tags[tag] = 1 + oldValue
                 }
             }
-            let byDescendingOccurrences = sorted(tags){ $0.1 > $1.1 }
-            let numTags = count(byDescendingOccurrences)
+            let byDescendingOccurrences = tags.sort{ $0.1 > $1.1 }
+            let numTags = byDescendingOccurrences.count
             var scopeTags = [String]()
             scopeTags.append("All")
             for var i = 0; i < 3 && (i < numTags - 1); i++ {
@@ -148,8 +110,8 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
 
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header = view as! UITableViewHeaderFooterView
-        header.textLabel.font = UIFont(name: "HelveticaNeue-Bold", size: UIFont.systemFontSize())
-        header.textLabel.text = header.textLabel.text!.uppercaseString
+        header.textLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: UIFont.systemFontSize())
+        header.textLabel!.text = header.textLabel!.text!.uppercaseString
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -187,7 +149,7 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
     //MARK: - Search
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchString = searchController.searchBar.text
-        filterContentForSearchText(searchString, scope: searchController.searchBar.selectedScopeButtonIndex)
+        filterContentForSearchText(searchString!, scope: searchController.searchBar.selectedScopeButtonIndex)
         tableView.reloadData()
     }
     func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int){
@@ -197,12 +159,11 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
         updateSearchResultsForSearchController(searchController)
     }
     func filterContentForSearchText(searchText: String, scope: Int) {
-        let buttonTitles = searchController.searchBar.scopeButtonTitles as! [String]
+        let buttonTitles = searchController.searchBar.scopeButtonTitles!
         let scopeString = buttonTitles[scope]
         filteredEvents = events!.filter({( event: Event) -> Bool in
             let categoryMatch = (scopeString == "All") || (event.topicTagsSet.contains(scopeString))
             if searchText != "" {
-                event.name.rangeOfString("tesuteo!")
                 let stringMatch = event.name.rangeOfString(searchText, options: .CaseInsensitiveSearch)
                 return categoryMatch && (stringMatch != nil)
             } else {
@@ -210,7 +171,7 @@ class EventsViewController: UITableViewController, UISearchControllerDelegate, U
             }
         })
 
-        filteredSections = createSectionedRepresentation(filteredEvents!)
+        filteredSections = filteredEvents!.createSectionedRepresentation()
     }
 
 }

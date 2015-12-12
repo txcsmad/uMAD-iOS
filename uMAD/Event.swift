@@ -1,6 +1,6 @@
 import Foundation
 
-class Event: PFObject, PFSubclassing {
+class Event: PFObject, PFSubclassing, Separable {
     @NSManaged var name: String
     @NSManaged var room: String
     @NSManaged var speaker: String
@@ -12,6 +12,8 @@ class Event: PFObject, PFSubclassing {
     @NSManaged var topicTags: [String]
     @NSManaged var company: Company
 
+    private static let desiredComponents: NSCalendarUnit = ([NSCalendarUnit.Hour, NSCalendarUnit.Day])
+    private static let calendar = NSCalendar.currentCalendar()
     var topicTagsSet: Set<String> {
         get {
             return Set<String>(topicTags)
@@ -26,4 +28,9 @@ class Event: PFObject, PFSubclassing {
         return "\(name)"
     }
 
+    func shouldBeSeparated(from: Event) -> Bool {
+        let comparisonComponents = Event.calendar.components(Event.desiredComponents, fromDate: from.startTime)
+        let currentComponents = Event.calendar.components( Event.desiredComponents, fromDate:self.startTime)
+        return comparisonComponents.hour != currentComponents.hour || comparisonComponents.day != currentComponents.day
+    }
 }

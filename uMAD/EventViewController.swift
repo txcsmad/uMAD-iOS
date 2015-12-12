@@ -1,4 +1,6 @@
 import Foundation
+import SafariServices
+
 let websiteCellIdentifier = "websiteCell"
 class EventViewController: UITableViewController {
     weak var event: Event!
@@ -7,14 +9,14 @@ class EventViewController: UITableViewController {
     init(){
         super.init(style: .Grouped)
     }
-    override init!(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     override init(style: UITableViewStyle) {
         super.init(style: .Grouped)
     }
 
-    required init!(coder aDecoder: NSCoder!) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -46,8 +48,7 @@ class EventViewController: UITableViewController {
         } else {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             if eventURL != nil {
-                let webViewController = SVWebViewController(URL: event.company.websiteURL)
-                webViewController.view.backgroundColor = UIColor.whiteColor()
+                let webViewController = SFSafariViewController(URL: event.company.websiteURL)
                 PFAnalytics.trackEventInBackground("openedSponsorWebsite", dimensions:nil, block: nil)
                 navigationController?.pushViewController(webViewController, animated: true)
             }

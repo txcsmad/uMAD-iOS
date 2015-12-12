@@ -23,7 +23,7 @@ class AboutTableHeaderView: UITableViewCell {
             eventMap.zoomEnabled = false
 
             if eventLocationName != nil {
-                var locationAnnotation = MKPointAnnotation()
+                let locationAnnotation = MKPointAnnotation()
                 locationAnnotation.coordinate = eventLocation!
                 locationAnnotation.title = eventLocationName
                 eventMap.addAnnotation(locationAnnotation)

@@ -11,7 +11,7 @@ Hosting a conference? We put together this app for our annual developer conferen
 
 ### Configuration
 
-Rename the `Config.template.swift` file to `Config.swift`. Fill in each of the variables with the proper keys from Twitter and Parse. You will also want to sub in your own icon and tint color. If you don't need one of the default tabs, simply comment out its addition to the TabViewController in the AppDelegate. Pull down the dependencies by running `pod install` in the project repo, and you should be ready to compile. Note that you will need a [developer account](https://developer.apple.com/programs/ios/) if you intend to distribute your app to attendees.
+Rename the `Config.template.swift` file to `Config.swift`. Fill in each of the variables with the proper keys from Parse. You will also want to sub in your own icon and tint color. To use the Twitter tab, follow the steps to setup [Fabric](https://fabric.io/dashboard). Save the build script it generates into a file named `fabricscript.sh` in the root of the project and ensure that it is executable. If you don't need one of the default tabs, simply comment out its addition to the TabViewController in the AppDelegate. Pull down the dependencies by running `pod install` in the project repo, and you should be ready to compile. Note that you will need a [developer account](https://developer.apple.com/programs/ios/) if you intend to distribute your app to attendees.
 
 #### Parse
 

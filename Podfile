@@ -1,9 +1,10 @@
+use_frameworks!
 target 'uMAD' do
 
-pod 'Parse', '~> 1.7.0'
-pod 'ParseUI', '~> 1.1.3'
-pod 'ParseCrashReporting'
-pod 'STTwitter', '~> 0.2.0'
-pod 'SVWebViewController', :head
+pod 'Parse'
+pod 'ParseUI'
+pod 'Fabric'
+pod 'TwitterKit'
+pod 'TwitterCore'
 
 end
