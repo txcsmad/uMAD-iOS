@@ -1,5 +1,4 @@
 import UIKit
-import ParseCrashReporting
 import Fabric
 import TwitterKit
 
@@ -13,7 +12,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         Fabric.with([Twitter.self])
-        ParseCrashReporting.enable()
         Event.registerSubclass()
         Company.registerSubclass()
         Parse.setApplicationId(Config.parseAppID, clientKey: Config.parseClientKey)
