@@ -18,4 +18,7 @@ DerivedData
 project.xcworkspace
 
 Pods/
+
+# Secrets
 Config.swift
+fabricscript.sh

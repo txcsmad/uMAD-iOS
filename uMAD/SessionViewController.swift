@@ -3,8 +3,8 @@ import SafariServices
 import Parse
 
 let websiteCellIdentifier = "websiteCell"
-class EventViewController: UITableViewController {
-    weak var event: Session!
+class SessionViewController: UITableViewController {
+    weak var session: Session!
     var eventURL: NSURL?
 
     init(){
@@ -26,7 +26,7 @@ class EventViewController: UITableViewController {
         navigationItem.title = "Session Info"
         view.backgroundColor = UIColor.whiteColor()
 
-        event.company?.fetchIfNeededInBackgroundWithBlock { (company, error) -> Void in
+        session.company?.fetchIfNeededInBackgroundWithBlock { (company, error) -> Void in
             let company = company as! Company
             self.eventURL = company.websiteURL
             self.tableView.reloadData()
@@ -49,7 +49,7 @@ class EventViewController: UITableViewController {
         } else {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             if eventURL != nil {
-                let webViewController = SFSafariViewController(URL: event.company!.websiteURL)
+                let webViewController = SFSafariViewController(URL: session.company!.websiteURL)
                 PFAnalytics.trackEventInBackground("openedSponsorWebsite", dimensions:nil, block: nil)
                 navigationController?.pushViewController(webViewController, animated: true)
             }
@@ -70,7 +70,7 @@ class EventViewController: UITableViewController {
         case 0:
             let headerView = NSBundle.mainBundle().loadNibNamed("EventHeaderView", owner: self, options: nil)[0] as! EventHeaderView
             headerView.sessionDescription.preferredMaxLayoutWidth = 300
-            headerView.configure(event)
+            headerView.configure(session)
             cell = headerView
 
         case 1:

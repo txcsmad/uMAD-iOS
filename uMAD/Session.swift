@@ -1,7 +1,7 @@
 
 import Parse
 
-class Session: PFObject, PFSubclassing, Separable {
+class Session: PFObject, PFSubclassing, Separable, CustomDebugStringConvertible {
     
     @NSManaged var bio: String
     @NSManaged var capacity: Int
@@ -14,14 +14,26 @@ class Session: PFObject, PFSubclassing, Separable {
     @NSManaged var speaker: String
     @NSManaged var startTime: NSDate
     @NSManaged var topicTags: [String]
-    
+
+    var topicTagsSet: Set<String> {
+        get {
+            return Set<String>(topicTags)
+        }
+    }
+
     static func parseClassName() -> String {
         return "UMAD_Session"
     }
 
+    override var debugDescription: String {
+        get {
+            return "\(name) \(startTime)"
+        }
+    }
+
     func shouldBeSeparated(from: Session) -> Bool {
         let calendar = NSCalendar.currentCalendar()
-        return calendar.isDate(startTime, equalToDate: from.startTime, toUnitGranularity: .Hour)
+        return !calendar.isDate(startTime, equalToDate: from.startTime, toUnitGranularity: .Hour)
     }
     
 }
