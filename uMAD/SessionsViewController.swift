@@ -3,10 +3,9 @@ import ParseUI
 
 class SessionsViewController: PFQueryTableViewController, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate {
 
-
     private var sessions: [Session]?
     private var sections = [[Session]]()
-    private var filteredEvents: [Session]?
+    private var filteredSessions: [Session]?
     private var filteredSections = [[Session]]()
     private let sectionHeaderFormatter = NSDateFormatter()
     private var searchController: UISearchController!
@@ -26,7 +25,10 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
 
     override func objectsDidLoad(error: NSError?) {
         super.objectsDidLoad(error)
+        sessions?.removeAll()
         sections.removeAll()
+        filteredSessions?.removeAll()
+        filteredSections.removeAll()
         sessions = objects as! [Session]?
         sections = sessions!.createSectionedRepresentation()
         searchController.searchBar.scopeButtonTitles = getTopTags()
@@ -72,7 +74,7 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
         tableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
 
-        sectionHeaderFormatter.timeZone = NSTimeZone(name: "UTC")
+        sectionHeaderFormatter.timeZone = NSTimeZone.localTimeZone()
         sectionHeaderFormatter.dateFormat = "EEEE - hh:mm a";
 
         pullToRefreshEnabled = true
@@ -161,7 +163,7 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
     func filterContentForSearchText(searchText: String, scope: Int) {
         let buttonTitles = searchController.searchBar.scopeButtonTitles!
         let scopeString = buttonTitles[scope]
-        filteredEvents = sessions!.filter({( event: Session) -> Bool in
+        filteredSessions = sessions!.filter({( event: Session) -> Bool in
             let categoryMatch = (scopeString == "All") || (event.topicTagsSet.contains(scopeString))
             if searchText != "" {
                 let stringMatch = event.name.rangeOfString(searchText, options: .CaseInsensitiveSearch)
@@ -171,7 +173,7 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
             }
         })
 
-        filteredSections = filteredEvents!.createSectionedRepresentation()
+        filteredSections = filteredSessions!.createSectionedRepresentation()
     }
 
 }

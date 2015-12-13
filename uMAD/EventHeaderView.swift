@@ -26,12 +26,8 @@ class EventHeaderView: UITableViewCell {
         sessionName.text = event.name
         layoutSubviews()
 
-        let timeFormatter  = NSDateFormatter()
-        timeFormatter.timeZone = NSTimeZone(name: "UTC")
-        timeFormatter.dateFormat = "hh:mm a"
-
-        let startTimeString = timeFormatter.stringFromDate(event.startTime)
-        let endTimeString = timeFormatter.stringFromDate(event.endTime)
+        let startTimeString = NSDateFormatter.localizedStringFromDate(event.startTime, dateStyle: .NoStyle, timeStyle: .ShortStyle)
+        let endTimeString = NSDateFormatter.localizedStringFromDate(event.endTime, dateStyle: .NoStyle, timeStyle: .ShortStyle)
 
         time.text = startTimeString + " - " + endTimeString
     }

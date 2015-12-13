@@ -16,9 +16,7 @@ class Session: PFObject, PFSubclassing, Separable, CustomDebugStringConvertible 
     @NSManaged var topicTags: [String]
 
     var topicTagsSet: Set<String> {
-        get {
-            return Set<String>(topicTags)
-        }
+        return Set<String>(topicTags)
     }
 
     static func parseClassName() -> String {
