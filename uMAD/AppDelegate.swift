@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         Fabric.with([Twitter.self])
-        Event.registerSubclass()
+        Session.registerSubclass()
         Company.registerSubclass()
         Parse.setApplicationId(Config.parseAppID, clientKey: Config.parseClientKey)
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
@@ -26,17 +26,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
-        let eventsViewController = UINavigationController(rootViewController: EventsViewController())
+        let sessionsViewController = UINavigationController(rootViewController: SessionsViewController())
         let twitterViewController = UINavigationController(rootViewController: TimelineViewController())
         let sponsorsViewController = UINavigationController(rootViewController: SponsorsViewController())
         let aboutViewController = UINavigationController(rootViewController: AboutViewController())
         
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [eventsViewController, twitterViewController, sponsorsViewController, aboutViewController]
+        tabBarController.viewControllers = [sessionsViewController, twitterViewController, sponsorsViewController, aboutViewController]
         
-        eventsViewController.tabBarItem.title = "Events"
-        eventsViewController.tabBarItem.image = UIImage(named: "calendar.png")
-        eventsViewController.tabBarItem.selectedImage = UIImage(named: "calendar-filled.png")
+        sessionsViewController.tabBarItem.title = "Sessions"
+        sessionsViewController.tabBarItem.image = UIImage(named: "calendar.png")
+        sessionsViewController.tabBarItem.selectedImage = UIImage(named: "calendar-filled.png")
 
         twitterViewController.tabBarItem.title = "Twitter"
         twitterViewController.tabBarItem.image = UIImage(named: "twitter.png")

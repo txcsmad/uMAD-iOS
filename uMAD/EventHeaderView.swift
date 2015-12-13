@@ -11,10 +11,10 @@ class EventHeaderView: UITableViewCell {
     @IBOutlet weak var sessionName: UILabel!
     @IBOutlet weak var sessionThumbnail: PFImageView!
     
-    func configure(event: Event){
-        event.company.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
-            self.sessionThumbnail.file = event.company.thumbnail
-            self.companyName.text = event.company.name
+    func configure(event: Session) {
+        event.company?.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
+            self.sessionThumbnail.file = event.company?.thumbnail
+            self.companyName.text = event.company?.name
             self.sessionThumbnail.loadInBackground({ (image, error) -> Void in
                 self.setNeedsDisplay()
             })

@@ -4,7 +4,7 @@ import Parse
 
 let websiteCellIdentifier = "websiteCell"
 class EventViewController: UITableViewController {
-    weak var event: Event!
+    weak var event: Session!
     var eventURL: NSURL?
 
     init(){
@@ -26,7 +26,7 @@ class EventViewController: UITableViewController {
         navigationItem.title = "Session Info"
         view.backgroundColor = UIColor.whiteColor()
 
-        event.company.fetchIfNeededInBackgroundWithBlock { (company, error) -> Void in
+        event.company?.fetchIfNeededInBackgroundWithBlock { (company, error) -> Void in
             let company = company as! Company
             self.eventURL = company.websiteURL
             self.tableView.reloadData()
@@ -49,7 +49,7 @@ class EventViewController: UITableViewController {
         } else {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             if eventURL != nil {
-                let webViewController = SFSafariViewController(URL: event.company.websiteURL)
+                let webViewController = SFSafariViewController(URL: event.company!.websiteURL)
                 PFAnalytics.trackEventInBackground("openedSponsorWebsite", dimensions:nil, block: nil)
                 navigationController?.pushViewController(webViewController, animated: true)
             }
