@@ -41,7 +41,7 @@ class AboutViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 1
     }
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return indexPath.row == 1
@@ -51,11 +51,6 @@ class AboutViewController: UITableViewController {
         switch indexPath.row {
         case 0:
             tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        case 1:
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-
-            let licenseViewController: LicensesViewController = LicensesViewController()
-            navigationController?.pushViewController(licenseViewController, animated: true)
         default:
             print("Unknow index")
         }
@@ -79,10 +74,6 @@ class AboutViewController: UITableViewController {
             }
             headerView.configure()
             cell = headerView
-        case 1:
-            cell = tableView.dequeueReusableCellWithIdentifier(aboutTableViewCellIdentifier, forIndexPath: indexPath) as UITableViewCell
-            cell.accessoryType = .DisclosureIndicator
-            cell.textLabel?.text = "Licenses"
         default:
             cell = UITableViewCell()
         }
