@@ -14,7 +14,7 @@
                 <stackView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Cb1-Ih-lgG">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="447"/>
                     <subviews>
-                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="IQ8-5m-vpL">
+                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="IQ8-5m-vpL">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="128"/>
                             <gestureRecognizers/>
                             <constraints>
@@ -29,7 +29,7 @@
                                 <outletCollection property="gestureRecognizers" destination="AMR-HI-Gxs" appends="YES" id="2ta-Kp-mZL"/>
                             </connections>
                         </mapView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeo-NE-mf9">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeo-NE-mf9">
                             <rect key="frame" x="0.0" y="178" width="600" height="19"/>
                             <attributedString key="attributedText">
                                 <fragment content="About the event">
@@ -42,7 +42,7 @@
                             </attributedString>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" image="organization-image" translatesAutoresizingMaskIntoConstraints="NO" id="bZd-ez-NKI">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="organization-image" translatesAutoresizingMaskIntoConstraints="NO" id="bZd-ez-NKI">
                             <rect key="frame" x="0.0" y="247" width="600" height="110"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="110" id="GoZ-Qf-Gx4"/>
@@ -77,6 +77,7 @@
                         <constraint firstAttribute="trailing" secondItem="xeo-NE-mf9" secondAttribute="trailing" id="8ff-k3-gaq"/>
                         <constraint firstAttribute="trailingMargin" secondItem="xeo-NE-mf9" secondAttribute="trailing" constant="8" id="B8D-o6-r4Z"/>
                         <constraint firstItem="xeo-NE-mf9" firstAttribute="leading" secondItem="Cb1-Ih-lgG" secondAttribute="leading" id="BVz-ds-wBS"/>
+                        <constraint firstItem="xeo-NE-mf9" firstAttribute="top" secondItem="IQ8-5m-vpL" secondAttribute="bottom" constant="50" id="WHj-Qz-bCe"/>
                         <constraint firstItem="xeo-NE-mf9" firstAttribute="leading" secondItem="Cb1-Ih-lgG" secondAttribute="leadingMargin" id="aOs-mx-xn4"/>
                         <constraint firstItem="xeo-NE-mf9" firstAttribute="leading" secondItem="Cb1-Ih-lgG" secondAttribute="leadingMargin" constant="8" id="qbS-YR-2Po"/>
                         <constraint firstAttribute="trailingMargin" secondItem="xeo-NE-mf9" secondAttribute="trailing" id="ujM-7K-YZX"/>
@@ -84,8 +85,10 @@
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="8ff-k3-gaq"/>
+                            <exclude reference="B8D-o6-r4Z"/>
                             <exclude reference="BVz-ds-wBS"/>
                             <exclude reference="aOs-mx-xn4"/>
+                            <exclude reference="qbS-YR-2Po"/>
                             <exclude reference="ujM-7K-YZX"/>
                         </mask>
                     </variation>
