@@ -1,13 +1,15 @@
-uMAD iOS App
-------
+# uMAD iOS App
+
 [![Build Status](http://img.shields.io/travis/utcsmad/uMAD-iOS/master.svg?style=flat)](https://travis-ci.org/utcsmad/uMAD-iOS)
 
 Hosting a conference? We put together this app for our annual developer conference, [uMAD](http://umad.me), and it's simple to configure it for your event as well. Check it out on the [App Store](https://itunes.apple.com/us/app/umad-university-of-mad/id964728751?mt=8&ign-mpt=uo%3D4).
 
+### Features
+
 * Built on [Parse](http://parse.com) (free up to 30 requests a second), so you can change information and times without resubmitting
 * Twitter stream from your organization
 * About tab with map of your event location
-* Analytics for app opens, individual tab opens and crashes (free through Parse)
+* Analytics for app opens, individual tab opens (free through Parse)
 
 ### Configuration
 
