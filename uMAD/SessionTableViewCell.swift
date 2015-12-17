@@ -1,11 +1,3 @@
-//
-//  SessionTableViewCell.swift
-//  uMAD
-//
-//  Created by Jesse Tipton on 12/11/15.
-//  Copyright © 2015 com.MAD. All rights reserved.
-//
-
 import UIKit
 import ParseUI
 

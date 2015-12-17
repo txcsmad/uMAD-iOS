@@ -1,7 +1,7 @@
 import Parse
 import ParseUI
 
-class SessionsViewController: PFQueryTableViewController, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate {
+class SessionsViewController: PFQueryTableViewController, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate {
 
     private var sessions: [Session]?
     private var sections = [[Session]]()
@@ -10,6 +10,45 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
     private let sectionHeaderFormatter = NSDateFormatter()
     private var searchController: UISearchController!
     private let cellIdentifier = "SessionCell"
+
+    // MARK: - UIViewController
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        navigationItem.title = "Sessions"
+
+        tableView.registerClass(SessionTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        tableView.rowHeight = 64
+        tableView.separatorInset = UIEdgeInsetsZero
+
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.scopeButtonTitles = ["All"]
+        searchController.searchBar.placeholder = "Search Events"
+        searchController.searchBar.delegate = self
+        tableView.tableHeaderView = searchController.searchBar
+        definesPresentationContext = true
+
+        sectionHeaderFormatter.timeZone = NSTimeZone.localTimeZone()
+        sectionHeaderFormatter.dateFormat = "EEEE - hh:mm a";
+
+        pullToRefreshEnabled = true
+
+        // If the user isn't logged in...
+        if PFUser.currentUser() == nil {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "didTapRightBarItem")
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Trash, target: self, action: "didTapRightBarItem")
+        }
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.setToolbarHidden(true, animated: true)
+    }
 
     // MARK: - PFQueryTableViewController
 
@@ -53,61 +92,6 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
         
         return cell
     }
-    
-    // MARK: - UIViewController
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        navigationItem.title = "Sessions"
-        
-        tableView.registerClass(SessionTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-        tableView.rowHeight = 64
-        tableView.separatorInset = UIEdgeInsetsZero
-
-        searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.scopeButtonTitles = ["All"]
-        searchController.searchBar.placeholder = "Search Events"
-        searchController.searchBar.delegate = self
-        tableView.tableHeaderView = searchController.searchBar
-        definesPresentationContext = true
-
-        sectionHeaderFormatter.timeZone = NSTimeZone.localTimeZone()
-        sectionHeaderFormatter.dateFormat = "EEEE - hh:mm a";
-
-        pullToRefreshEnabled = true
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-
-        navigationController?.setToolbarHidden(true, animated: true)
-    }
-
-    func getTopTags() -> [String]? {
-        guard sessions != nil else {
-            return nil
-        }
-
-        var tags = [String: Int]()
-        for event in sessions! {
-            for tag in event.topicTagsSet {
-                let oldValue = tags[tag] ?? 0
-                tags[tag] = 1 + oldValue
-            }
-        }
-        let byDescendingOccurrences = tags.sort{ $0.1 > $1.1 }
-        let numTags = byDescendingOccurrences.count
-        var scopeTags = [String]()
-        scopeTags.append("All")
-        for var i = 0; i < 3 && (i < numTags - 1); i++ {
-            scopeTags.append(byDescendingOccurrences[i].0)
-        }
-        return scopeTags
-
-    }
 
     // MARK: - UITableViewDataSource
 
@@ -145,7 +129,50 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
         return 55.0
     }
 
+    //MARK: - Login
+
+    func didTapRightBarItem(){
+        // User is not logged in
+        if PFUser.currentUser() == nil {
+            let loginViewController = PFLogInViewController()
+            loginViewController.delegate = self
+            presentViewController(loginViewController, animated: true, completion: nil)
+        } else {
+            // User is logged in. Present profile view
+            let profileViewController = ProfileViewController()
+            presentViewController(profileViewController, animated: true, completion: nil)
+        }
+    }
+
+    func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {
+        // Change the icon
+    }
+
     //MARK: - Search
+
+    func getTopTags() -> [String]? {
+        guard sessions != nil else {
+            return nil
+        }
+
+        var tags = [String: Int]()
+        for event in sessions! {
+            for tag in event.topicTagsSet {
+                let oldValue = tags[tag] ?? 0
+                tags[tag] = 1 + oldValue
+            }
+        }
+        let byDescendingOccurrences = tags.sort{ $0.1 > $1.1 }
+        let numTags = byDescendingOccurrences.count
+        var scopeTags = [String]()
+        scopeTags.append("All")
+        for var i = 0; i < 3 && (i < numTags - 1); i++ {
+            scopeTags.append(byDescendingOccurrences[i].0)
+        }
+        return scopeTags
+
+    }
+
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchString = searchController.searchBar.text
         filterContentForSearchText(searchString!, scope: searchController.searchBar.selectedScopeButtonIndex)

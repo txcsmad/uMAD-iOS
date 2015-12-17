@@ -11,5 +11,8 @@ class TimelineViewController: TWTRTimelineViewController {
 
         // Show Tweet actions
         showTweetActions = true
+
+        // Set the navigation bar title
+        title = "Twitter"
     }
 }
