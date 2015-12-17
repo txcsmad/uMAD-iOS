@@ -2,10 +2,21 @@ language: objective-c
 
 before_script:
 - ./scripts/add-key.sh
+- mv -v ./uMAD/Config.template.swift ./uMAD/Config.swift
+- echo "echo \"Ran dummy fabricscript.sh\"" > ./scripts/fabricscript.sh
+- echo ./scripts/fabricscript.sh
+- chmod a+x ./scripts/fabricscript.sh
 
 xcode_project: uMAD.xcodeproj # path to your xcodeproj folder
 xcode_scheme: uMAD
 osx_image: xcode7.2
+
+script:
+- xctool  -workspace uMAD.xcworkspace
+  -scheme uMAD
+  -sdk iphonesimulator 
+  build
+  CODE_SIGNING_REQUIRED=NO
 
 email:
     on_failure: change
