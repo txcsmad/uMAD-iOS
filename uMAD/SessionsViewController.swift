@@ -146,6 +146,9 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
 
     func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {
         // Change the icon
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Trash, target: self, action: "didTapRightBarItem")
+        // Dismiss the login view controller
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
     //MARK: - Search
