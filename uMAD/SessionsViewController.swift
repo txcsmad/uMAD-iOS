@@ -122,7 +122,6 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
         let section = (searchController.active) ? filteredSections[section] : sections[section]
         let sectionTime = section[0].startTime
         return sectionHeaderFormatter.stringFromDate(sectionTime)
-
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -173,7 +172,6 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
             scopeTags.append(byDescendingOccurrences[i].0)
         }
         return scopeTags
-
     }
 
     func updateSearchResultsForSearchController(searchController: UISearchController) {
@@ -193,7 +191,7 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
     func filterContentForSearchText(searchText: String, scope: Int) {
         let buttonTitles = searchController.searchBar.scopeButtonTitles!
         let scopeString = buttonTitles[scope]
-        filteredSessions = sessions!.filter({( event: Session) -> Bool in
+        filteredSessions = sessions!.filter { event in
             let categoryMatch = (scopeString == "All") || (event.topicTagsSet.contains(scopeString))
             if searchText != "" {
                 let stringMatch = event.name.rangeOfString(searchText, options: .CaseInsensitiveSearch)
@@ -201,7 +199,7 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
             } else {
                 return categoryMatch
             }
-        })
+        }
 
         filteredSections = filteredSessions!.createSectionedRepresentation()
     }
