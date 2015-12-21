@@ -6,12 +6,14 @@ let aboutTableViewCellIdentifier = "aboutcell"
 
 class AboutViewController: UITableViewController {
 
-    init(){
+    init() {
         super.init(style: .Grouped)
     }
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
+
     override init(style: UITableViewStyle) {
         super.init(style: .Grouped)
     }
@@ -19,14 +21,14 @@ class AboutViewController: UITableViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+
     override func viewWillAppear(animated: Bool) {
 
-        
     }
     override func viewDidLoad() {
         PFAnalytics.trackEventInBackground("openedAboutTab", dimensions:nil, block: nil)
         super.viewDidLoad()
-        
+
         view.backgroundColor = UIColor.whiteColor()
         navigationItem.title = "About"
 
@@ -56,7 +58,7 @@ class AboutViewController: UITableViewController {
         }
 
     }
-    
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell
         switch indexPath.row {
@@ -77,8 +79,8 @@ class AboutViewController: UITableViewController {
         default:
             cell = UITableViewCell()
         }
-        
+
         return cell
     }
-    
+
 }

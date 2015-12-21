@@ -10,7 +10,7 @@ class EventHeaderView: UITableViewCell {
     @IBOutlet weak var sessionDescription: UILabel!
     @IBOutlet weak var sessionName: UILabel!
     @IBOutlet weak var sessionThumbnail: PFImageView!
-    
+
     func configure(event: Session) {
         event.company?.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
             self.sessionThumbnail.file = event.company?.thumbnail

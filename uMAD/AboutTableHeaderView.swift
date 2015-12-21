@@ -14,7 +14,7 @@ class AboutTableHeaderView: UITableViewCell {
     override func awakeFromNib() {
         layoutSubviews()
     }
-    func configure(){
+    func configure() {
         if eventLocation != nil {
             eventMap.hidden = false
             let viewRegion = MKCoordinateRegionMakeWithDistance(eventLocation!, 500, 500)
@@ -37,18 +37,18 @@ class AboutTableHeaderView: UITableViewCell {
 
     }
 
-    @IBAction func mapWasTapped(){
+    @IBAction func mapWasTapped() {
 
         let alertController = UIAlertController(title: "Need directions?", message:
             "We'll send you to Maps", preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: "Yes", style: .Default){ (action) in
+        alertController.addAction(UIAlertAction(title: "Yes", style: .Default) { (action) in
             self.openDirections()
         })
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel,handler: nil))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
     }
 
-    func openDirections(){
+    func openDirections() {
 
             let placemark = MKPlacemark(coordinate: eventLocation!, addressDictionary: nil)
             let mapItem = MKMapItem(placemark: placemark)

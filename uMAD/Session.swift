@@ -1,8 +1,7 @@
-
 import Parse
 
-class Session: PFObject, PFSubclassing, Separable, CustomDebugStringConvertible {
-    
+class Session: PFObject, Separable, CustomDebugStringConvertible {
+
     @NSManaged var bio: String
     @NSManaged var capacity: Int
     @NSManaged var company: Company?
@@ -33,5 +32,5 @@ class Session: PFObject, PFSubclassing, Separable, CustomDebugStringConvertible 
         let calendar = NSCalendar.currentCalendar()
         return !calendar.isDate(startTime, equalToDate: from.startTime, toUnitGranularity: .Hour)
     }
-    
+
 }

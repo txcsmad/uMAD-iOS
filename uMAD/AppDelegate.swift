@@ -19,21 +19,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
 
         PFConfig.getConfigInBackgroundWithBlock(nil)
-        
+
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
 
         UINavigationBar.appearance().barTintColor = Config.tintColor
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        
+
         let sessionsViewController = UINavigationController(rootViewController: SessionsViewController())
         let twitterViewController = UINavigationController(rootViewController: TimelineViewController())
         let sponsorsViewController = UINavigationController(rootViewController: SponsorsViewController())
         let aboutViewController = UINavigationController(rootViewController: AboutViewController())
-        
+
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [sessionsViewController, twitterViewController, sponsorsViewController, aboutViewController]
-        
+
         sessionsViewController.tabBarItem.title = "Sessions"
         sessionsViewController.tabBarItem.image = UIImage(named: "calendar.png")
         sessionsViewController.tabBarItem.selectedImage = UIImage(named: "calendar-filled.png")
@@ -52,12 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window = UIWindow()
         window?.rootViewController = tabBarController
-        
+
         window?.makeKeyAndVisible()
         window?.tintColor = Config.tintColor
-        
+
         return true
     }
 
 }
-

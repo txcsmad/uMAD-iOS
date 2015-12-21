@@ -1,7 +1,7 @@
 import Parse
 import ParseUI
 
-class SessionsViewController: PFQueryTableViewController, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate {
+class SessionsViewController: PFQueryTableViewController, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, ProfileViewControllerDelegate {
 
     private var sessions: [Session]?
     private var sections = [[Session]]()
@@ -32,7 +32,7 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
         definesPresentationContext = true
 
         sectionHeaderFormatter.timeZone = NSTimeZone.localTimeZone()
-        sectionHeaderFormatter.dateFormat = "EEEE - hh:mm a";
+        sectionHeaderFormatter.dateFormat = "EEEE - hh:mm a"
 
         pullToRefreshEnabled = true
 
@@ -55,10 +55,10 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
     override func queryForTable() -> PFQuery {
         let query = Session.query()!
         query.cachePolicy = .CacheThenNetwork
-        
+
         query.includeKey("company")
         query.orderByAscending("startTime")
-        
+
         return query
     }
 
@@ -83,13 +83,13 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
     }
 
     // MARK: - UITableViewController
-    
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! SessionTableViewCell
-        
+
         let session = objectAtIndexPath(indexPath) as! Session
         cell.configureForSession(session)
-        
+
         return cell
     }
 
@@ -130,16 +130,16 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
 
     //MARK: - Login
 
-    func didTapRightBarItem(){
+    func didTapRightBarItem() {
         // User is not logged in
         if PFUser.currentUser() == nil {
             let loginViewController = PFLogInViewController()
             loginViewController.delegate = self
             presentViewController(loginViewController, animated: true, completion: nil)
         } else {
+            let navController = UIStoryboard(name: "Profile", bundle: NSBundle.mainBundle()).instantiateInitialViewController()!
             // User is logged in. Present profile view
-            let profileViewController = ProfileViewController()
-            presentViewController(profileViewController, animated: true, completion: nil)
+            presentViewController(navController, animated: true, completion: nil)
         }
     }
 
@@ -147,6 +147,10 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
         // Change the icon
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Trash, target: self, action: "didTapRightBarItem")
         // Dismiss the login view controller
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    func userDidExitProfile() {
         dismissViewControllerAnimated(true, completion: nil)
     }
 
@@ -164,7 +168,7 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
                 tags[tag] = 1 + oldValue
             }
         }
-        let byDescendingOccurrences = tags.sort{ $0.1 > $1.1 }
+        let byDescendingOccurrences = tags.sort { $0.1 > $1.1 }
         let numTags = byDescendingOccurrences.count
         var scopeTags = [String]()
         scopeTags.append("All")
@@ -180,7 +184,7 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
         tableView.reloadData()
     }
 
-    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int){
+    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         updateSearchResultsForSearchController(searchController)
     }
 

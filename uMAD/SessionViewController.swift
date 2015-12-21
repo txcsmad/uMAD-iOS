@@ -10,7 +10,7 @@ class SessionViewController: UITableViewController {
     init(){
         super.init(style: .Grouped)
     }
-    
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -18,7 +18,7 @@ class SessionViewController: UITableViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Session Info"
@@ -54,7 +54,7 @@ class SessionViewController: UITableViewController {
         }
 
     }
-    
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if eventURL != nil {
             return 2

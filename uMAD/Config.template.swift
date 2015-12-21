@@ -1,4 +1,3 @@
-
 import UIKit
 
 struct Config {
@@ -8,7 +7,7 @@ struct Config {
     // Create these in the Parse dashboard
     static let parseAppID = ""
     static let parseClientKey = ""
-    
+
     // Tint color
     static let tintColor = UIColor.blueColor()
 }

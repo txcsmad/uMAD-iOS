@@ -9,7 +9,7 @@ class SponsorsViewController: UICollectionViewController {
 
     var sponsors: [Company]?
 
-    init(){
+    init() {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         layout.itemSize = CGSize(width: 90, height: 120)
@@ -22,14 +22,14 @@ class SponsorsViewController: UICollectionViewController {
     override func viewDidLoad() {
         PFAnalytics.trackEventInBackground("openedSponsorsTab", dimensions:nil, block: nil)
         super.viewDidLoad()
-        
+
         navigationItem.title = "Sponsors"
         collectionView!.registerClass(PFCollectionViewCell.self, forCellWithReuseIdentifier: sponsorCellIdentifier)
         collectionView!.backgroundColor = UIColor.whiteColor()
         fetchSponsors()
     }
 
-    private func fetchSponsors(){
+    private func fetchSponsors() {
         let query = PFQuery(className: "Company")
         query.cachePolicy = .CacheThenNetwork
         query.whereKey("sponsorLevel", greaterThanOrEqualTo: 0)
@@ -54,7 +54,7 @@ class SponsorsViewController: UICollectionViewController {
         }
         return 0
     }
-    
+
      override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let currentSponsor = sponsors![indexPath.item]
         let webViewController = SFSafariViewController(URL: currentSponsor.websiteURL)
@@ -67,7 +67,7 @@ class SponsorsViewController: UICollectionViewController {
         let company = sponsors![indexPath.item]
         cell.imageView.file = company.image
         cell.imageView.contentMode = .ScaleAspectFit
-        //HAX: Shouldn't really need the placeholder here, but 
+        //HAX: Shouldn't really need the placeholder here, but
         //the cells reload very strangely without it
         cell.imageView.image =  UIImage(named: "placeholder")
         cell.imageView.loadInBackground { (image, error) -> Void in
@@ -78,13 +78,13 @@ class SponsorsViewController: UICollectionViewController {
         }
         return cell
     }
-    
+
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let currentSponsor = sponsors![indexPath.item]
         let level = currentSponsor.sponsorLevel
-        
-        var size : CGSize
-        
+
+        var size: CGSize
+
         switch level{
         case 0:
             size = CGSize(width: (view.frame.width/2.3)-10, height: 100)
@@ -94,7 +94,7 @@ class SponsorsViewController: UICollectionViewController {
             size = CGSize(width: view.frame.width - 20, height: 150)
         default:
             size = CGSize(width: (view.frame.width/2.3)-10, height: 100)
-            
+
         }
         return size
     }

@@ -1,8 +1,7 @@
-
 import Parse
 
-class Company: PFObject, PFSubclassing {
-    
+class Company: PFObject {
+
     @NSManaged var name: String
     @NSManaged var sponsorLevel: Int
     @NSManaged var website: String
@@ -12,9 +11,9 @@ class Company: PFObject, PFSubclassing {
     var websiteURL: NSURL {
         return NSURL(string: website)!
     }
-    
+
     static func parseClassName() -> String {
         return "Company"
     }
-    
+
 }
