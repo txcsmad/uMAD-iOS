@@ -1,0 +1,5 @@
+# 160 -> error
+# This is really only to catch egregiously long lines
+line_length: 
+  - 160
+  - 160
