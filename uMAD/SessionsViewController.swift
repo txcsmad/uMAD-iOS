@@ -1,5 +1,6 @@
 import Parse
 import ParseUI
+import SafariServices
 
 class SessionsViewController: PFQueryTableViewController, UISearchControllerDelegate,
 UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, ProfileViewControllerDelegate {
@@ -58,6 +59,10 @@ UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, Pro
         query.cachePolicy = .CacheThenNetwork
 
         query.includeKey("company")
+        // If we know the current uMAD, only list sessions for it.
+        if let currentUMAD = AppDelegate.currentUMAD {
+            query.whereKey("umad", equalTo: currentUMAD)
+        }
         query.orderByAscending("startTime")
 
         return query
@@ -77,7 +82,6 @@ UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, Pro
         sessions = casted
         sections = sessions!.createSectionedRepresentation()
         searchController.searchBar.scopeButtonTitles = getTopTags()
-
     }
 
     override func objectAtIndexPath(indexPath: NSIndexPath?) -> PFObject? {
@@ -140,13 +144,14 @@ UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, Pro
     }
 
     //MARK: - Login
-
     func didTapRightBarItem() {
         // User is not logged in
         if PFUser.currentUser() == nil {
-            let loginViewController = PFLogInViewController()
-            loginViewController.delegate = self
-            presentViewController(loginViewController, animated: true, completion: nil)
+            let logInViewController = LogInViewController()
+            logInViewController.delegate = self
+            logInViewController.emailAsUsername = true
+            logInViewController.logInView?.logo = UIImageView(image: UIImage(named: "organization-logo.png"))
+            presentViewController(logInViewController, animated: true, completion: nil)
         } else {
             let navController = UIStoryboard(name: "Profile", bundle: NSBundle.mainBundle()).instantiateInitialViewController()!
             guard let profileController = navController.childViewControllers.first as? ProfileViewController else {

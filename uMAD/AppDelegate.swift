@@ -9,7 +9,7 @@ import TwitterKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var currentUMAD: UMAD!
+    static var currentUMAD: UMAD?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
@@ -26,13 +26,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let umadQuery = UMAD.query()
         umadQuery?.orderByDescending("year")
         umadQuery?.limit = 1
-        umadQuery?.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
-            guard let resultUMADs = results as? [UMAD],
-                   let umad = resultUMADs.first else {
-                return
+        do {
+             // A large amount of the code depends on knowing the latest conference.
+             // Making this synchronous makes it easier to ensure that the app is showing
+             // the latest information.
+            let results = try umadQuery?.findObjects()
+            if let resultUMADs = results as? [UMAD],
+                let umad = resultUMADs.first {
+                    AppDelegate.currentUMAD = umad
             }
-            self.currentUMAD = umad
-        })
+        } catch {
+            print("Configure a UMAD class to represent the current conference")
+        }
+
 
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
 
