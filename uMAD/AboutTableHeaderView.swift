@@ -53,21 +53,21 @@ class AboutTableHeaderView: UITableViewCell {
 
     func openDirections() {
 
-            let placemark = MKPlacemark(coordinate: eventLocation!, addressDictionary: nil)
-            let mapItem = MKMapItem(placemark: placemark)
-            if eventLocationName != nil {
-                mapItem.name = eventLocationName
-            }
+        let placemark = MKPlacemark(coordinate: eventLocation!, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        if eventLocationName != nil {
+            mapItem.name = eventLocationName
+        }
 
-            let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
-            // Get the "Current User Location" MKMapItem
-            let currentLocationMapItem = MKMapItem.mapItemForCurrentLocation()
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
+        // Get the "Current User Location" MKMapItem
+        let currentLocationMapItem = MKMapItem.mapItemForCurrentLocation()
 
-            PFAnalytics.trackEventInBackground("openedDirections", dimensions:nil, block: nil)
-            // Pass the current location and destination map items to the Maps app
-            // Set the direction mode in the launchOptions dictionary
-            MKMapItem.openMapsWithItems([currentLocationMapItem, mapItem],
-                launchOptions:launchOptions)
+        PFAnalytics.trackEventInBackground("openedDirections", dimensions:nil, block: nil)
+        // Pass the current location and destination map items to the Maps app
+        // Set the direction mode in the launchOptions dictionary
+        MKMapItem.openMapsWithItems([currentLocationMapItem, mapItem],
+            launchOptions:launchOptions)
     }
 
 }
