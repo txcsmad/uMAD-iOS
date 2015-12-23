@@ -65,14 +65,17 @@ class AboutViewController: UITableViewController {
 
         case 0:
             let configuration = PFConfig.currentConfig()
-            let headerView = NSBundle.mainBundle().loadNibNamed("AboutTableHeaderView", owner: self, options: nil)[0] as! AboutTableHeaderView
-            headerView.eventAbout.text = configuration["conferenceAboutText"] as! String?
-            headerView.organizationAbout.text = configuration["organizationAboutText"] as! String?
-            let geoPoint = configuration["conferenceLocation"] as! PFGeoPoint?
-            if geoPoint != nil {
-                let coordinate = CLLocationCoordinate2D(latitude: geoPoint!.latitude, longitude: geoPoint!.longitude)
+            let nib = NSBundle.mainBundle().loadNibNamed("AboutTableHeaderView", owner: self, options: nil)[0]
+            guard let headerView = nib as? AboutTableHeaderView else {
+                return UITableViewCell()
+            }
+            headerView.eventAbout.text = configuration["conferenceAboutText"] as? String
+            headerView.organizationAbout.text = configuration["organizationAboutText"] as? String
+
+            if let geoPoint = configuration["conferenceLocation"] as? PFGeoPoint {
+                let coordinate = CLLocationCoordinate2D(latitude: geoPoint.latitude, longitude: geoPoint.longitude)
                 headerView.eventLocation = coordinate
-                headerView.eventLocationName = configuration["conferenceLocationName"] as! String?
+                headerView.eventLocationName = configuration["conferenceLocationName"] as? String
             }
             headerView.configure()
             cell = headerView

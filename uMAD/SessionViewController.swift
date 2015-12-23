@@ -7,7 +7,7 @@ class SessionViewController: UITableViewController {
     weak var session: Session!
     var eventURL: NSURL?
 
-    init(){
+    init() {
         super.init(style: .Grouped)
     }
 
@@ -25,7 +25,9 @@ class SessionViewController: UITableViewController {
         view.backgroundColor = UIColor.whiteColor()
 
         session.company?.fetchIfNeededInBackgroundWithBlock { (company, error) -> Void in
-            let company = company as! Company
+            guard let company = company as? Company else {
+                return
+            }
             self.eventURL = company.websiteURL
             self.tableView.reloadData()
         }
@@ -38,11 +40,13 @@ class SessionViewController: UITableViewController {
 
     override func viewWillAppear(animated: Bool) {
     }
+
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return indexPath.row == 1
     }
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 0{
+        if indexPath.row == 0 {
              tableView.deselectRowAtIndexPath(indexPath, animated: false)
         } else {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -66,7 +70,10 @@ class SessionViewController: UITableViewController {
         let cell: UITableViewCell
         switch indexPath.row {
         case 0:
-            let headerView = NSBundle.mainBundle().loadNibNamed("EventHeaderView", owner: self, options: nil)[0] as! EventHeaderView
+            let nib = NSBundle.mainBundle().loadNibNamed("EventHeaderView", owner: self, options: nil).first
+            guard let headerView = nib as? EventHeaderView else {
+                return UITableViewCell()
+            }
             headerView.sessionDescription.preferredMaxLayoutWidth = 300
             headerView.configure(session)
             cell = headerView

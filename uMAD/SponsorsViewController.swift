@@ -39,7 +39,10 @@ class SponsorsViewController: UICollectionViewController {
                 return
                 // There was an error
             }
-            self.sponsors = objects as! [Company]?
+            guard let casted = objects as? [Company] else {
+                return
+            }
+            self.sponsors = casted
             self.collectionView!.reloadData()
         }
     }
@@ -63,7 +66,11 @@ class SponsorsViewController: UICollectionViewController {
     }
 
      override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(sponsorCellIdentifier, forIndexPath: indexPath) as! PFCollectionViewCell
+        let plainCell = collectionView.dequeueReusableCellWithReuseIdentifier(sponsorCellIdentifier,
+            forIndexPath: indexPath)
+        guard let cell = plainCell as? PFCollectionViewCell else {
+            return UICollectionViewCell()
+        }
         let company = sponsors![indexPath.item]
         cell.imageView.file = company.image
         cell.imageView.contentMode = .ScaleAspectFit
@@ -79,13 +86,15 @@ class SponsorsViewController: UICollectionViewController {
         return cell
     }
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let currentSponsor = sponsors![indexPath.item]
         let level = currentSponsor.sponsorLevel
 
         var size: CGSize
 
-        switch level{
+        switch level {
         case 0:
             size = CGSize(width: (view.frame.width/2.3)-10, height: 100)
         case 1:

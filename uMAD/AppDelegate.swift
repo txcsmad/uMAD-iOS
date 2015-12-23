@@ -9,16 +9,30 @@ import TwitterKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var currentUMAD: UMAD!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         Fabric.with([Twitter.self])
         Session.registerSubclass()
         Company.registerSubclass()
+        User.registerSubclass()
+        UMAD.registerSubclass()
+        UMADApplication.registerSubclass()
         Parse.setApplicationId(Config.parseAppID, clientKey: Config.parseClientKey)
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
 
         PFConfig.getConfigInBackgroundWithBlock(nil)
+        let umadQuery = UMAD.query()
+        umadQuery?.orderByDescending("year")
+        umadQuery?.limit = 1
+        umadQuery?.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
+            guard let resultUMADs = results as? [UMAD],
+                   let umad = resultUMADs.first else {
+                return
+            }
+            self.currentUMAD = umad
+        })
 
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
 
@@ -26,6 +40,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
 
+        let tabBarController = configureTabBarController()
+
+        window = UIWindow()
+        window?.rootViewController = tabBarController
+
+        window?.makeKeyAndVisible()
+        window?.tintColor = Config.tintColor
+
+        return true
+    }
+
+    func configureTabBarController() -> UITabBarController {
         let sessionsViewController = UINavigationController(rootViewController: SessionsViewController())
         let twitterViewController = UINavigationController(rootViewController: TimelineViewController())
         let sponsorsViewController = UINavigationController(rootViewController: SponsorsViewController())
@@ -49,14 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         aboutViewController.tabBarItem.title = "About"
         aboutViewController.tabBarItem.image = UIImage(named: "aboutus.png")
         aboutViewController.tabBarItem.selectedImage = UIImage(named: "aboutus-filled.png")
-
-        window = UIWindow()
-        window?.rootViewController = tabBarController
-
-        window?.makeKeyAndVisible()
-        window?.tintColor = Config.tintColor
-
-        return true
+        return tabBarController
     }
 
 }

@@ -1,6 +1,6 @@
 import Parse
 
-class Session: PFObject, Separable, CustomDebugStringConvertible {
+class Session: PFObject, PFSubclassing, Separable, CustomDebugStringConvertible {
 
     @NSManaged var bio: String
     @NSManaged var capacity: Int

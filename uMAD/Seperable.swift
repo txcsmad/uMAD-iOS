@@ -6,7 +6,7 @@ extension Array where Element: Separable {
 
     func createSectionedRepresentation() -> [[Element]] {
         var newSections = [[Element]]()
-        guard count != 0  else {
+        guard count != 0 else {
             return newSections
         }
 

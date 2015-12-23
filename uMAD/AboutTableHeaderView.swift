@@ -11,9 +11,11 @@ class AboutTableHeaderView: UITableViewCell {
     @IBOutlet var mapTapRecognizer: UITapGestureRecognizer!
     var eventLocation: CLLocationCoordinate2D?
     var eventLocationName: String?
+
     override func awakeFromNib() {
         layoutSubviews()
     }
+
     func configure() {
         if eventLocation != nil {
             eventMap.hidden = false
@@ -45,7 +47,8 @@ class AboutTableHeaderView: UITableViewCell {
             self.openDirections()
         })
         alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+            let rootController = UIApplication.sharedApplication().keyWindow?.rootViewController
+        rootController?.presentViewController(alertController, animated: true, completion: nil)
     }
 
     func openDirections() {

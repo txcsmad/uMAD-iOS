@@ -1,7 +1,8 @@
 import Parse
 import ParseUI
 
-class SessionsViewController: PFQueryTableViewController, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, ProfileViewControllerDelegate {
+class SessionsViewController: PFQueryTableViewController, UISearchControllerDelegate,
+UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, ProfileViewControllerDelegate {
 
     private var sessions: [Session]?
     private var sections = [[Session]]()
@@ -64,11 +65,16 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
 
     override func objectsDidLoad(error: NSError?) {
         super.objectsDidLoad(error)
+
+        guard let casted = objects as? [Session] else {
+            return
+        }
+
         sessions?.removeAll()
         sections.removeAll()
         filteredSessions?.removeAll()
         filteredSections.removeAll()
-        sessions = objects as! [Session]?
+        sessions = casted
         sections = sessions!.createSectionedRepresentation()
         searchController.searchBar.scopeButtonTitles = getTopTags()
 
@@ -85,10 +91,13 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
     // MARK: - UITableViewController
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! SessionTableViewCell
+        guard let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as? SessionTableViewCell else {
+            return UITableViewCell()
+        }
 
-        let session = objectAtIndexPath(indexPath) as! Session
-        cell.configureForSession(session)
+        if let session = objectAtIndexPath(indexPath) as? Session {
+            cell.configureForSession(session)
+        }
 
         return cell
     }
@@ -105,7 +114,9 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
     }
 
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let header = view as! UITableViewHeaderFooterView
+        guard let header = view as? UITableViewHeaderFooterView else {
+            return
+        }
         header.textLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: UIFont.systemFontSize())
         header.textLabel!.text = header.textLabel!.text!.uppercaseString
     }
@@ -138,6 +149,10 @@ class SessionsViewController: PFQueryTableViewController, UISearchControllerDele
             presentViewController(loginViewController, animated: true, completion: nil)
         } else {
             let navController = UIStoryboard(name: "Profile", bundle: NSBundle.mainBundle()).instantiateInitialViewController()!
+            guard let profileController = navController.childViewControllers.first as? ProfileViewController else {
+                return
+            }
+            profileController.delegate = self
             // User is logged in. Present profile view
             presentViewController(navController, animated: true, completion: nil)
         }

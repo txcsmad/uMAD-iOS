@@ -1,6 +1,6 @@
 import Parse
 
-class Company: PFObject {
+class Company: PFObject, PFSubclassing {
 
     @NSManaged var name: String
     @NSManaged var sponsorLevel: Int
