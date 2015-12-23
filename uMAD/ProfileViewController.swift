@@ -10,7 +10,7 @@ class ProfileViewController: UITableViewController {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var applicationStatusLabel: UILabel!
-    @IBOutlet weak var applicationStatusCell: UITableViewCell!
+    @IBOutlet weak var applicationStatusIndicator: UIView!
     @IBOutlet weak var applicationStatusSpinner: UIActivityIndicatorView!
 
     var delegate: ProfileViewControllerDelegate?
@@ -21,17 +21,13 @@ class ProfileViewController: UITableViewController {
             delegate?.userDidExitProfile()
             return
         }
+        profileImage.layer.cornerRadius = profileImage.bounds.width / 2.0
         nameLabel.text = currentUser.name
-
+        applicationStatusIndicator.layer.cornerRadius = applicationStatusIndicator.frame.width / 2.0
         updateApplicationStatus()
     }
 
     @IBAction func didTapDone(sender: UIBarButtonItem) {
-        delegate?.userDidExitProfile()
-    }
-
-    @IBAction func didTapLogout(sender: UIBarButtonItem) {
-        PFUser.logOutInBackground()
         delegate?.userDidExitProfile()
     }
 
@@ -58,13 +54,35 @@ class ProfileViewController: UITableViewController {
             }
             self.applicationStatusLabel.text = "uMAD 2016 Application: "
             self.applicationStatusLabel.text?.appendContentsOf(application.status)
+
+            let indicatorColor: UIColor
             // TODO: We need to agree on the strings that will be used here
-            if application.status == "Approved" {
-                self.applicationStatusLabel.text?.appendContentsOf("! 🎉")
-                self.applicationStatusCell.backgroundColor = UIColor.greenColor()
-            } else {
+            switch application.status {
+                case "Accepted":
+                    self.applicationStatusLabel.text?.appendContentsOf("! 🎉")
+                    indicatorColor = UIColor(red: 0.76, green: 0.92, blue: 0.25, alpha: 1.0)
+                    break
+                case "Pending":
+                    indicatorColor = UIColor.lightGrayColor()
+                    break
+                case "Waitlisted":
+                    indicatorColor = UIColor.yellowColor()
+                default:
+                    indicatorColor = UIColor.grayColor()
             }
+            self.applicationStatusIndicator.backgroundColor = indicatorColor
             self.applicationStatusLabel.hidden = false
         })
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        switch indexPath.section {
+        case 2:
+            PFUser.logOutInBackground()
+            delegate?.userDidExitProfile()
+            break
+        default:
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
     }
 }

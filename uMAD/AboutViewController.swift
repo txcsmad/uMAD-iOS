@@ -2,9 +2,9 @@ import UIKit
 import CoreLocation
 import Parse
 
-let aboutTableViewCellIdentifier = "aboutcell"
-
 class AboutViewController: UITableViewController {
+
+    private let cellIdentifier = "aboutcell"
 
     init() {
         super.init(style: .Grouped)
@@ -32,7 +32,7 @@ class AboutViewController: UITableViewController {
         view.backgroundColor = UIColor.whiteColor()
         navigationItem.title = "About"
 
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: aboutTableViewCellIdentifier)
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         tableView.estimatedRowHeight = 300
         automaticallyAdjustsScrollViewInsets = true
         tableView.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: tableView.frame.width, height: 20.0) )

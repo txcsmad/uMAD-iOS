@@ -38,12 +38,7 @@ UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, Pro
 
         pullToRefreshEnabled = true
 
-        // If the user isn't logged in...
-        if PFUser.currentUser() == nil {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "didTapRightBarItem")
-        } else {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Trash, target: self, action: "didTapRightBarItem")
-        }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "user.png"), style: .Plain, target: self, action: "didTapRightBarItem")
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -164,8 +159,7 @@ UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, Pro
     }
 
     func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {
-        // Change the icon
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Trash, target: self, action: "didTapRightBarItem")
+        // TODO: Change the icon?
         // Dismiss the login view controller
         dismissViewControllerAnimated(true, completion: nil)
     }

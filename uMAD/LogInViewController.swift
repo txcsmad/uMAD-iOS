@@ -15,6 +15,6 @@ class LogInViewController: PFLogInViewController, SFSafariViewControllerDelegate
     }
 
     func safariViewControllerDidFinish(controller: SFSafariViewController) {
-        
+
     }
 }
