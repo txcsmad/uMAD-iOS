@@ -90,21 +90,9 @@ class SponsorsViewController: UICollectionViewController {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let currentSponsor = sponsors![indexPath.item]
-        let level = currentSponsor.sponsorLevel
 
-        var size: CGSize
+        var size = CGSize(width: (view.frame.width/2.3)-10, height: 100)
 
-        switch level {
-        case 0:
-            size = CGSize(width: (view.frame.width/2.3)-10, height: 100)
-        case 1:
-            size = CGSize(width: (view.frame.width/2.3)-10, height: 100)
-        case 2:
-            size = CGSize(width: view.frame.width - 20, height: 150)
-        default:
-            size = CGSize(width: (view.frame.width/2.3)-10, height: 100)
-
-        }
         return size
     }
 }

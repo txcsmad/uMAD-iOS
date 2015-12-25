@@ -34,6 +34,8 @@
 		D4D48A7A1ACB9A4400E03D22 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D48A781ACB969700E03D22 /* MapKit.framework */; };
 		D4D48A7C1ACB9A7300E03D22 /* AboutTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4D48A7B1ACB9A7300E03D22 /* AboutTableHeaderView.xib */; };
 		D4D48A7E1ACB9AAB00E03D22 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D48A7D1ACB9AAB00E03D22 /* CoreLocation.framework */; };
+		D4E19F281C2CA80100470561 /* UMADSponsor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F271C2CA80100470561 /* UMADSponsor.swift */; };
+		D4E19F2A1C2CA86D00470561 /* UMADApplicationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F291C2CA86D00470561 /* UMADApplicationStatus.swift */; };
 		D4F4CEDB1C2A39C700220E39 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F4CEDA1C2A39C700220E39 /* LogInViewController.swift */; };
 		D4FF2D3A1B5DF5EE00A8E2A2 /* Seperable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF2D381B5DEA1600A8E2A2 /* Seperable.swift */; };
 /* End PBXBuildFile section */
@@ -85,6 +87,8 @@
 		D4D48A781ACB969700E03D22 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D4D48A7B1ACB9A7300E03D22 /* AboutTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutTableHeaderView.xib; sourceTree = "<group>"; };
 		D4D48A7D1ACB9AAB00E03D22 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D4E19F271C2CA80100470561 /* UMADSponsor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMADSponsor.swift; sourceTree = "<group>"; };
+		D4E19F291C2CA86D00470561 /* UMADApplicationStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMADApplicationStatus.swift; sourceTree = "<group>"; };
 		D4F4CEDA1C2A39C700220E39 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		D4F99C251ACCAAC900ED0A8E /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		D4FF2D381B5DEA1600A8E2A2 /* Seperable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seperable.swift; sourceTree = "<group>"; };
@@ -169,6 +173,8 @@
 				64FD63781A76FB0700D89106 /* Session.swift */,
 				D4171D661C28925800E2975C /* User.swift */,
 				D4171D681C28A83D00E2975C /* UMADApplication.swift */,
+				D4E19F291C2CA86D00470561 /* UMADApplicationStatus.swift */,
+				D4E19F271C2CA80100470561 /* UMADSponsor.swift */,
 				D4171D6A1C28AACE00E2975C /* UMAD.swift */,
 			);
 			name = Models;
@@ -433,6 +439,7 @@
 				D4F4CEDB1C2A39C700220E39 /* LogInViewController.swift in Sources */,
 				64D4AF851A75CF020040D3CA /* SponsorsViewController.swift in Sources */,
 				D46D47951C05109500B333AF /* Config.swift in Sources */,
+				D4E19F281C2CA80100470561 /* UMADSponsor.swift in Sources */,
 				D4FF2D3A1B5DF5EE00A8E2A2 /* Seperable.swift in Sources */,
 				64D4AF631A75CDA80040D3CA /* AppDelegate.swift in Sources */,
 				D43561501AC62EDA00F7789D /* Company.swift in Sources */,
@@ -444,6 +451,7 @@
 				D4171D691C28A83D00E2975C /* UMADApplication.swift in Sources */,
 				D46D47971C05157700B333AF /* TimelineViewController.swift in Sources */,
 				8840760F1C1BAFB600EBF319 /* SessionsViewController.swift in Sources */,
+				D4E19F2A1C2CA86D00470561 /* UMADApplicationStatus.swift in Sources */,
 				884076131C1BB68A00EBF319 /* SessionTableViewCell.swift in Sources */,
 				64ADB37C1A7C81D900E5BC22 /* AboutViewController.swift in Sources */,
 			);
