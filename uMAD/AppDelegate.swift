@@ -14,11 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         Fabric.with([Twitter.self])
-        Session.registerSubclass()
-        Company.registerSubclass()
-        User.registerSubclass()
-        UMAD.registerSubclass()
-        UMADApplication.registerSubclass()
+        registerParseSubclasses()
         Parse.setApplicationId(Config.parseAppID, clientKey: Config.parseClientKey)
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
 
@@ -55,6 +51,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.tintColor = Config.tintColor
 
         return true
+    }
+
+    func registerParseSubclasses() {
+        Session.registerSubclass()
+        Company.registerSubclass()
+        User.registerSubclass()
+        UMAD.registerSubclass()
+        UMADApplication.registerSubclass()
+        UMADApplicationStatus.registerSubclass()
     }
 
     func configureTabBarController() -> UITabBarController {
