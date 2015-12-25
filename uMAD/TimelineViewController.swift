@@ -1,5 +1,6 @@
 import Foundation
 import TwitterKit
+import Parse
 
 class TimelineViewController: TWTRTimelineViewController {
     convenience init() {

@@ -26,7 +26,6 @@ class AboutViewController: UITableViewController {
 
     }
     override func viewDidLoad() {
-        PFAnalytics.trackEventInBackground("openedAboutTab", dimensions:nil, block: nil)
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.whiteColor()
