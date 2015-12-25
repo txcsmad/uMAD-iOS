@@ -119,12 +119,41 @@
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="jEt-Bn-ZDp">
+                                        <rect key="frame" x="0.0" y="301" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jEt-Bn-ZDp" id="wlw-fP-eAN">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Check-in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llU-kV-kcq">
+                                                    <rect key="frame" x="24" y="11.5" width="118" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="llU-kV-kcq" firstAttribute="leading" secondItem="wlw-fP-eAN" secondAttribute="leadingMargin" constant="16" id="Ovj-gf-uIT"/>
+                                                <constraint firstItem="llU-kV-kcq" firstAttribute="centerY" secondItem="wlw-fP-eAN" secondAttribute="centerY" id="QEh-oX-jUt"/>
+                                                <constraint firstItem="llU-kV-kcq" firstAttribute="centerX" secondItem="wlw-fP-eAN" secondAttribute="centerX" id="dFq-u1-xnG"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="dFq-u1-xnG"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="aYS-UL-wcO" kind="show" identifier="check-in" id="6SB-Or-vnU"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection id="TaV-sh-5qp">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="ESs-Bn-r8Q">
-                                        <rect key="frame" x="0.0" y="337" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="381" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ESs-Bn-r8Q" id="f3J-3u-Vhz">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -171,6 +200,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BUK-1o-w22" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="935" y="-62"/>
+        </scene>
+        <!--Check-in-->
+        <scene sceneID="K6j-e5-jgu">
+            <objects>
+                <viewController title="Check-in" id="aYS-UL-wcO" customClass="CheckInViewController" customModule="uMAD" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="I9T-FT-OPq"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lq4-or-0JG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gf2-kG-fTy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rmP-SA-09P">
+                                <rect key="frame" x="200" y="200" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="rmP-SA-09P" secondAttribute="height" multiplier="1:1" id="s1z-em-Cjb"/>
+                                    <constraint firstAttribute="width" constant="200" id="wwK-jb-Qci"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dH3-q0-sKm">
+                                <rect key="frame" x="249" y="420" width="101.5" height="28"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="24"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have not checked in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ag0-yP-PjJ">
+                                <rect key="frame" x="207" y="160" width="186" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ag0-yP-PjJ" firstAttribute="top" secondItem="I9T-FT-OPq" secondAttribute="bottom" constant="20" id="0IF-Hu-ole"/>
+                            <constraint firstItem="dH3-q0-sKm" firstAttribute="top" secondItem="rmP-SA-09P" secondAttribute="bottom" constant="20" id="CeN-KI-B5n"/>
+                            <constraint firstItem="Ag0-yP-PjJ" firstAttribute="centerX" secondItem="Gf2-kG-fTy" secondAttribute="centerX" id="P3m-mM-BtS"/>
+                            <constraint firstItem="rmP-SA-09P" firstAttribute="centerY" secondItem="Gf2-kG-fTy" secondAttribute="centerY" id="PnL-lp-rWW"/>
+                            <constraint firstItem="rmP-SA-09P" firstAttribute="top" secondItem="Ag0-yP-PjJ" secondAttribute="bottom" constant="20" id="WA5-8b-2Vl"/>
+                            <constraint firstItem="rmP-SA-09P" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Gf2-kG-fTy" secondAttribute="leadingMargin" constant="20" id="YbY-Eh-9Tg"/>
+                            <constraint firstItem="dH3-q0-sKm" firstAttribute="centerX" secondItem="Gf2-kG-fTy" secondAttribute="centerX" id="ZsZ-RB-6Pu"/>
+                            <constraint firstItem="rmP-SA-09P" firstAttribute="centerX" secondItem="Gf2-kG-fTy" secondAttribute="centerX" id="dGd-71-Vl2"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="rmP-SA-09P" secondAttribute="trailing" constant="20" id="urO-q6-CRq"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="0IF-Hu-ole"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="checkInStatus" destination="Ag0-yP-PjJ" id="TF5-Ti-1Jf"/>
+                        <outlet property="idLabel" destination="dH3-q0-sKm" id="0CF-5t-Tka"/>
+                        <outlet property="qrCode" destination="rmP-SA-09P" id="KIB-Lj-Eoh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4xP-Vv-fhU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1648" y="-56"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6RO-PV-ao1">

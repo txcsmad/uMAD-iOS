@@ -11,5 +11,29 @@ class UMADApplication: PFObject, PFSubclassing {
         return "UMAD_Application"
     }
 
+    static func fetchApplication(success: (UMADApplication) -> (), error: () -> ()) {
+        guard let currentUser = User.currentUser(),
+            let currentUMAD = AppDelegate.currentUMAD else {
+                error()
+                return
+        }
+
+        let statusQuery = UMADApplication.query()
+        statusQuery?.whereKey("user", equalTo: currentUser)
+        statusQuery?.whereKey("umad", equalTo: currentUMAD)
+        statusQuery?.findObjectsInBackgroundWithBlock({ (result, err) -> Void in
+            guard let application = result?.first as? UMADApplication else {
+                // No application, or query invalid
+                error()
+                return
+            }
+            guard result?.count == 1 else {
+                // More than one application
+                error()
+                return
+            }
+            success(application)
+        })
+    }
 
 }

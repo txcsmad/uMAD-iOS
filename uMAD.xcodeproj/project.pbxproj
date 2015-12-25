@@ -36,6 +36,7 @@
 		D4D48A7E1ACB9AAB00E03D22 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D48A7D1ACB9AAB00E03D22 /* CoreLocation.framework */; };
 		D4E19F281C2CA80100470561 /* UMADSponsor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F271C2CA80100470561 /* UMADSponsor.swift */; };
 		D4E19F2A1C2CA86D00470561 /* UMADApplicationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F291C2CA86D00470561 /* UMADApplicationStatus.swift */; };
+		D4E19F2E1C2D1D5A00470561 /* CheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F2D1C2D1D5A00470561 /* CheckInViewController.swift */; };
 		D4F4CEDB1C2A39C700220E39 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F4CEDA1C2A39C700220E39 /* LogInViewController.swift */; };
 		D4FF2D3A1B5DF5EE00A8E2A2 /* Seperable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF2D381B5DEA1600A8E2A2 /* Seperable.swift */; };
 /* End PBXBuildFile section */
@@ -89,6 +90,7 @@
 		D4D48A7D1ACB9AAB00E03D22 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D4E19F271C2CA80100470561 /* UMADSponsor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMADSponsor.swift; sourceTree = "<group>"; };
 		D4E19F291C2CA86D00470561 /* UMADApplicationStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMADApplicationStatus.swift; sourceTree = "<group>"; };
+		D4E19F2D1C2D1D5A00470561 /* CheckInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInViewController.swift; sourceTree = "<group>"; };
 		D4F4CEDA1C2A39C700220E39 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		D4F99C251ACCAAC900ED0A8E /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		D4FF2D381B5DEA1600A8E2A2 /* Seperable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seperable.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				D46D47961C05157700B333AF /* TimelineViewController.swift */,
 				D429C6A31C223F4B002AA3E6 /* ProfileViewController.swift */,
 				D4F4CEDA1C2A39C700220E39 /* LogInViewController.swift */,
+				D4E19F2D1C2D1D5A00470561 /* CheckInViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				D48AD7391AB783B300F669D7 /* AboutTableHeaderView.swift in Sources */,
 				D4171D671C28925800E2975C /* User.swift in Sources */,
 				64CD922F1A7A051E00659946 /* SessionViewController.swift in Sources */,
+				D4E19F2E1C2D1D5A00470561 /* CheckInViewController.swift in Sources */,
 				64FD63791A76FB0700D89106 /* Session.swift in Sources */,
 				D4171D691C28A83D00E2975C /* UMADApplication.swift in Sources */,
 				D46D47971C05157700B333AF /* TimelineViewController.swift in Sources */,

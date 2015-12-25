@@ -15,6 +15,7 @@ class ProfileViewController: UITableViewController {
     @IBOutlet weak var applicationStatusSpinner: UIActivityIndicatorView!
     @IBOutlet weak var applicationStatusCell: UITableViewCell!
     @IBOutlet weak var applyToUMADCell: UITableViewCell!
+    private var status: UMADApplicationStatus?
 
     weak var delegate: ProfileViewControllerDelegate?
     override func viewDidLoad() {
@@ -44,8 +45,9 @@ class ProfileViewController: UITableViewController {
             self.applyToUMADCell.hidden = false
             self.applicationStatusCell.hidden = true
         }
-        fetchApplication({ application in
-            self.fetchApplicationStatus(application, success: { status in
+        UMADApplication.fetchApplication({ application in
+            UMADApplicationStatus.fetchApplicationStatus(application, success: { status in
+                self.status = status
                 self.updateApplicationStatusDisplay(status)
                 self.applicationStatusSpinner.stopAnimating()
                 self.applicationStatusLabel.hidden = false
@@ -58,47 +60,16 @@ class ProfileViewController: UITableViewController {
         delegate?.userDidExitProfile()
     }
 
-    // MARK: - Data
-
-    func fetchApplication(success: (UMADApplication) -> (), error: () -> ()) {
-        guard let currentUser = User.currentUser(),
-            let currentUMAD = AppDelegate.currentUMAD else {
-                error()
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "check-in" {
+            guard let checkInViewController = segue.destinationViewController as? CheckInViewController else {
                 return
+            }
+            checkInViewController.status = status
         }
-
-        let statusQuery = UMADApplication.query()
-        statusQuery?.whereKey("user", equalTo: currentUser)
-        statusQuery?.whereKey("umad", equalTo: currentUMAD)
-        statusQuery?.findObjectsInBackgroundWithBlock({ (result, err) -> Void in
-            guard let application = result?.first as? UMADApplication else {
-                // No application, or query invalid
-                error()
-                return
-            }
-            guard result?.count == 1 else {
-                // More than one application
-                error()
-                return
-            }
-            success(application)
-        })
     }
 
-    func fetchApplicationStatus(application: UMADApplication, success: (UMADApplicationStatus) -> (), error: (String) -> ()) {
-        let query = UMADApplicationStatus.query()
-        query?.whereKey("application", equalTo: application)
-        query?.findObjectsInBackgroundWithBlock({ (result, err) -> Void in
-            guard let status = result?.first as? UMADApplicationStatus else {
-                // No status. This is a serious error
-                print("No status for application!")
-                error("Something went wrong")
-                return
-            }
-
-            success(status)
-        })
-    }
+    // MARK: - Data
 
     func updateApplicationStatusDisplay(status: UMADApplicationStatus) {
         self.applicationStatusLabel.text = "Status: "
@@ -121,7 +92,6 @@ class ProfileViewController: UITableViewController {
         }
         self.applicationStatusIndicator.backgroundColor = indicatorColor
     }
-
 
     // MARK: - UITableViewController
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

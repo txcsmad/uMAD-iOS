@@ -11,5 +11,18 @@ class UMADApplicationStatus: PFObject, PFSubclassing {
         return "UMAD_Application_Status"
     }
 
+    static func fetchApplicationStatus(application: UMADApplication, success: (UMADApplicationStatus) -> (), error: (String) -> ()) {
+        let query = UMADApplicationStatus.query()
+        query?.whereKey("application", equalTo: application)
+        query?.findObjectsInBackgroundWithBlock({ (result, err) -> Void in
+            guard let status = result?.first as? UMADApplicationStatus else {
+                // No status. This is a serious error
+                print("No status for application!")
+                error("Something went wrong")
+                return
+            }
 
+            success(status)
+        })
+    }
 }
