@@ -17,6 +17,17 @@ class ProfileViewController: UITableViewController {
     @IBOutlet weak var applyToUMADCell: UITableViewCell!
     private var status: UMADApplicationStatus?
 
+    private var volunteer = false {
+        didSet(oldValue) {
+            tableView.reloadData()
+        }
+    }
+    private var accepted = false {
+        didSet(oldValue) {
+            tableView.reloadData()
+        }
+    }
+
     weak var delegate: ProfileViewControllerDelegate?
     override func viewDidLoad() {
         guard let currentUser = User.currentUser() else {
@@ -31,19 +42,19 @@ class ProfileViewController: UITableViewController {
         applicationStatusLabel.hidden = true
         applicationStatusSpinner.hidesWhenStopped = true
         applicationStatusSpinner.startAnimating()
-        applyToUMADCell.hidden = true
+
+        currentUser.checkIfIsVolunteer { (volunteer) -> () in
+            self.volunteer = volunteer
+        }
 
         let displayError: String -> () = { statusText in
             self.applicationStatusLabel.text = statusText
             self.applicationStatusSpinner.stopAnimating()
-            self.applicationStatusLabel.hidden = false
             self.applicationStatusIndicator.backgroundColor = UIColor.lightGrayColor()
         }
         let displayApplyCell = {
             self.applicationStatusSpinner.stopAnimating()
             self.applicationStatusLabel.hidden = false
-            self.applyToUMADCell.hidden = false
-            self.applicationStatusCell.hidden = true
         }
         UMADApplication.fetchApplication({ application in
             UMADApplicationStatus.fetchApplicationStatus(application, success: { status in
@@ -62,7 +73,7 @@ class ProfileViewController: UITableViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "check-in" {
-            guard let checkInViewController = segue.destinationViewController as? CheckInViewController else {
+            guard let checkInViewController = segue.destinationViewController as? CredentialsViewController else {
                 return
             }
             checkInViewController.status = status
@@ -72,8 +83,8 @@ class ProfileViewController: UITableViewController {
     // MARK: - Data
 
     func updateApplicationStatusDisplay(status: UMADApplicationStatus) {
-        self.applicationStatusLabel.text = "Status: "
-        self.applicationStatusLabel.text?.appendContentsOf(status.status)
+        applicationStatusLabel.text = "Status: "
+        applicationStatusLabel.text?.appendContentsOf(status.status)
 
         let indicatorColor: UIColor
         // TODO: We need to agree on the strings that will be used here
@@ -81,6 +92,7 @@ class ProfileViewController: UITableViewController {
         case "Accepted":
             self.applicationStatusLabel.text?.appendContentsOf("! 🎉")
             indicatorColor = UIColor(red: 0.76, green: 0.92, blue: 0.25, alpha: 1.0)
+            accepted = true
             break
         case "Pending":
             indicatorColor = UIColor.lightGrayColor()
@@ -103,12 +115,38 @@ class ProfileViewController: UITableViewController {
             navigationController?.pushViewController(webView, animated: true)
             }
             break
-        case 2:
+        case 3:
             PFUser.logOutInBackground()
             delegate?.userDidExitProfile()
             break
         default:
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
+    }
+
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let original = super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+        switch indexPath.section {
+        case 1:
+            switch indexPath.row {
+            case 1: fallthrough
+            case 2:
+                return accepted ? original : 0
+            default:
+                return original
+            }
+        case 2:
+            return original
+            //return volunteer ? original: 0
+        default:
+            return original
+        }
+    }
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        let original = super.tableView(tableView, heightForHeaderInSection: section)
+        if section == 2 {
+            return volunteer ? original : 0
+        }
+        return original
     }
 }

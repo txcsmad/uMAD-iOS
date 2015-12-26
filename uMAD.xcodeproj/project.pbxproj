@@ -36,8 +36,10 @@
 		D4D48A7E1ACB9AAB00E03D22 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D48A7D1ACB9AAB00E03D22 /* CoreLocation.framework */; };
 		D4E19F281C2CA80100470561 /* UMADSponsor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F271C2CA80100470561 /* UMADSponsor.swift */; };
 		D4E19F2A1C2CA86D00470561 /* UMADApplicationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F291C2CA86D00470561 /* UMADApplicationStatus.swift */; };
-		D4E19F2E1C2D1D5A00470561 /* CheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F2D1C2D1D5A00470561 /* CheckInViewController.swift */; };
+		D4E19F2E1C2D1D5A00470561 /* CredentialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F2D1C2D1D5A00470561 /* CredentialsViewController.swift */; };
 		D4F4CEDB1C2A39C700220E39 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F4CEDA1C2A39C700220E39 /* LogInViewController.swift */; };
+		D4FB7B3E1C2E2BA4000D7283 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB7B3D1C2E2BA4000D7283 /* QRCode.swift */; };
+		D4FB7B421C2E364D000D7283 /* CheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB7B411C2E364D000D7283 /* CheckInViewController.swift */; };
 		D4FF2D3A1B5DF5EE00A8E2A2 /* Seperable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF2D381B5DEA1600A8E2A2 /* Seperable.swift */; };
 /* End PBXBuildFile section */
 
@@ -90,9 +92,11 @@
 		D4D48A7D1ACB9AAB00E03D22 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D4E19F271C2CA80100470561 /* UMADSponsor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMADSponsor.swift; sourceTree = "<group>"; };
 		D4E19F291C2CA86D00470561 /* UMADApplicationStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMADApplicationStatus.swift; sourceTree = "<group>"; };
-		D4E19F2D1C2D1D5A00470561 /* CheckInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInViewController.swift; sourceTree = "<group>"; };
+		D4E19F2D1C2D1D5A00470561 /* CredentialsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsViewController.swift; sourceTree = "<group>"; };
 		D4F4CEDA1C2A39C700220E39 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		D4F99C251ACCAAC900ED0A8E /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		D4FB7B3D1C2E2BA4000D7283 /* QRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
+		D4FB7B411C2E364D000D7283 /* CheckInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInViewController.swift; sourceTree = "<group>"; };
 		D4FF2D381B5DEA1600A8E2A2 /* Seperable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seperable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,14 +148,12 @@
 		64CD92331A7A073100659946 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D4FB7B3C1C2E2B4C000D7283 /* Profile */,
 				64ADB37B1A7C81D900E5BC22 /* AboutViewController.swift */,
 				8840760E1C1BAFB600EBF319 /* SessionsViewController.swift */,
 				64CD922E1A7A051E00659946 /* SessionViewController.swift */,
 				64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */,
 				D46D47961C05157700B333AF /* TimelineViewController.swift */,
-				D429C6A31C223F4B002AA3E6 /* ProfileViewController.swift */,
-				D4F4CEDA1C2A39C700220E39 /* LogInViewController.swift */,
-				D4E19F2D1C2D1D5A00470561 /* CheckInViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -215,6 +217,7 @@
 				D478D10A1AB7533500563A8A /* LaunchScreen.xib */,
 				D478D1081AB7422000563A8A /* Config.swift */,
 				D4FF2D381B5DEA1600A8E2A2 /* Seperable.swift */,
+				D4FB7B3D1C2E2BA4000D7283 /* QRCode.swift */,
 			);
 			path = uMAD;
 			sourceTree = "<group>";
@@ -237,6 +240,17 @@
 				D4280C0F1B2DE6070090F8C6 /* Info.plist */,
 			);
 			path = UITests;
+			sourceTree = "<group>";
+		};
+		D4FB7B3C1C2E2B4C000D7283 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				D429C6A31C223F4B002AA3E6 /* ProfileViewController.swift */,
+				D4F4CEDA1C2A39C700220E39 /* LogInViewController.swift */,
+				D4E19F2D1C2D1D5A00470561 /* CredentialsViewController.swift */,
+				D4FB7B411C2E364D000D7283 /* CheckInViewController.swift */,
+			);
+			name = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -441,16 +455,18 @@
 				6448E4071A7B067B00FB98CA /* EventHeaderView.swift in Sources */,
 				D4F4CEDB1C2A39C700220E39 /* LogInViewController.swift in Sources */,
 				64D4AF851A75CF020040D3CA /* SponsorsViewController.swift in Sources */,
+				D4FB7B421C2E364D000D7283 /* CheckInViewController.swift in Sources */,
 				D46D47951C05109500B333AF /* Config.swift in Sources */,
 				D4E19F281C2CA80100470561 /* UMADSponsor.swift in Sources */,
 				D4FF2D3A1B5DF5EE00A8E2A2 /* Seperable.swift in Sources */,
 				64D4AF631A75CDA80040D3CA /* AppDelegate.swift in Sources */,
 				D43561501AC62EDA00F7789D /* Company.swift in Sources */,
+				D4FB7B3E1C2E2BA4000D7283 /* QRCode.swift in Sources */,
 				D4171D6B1C28AACE00E2975C /* UMAD.swift in Sources */,
 				D48AD7391AB783B300F669D7 /* AboutTableHeaderView.swift in Sources */,
 				D4171D671C28925800E2975C /* User.swift in Sources */,
 				64CD922F1A7A051E00659946 /* SessionViewController.swift in Sources */,
-				D4E19F2E1C2D1D5A00470561 /* CheckInViewController.swift in Sources */,
+				D4E19F2E1C2D1D5A00470561 /* CredentialsViewController.swift in Sources */,
 				64FD63791A76FB0700D89106 /* Session.swift in Sources */,
 				D4171D691C28A83D00E2975C /* UMADApplication.swift in Sources */,
 				D46D47971C05157700B333AF /* TimelineViewController.swift in Sources */,

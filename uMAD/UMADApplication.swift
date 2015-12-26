@@ -11,15 +11,13 @@ class UMADApplication: PFObject, PFSubclassing {
         return "UMAD_Application"
     }
 
-    static func fetchApplication(success: (UMADApplication) -> (), error: () -> ()) {
-        guard let currentUser = User.currentUser(),
-            let currentUMAD = AppDelegate.currentUMAD else {
-                error()
-                return
+    static func fetchApplication(user: User, success: (UMADApplication) -> (), error: () -> ()) {
+        guard let currentUMAD = AppDelegate.currentUMAD else {
+            error()
+            return
         }
-
         let statusQuery = UMADApplication.query()
-        statusQuery?.whereKey("user", equalTo: currentUser)
+        statusQuery?.whereKey("user", equalTo: user)
         statusQuery?.whereKey("umad", equalTo: currentUMAD)
         statusQuery?.findObjectsInBackgroundWithBlock({ (result, err) -> Void in
             guard let application = result?.first as? UMADApplication else {
@@ -34,6 +32,14 @@ class UMADApplication: PFObject, PFSubclassing {
             }
             success(application)
         })
+    }
+    
+    static func fetchApplication(success: (UMADApplication) -> (), error: () -> ()) {
+        guard let currentUser = User.currentUser() else {
+                error()
+                return
+        }
+        fetchApplication(currentUser, success: success, error: error)
     }
 
 }

@@ -11,6 +11,14 @@ class UMADApplicationStatus: PFObject, PFSubclassing {
         return "UMAD_Application_Status"
     }
 
+    static func fetchApplicationStatusWithUser(user: User, success: (UMADApplicationStatus) -> (), error: (String) -> ()){
+        UMADApplication.fetchApplication(user, success: { (application) -> () in
+            fetchApplicationStatus(application, success: success, error: error)
+            }) { () -> () in
+                error("")
+        }
+    }
+
     static func fetchApplicationStatus(application: UMADApplication, success: (UMADApplicationStatus) -> (), error: (String) -> ()) {
         let query = UMADApplicationStatus.query()
         query?.whereKey("application", equalTo: application)
