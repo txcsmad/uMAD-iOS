@@ -282,6 +282,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="Check-in Credential" id="hTX-JT-vPE"/>
                     <connections>
                         <outlet property="checkInStatus" destination="Ag0-yP-PjJ" id="TF5-Ti-1Jf"/>
                         <outlet property="idLabel" destination="dH3-q0-sKm" id="0CF-5t-Tka"/>
@@ -292,7 +293,7 @@
             </objects>
             <point key="canvasLocation" x="1648" y="-56"/>
         </scene>
-        <!--Check In View Controller-->
+        <!--Check-in-->
         <scene sceneID="6gR-U8-Nl3">
             <objects>
                 <viewController id="2T0-g7-aM5" customClass="CheckInViewController" customModule="uMAD" customModuleProvider="target" sceneMemberID="viewController">
@@ -305,6 +306,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Check-in" id="JMN-D2-Z1N">
+                        <barButtonItem key="rightBarButtonItem" title="Manual" id="mL8-oU-3Vx">
+                            <connections>
+                                <action selector="presentManualEntry" destination="2T0-g7-aM5" id="Zs5-RF-bOV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dBb-4K-uXF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

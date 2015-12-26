@@ -6,6 +6,7 @@ PODS:
   - ParseUI (1.1.7):
     - Bolts/Tasks (~> 1.3)
     - Parse (~> 1.9)
+  - PKHUD (2.2.5)
   - TwitterCore (1.14.0):
     - Fabric
   - TwitterKit (1.14.0):
@@ -15,6 +16,7 @@ DEPENDENCIES:
   - Fabric
   - Parse
   - ParseUI
+  - PKHUD
   - TwitterCore
   - TwitterKit
 
@@ -23,6 +25,7 @@ SPEC CHECKSUMS:
   Fabric: bf0ceb04e7c924090efc5f8c55e4fbcca189e0a0
   Parse: 90b2544822200f84b18bfacc4e8b0a3a6c3584a2
   ParseUI: c2bcdfbb00330e464b5b773266ae221697a3bb7b
+  PKHUD: 15d9db01fb008bb9247c6d785c585f587955b113
   TwitterCore: 1d9034c745fe66e7ca682afad8c35193019af069
   TwitterKit: f9c122959225709dd9483f7f3fad2254a393428b
 

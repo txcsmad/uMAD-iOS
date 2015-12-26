@@ -6,6 +6,7 @@ pod 'ParseUI'
 pod 'Fabric'
 pod 'TwitterKit'
 pod 'TwitterCore'
+pod 'PKHUD'
 
 post_install do | installer |
   require 'fileutils'
