@@ -8,6 +8,16 @@ class CredentialsViewController: UIViewController {
     @IBOutlet weak var idLabel: UILabel!
     var status: UMADApplicationStatus!
     private var recheckTimer: NSTimer?
+    private var previousBrightness: CGFloat!
+
+    override func viewDidAppear(animated: Bool) {
+        previousBrightness = UIScreen.mainScreen().brightness
+        UIScreen.mainScreen().brightness = 0.8
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        UIScreen.mainScreen().brightness = previousBrightness
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
