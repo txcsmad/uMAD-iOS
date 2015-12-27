@@ -6,8 +6,9 @@ public class QRScanViewController: UIViewController, AVCaptureMetadataOutputObje
     private var previewLayer: AVCaptureVideoPreviewLayer?
     private var targetLayer: CALayer?
     private lazy var captureSession: AVCaptureSession? = self.initializeSession()
-
-    // Option
+    private var codeObjects = [AVMetadataObject]()
+    internal var acceptingNewScans = false
+    // Options
     public var stopOnFirstCapture = true
     private var maxQRCodes: UInt = 1
     public var maxSimultaneousQRCodes: UInt {
@@ -21,7 +22,7 @@ public class QRScanViewController: UIViewController, AVCaptureMetadataOutputObje
         }
     }
 
-    var codeObjects = [AVMetadataObject]()
+
 
     private func initializeSession() -> AVCaptureSession? {
         // Does this device have a camera?
@@ -71,11 +72,7 @@ public class QRScanViewController: UIViewController, AVCaptureMetadataOutputObje
     override public func viewDidAppear(animated: Bool) {
         super.viewWillAppear(animated)
         codeObjects.removeAll()
-        captureSession?.startRunning()
-
-    }
-
-    override public func viewDidLoad() {
+        startCapturing()
     }
 
     // MARK: - Metadata Display
@@ -136,44 +133,52 @@ public class QRScanViewController: UIViewController, AVCaptureMetadataOutputObje
                 return
             }
         codeObjects.removeAll()
-            var i: UInt = 0
-        for object in metadataObjects {
+        let acceptedObjects = metadataObjects.prefix(Int(maxQRCodes))
+        for object in acceptedObjects {
             let transformed = previewLayer?.transformedMetadataObjectForMetadataObject(object)!
             codeObjects.append(transformed!)
-            i++
-            if i > maxQRCodes {
-                break
-            }
         }
         clearTargetLayer()
         showDetectedObjects()
 
-        if stopOnFirstCapture {
-            stopCapturing()
-        }
-
-        for object in metadataObjects {
+        for object in acceptedObjects {
             if let toHandle = object as? AVMetadataMachineReadableCodeObject {
                 let userId = toHandle.stringValue
-                didCaptureCode(userId)
+                if acceptingNewScans {
+                    didCaptureCode(userId)
+                }
             }
         }
-
+        // This metod will stop accepting scans and spin the session down,
+        // guaranteeing that this delegate method isn't called until we spin back up.
+        if acceptingNewScans && stopOnFirstCapture {
+            stopCapturing()
+        }
     }
 
-    // MARK: - Code handling
+    // MARK: - QR Code Handling
 
     public func didCaptureCode(string: String) {
         // NOP
     }
 
+    func acceptScansAfter(delay: NSTimeInterval) {
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+            Int64(delay * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) { () -> Void in
+            self.acceptingNewScans = true
+        }
+    }
+
     // MARK: - Session Management
 
     public func stopCapturing() {
+        acceptingNewScans = false
         captureSession?.stopRunning()
     }
 
     public func startCapturing() {
+        acceptScansAfter(3.0)
         clearTargetLayer()
         captureSession?.startRunning()
     }
