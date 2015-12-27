@@ -14,7 +14,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="7cj-0R-QLM">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="NjQ-aq-fXD">
                                 <cells>
@@ -35,7 +35,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Last" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ZJ-lY-tNg">
                                                     <rect key="frame" x="78.5" y="21.5" width="70.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -62,7 +62,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDf-WH-jIo">
                                                     <rect key="frame" x="41" y="11" width="146.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="4lg-NZ-vRG">
@@ -103,7 +103,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apply to UMAD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGL-Dc-hvX">
                                                     <rect key="frame" x="24" y="11.5" width="118" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -126,10 +126,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Check-in credentials" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wev-9O-zKI">
-                                                    <rect key="frame" x="-16" y="11.5" width="158" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Check-in credential" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wev-9O-zKI">
+                                                    <rect key="frame" x="-8" y="11.5" width="150" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -162,7 +162,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Check-in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llU-kV-kcq">
                                                     <rect key="frame" x="24" y="11.5" width="118" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -254,15 +254,18 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dH3-q0-sKm">
                                 <rect key="frame" x="249" y="420" width="101.5" height="28"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="24"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have not checked in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ag0-yP-PjJ">
-                                <rect key="frame" x="207" y="160" width="186" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Check in status label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ag0-yP-PjJ">
+                                <rect key="frame" x="207" y="160" width="186" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="6c5-Gh-7eh">
+                                <rect key="frame" x="289" y="160" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -270,10 +273,12 @@
                             <constraint firstItem="dH3-q0-sKm" firstAttribute="top" secondItem="rmP-SA-09P" secondAttribute="bottom" constant="20" id="CeN-KI-B5n"/>
                             <constraint firstItem="Ag0-yP-PjJ" firstAttribute="centerX" secondItem="Gf2-kG-fTy" secondAttribute="centerX" id="P3m-mM-BtS"/>
                             <constraint firstItem="rmP-SA-09P" firstAttribute="centerY" secondItem="Gf2-kG-fTy" secondAttribute="centerY" id="PnL-lp-rWW"/>
+                            <constraint firstItem="6c5-Gh-7eh" firstAttribute="centerX" secondItem="Gf2-kG-fTy" secondAttribute="centerX" id="R0P-5H-9ws"/>
                             <constraint firstItem="rmP-SA-09P" firstAttribute="top" secondItem="Ag0-yP-PjJ" secondAttribute="bottom" constant="20" id="WA5-8b-2Vl"/>
                             <constraint firstItem="rmP-SA-09P" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Gf2-kG-fTy" secondAttribute="leadingMargin" constant="20" id="YbY-Eh-9Tg"/>
                             <constraint firstItem="dH3-q0-sKm" firstAttribute="centerX" secondItem="Gf2-kG-fTy" secondAttribute="centerX" id="ZsZ-RB-6Pu"/>
                             <constraint firstItem="rmP-SA-09P" firstAttribute="centerX" secondItem="Gf2-kG-fTy" secondAttribute="centerX" id="dGd-71-Vl2"/>
+                            <constraint firstItem="rmP-SA-09P" firstAttribute="top" secondItem="6c5-Gh-7eh" secondAttribute="bottom" constant="20" id="pbX-8P-5dp"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="rmP-SA-09P" secondAttribute="trailing" constant="20" id="urO-q6-CRq"/>
                         </constraints>
                         <variation key="default">
@@ -285,6 +290,7 @@
                     <navigationItem key="navigationItem" title="Check-in Credential" id="hTX-JT-vPE"/>
                     <connections>
                         <outlet property="checkInStatus" destination="Ag0-yP-PjJ" id="TF5-Ti-1Jf"/>
+                        <outlet property="checkingIndicator" destination="6c5-Gh-7eh" id="cCK-5e-lGT"/>
                         <outlet property="idLabel" destination="dH3-q0-sKm" id="0CF-5t-Tka"/>
                         <outlet property="qrCode" destination="rmP-SA-09P" id="KIB-Lj-Eoh"/>
                     </connections>

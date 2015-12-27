@@ -49,7 +49,7 @@ class CheckInViewController: QRScanViewController {
         query?.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
             guard let user = results?.first as? User else {
                 PKHUD.sharedHUD.contentView = PKHUDTextView(text: "No such user: \n \(userId)")
-                PKHUD.sharedHUD.hide(afterDelay: 2.0)
+                PKHUD.sharedHUD.hide(afterDelay: 1.0)
                 self.startCapturing()
                 return
             }
@@ -59,17 +59,17 @@ class CheckInViewController: QRScanViewController {
                     status.arrivedAt = NSDate()
                     status.saveInBackgroundWithBlock({ (success, error) -> Void in
                         PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                        PKHUD.sharedHUD.hide(afterDelay: 2.0)
+                        PKHUD.sharedHUD.hide(afterDelay: 1.0)
                         self.startCapturing()
                     })
                 } else {
                     PKHUD.sharedHUD.contentView = PKHUDTextView(text: "Already checked-in")
-                    PKHUD.sharedHUD.hide(afterDelay: 2.0)
+                    PKHUD.sharedHUD.hide(afterDelay: 1.0)
                     self.startCapturing()
                 }
                 }, error: { (error) -> () in
                     PKHUD.sharedHUD.contentView = PKHUDErrorView()
-                    PKHUD.sharedHUD.hide(afterDelay: 2.0)
+                    PKHUD.sharedHUD.hide(afterDelay: 1.0)
                     print(error)
                     self.startCapturing()
             })

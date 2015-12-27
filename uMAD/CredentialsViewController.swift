@@ -6,6 +6,7 @@ class CredentialsViewController: UIViewController {
     @IBOutlet weak var qrCode: UIImageView!
     @IBOutlet weak var checkInStatus: UILabel!
     @IBOutlet weak var idLabel: UILabel!
+    @IBOutlet weak var checkingIndicator: UIActivityIndicatorView!
     var status: UMADApplicationStatus!
     private var recheckTimer: NSTimer?
     private var previousBrightness: CGFloat!
@@ -25,6 +26,9 @@ class CredentialsViewController: UIViewController {
             dismissViewControllerAnimated(true, completion: nil)
             return
         }
+
+        checkingIndicator.hidesWhenStopped = true
+
         idLabel.text = id
         let rawImage = createQRForString(id)
         let scaleX = qrCode.frame.width / rawImage.extent.width
@@ -35,14 +39,19 @@ class CredentialsViewController: UIViewController {
         let image = UIImage(CIImage: transformedImage)
         qrCode.image = image
         updateCheckInStatus()
-        recheckTimer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "updateCheckInStatus", userInfo: nil, repeats: true)
 
+    }
+
+    func scheduleStatusCheck() {
+        NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "updateCheckInStatus", userInfo: nil, repeats: false)
     }
 
     func updateCheckInStatus() {
         guard let currentUser = User.currentUser() else {
             return
         }
+        self.checkInStatus.hidden = true
+        checkingIndicator.startAnimating()
         status.fetchInBackgroundWithBlock { (result, error) -> Void in
             guard let status = result as? UMADApplicationStatus else {
                 return
@@ -50,12 +59,15 @@ class CredentialsViewController: UIViewController {
             if status.arrivedAt == nil {
                 self.view.backgroundColor = UIColor.redColor()
                 self.checkInStatus.text = "You have not checked in"
+                self.scheduleStatusCheck()
             } else {
                 self.view.backgroundColor = UIColor.greenColor()
                 self.checkInStatus.text = "You are checked in"
                 self.recheckTimer?.invalidate()
                 self.recheckTimer = nil
             }
+            self.checkingIndicator.stopAnimating()
+            self.checkInStatus.hidden = false
         }
     }
 
