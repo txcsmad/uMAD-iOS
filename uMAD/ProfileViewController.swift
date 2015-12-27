@@ -27,6 +27,11 @@ class ProfileViewController: UITableViewController {
             tableView.reloadData()
         }
     }
+    private var applied = false {
+        didSet(oldValue) {
+            tableView.reloadData()
+        }
+    }
 
     weak var delegate: ProfileViewControllerDelegate?
     override func viewDidLoad() {
@@ -57,6 +62,8 @@ class ProfileViewController: UITableViewController {
             self.applicationStatusLabel.hidden = false
         }
         UMADApplication.fetchApplication({ application in
+            // We've got an application. Take note.
+            self.applied = true
             UMADApplicationStatus.fetchApplicationStatus(application, success: { status in
                 self.status = status
                 self.updateApplicationStatusDisplay(status)
@@ -127,20 +134,33 @@ class ProfileViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let original = super.tableView(tableView, heightForRowAtIndexPath: indexPath)
         switch indexPath.section {
+            // Application section
+            // 0 - Status
+            // 1 - Apply link
+            // 2 - Check in credential
         case 1:
             switch indexPath.row {
-            case 1: fallthrough
+            case 0:
+                return applied ? original : 0
+            case 1:
+                return applied ? 0 : original
             case 2:
                 return accepted ? original : 0
             default:
                 return original
             }
         case 2:
-            return original
-            //return volunteer ? original: 0
+            return volunteer ? original: 0
         default:
             return original
         }
+    }
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let original = super.tableView(tableView, titleForHeaderInSection: section)
+        if section == 2 {
+            return volunteer ? original : ""
+        }
+        return original
     }
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let original = super.tableView(tableView, heightForHeaderInSection: section)
