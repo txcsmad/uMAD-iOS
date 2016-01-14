@@ -90,15 +90,15 @@ UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, Pro
     // MARK: - UITableViewDataSource
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! SessionTableViewCell
-        
-        let session = objectAtIndexPath(indexPath) as! Session
-        
+        guard let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as? SessionTableViewCell,
+            let session = sessionAtIndexPath(indexPath) else {
+                return UITableViewCell()
+        }
         cell.configureForSession(session)
-        
+
         return cell
     }
-    
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let section = (searchController.active) ? filteredSections[section] : sections[section]
         return section.count
