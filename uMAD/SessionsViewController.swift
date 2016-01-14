@@ -34,9 +34,10 @@ UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, Pro
         definesPresentationContext = true
 
         sectionHeaderFormatter.timeZone = NSTimeZone.localTimeZone()
-        sectionHeaderFormatter.dateFormat = "EEEE - hh:mm a"
+        sectionHeaderFormatter.dateFormat = "EEEE – hh:mm a"
 
         pullToRefreshEnabled = true
+        automaticallyAdjustsScrollViewInsets = true
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "user.png"), style: .Plain, target: self, action: "didTapRightBarItem")
     }
@@ -108,14 +109,6 @@ UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, Pro
         return (searchController.active) ? filteredSections.count : sections.count
     }
 
-    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        guard let header = view as? UITableViewHeaderFooterView else {
-            return
-        }
-        header.textLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: UIFont.systemFontSize())
-        header.textLabel!.text = header.textLabel!.text!.uppercaseString
-    }
-
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let session = sessionAtIndexPath(indexPath)!
@@ -127,7 +120,8 @@ UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, Pro
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let section = (searchController.active) ? filteredSections[section] : sections[section]
         let sectionTime = section[0].startTime
-        return sectionHeaderFormatter.stringFromDate(sectionTime)
+        // Add some left padding. Definitely a hack.
+        return "    " + sectionHeaderFormatter.stringFromDate(sectionTime)
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
