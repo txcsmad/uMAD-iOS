@@ -35,14 +35,14 @@
                                         <outletCollection property="gestureRecognizers" destination="AMR-HI-Gxs" appends="YES" id="2ta-Kp-mZL"/>
                                     </connections>
                                 </mapView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" text="About the event" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeo-NE-mf9">
-                                    <rect key="frame" x="8" y="136" width="584" height="19.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" text="About the event" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeo-NE-mf9">
+                                    <rect key="frame" x="12" y="136" width="576" height="19.5"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="organization-image" translatesAutoresizingMaskIntoConstraints="NO" id="bZd-ez-NKI">
-                                    <rect key="frame" x="0.0" y="171.5" width="600" height="110"/>
+                                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="organization-image" translatesAutoresizingMaskIntoConstraints="NO" id="bZd-ez-NKI">
+                                    <rect key="frame" x="0.0" y="171" width="600" height="110"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="110" id="GoZ-Qf-Gx4"/>
                                     </constraints>
@@ -51,13 +51,13 @@
                                     </connections>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="Who are we?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9F-ar-RrI">
-                                    <rect key="frame" x="8" y="289.5" width="584" height="19.5"/>
+                                    <rect key="frame" x="12" y="289" width="576" height="19.5"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" layoutMarginsFollowReadableWidth="YES" text="About the organization" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h30-4F-zK3">
-                                    <rect key="frame" x="8" y="312" width="584" height="19.5"/>
+                                    <rect key="frame" x="12" y="312" width="576" height="19.5"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -66,22 +66,22 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="bZd-ez-NKI" secondAttribute="trailing" id="1Ue-Nd-UGp"/>
-                                <constraint firstAttribute="trailing" secondItem="w9F-ar-RrI" secondAttribute="trailing" constant="8" id="91V-aD-PoC"/>
-                                <constraint firstItem="h30-4F-zK3" firstAttribute="leading" secondItem="hrz-Z7-AXy" secondAttribute="leading" constant="8" id="ArZ-D7-GfX"/>
+                                <constraint firstAttribute="trailing" secondItem="w9F-ar-RrI" secondAttribute="trailing" constant="12" id="91V-aD-PoC"/>
+                                <constraint firstItem="h30-4F-zK3" firstAttribute="leading" secondItem="hrz-Z7-AXy" secondAttribute="leading" constant="12" id="ArZ-D7-GfX"/>
                                 <constraint firstItem="bZd-ez-NKI" firstAttribute="top" secondItem="xeo-NE-mf9" secondAttribute="bottom" constant="16" id="Atj-2o-Icd"/>
                                 <constraint firstItem="w9F-ar-RrI" firstAttribute="top" secondItem="bZd-ez-NKI" secondAttribute="bottom" constant="8" id="Jzn-Vq-Hnz"/>
-                                <constraint firstItem="w9F-ar-RrI" firstAttribute="leading" secondItem="hrz-Z7-AXy" secondAttribute="leading" constant="8" id="LbE-jU-1vt"/>
+                                <constraint firstItem="w9F-ar-RrI" firstAttribute="leading" secondItem="hrz-Z7-AXy" secondAttribute="leading" constant="12" id="LbE-jU-1vt"/>
                                 <constraint firstItem="IQ8-5m-vpL" firstAttribute="leading" secondItem="hrz-Z7-AXy" secondAttribute="leading" id="QPu-E1-Xs6"/>
                                 <constraint firstAttribute="trailing" secondItem="IQ8-5m-vpL" secondAttribute="trailing" id="VvD-U5-xXa"/>
                                 <constraint firstItem="h30-4F-zK3" firstAttribute="top" secondItem="w9F-ar-RrI" secondAttribute="bottom" constant="3" id="XVH-8r-bVZ"/>
-                                <constraint firstItem="xeo-NE-mf9" firstAttribute="leading" secondItem="hrz-Z7-AXy" secondAttribute="leading" constant="8" id="hBZ-Ka-7V3"/>
+                                <constraint firstItem="xeo-NE-mf9" firstAttribute="leading" secondItem="hrz-Z7-AXy" secondAttribute="leading" constant="12" id="hBZ-Ka-7V3"/>
                                 <constraint firstItem="bZd-ez-NKI" firstAttribute="leading" secondItem="hrz-Z7-AXy" secondAttribute="leading" id="ifG-PG-PPh"/>
-                                <constraint firstAttribute="trailing" secondItem="xeo-NE-mf9" secondAttribute="trailing" constant="8" id="pzV-wu-phQ"/>
+                                <constraint firstAttribute="trailing" secondItem="xeo-NE-mf9" secondAttribute="trailing" constant="12" id="pzV-wu-phQ"/>
                                 <constraint firstItem="IQ8-5m-vpL" firstAttribute="top" secondItem="hrz-Z7-AXy" secondAttribute="top" id="s3z-wZ-BKd"/>
                                 <constraint firstItem="xeo-NE-mf9" firstAttribute="top" secondItem="IQ8-5m-vpL" secondAttribute="bottom" constant="8" id="wK7-UH-FeG"/>
                                 <constraint firstAttribute="bottom" secondItem="h30-4F-zK3" secondAttribute="bottom" constant="16" id="xNh-fx-x81"/>
                                 <constraint firstAttribute="bottom" secondItem="bZd-ez-NKI" secondAttribute="bottom" constant="6" id="z3l-A2-8p0"/>
-                                <constraint firstAttribute="trailing" secondItem="h30-4F-zK3" secondAttribute="trailing" constant="8" id="znU-3N-iJW"/>
+                                <constraint firstAttribute="trailing" secondItem="h30-4F-zK3" secondAttribute="trailing" constant="12" id="znU-3N-iJW"/>
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
@@ -122,6 +122,6 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="organization-image" width="2048" height="633"/>
+        <image name="organization-image" width="392" height="148"/>
     </resources>
 </document>
