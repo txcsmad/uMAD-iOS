@@ -135,7 +135,10 @@ UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, Pro
             let logInViewController = LogInViewController()
             logInViewController.delegate = self
             logInViewController.emailAsUsername = true
-            logInViewController.logInView?.logo = UIImageView(image: UIImage(named: "organization-logo.png"))
+            let logoView = UIImageView(image: UIImage(named: "organization-logo.png"))
+            logoView.contentMode = .ScaleAspectFit
+            logInViewController.logInView?.logo = logoView
+
             presentViewController(logInViewController, animated: true, completion: nil)
         } else {
             let navController = UIStoryboard(name: "Profile", bundle: NSBundle.mainBundle()).instantiateInitialViewController()!

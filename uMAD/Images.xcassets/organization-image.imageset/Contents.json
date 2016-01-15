@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "organization-image.jpg"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "mad-banner.png",
       "scale" : "2x"
     },
     {
