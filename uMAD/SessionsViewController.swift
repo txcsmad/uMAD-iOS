@@ -34,9 +34,10 @@ UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, Pro
         definesPresentationContext = true
 
         sectionHeaderFormatter.timeZone = NSTimeZone.localTimeZone()
-        sectionHeaderFormatter.dateFormat = "EEEE - hh:mm a"
+        sectionHeaderFormatter.dateFormat = "EEEE – hh:mm a"
 
         pullToRefreshEnabled = true
+        automaticallyAdjustsScrollViewInsets = true
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "user.png"), style: .Plain, target: self, action: "didTapRightBarItem")
     }
@@ -87,21 +88,17 @@ UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, Pro
         return objectAtIndexPath(indexPath) as? Session
     }
 
-    // MARK: - UITableViewController
+    // MARK: - UITableViewDataSource
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as? SessionTableViewCell else {
-            return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as? SessionTableViewCell,
+            let session = sessionAtIndexPath(indexPath) else {
+                return UITableViewCell()
         }
-
-        if let session = objectAtIndexPath(indexPath) as? Session {
-            cell.configureForSession(session)
-        }
+        cell.configureForSession(session)
 
         return cell
     }
-
-    // MARK: - UITableViewDataSource
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let section = (searchController.active) ? filteredSections[section] : sections[section]
@@ -110,14 +107,6 @@ UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, Pro
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return (searchController.active) ? filteredSections.count : sections.count
-    }
-
-    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        guard let header = view as? UITableViewHeaderFooterView else {
-            return
-        }
-        header.textLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: UIFont.systemFontSize())
-        header.textLabel!.text = header.textLabel!.text!.uppercaseString
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -131,7 +120,8 @@ UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, Pro
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let section = (searchController.active) ? filteredSections[section] : sections[section]
         let sectionTime = section[0].startTime
-        return sectionHeaderFormatter.stringFromDate(sectionTime)
+        // Add some left padding. Definitely a hack.
+        return "    " + sectionHeaderFormatter.stringFromDate(sectionTime)
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -145,7 +135,10 @@ UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, Pro
             let logInViewController = LogInViewController()
             logInViewController.delegate = self
             logInViewController.emailAsUsername = true
-            logInViewController.logInView?.logo = UIImageView(image: UIImage(named: "organization-logo.png"))
+            let logoView = UIImageView(image: UIImage(named: "organization-logo.png"))
+            logoView.contentMode = .ScaleAspectFit
+            logInViewController.logInView?.logo = logoView
+
             presentViewController(logInViewController, animated: true, completion: nil)
         } else {
             presentProfileController()
