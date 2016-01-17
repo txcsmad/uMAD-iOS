@@ -6,6 +6,7 @@ class CredentialsViewController: UIViewController {
     @IBOutlet weak var qrCode: UIImageView!
     @IBOutlet weak var checkInStatus: UILabel!
     @IBOutlet weak var idLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var checkingIndicator: UIActivityIndicatorView!
     var status: UMADApplicationStatus!
     private var recheckTimer: NSTimer?
@@ -22,7 +23,8 @@ class CredentialsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let id = User.currentUser()?.objectId else {
+        guard let user = User.currentUser(),
+            id = user.objectId else {
             dismissViewControllerAnimated(true, completion: nil)
             return
         }
@@ -30,6 +32,7 @@ class CredentialsViewController: UIViewController {
         checkingIndicator.hidesWhenStopped = true
 
         idLabel.text = id
+        nameLabel.text = user.name
         let rawImage = createQRForString(id)
         let scaleX = qrCode.frame.width / rawImage.extent.width
         let scaleY = qrCode.frame.height / rawImage.extent.height
@@ -57,11 +60,11 @@ class CredentialsViewController: UIViewController {
                 return
             }
             if status.arrivedAt == nil {
-                self.view.backgroundColor = UIColor.redColor()
+                self.view.backgroundColor = UIColor(hue: 0.0/360.0, saturation: 0.3, brightness: 1.0, alpha: 1.0)
                 self.checkInStatus.text = "You have not checked in"
                 self.scheduleStatusCheck()
             } else {
-                self.view.backgroundColor = UIColor.greenColor()
+                self.view.backgroundColor = UIColor(hue: 116.0/360.0, saturation: 0.3, brightness: 1.0, alpha: 1.0)
                 self.checkInStatus.text = "You are checked in"
                 self.recheckTimer?.invalidate()
                 self.recheckTimer = nil
