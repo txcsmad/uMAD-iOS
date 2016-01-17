@@ -21,7 +21,7 @@ UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, Pro
         navigationItem.title = "Sessions"
 
         tableView.registerClass(SessionTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-        tableView.rowHeight = 64
+        tableView.estimatedRowHeight = 64
         tableView.separatorInset = UIEdgeInsetsZero
 
         searchController = UISearchController(searchResultsController: nil)
@@ -148,13 +148,7 @@ UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, Pro
             logInViewController.logInView?.logo = UIImageView(image: UIImage(named: "organization-logo.png"))
             presentViewController(logInViewController, animated: true, completion: nil)
         } else {
-            let navController = UIStoryboard(name: "Profile", bundle: NSBundle.mainBundle()).instantiateInitialViewController()!
-            guard let profileController = navController.childViewControllers.first as? ProfileViewController else {
-                return
-            }
-            profileController.delegate = self
-            // User is logged in. Present profile view
-            presentViewController(navController, animated: true, completion: nil)
+            presentProfileController()
         }
     }
 
@@ -162,8 +156,19 @@ UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, Pro
         // TODO: Change the icon?
         // Dismiss the login view controller
         dismissViewControllerAnimated(true, completion: nil)
+        // Present the profile!
+        presentProfileController()
     }
 
+    func presentProfileController() {
+        let navController = UIStoryboard(name: "Profile", bundle: NSBundle.mainBundle()).instantiateInitialViewController()!
+        guard let profileController = navController.childViewControllers.first as? ProfileViewController else {
+            return
+        }
+        profileController.delegate = self
+        // User is logged in. Present profile view
+        presentViewController(navController, animated: true, completion: nil)
+    }
     func userDidExitProfile() {
         dismissViewControllerAnimated(true, completion: nil)
     }

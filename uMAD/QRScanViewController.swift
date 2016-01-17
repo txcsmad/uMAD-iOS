@@ -69,6 +69,10 @@ public class QRScanViewController: UIViewController, AVCaptureMetadataOutputObje
 
     // MARK: - UIViewController
 
+    public override func viewDidLoad() {
+        view.backgroundColor = UIColor.blackColor()
+    }
+
     override public func viewDidAppear(animated: Bool) {
         super.viewWillAppear(animated)
         codeObjects.removeAll()
