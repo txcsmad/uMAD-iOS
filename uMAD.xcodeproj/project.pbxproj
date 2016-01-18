@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F181651CB9722752CA94A7D /* Pods_uMAD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F7FB0FFA00CBC58023DD9F /* Pods_uMAD.framework */; };
 		3219C4561A7AD5AD00C3ADEB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3219C4551A7AD5AD00C3ADEB /* Social.framework */; };
 		6448E4071A7B067B00FB98CA /* EventHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6448E4061A7B067B00FB98CA /* EventHeaderView.swift */; };
 		64ADB37C1A7C81D900E5BC22 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ADB37B1A7C81D900E5BC22 /* AboutViewController.swift */; };
@@ -69,8 +68,6 @@
 		880FA4701C1D1C3B00898B19 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		8840760E1C1BAFB600EBF319 /* SessionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsViewController.swift; sourceTree = "<group>"; };
 		884076121C1BB68A00EBF319 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
-		8D8D8F8610EBFF5C9C8998B4 /* Pods-uMAD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uMAD.release.xcconfig"; path = "Pods/Target Support Files/Pods-uMAD/Pods-uMAD.release.xcconfig"; sourceTree = "<group>"; };
-		943BB1593E20D052124B313D /* Pods-uMAD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uMAD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-uMAD/Pods-uMAD.debug.xcconfig"; sourceTree = "<group>"; };
 		BE149A93C2D28C327E3E9C93 /* Pods_uMAD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_uMAD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4171D641C27F3DD00E2975C /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		D4171D661C28925800E2975C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -263,14 +260,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 64D4AF7C1A75CDA80040D3CA /* Build configuration list for PBXNativeTarget "uMAD" */;
 			buildPhases = (
-				2815F5DB9ED70A1F4510C569 /* Check Pods Manifest.lock */,
+				68F74EC94E7CBBAA8327548B /* Check Pods Manifest.lock */,
+				2815F5DB9ED70A1F4510C569 /* Copy Pods Resources */,
 				64D4AF591A75CDA80040D3CA /* Sources */,
 				64D4AF5A1A75CDA80040D3CA /* Frameworks */,
 				64D4AF5B1A75CDA80040D3CA /* Resources */,
 				D46D47921C05099500B333AF /* ShellScript */,
 				D4171D6C1C28ADC700E2975C /* ShellScript */,
-				68F74EC94E7CBBAA8327548B /* Embed Pods Frameworks */,
-				D1C8ED5C8290969B78F0A06C /* Copy Pods Resources */,
+				D1C8ED5C8290969B78F0A06C /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -376,7 +373,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2815F5DB9ED70A1F4510C569 /* Check Pods Manifest.lock */ = {
+		2815F5DB9ED70A1F4510C569 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -391,7 +388,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-uMAD/Pods-uMAD-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		68F74EC94E7CBBAA8327548B /* Embed Pods Frameworks */ = {
+		68F74EC94E7CBBAA8327548B /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -406,7 +403,7 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		D1C8ED5C8290969B78F0A06C /* Copy Pods Resources */ = {
+		D1C8ED5C8290969B78F0A06C /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -467,7 +464,6 @@
 				D4FB7B3E1C2E2BA4000D7283 /* QRCode.swift in Sources */,
 				D4171D6B1C28AACE00E2975C /* UMAD.swift in Sources */,
 				D4FB7B441C2F2847000D7283 /* QRScanViewController.swift in Sources */,
-				D48AD7391AB783B300F669D7 /* AboutTableHeaderView.swift in Sources */,
 				D4171D671C28925800E2975C /* User.swift in Sources */,
 				64CD922F1A7A051E00659946 /* SessionViewController.swift in Sources */,
 				D4E19F2E1C2D1D5A00470561 /* CredentialsViewController.swift in Sources */,

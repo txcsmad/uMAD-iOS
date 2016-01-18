@@ -181,13 +181,11 @@ UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, Pro
             }
         }
         let byDescendingOccurrences = tags.sort { $0.1 > $1.1 }
-        let numTags = byDescendingOccurrences.count
-        var scopeTags = [String]()
-        scopeTags.append("All")
-        for var i = 0; i < 3 && (i < numTags - 1); i++ {
-            scopeTags.append(byDescendingOccurrences[i].0)
-        }
-        return scopeTags
+        // Get the first three
+        let topThree = byDescendingOccurrences.prefix(3)
+        var topTags = topThree.map {$0.0}
+        topTags.append("All")
+        return topTags
     }
 
     func updateSearchResultsForSearchController(searchController: UISearchController) {
