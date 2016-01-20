@@ -1,16 +1,16 @@
 PODS:
-  - Bolts/Tasks (1.5.0)
-  - Fabric (1.6.1)
-  - Parse (1.10.0):
+  - Bolts/Tasks (1.6.0)
+  - Fabric (1.6.3)
+  - Parse (1.12.0):
     - Bolts/Tasks (~> 1.5)
-  - ParseUI (1.1.7):
+  - ParseUI (1.2.0):
     - Bolts/Tasks (~> 1.3)
     - Parse (~> 1.9)
   - PKHUD (2.2.5)
-  - TwitterCore (1.14.0):
+  - TwitterCore (1.15.1):
     - Fabric
-  - TwitterKit (1.14.0):
-    - TwitterCore (= 1.14.0)
+  - TwitterKit (1.15.1):
+    - TwitterCore (= 1.15.1)
 
 DEPENDENCIES:
   - Fabric
@@ -21,13 +21,13 @@ DEPENDENCIES:
   - TwitterKit
 
 SPEC CHECKSUMS:
-  Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
-  Fabric: bf0ceb04e7c924090efc5f8c55e4fbcca189e0a0
-  Parse: 90b2544822200f84b18bfacc4e8b0a3a6c3584a2
-  ParseUI: c2bcdfbb00330e464b5b773266ae221697a3bb7b
+  Bolts: f52a250053bb517ca874523c3913776359ab3def
+  Fabric: cbe0ca6c9531bba17910052f6f105fcbc5fa7f67
+  Parse: de2c52a9a1421b91ae7594ab8ce191afd184f19b
+  ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
   PKHUD: 15d9db01fb008bb9247c6d785c585f587955b113
-  TwitterCore: 1d9034c745fe66e7ca682afad8c35193019af069
-  TwitterKit: f9c122959225709dd9483f7f3fad2254a393428b
+  TwitterCore: 12983a7464e34afbbf18881347898a9db526ac71
+  TwitterKit: b5821570887ec2d77650fa232eaec175665dc443
 
 PODFILE CHECKSUM: 2c5ec0f01232be1e4eb27f8223a72520eaee5a0d
 

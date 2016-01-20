@@ -10,6 +10,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     static var currentUMAD: UMAD?
+    private var tabBarController: UITabBarController!
+    private var splashScreen: SplashViewController!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
@@ -19,37 +21,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
 
         PFConfig.getConfigInBackgroundWithBlock(nil)
-        let umadQuery = UMAD.query()
-        umadQuery?.orderByDescending("year")
-        umadQuery?.limit = 1
-        do {
-             // A large amount of the code depends on knowing the latest conference.
-             // Making this synchronous makes it easier to ensure that the app is showing
-             // the latest information.
-            let results = try umadQuery?.findObjects()
-            if let resultUMADs = results as? [UMAD],
-                let umad = resultUMADs.first {
-                    AppDelegate.currentUMAD = umad
-            }
-        } catch {
-            print("Configure a UMAD class to represent the current conference")
-        }
-
-
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
 
         UINavigationBar.appearance().barTintColor = Config.tintColor
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
 
-        let tabBarController = configureTabBarController()
+        splashScreen = SplashViewController(nibName: "Splash", bundle: nil)
 
         window = UIWindow()
-        window?.rootViewController = tabBarController
+        window?.rootViewController = splashScreen
 
         window?.makeKeyAndVisible()
         window?.tintColor = Config.tintColor
 
+        tabBarController = configureTabBarController()
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentTabs", name: "shouldPresentTabs", object: nil)
         return true
     }
 
@@ -87,6 +75,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         aboutViewController.tabBarItem.image = UIImage(named: "aboutus.png")
         aboutViewController.tabBarItem.selectedImage = UIImage(named: "aboutus-filled.png")
         return tabBarController
+    }
+
+    func presentTabs() {
+        window?.rootViewController = tabBarController
     }
 
 }

@@ -11,26 +11,30 @@ class UMADApplicationStatus: PFObject, PFSubclassing {
         return "UMAD_Application_Status"
     }
 
-    static func fetchApplicationStatusWithUser(user: User, success: (UMADApplicationStatus) -> (), error: (String) -> ()){
-        UMADApplication.fetchApplication(user, success: { (application) -> () in
-            fetchApplicationStatus(application, success: success, error: error)
-            }) { () -> () in
-                error("")
+    static func fetchApplicationStatusWithUser(user: User, completion: (UMADApplicationStatus?, NSError?) -> ()) {
+        UMADApplication.fetchApplication(user) {  application, error in
+            guard let application = application else {
+                completion(nil, error)
+                return
+            }   
+            UMADApplicationStatus.fetchApplicationStatus(application) { status, error in
+                completion(status, error)
+            }
         }
     }
 
-    static func fetchApplicationStatus(application: UMADApplication, success: (UMADApplicationStatus) -> (), error: (String) -> ()) {
+    static func fetchApplicationStatus(application: UMADApplication, completion: (UMADApplicationStatus?, NSError?) -> ()) {
         let query = UMADApplicationStatus.query()
         query?.whereKey("application", equalTo: application)
         query?.findObjectsInBackgroundWithBlock({ (result, err) -> Void in
             guard let status = result?.first as? UMADApplicationStatus else {
                 // No status. This is a serious error
                 print("No status for application!")
-                error("Something went wrong")
+                completion(nil, nil)
                 return
             }
 
-            success(status)
+            completion(status, nil)
         })
     }
 }

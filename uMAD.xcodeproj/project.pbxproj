@@ -30,6 +30,8 @@
 		D46D47971C05157700B333AF /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D47961C05157700B333AF /* TimelineViewController.swift */; };
 		D478D10B1AB7533500563A8A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D478D10A1AB7533500563A8A /* LaunchScreen.xib */; };
 		D48AD73D1AB78F8800F669D7 /* EventHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D48AD73C1AB78F8800F669D7 /* EventHeaderView.xib */; };
+		D4B6B60C1C4F3E8B003D382F /* Splash.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B6B60B1C4F3E8B003D382F /* Splash.xib */; };
+		D4B6B60E1C4F3EEC003D382F /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B6B60D1C4F3EEC003D382F /* SplashViewController.swift */; };
 		D4D48A7A1ACB9A4400E03D22 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D48A781ACB969700E03D22 /* MapKit.framework */; };
 		D4D48A7C1ACB9A7300E03D22 /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4D48A7B1ACB9A7300E03D22 /* AboutView.xib */; };
 		D4D48A7E1ACB9AAB00E03D22 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D48A7D1ACB9AAB00E03D22 /* CoreLocation.framework */; };
@@ -85,6 +87,8 @@
 		D478D1081AB7422000563A8A /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		D478D10A1AB7533500563A8A /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		D48AD73C1AB78F8800F669D7 /* EventHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventHeaderView.xib; sourceTree = "<group>"; };
+		D4B6B60B1C4F3E8B003D382F /* Splash.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Splash.xib; sourceTree = "<group>"; };
+		D4B6B60D1C4F3EEC003D382F /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		D4D48A781ACB969700E03D22 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D4D48A7B1ACB9A7300E03D22 /* AboutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutView.xib; sourceTree = "<group>"; };
 		D4D48A7D1ACB9AAB00E03D22 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -154,6 +158,7 @@
 				64CD922E1A7A051E00659946 /* SessionViewController.swift */,
 				64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */,
 				D46D47961C05157700B333AF /* TimelineViewController.swift */,
+				D4B6B60D1C4F3EEC003D382F /* SplashViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 		64CD92341A7A074400659946 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D4B6B60B1C4F3E8B003D382F /* Splash.xib */,
 				D4D48A7B1ACB9A7300E03D22 /* AboutView.xib */,
 				6448E4061A7B067B00FB98CA /* EventHeaderView.swift */,
 				D48AD73C1AB78F8800F669D7 /* EventHeaderView.xib */,
@@ -356,6 +362,7 @@
 			files = (
 				D4171D651C27F3DD00E2975C /* Profile.storyboard in Resources */,
 				D48AD73D1AB78F8800F669D7 /* EventHeaderView.xib in Resources */,
+				D4B6B60C1C4F3E8B003D382F /* Splash.xib in Resources */,
 				64D4AF6A1A75CDA80040D3CA /* Images.xcassets in Resources */,
 				880FA4711C1D1C3B00898B19 /* Settings.bundle in Resources */,
 				D478D10B1AB7533500563A8A /* LaunchScreen.xib in Resources */,
@@ -466,6 +473,7 @@
 				D4FB7B441C2F2847000D7283 /* QRScanViewController.swift in Sources */,
 				D4171D671C28925800E2975C /* User.swift in Sources */,
 				64CD922F1A7A051E00659946 /* SessionViewController.swift in Sources */,
+				D4B6B60E1C4F3EEC003D382F /* SplashViewController.swift in Sources */,
 				D4E19F2E1C2D1D5A00470561 /* CredentialsViewController.swift in Sources */,
 				64FD63791A76FB0700D89106 /* Session.swift in Sources */,
 				D4171D691C28A83D00E2975C /* UMADApplication.swift in Sources */,

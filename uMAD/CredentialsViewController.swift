@@ -55,7 +55,7 @@ class CredentialsViewController: UIViewController {
         }
         self.checkInStatus.hidden = true
         checkingIndicator.startAnimating()
-        status.fetchInBackgroundWithBlock { (result, error) -> Void in
+        status.fetchInBackgroundWithBlock { result, error in
             guard let status = result as? UMADApplicationStatus else {
                 return
             }

@@ -3,7 +3,7 @@ import ParseUI
 import SafariServices
 
 class SessionsViewController: PFQueryTableViewController, UISearchControllerDelegate,
-UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, ProfileViewControllerDelegate {
+UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
 
     private var sessions: [Session]?
     private var sections = [[Session]]()
@@ -130,19 +130,10 @@ UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, Pro
 
     //MARK: - Login
     func didTapRightBarItem() {
-        // User is not logged in
-        if PFUser.currentUser() == nil {
-            let logInViewController = LogInViewController()
-            logInViewController.delegate = self
-            logInViewController.emailAsUsername = true
-            let logoView = UIImageView(image: UIImage(named: "organization-logo.png"))
-            logoView.contentMode = .ScaleAspectFit
-            logInViewController.logInView?.logo = logoView
-
-            presentViewController(logInViewController, animated: true, completion: nil)
-        } else {
-            presentProfileController()
+        guard PFUser.currentUser() != nil else {
+            return
         }
+        presentProfileController()
     }
 
     func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {

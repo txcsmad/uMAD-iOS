@@ -11,9 +11,9 @@ class UMADApplication: PFObject, PFSubclassing {
         return "UMAD_Application"
     }
 
-    static func fetchApplication(user: User, success: (UMADApplication) -> (), error: () -> ()) {
+    static func fetchApplication(user: User, completion: (UMADApplication?, NSError?) -> ()) {
         guard let currentUMAD = AppDelegate.currentUMAD else {
-            error()
+            completion(nil, nil)
             return
         }
         let statusQuery = UMADApplication.query()
@@ -22,24 +22,29 @@ class UMADApplication: PFObject, PFSubclassing {
         statusQuery?.findObjectsInBackgroundWithBlock({ (result, err) -> Void in
             guard let application = result?.first as? UMADApplication else {
                 // No application, or query invalid
-                error()
+                completion(nil, nil)
                 return
             }
             guard result?.count == 1 else {
                 // More than one application
-                error()
+                completion(nil, nil)
                 return
             }
-            success(application)
+            completion(application, nil)
         })
     }
-    
-    static func fetchApplication(success: (UMADApplication) -> (), error: () -> ()) {
+
+    /**
+     Convenience for fetching the current user's application for the current UMAD
+
+     - parameter completion: the completion handler
+     */
+    static func fetchApplication(completion: (UMADApplication?, NSError?) -> ()) {
         guard let currentUser = User.currentUser() else {
-                error()
-                return
+            completion(nil, nil)
+            return
         }
-        fetchApplication(currentUser, success: success, error: error)
+        fetchApplication(currentUser, completion: completion)
     }
 
 }
