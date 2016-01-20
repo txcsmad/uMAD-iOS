@@ -22,10 +22,10 @@ class SponsorsViewController: PFQueryCollectionViewController {
 
     // MARK: - SponsorsViewController
     
-    private func companyAtIndexPath(indexPath: NSIndexPath) -> Company {
-        let sponsors = objects as! [UMADSponsor]
-        let sponsorAtIndexPath = sponsors[indexPath.row]
-        return sponsorAtIndexPath.company
+    private func companyAtIndexPath(indexPath: NSIndexPath) -> Company? {
+        let sponsors = objects as? [UMADSponsor]
+        let sponsorAtIndexPath = sponsors?[indexPath.row]
+        return sponsorAtIndexPath?.company
     }
     
     // MARK: - PFQueryCollectionViewController
@@ -42,8 +42,11 @@ class SponsorsViewController: PFQueryCollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFCollectionViewCell? {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier, forIndexPath: indexPath) as? PFCollectionViewCell
+        guard let company = companyAtIndexPath(indexPath) else {
+            return nil
+        }
         cell?.imageView.image = UIImage(named: "placeholder")
-        cell?.imageView.file = companyAtIndexPath(indexPath).image
+        cell?.imageView.file = company.image
         cell?.imageView.loadInBackground()
         return cell
     }
@@ -51,18 +54,22 @@ class SponsorsViewController: PFQueryCollectionViewController {
     // MARK: - UICollectionViewDelegate
 
      override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let selectedCompany = companyAtIndexPath(indexPath)
+        guard let selectedCompany = companyAtIndexPath(indexPath) else {
+            return
+        }
         let safariViewController = SFSafariViewController(URL: selectedCompany.websiteURL)
         presentViewController(safariViewController, animated: true, completion: nil)
     }
 
     // MARK: - UICollectionViewDelegateFlowLayout
     
-    override func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+    override func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+        insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     
-    override func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    override func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSize(width: (view.frame.width / 2.3) - 10, height: 100)
     }
     
