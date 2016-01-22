@@ -45,6 +45,9 @@ class ProfileViewController: UITableViewController {
         currentUser.checkIfIsVolunteer { (volunteer) -> () in
             self.volunteer = volunteer
         }
+        UMADApplicationStatus.fetchApplicationStatusWithUser(currentUser) { status, error in
+            self.status = status
+        }
     }
 
     @IBAction func didTapDone(sender: UIBarButtonItem) {
@@ -53,7 +56,8 @@ class ProfileViewController: UITableViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "check-in" {
-            guard let checkInViewController = segue.destinationViewController as? CredentialsViewController else {
+            guard let checkInViewController = segue.destinationViewController as? CredentialsViewController,
+                let status = status else {
                 return
             }
             checkInViewController.status = status
@@ -71,6 +75,7 @@ class ProfileViewController: UITableViewController {
         case .Actions:
             PFUser.logOutInBackground()
             delegate?.userDidExitProfile()
+            NSNotificationCenter.defaultCenter().postNotificationName("shouldPresentSplash", object: nil)
             break
         default:
             tableView.deselectRowAtIndexPath(indexPath, animated: true)

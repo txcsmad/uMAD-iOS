@@ -38,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarController = configureTabBarController()
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentTabs", name: "shouldPresentTabs", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentSplash", name: "shouldPresentSplash", object: nil)
         return true
     }
 
@@ -79,6 +80,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func presentTabs() {
         window?.rootViewController = tabBarController
+    }
+
+    func presentSplash() {
+        window?.rootViewController = splashScreen
     }
 
 }

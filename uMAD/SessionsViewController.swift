@@ -30,6 +30,7 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
         searchController.searchBar.scopeButtonTitles = ["All"]
         searchController.searchBar.placeholder = "Search Events"
         searchController.searchBar.delegate = self
+        searchController.delegate = self
         tableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
 
@@ -44,7 +45,7 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         navigationController?.setToolbarHidden(true, animated: true)
     }
 
@@ -73,15 +74,18 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
 
         sessions?.removeAll()
         sections.removeAll()
-        filteredSessions?.removeAll()
-        filteredSections.removeAll()
+        
         sessions = casted
         sections = sessions!.createSectionedRepresentation()
+
         searchController.searchBar.scopeButtonTitles = getTopTags()
     }
 
     override func objectAtIndexPath(indexPath: NSIndexPath?) -> PFObject? {
-        return searchController.active ? filteredSections[indexPath!.section][indexPath!.row] : sections[indexPath!.section][indexPath!.row]
+        guard let indexPath = indexPath else {
+            return nil
+        }
+        return searchController.active ? filteredSections[indexPath.section][indexPath.row] : sections[indexPath.section][indexPath.row]
     }
 
     func sessionAtIndexPath(indexPath: NSIndexPath) -> Session? {
@@ -153,11 +157,22 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
         // User is logged in. Present profile view
         presentViewController(navController, animated: true, completion: nil)
     }
+    
     func userDidExitProfile() {
         dismissViewControllerAnimated(true, completion: nil)
     }
 
     //MARK: - Search
+
+    func didPresentSearchController(searchController: UISearchController) {
+        pullToRefreshEnabled = false
+        filteredSections = sections
+        filteredSessions = sessions
+    }
+
+    func willDismissSearchController(searchController: UISearchController) {
+        pullToRefreshEnabled = true
+    }
 
     func getTopTags() -> [String]? {
         guard sessions != nil else {
@@ -175,13 +190,13 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
         // Get the first three
         let topThree = byDescendingOccurrences.prefix(3)
         var topTags = topThree.map {$0.0}
-        topTags.append("All")
+        topTags.insert("All", atIndex: 0)
         return topTags
     }
 
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchString = searchController.searchBar.text
-        filterContentForSearchText(searchString!, scope: searchController.searchBar.selectedScopeButtonIndex)
+        filterContentForSearchText(searchString ?? "", scope: searchController.searchBar.selectedScopeButtonIndex)
         tableView.reloadData()
     }
 
