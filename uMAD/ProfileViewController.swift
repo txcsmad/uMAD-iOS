@@ -106,14 +106,15 @@ class ProfileViewController: UITableViewController {
 
         let indicatorColor: UIColor
         switch status.status {
+        case "Confirmed":
+            indicatorColor = UIColor(red: 0.76, green: 0.92, blue: 0.25, alpha: 1.0)
+            accepted = true
         case "Accepted":
             self.applicationStatusLabel.text?.appendContentsOf("! 🎉")
             indicatorColor = UIColor(red: 0.76, green: 0.92, blue: 0.25, alpha: 1.0)
-            accepted = true
-            break
+            accepted = false
         case "Pending":
             indicatorColor = UIColor.lightGrayColor()
-            break
         case "Waitlisted":
             indicatorColor = UIColor.yellowColor()
         default:
