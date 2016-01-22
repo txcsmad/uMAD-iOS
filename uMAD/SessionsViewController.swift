@@ -37,6 +37,7 @@ UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, Pro
         sectionHeaderFormatter.dateFormat = "EEEE - hh:mm a"
 
         pullToRefreshEnabled = true
+        paginationEnabled = false
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "user.png"), style: .Plain, target: self, action: "didTapRightBarItem")
     }

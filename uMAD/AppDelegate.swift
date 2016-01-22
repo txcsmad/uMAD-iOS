@@ -80,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         twitterViewController.tabBarItem.image = UIImage(named: "twitter.png")
         twitterViewController.tabBarItem.selectedImage = UIImage(named: "twitter-filled.png")
 
-        sponsorsViewController.tabBarItem.title = "Sponsors"
+        sponsorsViewController.tabBarItem.title = "Partners"
         sponsorsViewController.tabBarItem.image = UIImage(named: "sponsors.png")
         sponsorsViewController.tabBarItem.selectedImage = UIImage(named: "sponsors-filled.png")
 

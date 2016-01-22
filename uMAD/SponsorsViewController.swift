@@ -13,7 +13,8 @@ class SponsorsViewController: PFQueryCollectionViewController {
     init() {
         super.init(collectionViewLayout: UICollectionViewFlowLayout(), className: "UMAD_Sponsor")
         collectionView?.registerClass(PFCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
-        navigationItem.title = "Sponsors"
+        navigationItem.title = "Partners"
+        pullToRefreshEnabled = false
     }
 
     required convenience init(coder aDecoder: NSCoder) {
