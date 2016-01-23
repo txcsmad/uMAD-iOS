@@ -61,6 +61,7 @@ class SponsorsViewController: UICollectionViewController {
      override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let currentSponsor = sponsors![indexPath.item]
         let webViewController = SFSafariViewController(URL: currentSponsor.websiteURL)
+        webViewController.view.tintColor = Config.tintColor
         PFAnalytics.trackEventInBackground("openedSponsorWebsite", dimensions:nil, block: nil)
         navigationController?.pushViewController(webViewController, animated: true)
     }

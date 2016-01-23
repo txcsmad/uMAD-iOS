@@ -10,6 +10,7 @@ class LogInViewController: PFLogInViewController, SFSafariViewControllerDelegate
      */
     func _signupAction() {
         let signUpController = SFSafariViewController(URL: signUpFormURL)
+        signUpController.view.tintColor = Config.tintColor
         signUpController.delegate = self
         presentViewController(signUpController, animated: true, completion: nil)
     }

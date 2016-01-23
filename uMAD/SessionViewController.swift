@@ -52,6 +52,7 @@ class SessionViewController: UITableViewController {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             if eventURL != nil {
                 let webViewController = SFSafariViewController(URL: session.company!.websiteURL)
+                webViewController.view.tintColor = Config.tintColor
                 PFAnalytics.trackEventInBackground("openedSponsorWebsite", dimensions:nil, block: nil)
                 navigationController?.pushViewController(webViewController, animated: true)
             }

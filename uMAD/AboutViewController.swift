@@ -92,6 +92,7 @@ class AboutViewController: UIViewController {
             return
         }
         let controller = SFSafariViewController(URL: url)
+        controller.view.tintColor = Config.tintColor
         presentViewController(controller, animated: true, completion: nil)
     }
 

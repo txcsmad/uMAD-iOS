@@ -133,6 +133,7 @@ class ProfileViewController: UITableViewController {
             if indexPath.row == 1 {
             let applyToUMADURL = NSURL(string: "http://umad.me")!
             let webView = SFSafariViewController(URL: applyToUMADURL)
+            webView.view.tintColor = Config.tintColor
             navigationController?.pushViewController(webView, animated: true)
             }
             break
