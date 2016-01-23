@@ -35,6 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Configure a UMAD class to represent the current conference")
         }
 
+        // Register for push notifications
+        let userNotificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
+        let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
 
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
 
@@ -53,6 +58,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        // Store the deviceToken in the current Installation and save it to Parse
+        let installation = PFInstallation.currentInstallation()
+        installation.setDeviceTokenFromData(deviceToken)
+        installation.saveInBackground()
+    }
+    
     func registerParseSubclasses() {
         Session.registerSubclass()
         Company.registerSubclass()
