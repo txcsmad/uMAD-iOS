@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import SafariServices
 
 class SplashInformationView: UIView {
     weak var delegate: SplashViewDelegate?
@@ -13,10 +14,13 @@ class SplashInformationView: UIView {
         return view
     }
 
-    @IBAction func signOut() {
+    @IBAction func signInOut(button: UIButton) {
         delegate?.needsSignout()
         // Transition view state
     }
 
+    @IBAction func applyToUmad() {
+        delegate?.openApplication()
+    }
 
 }

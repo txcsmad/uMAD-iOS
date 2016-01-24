@@ -2,21 +2,21 @@ import Foundation
 import UIKit
 import Parse
 import ParseUI
+import SafariServices
 
 protocol SplashViewDelegate: class {
     func needsLogin()
     func needsSignout()
+    func openApplication()
+    func openSite()
 }
 
 class SplashViewController: UIViewController, PFLogInViewControllerDelegate, SplashViewDelegate {
     @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
     @IBOutlet weak var eventImage: UIImageView!
-    @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var statusIcon: UIImageView!
     
     // Centering constraints for the event emblem
-    @IBOutlet weak var verticalCenterConstraint: NSLayoutConstraint?
-    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var eventImageCenterYConstraint: NSLayoutConstraint?
 
     // Show to users who have a pending application
     var statusDisplayContainer: SplashStatusView!
@@ -26,8 +26,6 @@ class SplashViewController: UIViewController, PFLogInViewControllerDelegate, Spl
 
     // nil if the user hasn't applied, or the user isn't signed in yet
     private var applicationStatus: UMADApplicationStatus?
-
-
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -67,7 +65,7 @@ class SplashViewController: UIViewController, PFLogInViewControllerDelegate, Spl
                 installContent(statusDisplayContainer)
                 statusAlpha = 1.0
                 informationAlpha = 0.0
-                statusLabel.text = status.status
+                statusDisplayContainer.statusLabel.text = status.status
             }
         } else if let user = User.currentUser() {
             installContent(informationDisplayContainer)
@@ -128,33 +126,43 @@ class SplashViewController: UIViewController, PFLogInViewControllerDelegate, Spl
     // MARK:- Animation
 
     private func installEmblemDemphasizingConstraints() {
-        guard let oldConstraint = verticalCenterConstraint else {
+        guard let oldConstraint = eventImageCenterYConstraint else {
             return
         }
-        let newConstraint = NSLayoutConstraint(item: eventImage, attribute: .Top, relatedBy: .Equal,
-            toItem: contentView, attribute: .Top, multiplier: 1.0, constant: 50.0)
         oldConstraint.active = false
-        self.contentView.addConstraint(newConstraint)
+        eventImage.removeConstraint(oldConstraint)
+        let top = eventImage.topAnchor.constraintEqualToAnchor(view.topAnchor, constant: 50.0)
+        top.active = true
     }
 
     private func installContent(content: UIView) {
-        contentView.addSubview(content)
-        let topConstraint = NSLayoutConstraint(item: eventImage, attribute: .Bottom, relatedBy: .Equal,
-            toItem: content, attribute: .Top, multiplier: 1.0, constant: 40)
-        let leftConstraint = NSLayoutConstraint(item: contentView, attribute: .Left, relatedBy: .Equal,
-            toItem: content, attribute: .Left, multiplier: 1.0, constant: 0.0)
-        let rightConstraint = NSLayoutConstraint(item: contentView, attribute: .Right, relatedBy: .Equal,
-            toItem: content, attribute: .Right, multiplier: 1.0, constant: 0.0)
-        let bottomConstraint = NSLayoutConstraint(item: contentView, attribute: .Bottom, relatedBy: .Equal,
-            toItem: content, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
-        eventImage.addConstraint(topConstraint)
-        contentView.addConstraints([leftConstraint, rightConstraint, bottomConstraint])
-        content.backgroundColor = UIColor.redColor()
-        content.alpha = 1.0
+        view.addSubview(content)
+        let left = view.leftAnchor.constraintEqualToAnchor(content.leftAnchor, constant: -30.0)
+        let right = view.rightAnchor.constraintEqualToAnchor(content.rightAnchor, constant: 30.0)
+        let bottom = content.bottomAnchor.constraintLessThanOrEqualToAnchor(view.bottomAnchor, constant: -10.0)
+        bottom.priority = 10
+        let top = content.topAnchor.constraintEqualToAnchor(eventImage.bottomAnchor, constant: 50.0)
+
+        NSLayoutConstraint.activateConstraints([left, right, bottom, top])
+        content.backgroundColor = .clearColor()
+        content.translatesAutoresizingMaskIntoConstraints = false
+        view.layoutIfNeeded()
+        content.layoutIfNeeded()
     }
 
 
     // MARK:- View Delegate
+
+    func openApplication() {
+        let controller = SFSafariViewController(URL: NSURL(string: "http://umad.me")!)
+        presentViewController(controller, animated: true, completion: nil)
+    }
+
+    func openSite() {
+        let controller = SFSafariViewController(URL: NSURL(string: "http://umad.me")!)
+        presentViewController(controller, animated: true, completion: nil)
+    }
+
     func needsSignout() {
         signInOut()
         updateView()

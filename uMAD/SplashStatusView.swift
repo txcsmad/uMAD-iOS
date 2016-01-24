@@ -2,6 +2,8 @@ import Foundation
 import UIKit
 
 class SplashStatusView: UIView {
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var statusIcon: UIImageView!
     weak var delegate: SplashViewDelegate?
 
     static func fromNib() -> SplashStatusView! {
@@ -13,10 +15,10 @@ class SplashStatusView: UIView {
     }
 
     @IBAction func openSite() {
-
+        delegate?.openSite()
     }
 
-    @IBAction func openApplication() {
-        
+    @IBAction func signOut() {
+        delegate?.needsSignout()
     }
 }

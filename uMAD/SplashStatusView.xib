@@ -18,18 +18,24 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muo-JE-Fs2">
-                    <rect key="frame" x="262" y="522" width="76" height="35"/>
+                    <rect key="frame" x="222" y="522" width="157" height="35"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                    <state key="normal" title="More information">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="openSite" destination="Uw5-S1-zwq" eventType="touchUpInside" id="m5t-LP-lVE"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gcd-5L-Pue">
+                    <rect key="frame" x="263" y="565" width="76" height="35"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                     <state key="normal" title="Sign out">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gcd-5L-Pue">
-                    <rect key="frame" x="227" y="565" width="147" height="35"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                    <state key="normal" title="Open uMAD site">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
+                    <connections>
+                        <action selector="signOut" destination="Uw5-S1-zwq" eventType="touchUpInside" id="zth-x9-mgg"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="Pending" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mDh-56-HoK">
                     <rect key="frame" x="229" y="26" width="141" height="43"/>
@@ -51,6 +57,9 @@
                 <constraint firstItem="mDh-56-HoK" firstAttribute="top" secondItem="0g2-WR-JvU" secondAttribute="bottom" id="x8h-RA-cwr"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
+            <connections>
+                <outlet property="statusLabel" destination="mDh-56-HoK" id="zob-53-JwN"/>
+            </connections>
             <point key="canvasLocation" x="631" y="-233"/>
         </view>
     </objects>
