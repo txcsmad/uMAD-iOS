@@ -76,7 +76,7 @@ class SplashViewController: UIViewController, PFLogInViewControllerDelegate, Spl
             informationDisplayContainer.signInOut.setTitle("Sign out", forState: .Normal)
             // User has account, but hasn't applied
         } else {
-            installContent(statusDisplayContainer)
+            installContent(informationDisplayContainer)
             statusAlpha = 0.0
             informationAlpha = 1.0
             informationDisplayContainer.signInOut.setTitle("Sign in", forState: .Normal)
@@ -101,7 +101,7 @@ class SplashViewController: UIViewController, PFLogInViewControllerDelegate, Spl
         }
         umadQuery.orderByDescending("year")
         umadQuery.limit = 1
-        umadQuery.findObjectsInBackgroundWithBlock{ results, error in
+        umadQuery.findObjectsInBackgroundWithBlock { results, error in
             if let resultUMADs = results as? [UMAD],
                 let umad = resultUMADs.first {
                     AppDelegate.currentUMAD = umad
@@ -115,7 +115,10 @@ class SplashViewController: UIViewController, PFLogInViewControllerDelegate, Spl
         if let user = User.currentUser() {
             UMADApplicationStatus.fetchApplicationStatusWithUser(user) { status, error in
                 self.applicationStatus = status
-                self.updateView()
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.updateView()
+                }
+
             }
         } else {
             updateView()
@@ -135,6 +138,7 @@ class SplashViewController: UIViewController, PFLogInViewControllerDelegate, Spl
     }
 
     private func installContent(content: UIView) {
+        contentView.addSubview(content)
         let topConstraint = NSLayoutConstraint(item: eventImage, attribute: .Bottom, relatedBy: .Equal,
             toItem: content, attribute: .Top, multiplier: 1.0, constant: 40)
         let leftConstraint = NSLayoutConstraint(item: contentView, attribute: .Left, relatedBy: .Equal,
@@ -143,9 +147,10 @@ class SplashViewController: UIViewController, PFLogInViewControllerDelegate, Spl
             toItem: content, attribute: .Right, multiplier: 1.0, constant: 0.0)
         let bottomConstraint = NSLayoutConstraint(item: contentView, attribute: .Bottom, relatedBy: .Equal,
             toItem: content, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
-        contentView.addSubview(content)
-        contentView.addConstraints([topConstraint, leftConstraint, rightConstraint, bottomConstraint])
-        contentView.backgroundColor = UIColor.redColor()
+        eventImage.addConstraint(topConstraint)
+        contentView.addConstraints([leftConstraint, rightConstraint, bottomConstraint])
+        content.backgroundColor = UIColor.redColor()
+        content.alpha = 1.0
     }
 
 

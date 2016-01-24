@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="Uw5-S1-zwq" customClass="SplashStatusView" customModule="uMAD" customModuleProvider="target">
+        <view contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" id="Uw5-S1-zwq" customClass="SplashStatusView" customModule="uMAD" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -51,7 +51,7 @@
                 <constraint firstItem="mDh-56-HoK" firstAttribute="top" secondItem="0g2-WR-JvU" secondAttribute="bottom" id="x8h-RA-cwr"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
-            <point key="canvasLocation" x="794" y="-346"/>
+            <point key="canvasLocation" x="631" y="-233"/>
         </view>
     </objects>
 </document>
