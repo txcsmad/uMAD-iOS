@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10089" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10072.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iqQ-EV-5Lx" customClass="SplashInformationView" customModule="uMAD" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyN-fh-zUl">
+                    <rect key="frame" x="232" y="522" width="136" height="35"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                    <state key="normal" title="Apply to uMAD">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ucG-jw-ydF">
+                    <rect key="frame" x="250" y="565" width="103" height="35"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                    <state key="normal" title="Sign In/Out">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8c-HT-ZIX">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="61"/>
+                    <string key="text">University of MAD (uMAD) is an annual daylong conference providing UTCS students with key insights into mobile, web, and cloud technologies used in the industry everyday.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="ucG-jw-ydF" secondAttribute="bottom" id="3pT-eU-J04"/>
+                <constraint firstItem="ucG-jw-ydF" firstAttribute="top" secondItem="g8c-HT-ZIX" secondAttribute="bottom" priority="250" constant="30" id="CLi-kM-qq5"/>
+                <constraint firstItem="g8c-HT-ZIX" firstAttribute="top" secondItem="iqQ-EV-5Lx" secondAttribute="top" id="UmM-RZ-oTD"/>
+                <constraint firstItem="hyN-fh-zUl" firstAttribute="centerX" secondItem="iqQ-EV-5Lx" secondAttribute="centerX" id="Xl5-RI-x8t"/>
+                <constraint firstItem="g8c-HT-ZIX" firstAttribute="centerX" secondItem="iqQ-EV-5Lx" secondAttribute="centerX" id="bG9-wh-1dI"/>
+                <constraint firstItem="g8c-HT-ZIX" firstAttribute="leading" secondItem="iqQ-EV-5Lx" secondAttribute="leading" id="gJO-aN-q46"/>
+                <constraint firstItem="ucG-jw-ydF" firstAttribute="centerX" secondItem="iqQ-EV-5Lx" secondAttribute="centerX" id="h3c-3g-BIm"/>
+                <constraint firstItem="ucG-jw-ydF" firstAttribute="top" secondItem="hyN-fh-zUl" secondAttribute="bottom" constant="8" id="pFD-VI-yrc"/>
+                <constraint firstAttribute="trailing" secondItem="g8c-HT-ZIX" secondAttribute="trailing" id="pGg-Km-xtV"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <connections>
+                <outlet property="signInOut" destination="ucG-jw-ydF" id="gJW-OF-noc"/>
+            </connections>
+            <point key="canvasLocation" x="794" y="314"/>
+        </view>
+    </objects>
+</document>

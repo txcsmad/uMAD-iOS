@@ -3,28 +3,38 @@ import UIKit
 import Parse
 import ParseUI
 
-class SplashViewController: UIViewController, PFLogInViewControllerDelegate {
+protocol SplashViewDelegate: class {
+    func needsLogin()
+    func needsSignout()
+}
+
+class SplashViewController: UIViewController, PFLogInViewControllerDelegate, SplashViewDelegate {
     @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
     @IBOutlet weak var eventImage: UIImageView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var statusIcon: UIImageView!
-
-    // Show to users who have a pending application
-    @IBOutlet weak var statusDisplayContainer: UIView!
-
-    // Shown to users who haven't logged in
-    @IBOutlet weak var informationDisplayContainer: UIView!
-    @IBOutlet weak var informationSignInOut: UIButton!
-
-    // nil if the user hasn't applied, or the user isn't signed in yet
-    private var applicationStatus: UMADApplicationStatus?
-
+    
     // Centering constraints for the event emblem
     @IBOutlet weak var verticalCenterConstraint: NSLayoutConstraint?
     @IBOutlet weak var contentView: UIView!
 
+    // Show to users who have a pending application
+    var statusDisplayContainer: SplashStatusView!
+
+    // Shown to users who haven't logged in
+    var informationDisplayContainer: SplashInformationView!
+
+    // nil if the user hasn't applied, or the user isn't signed in yet
+    private var applicationStatus: UMADApplicationStatus?
+
+
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        informationDisplayContainer = SplashInformationView.fromNib()
+        statusDisplayContainer = SplashStatusView.fromNib()
+        informationDisplayContainer.delegate = self
+        statusDisplayContainer.delegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -39,10 +49,13 @@ class SplashViewController: UIViewController, PFLogInViewControllerDelegate {
     }
 
     override func viewWillAppear(animated: Bool) {
+        //checkStatus()
     }
 
     private func updateView() {
         loadingSpinner.stopAnimating()
+        informationDisplayContainer.removeFromSuperview()
+        statusDisplayContainer.removeFromSuperview()
         var statusAlpha: CGFloat = 0.0
         var informationAlpha: CGFloat = 1.0
         if let status = applicationStatus {
@@ -51,23 +64,26 @@ class SplashViewController: UIViewController, PFLogInViewControllerDelegate {
                 return
             } else {
                 // Display their status
+                installContent(statusDisplayContainer)
                 statusAlpha = 1.0
                 informationAlpha = 0.0
                 statusLabel.text = status.status
             }
         } else if let user = User.currentUser() {
+            installContent(informationDisplayContainer)
             statusAlpha = 0.0
             informationAlpha = 1.0
-            informationSignInOut.setTitle("Sign out", forState: .Normal)
+            informationDisplayContainer.signInOut.setTitle("Sign out", forState: .Normal)
             // User has account, but hasn't applied
         } else {
+            installContent(statusDisplayContainer)
             statusAlpha = 0.0
             informationAlpha = 1.0
-            informationSignInOut.setTitle("Sign in", forState: .Normal)
+            informationDisplayContainer.signInOut.setTitle("Sign in", forState: .Normal)
         }
 
         UIView.animateWithDuration(1.0, animations: {
-            self.moveEmblemUp()
+            self.installEmblemDemphasizingConstraints()
             self.view.layoutIfNeeded()
             }) { _ in
             UIView.animateWithDuration(1.0) {
@@ -81,7 +97,6 @@ class SplashViewController: UIViewController, PFLogInViewControllerDelegate {
 
     private func loadCurrentConference() {
         guard let umadQuery = UMAD.query() else {
-
             return
         }
         umadQuery.orderByDescending("year")
@@ -109,7 +124,7 @@ class SplashViewController: UIViewController, PFLogInViewControllerDelegate {
 
     // MARK:- Animation
 
-    private func moveEmblemUp() {
+    private func installEmblemDemphasizingConstraints() {
         guard let oldConstraint = verticalCenterConstraint else {
             return
         }
@@ -119,23 +134,33 @@ class SplashViewController: UIViewController, PFLogInViewControllerDelegate {
         self.contentView.addConstraint(newConstraint)
     }
 
-    // MARK:- Actions
-
-    @IBAction func openSite() {
-
+    private func installContent(content: UIView) {
+        let topConstraint = NSLayoutConstraint(item: eventImage, attribute: .Bottom, relatedBy: .Equal,
+            toItem: content, attribute: .Top, multiplier: 1.0, constant: 40)
+        let leftConstraint = NSLayoutConstraint(item: contentView, attribute: .Left, relatedBy: .Equal,
+            toItem: content, attribute: .Left, multiplier: 1.0, constant: 0.0)
+        let rightConstraint = NSLayoutConstraint(item: contentView, attribute: .Right, relatedBy: .Equal,
+            toItem: content, attribute: .Right, multiplier: 1.0, constant: 0.0)
+        let bottomConstraint = NSLayoutConstraint(item: contentView, attribute: .Bottom, relatedBy: .Equal,
+            toItem: content, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
+        contentView.addSubview(content)
+        contentView.addConstraints([topConstraint, leftConstraint, rightConstraint, bottomConstraint])
+        contentView.backgroundColor = UIColor.redColor()
     }
 
-    @IBAction func openApplication() {
 
-    }
-
-    @IBAction func signOut() {
-        User.logOut()
+    // MARK:- View Delegate
+    func needsSignout() {
+        signInOut()
         updateView()
-        // Transition view state
     }
 
-    @IBAction func signInOut() {
+    func needsLogin() {
+        signInOut()
+        updateView()
+    }
+
+    func signInOut() {
         if User.currentUser() != nil {
             User.logOut()
             updateView()
@@ -150,7 +175,6 @@ class SplashViewController: UIViewController, PFLogInViewControllerDelegate {
         logInViewController.logInView?.logo = logoView
 
         presentViewController(logInViewController, animated: true, completion: nil)
-
     }
 
     // MARK:- Log In

@@ -39,6 +39,10 @@
 		D4E19F2A1C2CA86D00470561 /* UMADApplicationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F291C2CA86D00470561 /* UMADApplicationStatus.swift */; };
 		D4E19F2E1C2D1D5A00470561 /* CredentialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F2D1C2D1D5A00470561 /* CredentialsViewController.swift */; };
 		D4F4CEDB1C2A39C700220E39 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F4CEDA1C2A39C700220E39 /* LogInViewController.swift */; };
+		D4F7ADD21C54903C0078CBD7 /* SplashInformationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F7ADD11C54903C0078CBD7 /* SplashInformationView.xib */; };
+		D4F7ADD41C5490720078CBD7 /* SplashStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F7ADD31C5490720078CBD7 /* SplashStatusView.xib */; };
+		D4F7ADD81C5491650078CBD7 /* SplashInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F7ADD71C5491650078CBD7 /* SplashInformationView.swift */; };
+		D4F7ADDA1C54932A0078CBD7 /* SplashStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F7ADD91C54932A0078CBD7 /* SplashStatusView.swift */; };
 		D4FB7B3E1C2E2BA4000D7283 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB7B3D1C2E2BA4000D7283 /* QRCode.swift */; };
 		D4FB7B421C2E364D000D7283 /* CheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB7B411C2E364D000D7283 /* CheckInViewController.swift */; };
 		D4FB7B441C2F2847000D7283 /* QRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB7B431C2F2847000D7283 /* QRScanViewController.swift */; };
@@ -96,6 +100,10 @@
 		D4E19F291C2CA86D00470561 /* UMADApplicationStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMADApplicationStatus.swift; sourceTree = "<group>"; };
 		D4E19F2D1C2D1D5A00470561 /* CredentialsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsViewController.swift; sourceTree = "<group>"; };
 		D4F4CEDA1C2A39C700220E39 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		D4F7ADD11C54903C0078CBD7 /* SplashInformationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashInformationView.xib; sourceTree = "<group>"; };
+		D4F7ADD31C5490720078CBD7 /* SplashStatusView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashStatusView.xib; sourceTree = "<group>"; };
+		D4F7ADD71C5491650078CBD7 /* SplashInformationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashInformationView.swift; sourceTree = "<group>"; };
+		D4F7ADD91C54932A0078CBD7 /* SplashStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashStatusView.swift; sourceTree = "<group>"; };
 		D4F99C251ACCAAC900ED0A8E /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		D4FB7B3D1C2E2BA4000D7283 /* QRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
 		D4FB7B411C2E364D000D7283 /* CheckInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInViewController.swift; sourceTree = "<group>"; };
@@ -152,13 +160,13 @@
 		64CD92331A7A073100659946 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D4F7ADD51C54908A0078CBD7 /* Splash */,
 				D4FB7B3C1C2E2B4C000D7283 /* Profile */,
 				64ADB37B1A7C81D900E5BC22 /* AboutViewController.swift */,
 				8840760E1C1BAFB600EBF319 /* SessionsViewController.swift */,
 				64CD922E1A7A051E00659946 /* SessionViewController.swift */,
 				64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */,
 				D46D47961C05157700B333AF /* TimelineViewController.swift */,
-				D4B6B60D1C4F3EEC003D382F /* SplashViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -166,7 +174,7 @@
 		64CD92341A7A074400659946 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D4B6B60B1C4F3E8B003D382F /* Splash.xib */,
+				D4F7ADD61C5490950078CBD7 /* Splash */,
 				D4D48A7B1ACB9A7300E03D22 /* AboutView.xib */,
 				6448E4061A7B067B00FB98CA /* EventHeaderView.swift */,
 				D48AD73C1AB78F8800F669D7 /* EventHeaderView.xib */,
@@ -246,6 +254,26 @@
 				D4280C0F1B2DE6070090F8C6 /* Info.plist */,
 			);
 			path = UITests;
+			sourceTree = "<group>";
+		};
+		D4F7ADD51C54908A0078CBD7 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				D4B6B60D1C4F3EEC003D382F /* SplashViewController.swift */,
+				D4F7ADD71C5491650078CBD7 /* SplashInformationView.swift */,
+				D4F7ADD91C54932A0078CBD7 /* SplashStatusView.swift */,
+			);
+			name = Splash;
+			sourceTree = "<group>";
+		};
+		D4F7ADD61C5490950078CBD7 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				D4B6B60B1C4F3E8B003D382F /* Splash.xib */,
+				D4F7ADD11C54903C0078CBD7 /* SplashInformationView.xib */,
+				D4F7ADD31C5490720078CBD7 /* SplashStatusView.xib */,
+			);
+			name = Splash;
 			sourceTree = "<group>";
 		};
 		D4FB7B3C1C2E2B4C000D7283 /* Profile */ = {
@@ -362,10 +390,12 @@
 			files = (
 				D4171D651C27F3DD00E2975C /* Profile.storyboard in Resources */,
 				D48AD73D1AB78F8800F669D7 /* EventHeaderView.xib in Resources */,
+				D4F7ADD41C5490720078CBD7 /* SplashStatusView.xib in Resources */,
 				D4B6B60C1C4F3E8B003D382F /* Splash.xib in Resources */,
 				64D4AF6A1A75CDA80040D3CA /* Images.xcassets in Resources */,
 				880FA4711C1D1C3B00898B19 /* Settings.bundle in Resources */,
 				D478D10B1AB7533500563A8A /* LaunchScreen.xib in Resources */,
+				D4F7ADD21C54903C0078CBD7 /* SplashInformationView.xib in Resources */,
 				D4D48A7C1ACB9A7300E03D22 /* AboutView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,10 +497,12 @@
 				D4E19F281C2CA80100470561 /* UMADSponsor.swift in Sources */,
 				D4FF2D3A1B5DF5EE00A8E2A2 /* Seperable.swift in Sources */,
 				64D4AF631A75CDA80040D3CA /* AppDelegate.swift in Sources */,
+				D4F7ADDA1C54932A0078CBD7 /* SplashStatusView.swift in Sources */,
 				D43561501AC62EDA00F7789D /* Company.swift in Sources */,
 				D4FB7B3E1C2E2BA4000D7283 /* QRCode.swift in Sources */,
 				D4171D6B1C28AACE00E2975C /* UMAD.swift in Sources */,
 				D4FB7B441C2F2847000D7283 /* QRScanViewController.swift in Sources */,
+				D4F7ADD81C5491650078CBD7 /* SplashInformationView.swift in Sources */,
 				D4171D671C28925800E2975C /* User.swift in Sources */,
 				64CD922F1A7A051E00659946 /* SessionViewController.swift in Sources */,
 				D4B6B60E1C4F3EEC003D382F /* SplashViewController.swift in Sources */,
