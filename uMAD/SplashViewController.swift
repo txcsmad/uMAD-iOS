@@ -11,6 +11,7 @@ protocol SplashViewDelegate: class {
     func openSite()
 }
 
+
 class SplashViewController: UIViewController, PFLogInViewControllerDelegate, SplashViewDelegate {
     @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
     @IBOutlet weak var eventImage: UIImageView!
@@ -24,8 +25,18 @@ class SplashViewController: UIViewController, PFLogInViewControllerDelegate, Spl
     // Shown to users who haven't logged in
     var informationDisplayContainer: SplashInformationView!
 
-    // nil if the user hasn't applied, or the user isn't signed in yet
     private var applicationStatus: UMADApplicationStatus?
+    private var state: State = .Unknown
+
+
+    enum State {
+        case NoUser
+        case UserApplied
+        case UserNoApplication
+        case UserConfirmed
+        case Unknown
+        case Updating
+    }
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -39,6 +50,8 @@ class SplashViewController: UIViewController, PFLogInViewControllerDelegate, Spl
         fatalError("init(coder:) has not been implemented")
     }
 
+    //MARK:- Lifecycle
+
     override func viewDidLoad() {
         loadCurrentConference()
         loadingSpinner.startAnimating()
@@ -47,7 +60,7 @@ class SplashViewController: UIViewController, PFLogInViewControllerDelegate, Spl
     }
 
     override func viewWillAppear(animated: Bool) {
-        //checkStatus()
+        checkStatus()
     }
 
     private func updateView() {
@@ -56,29 +69,34 @@ class SplashViewController: UIViewController, PFLogInViewControllerDelegate, Spl
         statusDisplayContainer.removeFromSuperview()
         var statusAlpha: CGFloat = 0.0
         var informationAlpha: CGFloat = 1.0
-        if let status = applicationStatus {
-            if status.status == "Confirmed" {
-                NSNotificationCenter.defaultCenter().postNotificationName("shouldPresentTabs", object: nil)
-                return
-            } else {
-                // Display their status
-                installContent(statusDisplayContainer)
-                statusAlpha = 1.0
-                informationAlpha = 0.0
-                statusDisplayContainer.statusLabel.text = status.status
-            }
-        } else if let user = User.currentUser() {
-            installContent(informationDisplayContainer)
-            statusAlpha = 0.0
-            informationAlpha = 1.0
-            informationDisplayContainer.signInOut.setTitle("Sign out", forState: .Normal)
-            // User has account, but hasn't applied
-        } else {
+
+        switch state {
+        case .NoUser:
             installContent(informationDisplayContainer)
             statusAlpha = 0.0
             informationAlpha = 1.0
             informationDisplayContainer.signInOut.setTitle("Sign in", forState: .Normal)
+            break
+        case .UserNoApplication:
+            installContent(informationDisplayContainer)
+            statusAlpha = 0.0
+            informationAlpha = 1.0
+
+            informationDisplayContainer.signInOut.setTitle("Sign out", forState: .Normal)
+            break
+        case .UserConfirmed:
+            NSNotificationCenter.defaultCenter().postNotificationName("shouldPresentTabs", object: nil)
+            return
+        case .UserApplied:
+            // Display their status
+            installContent(statusDisplayContainer)
+            statusAlpha = 1.0
+            informationAlpha = 0.0
+            statusDisplayContainer.statusLabel.text = applicationStatus?.status
+        case .Unknown, .Updating:
+            return
         }
+
 
         UIView.animateWithDuration(1.0, animations: {
             self.installEmblemDemphasizingConstraints()
@@ -113,12 +131,21 @@ class SplashViewController: UIViewController, PFLogInViewControllerDelegate, Spl
         if let user = User.currentUser() {
             UMADApplicationStatus.fetchApplicationStatusWithUser(user) { status, error in
                 self.applicationStatus = status
+                if let status = status {
+                    self.state = .UserApplied
+                    if status.status == "Confirmed" {
+                        self.state = .UserConfirmed
+                    }
+                } else {
+                    self.state = .UserNoApplication
+                }
                 dispatch_async(dispatch_get_main_queue()) {
                     self.updateView()
                 }
 
             }
         } else {
+            state = .NoUser
             updateView()
         }
     }

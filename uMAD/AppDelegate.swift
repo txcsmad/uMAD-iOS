@@ -11,7 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     static var currentUMAD: UMAD?
     private var tabBarController: UITabBarController!
-    private var splashScreen: SplashViewController!
+    private var splashScreen: SplashViewController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
@@ -80,9 +80,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func presentTabs() {
         window?.rootViewController = tabBarController
+        splashScreen = nil
+
     }
 
     func presentSplash() {
+        if splashScreen == nil {
+            splashScreen = SplashViewController(nibName: "Splash", bundle: nil)
+        }
         window?.rootViewController = splashScreen
     }
 
