@@ -9,10 +9,10 @@ class SessionViewController: UITableViewController {
     let websiteCellIdentifier = "websiteCell"
     
     var addToFavoritesBarButtonItem: UIBarButtonItem {
-        return UIBarButtonItem(title: "Favorite", style: .Plain, target: self, action: "addToFavorites:")
+        return UIBarButtonItem(image: UIImage(named: "favorite-stroked"), style: .Plain, target: self, action: "addToFavorites:")
     }
     var removeFromFavoritesBarButtonItem: UIBarButtonItem {
-        return UIBarButtonItem(title: "Un-favorite", style: .Plain, target: self, action: "removeFromFavorites:")
+        return UIBarButtonItem(image: UIImage(named: "favorite"), style: .Plain, target: self, action: "removeFromFavorites:")
     }
 
     override func viewDidLoad() {
