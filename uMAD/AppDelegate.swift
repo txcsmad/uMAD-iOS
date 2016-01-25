@@ -84,16 +84,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarController.viewControllers = [sessionsViewController, twitterViewController, sponsorsViewController, aboutViewController]
 
         sessionsViewController.tabBarItem.title = "Sessions"
-        sessionsViewController.tabBarItem.image = UIImage(named: "calendar.png")
-        sessionsViewController.tabBarItem.selectedImage = UIImage(named: "calendar-filled.png")
+        sessionsViewController.tabBarItem.image = UIImage(named: "sessions")
+        sessionsViewController.tabBarItem.selectedImage = UIImage(named: "sessions-selected")
 
         twitterViewController.tabBarItem.title = "Twitter"
-        twitterViewController.tabBarItem.image = UIImage(named: "twitter.png")
-        twitterViewController.tabBarItem.selectedImage = UIImage(named: "twitter-filled.png")
+        twitterViewController.tabBarItem.image = UIImage(named: "twitter")
+        twitterViewController.tabBarItem.selectedImage = UIImage(named: "twitter-selected")
 
         sponsorsViewController.tabBarItem.title = "Sponsors"
-        sponsorsViewController.tabBarItem.image = UIImage(named: "sponsors.png")
-        sponsorsViewController.tabBarItem.selectedImage = UIImage(named: "sponsors-filled.png")
+        sponsorsViewController.tabBarItem.image = UIImage(named: "sponsors")
+        sponsorsViewController.tabBarItem.selectedImage = UIImage(named: "sponsors-selected")
 
         aboutViewController.tabBarItem.title = "About"
         aboutViewController.tabBarItem.image = UIImage(named: "aboutus.png")
