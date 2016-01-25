@@ -2,21 +2,17 @@ import UIKit
 import SafariServices
 import Parse
 
-let websiteCellIdentifier = "websiteCell"
 class SessionViewController: UITableViewController {
+    
     weak var session: Session!
     var eventURL: NSURL?
-
-    init() {
-        super.init(style: .Grouped)
+    let websiteCellIdentifier = "websiteCell"
+    
+    var addToFavoritesBarButtonItem: UIBarButtonItem {
+        return UIBarButtonItem(image: UIImage(named: "favorite-stroked"), style: .Plain, target: self, action: "addToFavorites:")
     }
-
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    var removeFromFavoritesBarButtonItem: UIBarButtonItem {
+        return UIBarButtonItem(image: UIImage(named: "favorite"), style: .Plain, target: self, action: "removeFromFavorites:")
     }
 
     override func viewDidLoad() {
@@ -36,9 +32,37 @@ class SessionViewController: UITableViewController {
         tableView.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: tableView.frame.width, height: 20.0) )
         tableView.tableHeaderView = nil
         tableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0)
+        
+        PFUser.currentUser()?.fetchFavoritesWithCompletion { favorites in
+            let favorited = !favorites.filter { $0.objectId == self.session.objectId }.isEmpty
+            self.navigationItem.rightBarButtonItem = favorited ? self.removeFromFavoritesBarButtonItem : self.addToFavoritesBarButtonItem
+        }
     }
-
-    override func viewWillAppear(animated: Bool) {
+    
+    func addToFavorites(sender: UIBarButtonItem) {
+        session.incrementKey("favoriteCount")
+        session.saveInBackground()
+        
+        let favorites = PFUser.currentUser()?.relationForKey("favorites")
+        favorites?.addObject(session)
+        PFUser.currentUser()?.saveInBackgroundWithBlock { success, error in
+            if success {
+                self.navigationItem.rightBarButtonItem = self.removeFromFavoritesBarButtonItem
+            }
+        }
+    }
+    
+    func removeFromFavorites(sender: UIBarButtonItem) {
+        session.incrementKey("favoriteCount", byAmount: -1)
+        session.saveInBackground()
+        
+        let favorites = PFUser.currentUser()?.relationForKey("favorites")
+        favorites?.removeObject(session)
+        PFUser.currentUser()?.saveInBackgroundWithBlock { success, error in
+            if success {
+                self.navigationItem.rightBarButtonItem = self.addToFavoritesBarButtonItem
+            }
+        }
     }
 
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
