@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="Wt4-tF-o58">
+            <objects>
+                <viewController id="GtC-ik-3oY" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mbU-nN-YLN"/>
+                        <viewControllerLayoutGuide type="bottom" id="yL6-dN-0jk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Qvk-I1-ogt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CvN-tu-2IQ">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VLY-jw-iZz">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="498"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Session Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNC-dt-Gr1" customClass="Label" customModule="uMAD" customModuleProvider="target">
+                                                <rect key="frame" x="17" y="20" width="566" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyleCode" value="EventTitle"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Session Info | Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iH1-wa-WEL" customClass="Label" customModule="uMAD" customModuleProvider="target">
+                                                <rect key="frame" x="17" y="49" width="566" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyleCode" value="EventInfo"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWD-th-xtD" customClass="Label" customModule="uMAD" customModuleProvider="target">
+                                                <rect key="frame" x="17" y="90" width="566" height="143"/>
+                                                <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyleCode" value="Description"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Day, Month 31, 12:00 - 12:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vgh-Ic-A3V" customClass="Label" customModule="uMAD" customModuleProvider="target">
+                                                <rect key="frame" x="17" y="253" width="566" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyleCode" value="AdditionalInfo"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIJ-92-jZ8" customClass="CustomButton" customModule="uMAD" customModuleProvider="target">
+                                                <rect key="frame" x="17" y="293" width="118" height="30"/>
+                                                <state key="normal" title="Button"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="styleCode" value="RoundedRect"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="Vgh-Ic-A3V" firstAttribute="top" secondItem="EWD-th-xtD" secondAttribute="bottom" constant="20" id="0ct-cv-nf2"/>
+                                            <constraint firstItem="iH1-wa-WEL" firstAttribute="top" secondItem="yNC-dt-Gr1" secondAttribute="bottom" constant="8" id="2xd-M8-vgr"/>
+                                            <constraint firstAttribute="trailing" secondItem="iH1-wa-WEL" secondAttribute="trailing" constant="17" id="N8o-Ud-m5z"/>
+                                            <constraint firstAttribute="trailing" secondItem="EWD-th-xtD" secondAttribute="trailing" constant="17" id="RcE-yN-FcH"/>
+                                            <constraint firstItem="yNC-dt-Gr1" firstAttribute="top" secondItem="VLY-jw-iZz" secondAttribute="top" constant="20" id="Rlc-XX-OAW"/>
+                                            <constraint firstItem="Vgh-Ic-A3V" firstAttribute="leading" secondItem="VLY-jw-iZz" secondAttribute="leading" constant="17" id="WKf-Sn-wOF"/>
+                                            <constraint firstItem="EWD-th-xtD" firstAttribute="leading" secondItem="VLY-jw-iZz" secondAttribute="leading" constant="17" id="XYI-Qh-PbT"/>
+                                            <constraint firstAttribute="trailing" secondItem="Vgh-Ic-A3V" secondAttribute="trailing" constant="17" id="ZqY-uf-EaI"/>
+                                            <constraint firstItem="yNC-dt-Gr1" firstAttribute="leading" secondItem="VLY-jw-iZz" secondAttribute="leading" constant="17" id="cVM-XA-MUw"/>
+                                            <constraint firstItem="EWD-th-xtD" firstAttribute="top" secondItem="iH1-wa-WEL" secondAttribute="bottom" constant="20" id="gAd-r1-an4"/>
+                                            <constraint firstItem="iH1-wa-WEL" firstAttribute="leading" secondItem="VLY-jw-iZz" secondAttribute="leading" constant="17" id="uy7-Oz-QoH"/>
+                                            <constraint firstAttribute="trailing" secondItem="yNC-dt-Gr1" secondAttribute="trailing" constant="17" id="wKk-1r-OEc"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="VLY-jw-iZz" secondAttribute="trailing" id="KRD-uN-fC9"/>
+                                    <constraint firstItem="VLY-jw-iZz" firstAttribute="leading" secondItem="CvN-tu-2IQ" secondAttribute="leading" id="bLo-DT-EJV"/>
+                                    <constraint firstItem="VLY-jw-iZz" firstAttribute="top" secondItem="CvN-tu-2IQ" secondAttribute="top" id="hOm-3k-bjX"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="CvN-tu-2IQ" firstAttribute="top" secondItem="mbU-nN-YLN" secondAttribute="bottom" id="8LU-I7-tHs"/>
+                            <constraint firstItem="CvN-tu-2IQ" firstAttribute="leading" secondItem="Qvk-I1-ogt" secondAttribute="leading" id="USe-Ah-baU"/>
+                            <constraint firstItem="CvN-tu-2IQ" firstAttribute="width" secondItem="Qvk-I1-ogt" secondAttribute="width" id="Xv5-NS-Z7a"/>
+                            <constraint firstItem="yL6-dN-0jk" firstAttribute="top" secondItem="CvN-tu-2IQ" secondAttribute="bottom" id="mgf-YL-fKX"/>
+                            <constraint firstAttribute="trailing" secondItem="VLY-jw-iZz" secondAttribute="trailing" id="oVI-Wf-t7q"/>
+                            <constraint firstItem="CvN-tu-2IQ" firstAttribute="height" secondItem="Qvk-I1-ogt" secondAttribute="height" id="zLu-gK-HQw"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="zLu-gK-HQw"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3ip-x6-RJh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="512" y="263"/>
+        </scene>
+    </scenes>
+</document>
