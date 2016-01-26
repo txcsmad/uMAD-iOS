@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 enum CustomButtonStyle: String {
     case RoundedRect = "RoundedRect"
@@ -19,22 +20,71 @@ class CustomButton: UIButton {
     private var tintColorByState = [UInt : UIColor]()
     private var borderColorByState = [UInt : CGColor]()
     
-    @IBInspectable var styleCode: String = "" {
+    //Image used with certain button styles
+    @IBInspectable var customImage: UIImage = UIImage() {
         didSet {
-            guard let buttonStyle = CustomButtonStyle(rawValue: styleCode) else {
-                assertionFailure("Invalid styleCode for CustomButton")
-                return
-            }
-            
-            self.setStyle(buttonStyle)
+            customImage = customImage.imageWithRenderingMode(.AlwaysTemplate)
+            customImageView.image = customImage
         }
     }
     
-    //Image used with certain button styles
-    @IBInspectable var customImage: UIImage = UIImage()
+    @IBInspectable var customImageHighlighted: UIImage = UIImage() {
+        didSet {
+            customImageHighlighted = customImageHighlighted.imageWithRenderingMode(.AlwaysTemplate)
+        }
+    }
+    private let customImageView = UIImageView()
+    private let customImageHeight: CGFloat = 24.0
     
-    private func setStyle(style: CustomButtonStyle) {
-        switch style {
+    @IBInspectable var styleCode: String = "" {
+        didSet {
+            self.setStyle(styleCode)
+        }
+    }
+    
+    override var selected: Bool {
+        didSet {
+            setValues()
+        }
+    }
+    
+    override var highlighted: Bool {
+        didSet {
+            setValues()
+        }
+    }
+    
+    override var enabled: Bool {
+        didSet {
+            setValues()
+        }
+    }
+    
+    private func setValues() {
+        self.tintColor = self.tintColorForCurrentState()
+        self.backgroundColor = self.backgroundColorForCurrentState()
+        self.layer.borderColor = self.borderColorForCurrentState()
+        
+        if selected || highlighted {
+            customImageView.image = customImageHighlighted
+            customImageView.tintColor = Color.White.getUIColor()
+        } else {
+            customImageView.image = customImage
+            customImageView.tintColor = Color.AppTint.getUIColor()
+        }
+    }
+
+    private func setStyle(styleCode: String) {
+        if styleCode == "" {
+            return
+        }
+        
+        guard let buttonStyle = CustomButtonStyle(rawValue: styleCode) else {
+            assertionFailure("Invalid styleCode for CustomButton")
+            return
+        }
+        
+        switch buttonStyle {
         case .RoundedRect:
             self.applyRoundedRectStyle()
         }
@@ -64,30 +114,6 @@ class CustomButton: UIButton {
         
         if state == .Normal {
             self.layer.borderColor = borderColor.CGColor
-        }
-    }
-    
-    override var selected: Bool {
-        didSet {
-            self.tintColor = self.tintColorForCurrentState()
-            self.backgroundColor = self.backgroundColorForCurrentState()
-            self.layer.borderColor = self.borderColorForCurrentState()
-        }
-    }
-    
-    override var highlighted: Bool {
-        didSet {
-            self.tintColor = self.tintColorForCurrentState()
-            self.backgroundColor = self.backgroundColorForCurrentState()
-            self.layer.borderColor = self.borderColorForCurrentState()
-        }
-    }
-    
-    override var enabled: Bool {
-        didSet {
-            self.tintColor = self.tintColorForCurrentState()
-            self.backgroundColor = self.backgroundColorForCurrentState()
-            self.layer.borderColor = self.borderColorForCurrentState()
         }
     }
     
@@ -159,15 +185,39 @@ class CustomButton: UIButton {
 //MARK: - Button Types
 
 extension CustomButton {
+    //NOTE: Make sure button type is custom, or else title alpha will change
     func applyRoundedRectStyle() {
         self.setBackgroundColor(Color.White.getUIColor(), state: .Normal)
-        self.setBackgroundColor(Color.AppTint.getUIColor(), state: .Highlighted)
+        self.setBackgroundColor(Color.AppTint.getUIColor().colorWithAlphaComponent(0.5), state: .Highlighted)
+        self.setBackgroundColor(Color.AppTint.getUIColor().colorWithAlphaComponent(0.5), state: UIControlState.init(rawValue: 5))
+        self.setBackgroundColor(Color.AppTint.getUIColor(), state: .Selected)
+        
+        self.setTitleColor(Color.AppTint.getUIColor(), forState: .Normal)
+        self.setTitleColor(Color.White.getUIColor(), forState: .Highlighted)
+        self.setTitleColor(Color.White.getUIColor(), forState: UIControlState.init(rawValue: 5))
+        self.setTitleColor(Color.White.getUIColor(), forState: .Selected)
         
         self.layer.cornerRadius = self.bounds.height / 2.0
         self.layer.borderColor = Color.AppTint.getUIColor().CGColor
         self.layer.borderWidth = 1
         
-        let imageView = UIImageView(image: customImage)
+        customImageView.tintColor = Color.AppTint.getUIColor()
+        customImageView.contentMode = .ScaleAspectFit
+        self.addSubview(customImageView)
         
+        customImageView.snp_makeConstraints { (make) -> Void in
+            make.height.width.equalTo(customImageHeight)
+            make.leading.equalTo(self).offset(22)
+            make.centerY.equalTo(self)
+        }
+        
+        if let title = self.titleLabel {
+            title.snp_remakeConstraints(closure: { (make) -> Void in
+                make.centerY.equalTo(self)
+                make.leading.equalTo(customImageView.snp_trailing).offset(7)
+            })
+            
+            title.font = TextStyle.CustomButton.getUIFont()
+        }
     }
 }

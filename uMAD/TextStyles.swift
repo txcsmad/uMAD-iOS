@@ -14,6 +14,7 @@ enum TextStyle: String {
     case EventInfo = "EventInfo"
     case Description = "Description"
     case AdditionalInfo = "AdditionalInfo"
+    case CustomButton = "CustomButton"
     
     func getUIColor() -> UIColor {
         switch self {
@@ -25,6 +26,8 @@ enum TextStyle: String {
             return Color.Default.getUIColor()
         case .AdditionalInfo:
             return Color.Grey2.getUIColor()
+        case .CustomButton:
+            return Color.AppTint.getUIColor()
         }
     }
     
@@ -38,6 +41,8 @@ enum TextStyle: String {
             return UIFont.systemFontOfSize(16)
         case .AdditionalInfo:
             return UIFont.systemFontOfSize(16)
+        case .CustomButton:
+            return UIFont.systemFontOfSize(17)
         }
     }
 }
