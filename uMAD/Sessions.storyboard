@@ -9,7 +9,7 @@
         <!--Session Detail View Controller-->
         <scene sceneID="Wt4-tF-o58">
             <objects>
-                <viewController storyboardIdentifier="SessionDetailViewController" id="GtC-ik-3oY" customClass="SessionDetailViewController" customModule="uMAD" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SessionDetailViewController" extendedLayoutIncludesOpaqueBars="YES" id="GtC-ik-3oY" customClass="SessionDetailViewController" customModule="uMAD" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mbU-nN-YLN"/>
                         <viewControllerLayoutGuide type="bottom" id="yL6-dN-0jk"/>
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CvN-tu-2IQ">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VLY-jw-iZz">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="352"/>
@@ -135,24 +135,31 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="CvN-tu-2IQ" firstAttribute="top" secondItem="mbU-nN-YLN" secondAttribute="bottom" id="8LU-I7-tHs"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="CvN-tu-2IQ" secondAttribute="bottom" id="PcT-lk-h6a"/>
                             <constraint firstItem="VLY-jw-iZz" firstAttribute="top" secondItem="mbU-nN-YLN" secondAttribute="bottom" id="Qel-7a-6jA"/>
                             <constraint firstItem="CvN-tu-2IQ" firstAttribute="leading" secondItem="Qvk-I1-ogt" secondAttribute="leading" id="USe-Ah-baU"/>
                             <constraint firstItem="CvN-tu-2IQ" firstAttribute="width" secondItem="Qvk-I1-ogt" secondAttribute="width" id="Xv5-NS-Z7a"/>
                             <constraint firstItem="VLY-jw-iZz" firstAttribute="top" secondItem="Qvk-I1-ogt" secondAttribute="topMargin" constant="20" id="d44-nA-KUd"/>
+                            <constraint firstItem="CvN-tu-2IQ" firstAttribute="top" secondItem="mbU-nN-YLN" secondAttribute="bottom" id="gUH-Zk-nzw"/>
                             <constraint firstItem="yL6-dN-0jk" firstAttribute="top" secondItem="CvN-tu-2IQ" secondAttribute="bottom" id="mgf-YL-fKX"/>
                             <constraint firstAttribute="trailing" secondItem="VLY-jw-iZz" secondAttribute="trailing" id="oVI-Wf-t7q"/>
+                            <constraint firstItem="CvN-tu-2IQ" firstAttribute="top" secondItem="Qvk-I1-ogt" secondAttribute="topMargin" id="oXe-ja-qdy"/>
+                            <constraint firstItem="yL6-dN-0jk" firstAttribute="top" secondItem="CvN-tu-2IQ" secondAttribute="bottom" id="swL-6K-vyn"/>
                             <constraint firstItem="VLY-jw-iZz" firstAttribute="leading" secondItem="Qvk-I1-ogt" secondAttribute="leading" id="tKI-T8-n9I"/>
                             <constraint firstItem="CvN-tu-2IQ" firstAttribute="height" secondItem="Qvk-I1-ogt" secondAttribute="height" id="zLu-gK-HQw"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="8LU-I7-tHs"/>
+                                <exclude reference="gUH-Zk-nzw"/>
                                 <exclude reference="zLu-gK-HQw"/>
                                 <exclude reference="Qel-7a-6jA"/>
                                 <exclude reference="d44-nA-KUd"/>
+                                <exclude reference="mgf-YL-fKX"/>
+                                <exclude reference="swL-6K-vyn"/>
                             </mask>
                         </variation>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
                         <outlet property="dateLabel" destination="Vgh-Ic-A3V" id="KLX-zw-isZ"/>
                         <outlet property="descriptionLabel" destination="EWD-th-xtD" id="JiX-wK-tff"/>

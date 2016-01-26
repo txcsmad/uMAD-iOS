@@ -13,10 +13,10 @@
 		64D4AF6A1A75CDA80040D3CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64D4AF691A75CDA80040D3CA /* Images.xcassets */; };
 		64D4AF851A75CF020040D3CA /* SponsorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */; };
 		64FD63791A76FB0700D89106 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FD63781A76FB0700D89106 /* Session.swift */; };
+		7DC4846B4C6A274484F34894 /* Pods_uMAD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7EB28C2BB3A89B5087D5164 /* Pods_uMAD.framework */; };
 		880FA4711C1D1C3B00898B19 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 880FA4701C1D1C3B00898B19 /* Settings.bundle */; };
 		8840760F1C1BAFB600EBF319 /* SessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8840760E1C1BAFB600EBF319 /* SessionsViewController.swift */; };
 		884076131C1BB68A00EBF319 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884076121C1BB68A00EBF319 /* SessionTableViewCell.swift */; };
-		88ED37FA7A716EA1C883FD7A /* Pods_uMAD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE149A93C2D28C327E3E9C93 /* Pods_uMAD.framework */; };
 		C9D3F78E1C57028800EC5CC1 /* SessionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D3F78D1C57028800EC5CC1 /* SessionDetailViewController.swift */; };
 		C9ED38521C56C79D0011B6AB /* Sessions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9ED38511C56C79D0011B6AB /* Sessions.storyboard */; };
 		C9ED38541C56CBA90011B6AB /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED38531C56CBA90011B6AB /* CustomButton.swift */; };
@@ -58,8 +58,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0C1A45FE5BC50EC2B5EB0A04 /* Pods-uMAD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uMAD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-uMAD/Pods-uMAD.debug.xcconfig"; sourceTree = "<group>"; };
 		3219C4551A7AD5AD00C3ADEB /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		5E4A359A448B5DE384108D40 /* Pods-uMAD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uMAD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-uMAD/Pods-uMAD.debug.xcconfig"; sourceTree = "<group>"; };
 		64ADB37B1A7C81D900E5BC22 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		64D4AF5D1A75CDA80040D3CA /* uMAD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uMAD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D4AF611A75CDA80040D3CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -70,7 +70,7 @@
 		880FA4701C1D1C3B00898B19 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		8840760E1C1BAFB600EBF319 /* SessionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsViewController.swift; sourceTree = "<group>"; };
 		884076121C1BB68A00EBF319 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
-		BE149A93C2D28C327E3E9C93 /* Pods_uMAD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_uMAD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4B501413CA171B81EE1593C /* Pods-uMAD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uMAD.release.xcconfig"; path = "Pods/Target Support Files/Pods-uMAD/Pods-uMAD.release.xcconfig"; sourceTree = "<group>"; };
 		C9D3F78D1C57028800EC5CC1 /* SessionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailViewController.swift; sourceTree = "<group>"; };
 		C9ED38511C56C79D0011B6AB /* Sessions.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Sessions.storyboard; sourceTree = "<group>"; };
 		C9ED38531C56CBA90011B6AB /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 		D4FB7B411C2E364D000D7283 /* CheckInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInViewController.swift; sourceTree = "<group>"; };
 		D4FB7B431C2F2847000D7283 /* QRScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScanViewController.swift; sourceTree = "<group>"; };
 		D4FF2D381B5DEA1600A8E2A2 /* Seperable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seperable.swift; sourceTree = "<group>"; };
-		D81563F939CA006D2D94E9F0 /* Pods-uMAD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uMAD.release.xcconfig"; path = "Pods/Target Support Files/Pods-uMAD/Pods-uMAD.release.xcconfig"; sourceTree = "<group>"; };
+		F7EB28C2BB3A89B5087D5164 /* Pods_uMAD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_uMAD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +116,7 @@
 				D4D48A7E1ACB9AAB00E03D22 /* CoreLocation.framework in Frameworks */,
 				D4D48A7A1ACB9A4400E03D22 /* MapKit.framework in Frameworks */,
 				3219C4561A7AD5AD00C3ADEB /* Social.framework in Frameworks */,
-				88ED37FA7A716EA1C883FD7A /* Pods_uMAD.framework in Frameworks */,
+				7DC4846B4C6A274484F34894 /* Pods_uMAD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,11 +130,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		35637EEBB4E5838DF357ACA8 /* Pods */ = {
+		103B5DFE7F83BEB623457CAD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0C1A45FE5BC50EC2B5EB0A04 /* Pods-uMAD.debug.xcconfig */,
-				D81563F939CA006D2D94E9F0 /* Pods-uMAD.release.xcconfig */,
+				5E4A359A448B5DE384108D40 /* Pods-uMAD.debug.xcconfig */,
+				B4B501413CA171B81EE1593C /* Pods-uMAD.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -148,7 +148,7 @@
 				D4D48A781ACB969700E03D22 /* MapKit.framework */,
 				D435614D1AC62ACE00F7789D /* libsqlite3.dylib */,
 				3219C4551A7AD5AD00C3ADEB /* Social.framework */,
-				BE149A93C2D28C327E3E9C93 /* Pods_uMAD.framework */,
+				F7EB28C2BB3A89B5087D5164 /* Pods_uMAD.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -201,7 +201,7 @@
 				D4280C0C1B2DE6070090F8C6 /* UITests */,
 				64D4AF5E1A75CDA80040D3CA /* Products */,
 				40810CBC9317D6633548B7B7 /* Frameworks */,
-				35637EEBB4E5838DF357ACA8 /* Pods */,
+				103B5DFE7F83BEB623457CAD /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -280,14 +280,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 64D4AF7C1A75CDA80040D3CA /* Build configuration list for PBXNativeTarget "uMAD" */;
 			buildPhases = (
-				68F74EC94E7CBBAA8327548B /* Check Pods Manifest.lock */,
-				2815F5DB9ED70A1F4510C569 /* Copy Pods Resources */,
+				228106E943DD5A3C77EA4A7A /* Check Pods Manifest.lock */,
 				64D4AF591A75CDA80040D3CA /* Sources */,
 				64D4AF5A1A75CDA80040D3CA /* Frameworks */,
 				64D4AF5B1A75CDA80040D3CA /* Resources */,
 				D46D47921C05099500B333AF /* ShellScript */,
 				D4171D6C1C28ADC700E2975C /* ShellScript */,
-				D1C8ED5C8290969B78F0A06C /* Embed Pods Frameworks */,
+				7C14841546E61A2EA3049B9D /* Embed Pods Frameworks */,
+				0B604EEC4C16ECE6F3F68B8E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -393,7 +393,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2815F5DB9ED70A1F4510C569 /* Copy Pods Resources */ = {
+		0B604EEC4C16ECE6F3F68B8E /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -408,7 +408,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-uMAD/Pods-uMAD-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		68F74EC94E7CBBAA8327548B /* Check Pods Manifest.lock */ = {
+		228106E943DD5A3C77EA4A7A /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -423,7 +423,7 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		D1C8ED5C8290969B78F0A06C /* Embed Pods Frameworks */ = {
+		7C14841546E61A2EA3049B9D /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -600,7 +600,7 @@
 		};
 		64D4AF7D1A75CDA80040D3CA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C1A45FE5BC50EC2B5EB0A04 /* Pods-uMAD.debug.xcconfig */;
+			baseConfigurationReference = 5E4A359A448B5DE384108D40 /* Pods-uMAD.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -624,7 +624,7 @@
 		};
 		64D4AF7E1A75CDA80040D3CA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D81563F939CA006D2D94E9F0 /* Pods-uMAD.release.xcconfig */;
+			baseConfigurationReference = B4B501413CA171B81EE1593C /* Pods-uMAD.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
