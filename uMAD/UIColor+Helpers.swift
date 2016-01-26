@@ -1,11 +1,3 @@
-//
-//  UIColor+Helpers.swift
-//  uMAD
-//
-//  Created by Matt Ruston on 1/25/16.
-//  Copyright © 2016 com.MAD. All rights reserved.
-//
-
 import Foundation
 import UIKit
 

@@ -1,11 +1,3 @@
-//
-//  SessionDetailViewController.swift
-//  uMAD
-//
-//  Created by Matt Ruston on 1/25/16.
-//  Copyright © 2016 com.MAD. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import SafariServices
@@ -107,7 +99,7 @@ class SessionDetailViewController: UIViewController {
             let webViewController = SFSafariViewController(URL: session.company!.websiteURL)
             webViewController.view.tintColor = Config.tintColor
             PFAnalytics.trackEventInBackground("openedSponsorWebsite", dimensions:nil, block: nil)
-            navigationController?.pushViewController(webViewController, animated: true)
+            presentViewController(webViewController, animated: true, completion: nil)
         }
     }
     
