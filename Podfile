@@ -1,4 +1,5 @@
 use_frameworks!
+inhibit_all_warnings!
 target 'uMAD' do
 
 pod 'Parse'
@@ -7,6 +8,7 @@ pod 'Fabric'
 pod 'TwitterKit'
 pod 'TwitterCore'
 pod 'PKHUD'
+pod 'SnapKit'
 
 post_install do | installer |
   require 'fileutils'
