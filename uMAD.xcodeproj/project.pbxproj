@@ -24,7 +24,6 @@
 		D4171D691C28A83D00E2975C /* UMADApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4171D681C28A83D00E2975C /* UMADApplication.swift */; };
 		D4171D6B1C28AACE00E2975C /* UMAD.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4171D6A1C28AACE00E2975C /* UMAD.swift */; };
 		D4280C0E1B2DE6070090F8C6 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C0D1B2DE6070090F8C6 /* UITests.swift */; };
-		D429C6A41C223F4B002AA3E6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D429C6A31C223F4B002AA3E6 /* ProfileViewController.swift */; };
 		D43561501AC62EDA00F7789D /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = D435614F1AC62EDA00F7789D /* Company.swift */; };
 		D46D47951C05109500B333AF /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D478D1081AB7422000563A8A /* Config.swift */; };
 		D46D47971C05157700B333AF /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D47961C05157700B333AF /* TimelineViewController.swift */; };
@@ -36,11 +35,13 @@
 		D4E19F281C2CA80100470561 /* UMADSponsor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F271C2CA80100470561 /* UMADSponsor.swift */; };
 		D4E19F2A1C2CA86D00470561 /* UMADApplicationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F291C2CA86D00470561 /* UMADApplicationStatus.swift */; };
 		D4E19F2E1C2D1D5A00470561 /* CredentialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F2D1C2D1D5A00470561 /* CredentialsViewController.swift */; };
-		D4F4CEDB1C2A39C700220E39 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F4CEDA1C2A39C700220E39 /* LogInViewController.swift */; };
 		D4FB7B3E1C2E2BA4000D7283 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB7B3D1C2E2BA4000D7283 /* QRCode.swift */; };
 		D4FB7B421C2E364D000D7283 /* CheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB7B411C2E364D000D7283 /* CheckInViewController.swift */; };
 		D4FB7B441C2F2847000D7283 /* QRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB7B431C2F2847000D7283 /* QRScanViewController.swift */; };
 		D4FF2D3A1B5DF5EE00A8E2A2 /* Seperable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF2D381B5DEA1600A8E2A2 /* Seperable.swift */; };
+		D98F279E1C55A23D0078E54A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98F279D1C55A23D0078E54A /* ProfileViewController.swift */; };
+		D9D30BD11C58375E00FB599F /* Log-in.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9D30BD01C58375E00FB599F /* Log-in.storyboard */; };
+		D9D30BD31C5839CC00FB599F /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D30BD21C5839CC00FB599F /* LogInViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +77,6 @@
 		D4280C0B1B2DE6070090F8C6 /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4280C0D1B2DE6070090F8C6 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
 		D4280C0F1B2DE6070090F8C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D429C6A31C223F4B002AA3E6 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D435614D1AC62ACE00F7789D /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		D435614F1AC62EDA00F7789D /* Company.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		D46D47931C050B2A00B333AF /* fabricscript.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = fabricscript.sh; path = ../fabricscript.sh; sourceTree = "<group>"; };
@@ -91,13 +91,15 @@
 		D4E19F271C2CA80100470561 /* UMADSponsor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMADSponsor.swift; sourceTree = "<group>"; };
 		D4E19F291C2CA86D00470561 /* UMADApplicationStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMADApplicationStatus.swift; sourceTree = "<group>"; };
 		D4E19F2D1C2D1D5A00470561 /* CredentialsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsViewController.swift; sourceTree = "<group>"; };
-		D4F4CEDA1C2A39C700220E39 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		D4F99C251ACCAAC900ED0A8E /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		D4FB7B3D1C2E2BA4000D7283 /* QRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
 		D4FB7B411C2E364D000D7283 /* CheckInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInViewController.swift; sourceTree = "<group>"; };
 		D4FB7B431C2F2847000D7283 /* QRScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScanViewController.swift; sourceTree = "<group>"; };
 		D4FF2D381B5DEA1600A8E2A2 /* Seperable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seperable.swift; sourceTree = "<group>"; };
 		D81563F939CA006D2D94E9F0 /* Pods-uMAD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uMAD.release.xcconfig"; path = "Pods/Target Support Files/Pods-uMAD/Pods-uMAD.release.xcconfig"; sourceTree = "<group>"; };
+		D98F279D1C55A23D0078E54A /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D9D30BD01C58375E00FB599F /* Log-in.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Log-in.storyboard"; sourceTree = "<group>"; };
+		D9D30BD21C5839CC00FB599F /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 				D4D48A7B1ACB9A7300E03D22 /* AboutView.xib */,
 				6448E4061A7B067B00FB98CA /* EventHeaderView.swift */,
 				D48AD73C1AB78F8800F669D7 /* EventHeaderView.xib */,
+				D9D30BD01C58375E00FB599F /* Log-in.storyboard */,
 				884076121C1BB68A00EBF319 /* SessionTableViewCell.swift */,
 				D4171D641C27F3DD00E2975C /* Profile.storyboard */,
 			);
@@ -245,8 +248,8 @@
 		D4FB7B3C1C2E2B4C000D7283 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				D429C6A31C223F4B002AA3E6 /* ProfileViewController.swift */,
-				D4F4CEDA1C2A39C700220E39 /* LogInViewController.swift */,
+				D98F279D1C55A23D0078E54A /* ProfileViewController.swift */,
+				D9D30BD21C5839CC00FB599F /* LogInViewController.swift */,
 				D4FB7B411C2E364D000D7283 /* CheckInViewController.swift */,
 				D4E19F2D1C2D1D5A00470561 /* CredentialsViewController.swift */,
 			);
@@ -354,6 +357,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9D30BD11C58375E00FB599F /* Log-in.storyboard in Resources */,
 				D4171D651C27F3DD00E2975C /* Profile.storyboard in Resources */,
 				D48AD73D1AB78F8800F669D7 /* EventHeaderView.xib in Resources */,
 				64D4AF6A1A75CDA80040D3CA /* Images.xcassets in Resources */,
@@ -451,9 +455,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D429C6A41C223F4B002AA3E6 /* ProfileViewController.swift in Sources */,
 				6448E4071A7B067B00FB98CA /* EventHeaderView.swift in Sources */,
-				D4F4CEDB1C2A39C700220E39 /* LogInViewController.swift in Sources */,
 				64D4AF851A75CF020040D3CA /* SponsorsViewController.swift in Sources */,
 				D4FB7B421C2E364D000D7283 /* CheckInViewController.swift in Sources */,
 				D46D47951C05109500B333AF /* Config.swift in Sources */,
@@ -467,8 +469,10 @@
 				D4171D671C28925800E2975C /* User.swift in Sources */,
 				64CD922F1A7A051E00659946 /* SessionViewController.swift in Sources */,
 				D4E19F2E1C2D1D5A00470561 /* CredentialsViewController.swift in Sources */,
+				D98F279E1C55A23D0078E54A /* ProfileViewController.swift in Sources */,
 				64FD63791A76FB0700D89106 /* Session.swift in Sources */,
 				D4171D691C28A83D00E2975C /* UMADApplication.swift in Sources */,
+				D9D30BD31C5839CC00FB599F /* LogInViewController.swift in Sources */,
 				D46D47971C05157700B333AF /* TimelineViewController.swift in Sources */,
 				8840760F1C1BAFB600EBF319 /* SessionsViewController.swift in Sources */,
 				D4E19F2A1C2CA86D00470561 /* UMADApplicationStatus.swift in Sources */,

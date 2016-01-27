@@ -3,7 +3,7 @@ import ParseUI
 import SafariServices
 
 class SessionsViewController: PFQueryTableViewController, UISearchControllerDelegate,
-UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, ProfileViewControllerDelegate {
+UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate, LogInViewControllerDelegate {
 
     private var sessions: [Session]?
     private var sections = [[Session]]()
@@ -132,26 +132,28 @@ UISearchResultsUpdating, UISearchBarDelegate, PFLogInViewControllerDelegate, Pro
     func didTapRightBarItem() {
         // User is not logged in
         if PFUser.currentUser() == nil {
-            let logInViewController = LogInViewController()
-            logInViewController.delegate = self
-            logInViewController.emailAsUsername = true
-            let logoView = UIImageView(image: UIImage(named: "organization-logo.png"))
-            logoView.contentMode = .ScaleAspectFit
-            logInViewController.logInView?.logo = logoView
-
-            presentViewController(logInViewController, animated: true, completion: nil)
-        } else {
+			presentLogInController()
+		} else {
             presentProfileController()
         }
     }
 
-    func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {
+    func logInViewController() {
         // TODO: Change the icon?
         // Dismiss the login view controller
         dismissViewControllerAnimated(true, completion: nil)
         // Present the profile!
         presentProfileController()
     }
+
+	func presentLogInController() {
+		let navController = UIStoryboard(name: "Log-in", bundle: NSBundle.mainBundle()).instantiateInitialViewController()!
+		guard let logInViewController = navController.childViewControllers.first as? LogInViewController else {
+			return
+		}
+		logInViewController.delegate = self
+		presentViewController(navController, animated: true, completion: nil)
+	}
 
     func presentProfileController() {
         let navController = UIStoryboard(name: "Profile", bundle: NSBundle.mainBundle()).instantiateInitialViewController()!
