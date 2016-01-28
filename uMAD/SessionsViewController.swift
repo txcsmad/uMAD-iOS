@@ -39,6 +39,7 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
 
         pullToRefreshEnabled = true
         automaticallyAdjustsScrollViewInsets = true
+        paginationEnabled = false
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "user.png"), style: .Plain, target: self, action: "didTapRightBarItem")
     }

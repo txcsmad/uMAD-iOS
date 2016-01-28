@@ -33,6 +33,7 @@ class ProfileViewController: UITableViewController {
 
     weak var delegate: ProfileViewControllerDelegate?
     override func viewDidLoad() {
+        PFAnalytics.trackEventInBackground("openedProfile", dimensions:nil, block: nil)
         guard let currentUser = User.currentUser() else {
             // There should be a current user object at this point
             // Let's get out of here if there isn't

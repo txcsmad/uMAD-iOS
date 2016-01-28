@@ -4,96 +4,76 @@ import SafariServices
 import Parse
 import ParseUI
 
-let sponsorCellIdentifier = "sponsorCell"
-class SponsorsViewController: UICollectionViewController {
+class SponsorsViewController: PFQueryCollectionViewController {
+    
+    private let cellIdentifier = "sponsorCell"
 
-    var sponsors: [Company]?
-
+    // MARK: - Initializers
+    
     init() {
-        let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        layout.itemSize = CGSize(width: 90, height: 120)
-        super.init(collectionViewLayout: layout)
+        super.init(collectionViewLayout: UICollectionViewFlowLayout(), className: "UMAD_Sponsor")
+        collectionView?.registerClass(PFCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
+        navigationItem.title = "Partners"
+        pullToRefreshEnabled = false
     }
 
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    override func viewDidLoad() {
-        PFAnalytics.trackEventInBackground("openedSponsorsTab", dimensions:nil, block: nil)
-        super.viewDidLoad()
-
-        navigationItem.title = "Sponsors"
-        collectionView!.registerClass(PFCollectionViewCell.self, forCellWithReuseIdentifier: sponsorCellIdentifier)
-        collectionView!.backgroundColor = UIColor.whiteColor()
-        fetchSponsors()
+    required convenience init(coder aDecoder: NSCoder) {
+        self.init()
     }
 
-    private func fetchSponsors() {
-        let query = PFQuery(className: "Company")
+    // MARK: - SponsorsViewController
+    
+    private func companyAtIndexPath(indexPath: NSIndexPath) -> Company? {
+        let sponsors = objects as? [UMADSponsor]
+        let sponsorAtIndexPath = sponsors?[indexPath.row]
+        return sponsorAtIndexPath?.company
+    }
+    
+    // MARK: - PFQueryCollectionViewController
+
+    override func queryForCollection() -> PFQuery {
+        let query = UMADSponsor.query()!
         query.cachePolicy = .CacheThenNetwork
-        query.whereKey("sponsorLevel", greaterThanOrEqualTo: 0)
-        query.orderByDescending("sponsorLevel")
-        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
-            if error != nil {
-                return
-                // There was an error
-            }
-            guard let casted = objects as? [Company] else {
-                return
-            }
-            self.sponsors = casted
-            self.collectionView!.reloadData()
+        query.includeKey("company")
+        if let currentUMAD = AppDelegate.currentUMAD {
+            query.whereKey("umad", equalTo: currentUMAD)
         }
+        return query
     }
 
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFCollectionViewCell? {
 
-     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if sponsors != nil {
-            return sponsors!.count
+        guard let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier, forIndexPath: indexPath) as? PFCollectionViewCell,
+            company = companyAtIndexPath(indexPath) else {
+            return nil
         }
-        return 0
-    }
-
-     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let currentSponsor = sponsors![indexPath.item]
-        let webViewController = SFSafariViewController(URL: currentSponsor.websiteURL)
-        webViewController.view.tintColor = Config.tintColor
-        PFAnalytics.trackEventInBackground("openedSponsorWebsite", dimensions:nil, block: nil)
-        navigationController?.pushViewController(webViewController, animated: true)
-    }
-
-     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let plainCell = collectionView.dequeueReusableCellWithReuseIdentifier(sponsorCellIdentifier,
-            forIndexPath: indexPath)
-        guard let cell = plainCell as? PFCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-        let company = sponsors![indexPath.item]
+        cell.imageView.image = UIImage(named: "placeholder")
         cell.imageView.file = company.image
-        cell.imageView.contentMode = .ScaleAspectFit
-        //HAX: Shouldn't really need the placeholder here, but
-        //the cells reload very strangely without it
-        cell.imageView.image =  UIImage(named: "placeholder")
-        cell.imageView.loadInBackground { (image, error) -> Void in
-            //This line also seems to be important. Won't load with correct
-            //aspect ration otherwise.
-            cell.imageView.contentMode = .ScaleAspectFit
-            cell.setNeedsDisplay()
-        }
+        cell.imageView.loadInBackground()
         return cell
     }
+    
+    // MARK: - UICollectionViewDelegate
 
-    func collectionView(collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let currentSponsor = sponsors![indexPath.item]
-
-        var size = CGSize(width: (view.frame.width/2.3)-10, height: 100)
-
-        return size
+     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        guard let selectedCompany = companyAtIndexPath(indexPath) else {
+            return
+        }
+        let safariViewController = SFSafariViewController(URL: selectedCompany.websiteURL)
+        safariViewController.view.tintColor = Config.tintColor
+        presentViewController(safariViewController, animated: true, completion: nil)
     }
+
+    // MARK: - UICollectionViewDelegateFlowLayout
+    
+    override func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+        insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+    }
+    
+    override func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSize(width: (view.frame.width / 2.3) - 10, height: 100)
+    }
+    
 }

@@ -59,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Company.registerSubclass()
         User.registerSubclass()
         UMAD.registerSubclass()
+        UMADSponsor.registerSubclass()
         UMADApplication.registerSubclass()
         UMADApplicationStatus.registerSubclass()
     }
@@ -68,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let twitterViewController = UINavigationController(rootViewController: TimelineViewController())
         let sponsorsViewController = UINavigationController(rootViewController: SponsorsViewController())
 
-        let tabBarController = UITabBarController()
+        let tabBarController = SelectionHookTabBarController()
         tabBarController.viewControllers = [sessionsViewController, twitterViewController, sponsorsViewController]
 
         sessionsViewController.tabBarItem.title = "Sessions"
@@ -82,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         sponsorsViewController.tabBarItem.title = "Sponsors"
         sponsorsViewController.tabBarItem.image = UIImage(named: "sponsors")
         sponsorsViewController.tabBarItem.selectedImage = UIImage(named: "sponsors-selected")
-        
+
         return tabBarController
     }
 

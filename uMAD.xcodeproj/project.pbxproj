@@ -12,10 +12,10 @@
 		64D4AF6A1A75CDA80040D3CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64D4AF691A75CDA80040D3CA /* Images.xcassets */; };
 		64D4AF851A75CF020040D3CA /* SponsorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */; };
 		64FD63791A76FB0700D89106 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FD63781A76FB0700D89106 /* Session.swift */; };
-		7DC4846B4C6A274484F34894 /* Pods_uMAD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7EB28C2BB3A89B5087D5164 /* Pods_uMAD.framework */; };
 		880FA4711C1D1C3B00898B19 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 880FA4701C1D1C3B00898B19 /* Settings.bundle */; };
 		8840760F1C1BAFB600EBF319 /* SessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8840760E1C1BAFB600EBF319 /* SessionsViewController.swift */; };
 		884076131C1BB68A00EBF319 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884076121C1BB68A00EBF319 /* SessionTableViewCell.swift */; };
+		B2695256847C25E85CCF8DBB /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		C9D3F78E1C57028800EC5CC1 /* SessionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D3F78D1C57028800EC5CC1 /* SessionDetailViewController.swift */; };
 		C9ED38521C56C79D0011B6AB /* Sessions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9ED38511C56C79D0011B6AB /* Sessions.storyboard */; };
 		C9ED38541C56CBA90011B6AB /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED38531C56CBA90011B6AB /* CustomButton.swift */; };
@@ -23,6 +23,7 @@
 		C9ED38591C56CEC30011B6AB /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED38581C56CEC30011B6AB /* TextStyles.swift */; };
 		C9ED385B1C56CFD70011B6AB /* UIColor+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED385A1C56CFD70011B6AB /* UIColor+Helpers.swift */; };
 		C9ED385D1C56D3810011B6AB /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED385C1C56D3810011B6AB /* Label.swift */; };
+		CE2F1CD9F2DE7E00E6A3B1D2 /* Pods_uMAD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7EB28C2BB3A89B5087D5164 /* Pods_uMAD.framework */; };
 		D4171D651C27F3DD00E2975C /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4171D641C27F3DD00E2975C /* Profile.storyboard */; };
 		D4171D671C28925800E2975C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4171D661C28925800E2975C /* User.swift */; };
 		D4171D691C28A83D00E2975C /* UMADApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4171D681C28A83D00E2975C /* UMADApplication.swift */; };
@@ -33,13 +34,13 @@
 		D46D47951C05109500B333AF /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D478D1081AB7422000563A8A /* Config.swift */; };
 		D46D47971C05157700B333AF /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D47961C05157700B333AF /* TimelineViewController.swift */; };
 		D478D10B1AB7533500563A8A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D478D10A1AB7533500563A8A /* LaunchScreen.xib */; };
-		D48AD73D1AB78F8800F669D7 /* EventHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D48AD73C1AB78F8800F669D7 /* EventHeaderView.xib */; };
 		D4B6B60C1C4F3E8B003D382F /* Splash.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B6B60B1C4F3E8B003D382F /* Splash.xib */; };
 		D4B6B60E1C4F3EEC003D382F /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B6B60D1C4F3EEC003D382F /* SplashViewController.swift */; };
 		D4D48A7A1ACB9A4400E03D22 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D48A781ACB969700E03D22 /* MapKit.framework */; };
 		D4D48A7E1ACB9AAB00E03D22 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D48A7D1ACB9AAB00E03D22 /* CoreLocation.framework */; };
 		D4E19F281C2CA80100470561 /* UMADSponsor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F271C2CA80100470561 /* UMADSponsor.swift */; };
 		D4E19F2A1C2CA86D00470561 /* UMADApplicationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F291C2CA86D00470561 /* UMADApplicationStatus.swift */; };
+		D4E19F2C1C2CDAE900470561 /* SelectionHookTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F2B1C2CDAE900470561 /* SelectionHookTabBarController.swift */; };
 		D4E19F2E1C2D1D5A00470561 /* CredentialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F2D1C2D1D5A00470561 /* CredentialsViewController.swift */; };
 		D4F4CEDB1C2A39C700220E39 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F4CEDA1C2A39C700220E39 /* LogInViewController.swift */; };
 		D4F7ADD21C54903C0078CBD7 /* SplashInformationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F7ADD11C54903C0078CBD7 /* SplashInformationView.xib */; };
@@ -103,6 +104,7 @@
 		D4D48A7D1ACB9AAB00E03D22 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D4E19F271C2CA80100470561 /* UMADSponsor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMADSponsor.swift; sourceTree = "<group>"; };
 		D4E19F291C2CA86D00470561 /* UMADApplicationStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMADApplicationStatus.swift; sourceTree = "<group>"; };
+		D4E19F2B1C2CDAE900470561 /* SelectionHookTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionHookTabBarController.swift; sourceTree = "<group>"; };
 		D4E19F2D1C2D1D5A00470561 /* CredentialsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsViewController.swift; sourceTree = "<group>"; };
 		D4F4CEDA1C2A39C700220E39 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		D4F7ADD11C54903C0078CBD7 /* SplashInformationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashInformationView.xib; sourceTree = "<group>"; };
@@ -125,7 +127,8 @@
 				D4D48A7E1ACB9AAB00E03D22 /* CoreLocation.framework in Frameworks */,
 				D4D48A7A1ACB9A4400E03D22 /* MapKit.framework in Frameworks */,
 				3219C4561A7AD5AD00C3ADEB /* Social.framework in Frameworks */,
-				7DC4846B4C6A274484F34894 /* Pods_uMAD.framework in Frameworks */,
+				B2695256847C25E85CCF8DBB /* (null) in Frameworks */,
+				CE2F1CD9F2DE7E00E6A3B1D2 /* Pods_uMAD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +174,7 @@
 				64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */,
 				D46D47961C05157700B333AF /* TimelineViewController.swift */,
 				C9D3F78D1C57028800EC5CC1 /* SessionDetailViewController.swift */,
+				D4E19F2B1C2CDAE900470561 /* SelectionHookTabBarController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -179,7 +183,6 @@
 			isa = PBXGroup;
 			children = (
 				D4F7ADD61C5490950078CBD7 /* Splash */,
-				D4D48A7B1ACB9A7300E03D22 /* AboutView.xib */,
 				884076121C1BB68A00EBF319 /* SessionTableViewCell.swift */,
 				D4171D641C27F3DD00E2975C /* Profile.storyboard */,
 				C9ED38511C56C79D0011B6AB /* Sessions.storyboard */,
@@ -530,6 +533,7 @@
 				C9ED38541C56CBA90011B6AB /* CustomButton.swift in Sources */,
 				C9ED38591C56CEC30011B6AB /* TextStyles.swift in Sources */,
 				D4E19F2A1C2CA86D00470561 /* UMADApplicationStatus.swift in Sources */,
+				D4E19F2C1C2CDAE900470561 /* SelectionHookTabBarController.swift in Sources */,
 				884076131C1BB68A00EBF319 /* SessionTableViewCell.swift in Sources */,
 				C9ED385D1C56D3810011B6AB /* Label.swift in Sources */,
 			);
