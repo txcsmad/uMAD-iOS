@@ -34,7 +34,6 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
         tableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
         
-
         sectionHeaderFormatter.timeZone = NSTimeZone.localTimeZone()
         sectionHeaderFormatter.dateFormat = "hh:mm a"
 
