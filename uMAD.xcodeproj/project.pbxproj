@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3219C4561A7AD5AD00C3ADEB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3219C4551A7AD5AD00C3ADEB /* Social.framework */; };
-		64ADB37C1A7C81D900E5BC22 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ADB37B1A7C81D900E5BC22 /* AboutViewController.swift */; };
 		64D4AF631A75CDA80040D3CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF621A75CDA80040D3CA /* AppDelegate.swift */; };
 		64D4AF6A1A75CDA80040D3CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64D4AF691A75CDA80040D3CA /* Images.xcassets */; };
 		64D4AF851A75CF020040D3CA /* SponsorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */; };
@@ -35,7 +34,6 @@
 		D46D47971C05157700B333AF /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D47961C05157700B333AF /* TimelineViewController.swift */; };
 		D478D10B1AB7533500563A8A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D478D10A1AB7533500563A8A /* LaunchScreen.xib */; };
 		D4D48A7A1ACB9A4400E03D22 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D48A781ACB969700E03D22 /* MapKit.framework */; };
-		D4D48A7C1ACB9A7300E03D22 /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4D48A7B1ACB9A7300E03D22 /* AboutView.xib */; };
 		D4D48A7E1ACB9AAB00E03D22 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D48A7D1ACB9AAB00E03D22 /* CoreLocation.framework */; };
 		D4E19F281C2CA80100470561 /* UMADSponsor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F271C2CA80100470561 /* UMADSponsor.swift */; };
 		D4E19F2A1C2CA86D00470561 /* UMADApplicationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F291C2CA86D00470561 /* UMADApplicationStatus.swift */; };
@@ -60,7 +58,6 @@
 /* Begin PBXFileReference section */
 		3219C4551A7AD5AD00C3ADEB /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		5E4A359A448B5DE384108D40 /* Pods-uMAD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uMAD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-uMAD/Pods-uMAD.debug.xcconfig"; sourceTree = "<group>"; };
-		64ADB37B1A7C81D900E5BC22 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		64D4AF5D1A75CDA80040D3CA /* uMAD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uMAD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D4AF611A75CDA80040D3CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64D4AF621A75CDA80040D3CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,7 +91,6 @@
 		D478D1081AB7422000563A8A /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		D478D10A1AB7533500563A8A /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		D4D48A781ACB969700E03D22 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		D4D48A7B1ACB9A7300E03D22 /* AboutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutView.xib; sourceTree = "<group>"; };
 		D4D48A7D1ACB9AAB00E03D22 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D4E19F271C2CA80100470561 /* UMADSponsor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMADSponsor.swift; sourceTree = "<group>"; };
 		D4E19F291C2CA86D00470561 /* UMADApplicationStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMADApplicationStatus.swift; sourceTree = "<group>"; };
@@ -157,7 +153,6 @@
 			isa = PBXGroup;
 			children = (
 				D4FB7B3C1C2E2B4C000D7283 /* Profile */,
-				64ADB37B1A7C81D900E5BC22 /* AboutViewController.swift */,
 				8840760E1C1BAFB600EBF319 /* SessionsViewController.swift */,
 				64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */,
 				D46D47961C05157700B333AF /* TimelineViewController.swift */,
@@ -169,7 +164,6 @@
 		64CD92341A7A074400659946 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D4D48A7B1ACB9A7300E03D22 /* AboutView.xib */,
 				884076121C1BB68A00EBF319 /* SessionTableViewCell.swift */,
 				D4171D641C27F3DD00E2975C /* Profile.storyboard */,
 				C9ED38511C56C79D0011B6AB /* Sessions.storyboard */,
@@ -379,7 +373,6 @@
 				C9ED38521C56C79D0011B6AB /* Sessions.storyboard in Resources */,
 				880FA4711C1D1C3B00898B19 /* Settings.bundle in Resources */,
 				D478D10B1AB7533500563A8A /* LaunchScreen.xib in Resources */,
-				D4D48A7C1ACB9A7300E03D22 /* AboutView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,7 +490,6 @@
 				D4E19F2A1C2CA86D00470561 /* UMADApplicationStatus.swift in Sources */,
 				884076131C1BB68A00EBF319 /* SessionTableViewCell.swift in Sources */,
 				C9ED385D1C56D3810011B6AB /* Label.swift in Sources */,
-				64ADB37C1A7C81D900E5BC22 /* AboutViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
