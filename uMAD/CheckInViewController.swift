@@ -53,7 +53,14 @@ class CheckInViewController: QRScanViewController {
                 self.startCapturing()
                 return
             }
-            UMADApplicationStatus.fetchApplicationStatusWithUser(user, success: { (status) -> () in
+            UMADApplicationStatus.fetchApplicationStatusWithUser(user) { status, error in
+                guard let status = status else {
+                    PKHUD.sharedHUD.contentView = PKHUDErrorView()
+                    PKHUD.sharedHUD.hide(afterDelay: 1.0)
+                    print(error)
+                    self.startCapturing()
+                    return
+                }
                 print("Did get application status")
                 if status.arrivedAt == nil {
                     status.arrivedAt = NSDate()
@@ -67,12 +74,7 @@ class CheckInViewController: QRScanViewController {
                     PKHUD.sharedHUD.hide(afterDelay: 1.0)
                     self.startCapturing()
                 }
-                }, error: { (error) -> () in
-                    PKHUD.sharedHUD.contentView = PKHUDErrorView()
-                    PKHUD.sharedHUD.hide(afterDelay: 1.0)
-                    print(error)
-                    self.startCapturing()
-            })
+            }
         })
     }
 

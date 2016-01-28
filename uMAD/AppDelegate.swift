@@ -10,6 +10,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     static var currentUMAD: UMAD?
+    private var tabBarController: UITabBarController!
+    private var splashScreen: SplashViewController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
@@ -19,21 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
 
         PFConfig.getConfigInBackgroundWithBlock(nil)
-        let umadQuery = UMAD.query()
-        umadQuery?.orderByDescending("year")
-        umadQuery?.limit = 1
-        do {
-             // A large amount of the code depends on knowing the latest conference.
-             // Making this synchronous makes it easier to ensure that the app is showing
-             // the latest information.
-            let results = try umadQuery?.findObjects()
-            if let resultUMADs = results as? [UMAD],
-                let umad = resultUMADs.first {
-                    AppDelegate.currentUMAD = umad
-            }
-        } catch {
-            print("Configure a UMAD class to represent the current conference")
-        }
 
         // Register for push notifications
         let userNotificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
@@ -45,14 +32,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UINavigationBar.appearance().tintColor = Color.AppTint.getUIColor()
 
-        let tabBarController = configureTabBarController()
+        splashScreen = SplashViewController(nibName: "Splash", bundle: nil)
 
         window = UIWindow()
-        window?.rootViewController = tabBarController
+        window?.rootViewController = splashScreen
 
         window?.makeKeyAndVisible()
         window?.tintColor = Config.tintColor
 
+        tabBarController = configureTabBarController()
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentTabs", name: "shouldPresentTabs", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentSplash", name: "shouldPresentSplash", object: nil)
         return true
     }
 
@@ -93,6 +84,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         sponsorsViewController.tabBarItem.selectedImage = UIImage(named: "sponsors-selected")
         
         return tabBarController
+    }
+
+    func presentTabs() {
+        window?.rootViewController = tabBarController
+        splashScreen = nil
+
+    }
+
+    func presentSplash() {
+        if splashScreen == nil {
+            splashScreen = SplashViewController(nibName: "Splash", bundle: nil)
+        }
+        window?.rootViewController = splashScreen
     }
 
 }

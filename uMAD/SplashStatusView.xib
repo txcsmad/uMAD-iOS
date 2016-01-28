@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10089" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10072.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" id="Uw5-S1-zwq" customClass="SplashStatusView" customModule="uMAD" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="Your application is" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0g2-WR-JvU">
+                    <rect key="frame" x="214" y="0.0" width="171" height="26"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muo-JE-Fs2">
+                    <rect key="frame" x="222" y="522" width="157" height="35"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                    <state key="normal" title="More information">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="openSite" destination="Uw5-S1-zwq" eventType="touchUpInside" id="m5t-LP-lVE"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gcd-5L-Pue">
+                    <rect key="frame" x="263" y="565" width="76" height="35"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                    <state key="normal" title="Sign out">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="signOut" destination="Uw5-S1-zwq" eventType="touchUpInside" id="zth-x9-mgg"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="Pending" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mDh-56-HoK">
+                    <rect key="frame" x="229" y="26" width="141" height="43"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="mDh-56-HoK" firstAttribute="centerX" secondItem="Uw5-S1-zwq" secondAttribute="centerX" id="5pq-v5-HnP"/>
+                <constraint firstItem="0g2-WR-JvU" firstAttribute="centerX" secondItem="Uw5-S1-zwq" secondAttribute="centerX" id="AwZ-DF-l4P"/>
+                <constraint firstItem="muo-JE-Fs2" firstAttribute="top" secondItem="mDh-56-HoK" secondAttribute="bottom" priority="750" constant="30" id="JL3-Kt-hNX"/>
+                <constraint firstItem="0g2-WR-JvU" firstAttribute="top" secondItem="Uw5-S1-zwq" secondAttribute="top" id="Ldc-qn-EUa"/>
+                <constraint firstItem="Gcd-5L-Pue" firstAttribute="top" secondItem="muo-JE-Fs2" secondAttribute="bottom" constant="8" id="Ugl-3D-j2i"/>
+                <constraint firstItem="Gcd-5L-Pue" firstAttribute="centerX" secondItem="Uw5-S1-zwq" secondAttribute="centerX" id="VJk-yu-Mt7"/>
+                <constraint firstAttribute="bottom" secondItem="Gcd-5L-Pue" secondAttribute="bottom" id="hp6-5m-nPT"/>
+                <constraint firstItem="muo-JE-Fs2" firstAttribute="centerX" secondItem="Uw5-S1-zwq" secondAttribute="centerX" id="qOY-6s-5Nl"/>
+                <constraint firstItem="mDh-56-HoK" firstAttribute="top" secondItem="0g2-WR-JvU" secondAttribute="bottom" id="x8h-RA-cwr"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <connections>
+                <outlet property="statusLabel" destination="mDh-56-HoK" id="zob-53-JwN"/>
+            </connections>
+            <point key="canvasLocation" x="631" y="-233"/>
+        </view>
+    </objects>
+</document>
