@@ -171,6 +171,11 @@ class CustomButton: UIButton {
         let borderColor = self.borderColorForState(self.state)
         return borderColor
     }
+
+    override func tintColorDidChange() {
+        super.tintColorDidChange()
+        setStyle(styleCode)
+    }
 }
 
 
@@ -180,20 +185,20 @@ extension CustomButton {
     //NOTE: Make sure button type is custom, or else title alpha will change
     func applyRoundedRectStyle() {
         self.setBackgroundColor(Color.White.getUIColor(), state: .Normal)
-        self.setBackgroundColor(Color.AppTint.getUIColor().colorWithAlphaComponent(0.5), state: .Highlighted)
-        self.setBackgroundColor(Color.AppTint.getUIColor().colorWithAlphaComponent(0.5), state: UIControlState.init(rawValue: 5))
-        self.setBackgroundColor(Color.AppTint.getUIColor(), state: .Selected)
+        self.setBackgroundColor(tintColor.colorWithAlphaComponent(0.5), state: .Highlighted)
+        self.setBackgroundColor(tintColor.colorWithAlphaComponent(0.5), state: UIControlState.init(rawValue: 5))
+        self.setBackgroundColor(tintColor, state: .Selected)
         
-        self.setTitleColor(Color.AppTint.getUIColor(), forState: .Normal)
+        self.setTitleColor(tintColor, forState: .Normal)
         self.setTitleColor(Color.White.getUIColor(), forState: .Highlighted)
         self.setTitleColor(Color.White.getUIColor(), forState: UIControlState.init(rawValue: 5))
         self.setTitleColor(Color.White.getUIColor(), forState: .Selected)
         
         self.layer.cornerRadius = self.bounds.height / 2.0
-        self.layer.borderColor = Color.AppTint.getUIColor().CGColor
+        self.layer.borderColor = tintColor.CGColor
         self.layer.borderWidth = 1
         
-        customImageView.tintColor = Color.AppTint.getUIColor()
+        customImageView.tintColor = tintColor
         customImageView.contentMode = .ScaleAspectFit
         self.addSubview(customImageView)
         

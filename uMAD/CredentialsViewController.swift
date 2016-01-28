@@ -45,9 +45,6 @@ class CredentialsViewController: UIViewController {
 
     }
 
-    func scheduleStatusCheck() {
-        NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "updateCheckInStatus", userInfo: nil, repeats: false)
-    }
 
     func updateCheckInStatus() {
         guard let currentUser = User.currentUser() else {
@@ -62,7 +59,6 @@ class CredentialsViewController: UIViewController {
             if status.arrivedAt == nil {
                 self.view.backgroundColor = UIColor(hue: 0.0/360.0, saturation: 0.3, brightness: 1.0, alpha: 1.0)
                 self.checkInStatus.text = "You have not checked in"
-                self.scheduleStatusCheck()
             } else {
                 self.view.backgroundColor = UIColor(hue: 116.0/360.0, saturation: 0.3, brightness: 1.0, alpha: 1.0)
                 self.checkInStatus.text = "You are checked in"
