@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SessionCell" id="NED-6P-oe0" customClass="SessionTableViewCell" customModule="uMAD" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NED-6P-oe0" id="4Xw-Up-HV3">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wpn-iS-WWT">
+                        <rect key="frame" x="75" y="11" width="230" height="37"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00 AM - 12:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YhH-db-6bi" customClass="Label" customModule="uMAD" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="21" width="128" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyleCode" value="CellTime"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text=" - GDC 2.403" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HdJ-7t-2d6" customClass="Label" customModule="uMAD" customModuleProvider="target">
+                                <rect key="frame" x="128" y="21" width="102" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyleCode" value="CellLocation"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="244" verticalHuggingPriority="251" text=" - Starts in an hour" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vh5-8F-QYs" customClass="Label" customModule="uMAD" customModuleProvider="target">
+                                <rect key="frame" x="98" y="0.0" width="132" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyleCode" value="CellNotification"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Session Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ni-0Q-NN5" customClass="Label" customModule="uMAD" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="98" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyleCode" value="CellTitle"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HdJ-7t-2d6" firstAttribute="baseline" secondItem="YhH-db-6bi" secondAttribute="baseline" id="3cI-mX-TsL"/>
+                            <constraint firstAttribute="bottom" secondItem="YhH-db-6bi" secondAttribute="bottom" id="7u6-Ga-l7M"/>
+                            <constraint firstItem="YhH-db-6bi" firstAttribute="leading" secondItem="wpn-iS-WWT" secondAttribute="leading" id="I8M-7E-ju6"/>
+                            <constraint firstItem="vh5-8F-QYs" firstAttribute="baseline" secondItem="0Ni-0Q-NN5" secondAttribute="baseline" id="XYk-iO-6Q5"/>
+                            <constraint firstItem="vh5-8F-QYs" firstAttribute="leading" secondItem="0Ni-0Q-NN5" secondAttribute="trailing" id="e80-Gj-AJe"/>
+                            <constraint firstAttribute="trailing" secondItem="vh5-8F-QYs" secondAttribute="trailing" id="fve-rO-iED"/>
+                            <constraint firstAttribute="trailing" secondItem="HdJ-7t-2d6" secondAttribute="trailing" id="iyH-SE-gm6"/>
+                            <constraint firstItem="0Ni-0Q-NN5" firstAttribute="leading" secondItem="wpn-iS-WWT" secondAttribute="leading" id="ntC-MY-xZo"/>
+                            <constraint firstItem="YhH-db-6bi" firstAttribute="top" secondItem="0Ni-0Q-NN5" secondAttribute="bottom" id="pRJ-fs-EZ5"/>
+                            <constraint firstItem="0Ni-0Q-NN5" firstAttribute="top" secondItem="wpn-iS-WWT" secondAttribute="top" id="s15-nr-ywy"/>
+                            <constraint firstItem="HdJ-7t-2d6" firstAttribute="leading" secondItem="YhH-db-6bi" secondAttribute="trailing" id="v6t-8B-QWS"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tuz-IP-x9I">
+                        <rect key="frame" x="15" y="5" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="aez-Uf-RFT"/>
+                            <constraint firstAttribute="width" secondItem="Tuz-IP-x9I" secondAttribute="height" multiplier="1:1" id="z70-nV-wSO"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cell-favorite-indicator" translatesAutoresizingMaskIntoConstraints="NO" id="4M9-SX-IDj" customClass="ImageView" customModule="uMAD" customModuleProvider="target">
+                        <rect key="frame" x="305" y="5" width="10" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="4M9-SX-IDj" secondAttribute="height" multiplier="1:1" id="bBd-sK-fef"/>
+                            <constraint firstAttribute="height" constant="10" id="dRG-uu-lLs"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="tintColorCode" value="AppTint"/>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="4M9-SX-IDj" secondAttribute="trailing" constant="5" id="0AL-ag-dZc"/>
+                    <constraint firstItem="Tuz-IP-x9I" firstAttribute="centerY" secondItem="4Xw-Up-HV3" secondAttribute="centerY" id="Evh-vZ-P08"/>
+                    <constraint firstItem="4M9-SX-IDj" firstAttribute="top" secondItem="4Xw-Up-HV3" secondAttribute="top" constant="5" id="Nl4-iB-Nyb"/>
+                    <constraint firstItem="Tuz-IP-x9I" firstAttribute="leading" secondItem="wpn-iS-WWT" secondAttribute="trailing" constant="10" id="cMt-s8-I1o"/>
+                    <constraint firstItem="Tuz-IP-x9I" firstAttribute="leading" secondItem="4Xw-Up-HV3" secondAttribute="leading" constant="15" id="cdv-32-vhl"/>
+                    <constraint firstItem="wpn-iS-WWT" firstAttribute="leading" secondItem="Tuz-IP-x9I" secondAttribute="trailing" constant="10" id="hl2-e1-9pd"/>
+                    <constraint firstAttribute="trailing" secondItem="wpn-iS-WWT" secondAttribute="trailing" constant="15" id="nF8-dL-YWH"/>
+                    <constraint firstItem="wpn-iS-WWT" firstAttribute="centerY" secondItem="4Xw-Up-HV3" secondAttribute="centerY" id="sp4-Yk-7DH"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="cMt-s8-I1o"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="favoritedImageView" destination="4M9-SX-IDj" id="rHn-fF-lCx"/>
+                <outlet property="locationLabel" destination="HdJ-7t-2d6" id="jsH-wy-Zrq"/>
+                <outlet property="logoImageView" destination="Tuz-IP-x9I" id="4YG-Cu-dhp"/>
+                <outlet property="notificationLabel" destination="vh5-8F-QYs" id="OZu-hz-pXD"/>
+                <outlet property="timeLabel" destination="YhH-db-6bi" id="GmJ-hZ-B3n"/>
+                <outlet property="titleLabel" destination="0Ni-0Q-NN5" id="x9h-aI-SVl"/>
+            </connections>
+            <point key="canvasLocation" x="325" y="426"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="cell-favorite-indicator" width="10" height="9"/>
+    </resources>
+</document>

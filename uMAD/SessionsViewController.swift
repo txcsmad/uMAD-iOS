@@ -20,7 +20,7 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
 
         navigationItem.title = "Sessions"
 
-        tableView.registerClass(SessionTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        tableView.registerNib(UINib(nibName: "SessionTableViewCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
         tableView.estimatedRowHeight = 64
         tableView.separatorInset = UIEdgeInsetsZero
 
@@ -33,6 +33,7 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
         searchController.delegate = self
         tableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
+        
 
         sectionHeaderFormatter.timeZone = NSTimeZone.localTimeZone()
         sectionHeaderFormatter.dateFormat = "hh:mm a"
@@ -42,6 +43,7 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
         paginationEnabled = false
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "user.png"), style: .Plain, target: self, action: "didTapRightBarItem")
+        tableView.tableFooterView = UIView()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -131,7 +133,7 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 55.0
+        return 60.0
     }
 
     //MARK: - Login
