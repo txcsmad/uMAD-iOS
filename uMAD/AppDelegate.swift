@@ -76,10 +76,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let sessionsViewController = UINavigationController(rootViewController: SessionsViewController())
         let twitterViewController = UINavigationController(rootViewController: TimelineViewController())
         let sponsorsViewController = UINavigationController(rootViewController: SponsorsViewController())
-        let aboutViewController = UINavigationController(rootViewController: AboutViewController())
 
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [sessionsViewController, twitterViewController, sponsorsViewController, aboutViewController]
+        tabBarController.viewControllers = [sessionsViewController, twitterViewController, sponsorsViewController]
 
         sessionsViewController.tabBarItem.title = "Sessions"
         sessionsViewController.tabBarItem.image = UIImage(named: "sessions")
@@ -92,10 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         sponsorsViewController.tabBarItem.title = "Sponsors"
         sponsorsViewController.tabBarItem.image = UIImage(named: "sponsors")
         sponsorsViewController.tabBarItem.selectedImage = UIImage(named: "sponsors-selected")
-
-        aboutViewController.tabBarItem.title = "About"
-        aboutViewController.tabBarItem.image = UIImage(named: "aboutus.png")
-        aboutViewController.tabBarItem.selectedImage = UIImage(named: "aboutus-filled.png")
+        
         return tabBarController
     }
 
