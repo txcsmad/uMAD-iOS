@@ -16,6 +16,9 @@
 		8840760F1C1BAFB600EBF319 /* SessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8840760E1C1BAFB600EBF319 /* SessionsViewController.swift */; };
 		884076131C1BB68A00EBF319 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884076121C1BB68A00EBF319 /* SessionTableViewCell.swift */; };
 		B2695256847C25E85CCF8DBB /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		C9AB3A931C5A96A70091AEDD /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AB3A921C5A96A70091AEDD /* View.swift */; };
+		C9AB3A951C5A99090091AEDD /* SessionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9AB3A941C5A99090091AEDD /* SessionTableViewCell.xib */; };
+		C9AB3A971C5ABEB50091AEDD /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AB3A961C5ABEB50091AEDD /* ImageView.swift */; };
 		C9D3F78E1C57028800EC5CC1 /* SessionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D3F78D1C57028800EC5CC1 /* SessionDetailViewController.swift */; };
 		C9ED38521C56C79D0011B6AB /* Sessions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9ED38511C56C79D0011B6AB /* Sessions.storyboard */; };
 		C9ED38541C56CBA90011B6AB /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED38531C56CBA90011B6AB /* CustomButton.swift */; };
@@ -76,6 +79,9 @@
 		8840760E1C1BAFB600EBF319 /* SessionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsViewController.swift; sourceTree = "<group>"; };
 		884076121C1BB68A00EBF319 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
 		B4B501413CA171B81EE1593C /* Pods-uMAD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uMAD.release.xcconfig"; path = "Pods/Target Support Files/Pods-uMAD/Pods-uMAD.release.xcconfig"; sourceTree = "<group>"; };
+		C9AB3A921C5A96A70091AEDD /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		C9AB3A941C5A99090091AEDD /* SessionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SessionTableViewCell.xib; sourceTree = "<group>"; };
+		C9AB3A961C5ABEB50091AEDD /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		C9D3F78D1C57028800EC5CC1 /* SessionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailViewController.swift; sourceTree = "<group>"; };
 		C9ED38511C56C79D0011B6AB /* Sessions.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Sessions.storyboard; sourceTree = "<group>"; };
 		C9ED38531C56CBA90011B6AB /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -183,11 +189,14 @@
 			isa = PBXGroup;
 			children = (
 				D4F7ADD61C5490950078CBD7 /* Splash */,
-				884076121C1BB68A00EBF319 /* SessionTableViewCell.swift */,
+				C9ED38531C56CBA90011B6AB /* CustomButton.swift */,
+				C9AB3A961C5ABEB50091AEDD /* ImageView.swift */,
+				C9ED385C1C56D3810011B6AB /* Label.swift */,
 				D4171D641C27F3DD00E2975C /* Profile.storyboard */,
 				C9ED38511C56C79D0011B6AB /* Sessions.storyboard */,
-				C9ED38531C56CBA90011B6AB /* CustomButton.swift */,
-				C9ED385C1C56D3810011B6AB /* Label.swift */,
+				884076121C1BB68A00EBF319 /* SessionTableViewCell.swift */,
+				C9AB3A941C5A99090091AEDD /* SessionTableViewCell.xib */,
+				C9AB3A921C5A96A70091AEDD /* View.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -407,6 +416,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9AB3A951C5A99090091AEDD /* SessionTableViewCell.xib in Resources */,
 				D4171D651C27F3DD00E2975C /* Profile.storyboard in Resources */,
 				D4F7ADD41C5490720078CBD7 /* SplashStatusView.xib in Resources */,
 				D4B6B60C1C4F3E8B003D382F /* Splash.xib in Resources */,
@@ -514,6 +524,7 @@
 				C9ED38571C56CD0C0011B6AB /* Colors.swift in Sources */,
 				D4E19F281C2CA80100470561 /* UMADSponsor.swift in Sources */,
 				D4FF2D3A1B5DF5EE00A8E2A2 /* Seperable.swift in Sources */,
+				C9AB3A971C5ABEB50091AEDD /* ImageView.swift in Sources */,
 				64D4AF631A75CDA80040D3CA /* AppDelegate.swift in Sources */,
 				C9D3F78E1C57028800EC5CC1 /* SessionDetailViewController.swift in Sources */,
 				D4F7ADDA1C54932A0078CBD7 /* SplashStatusView.swift in Sources */,
@@ -533,6 +544,7 @@
 				C9ED38541C56CBA90011B6AB /* CustomButton.swift in Sources */,
 				C9ED38591C56CEC30011B6AB /* TextStyles.swift in Sources */,
 				D4E19F2A1C2CA86D00470561 /* UMADApplicationStatus.swift in Sources */,
+				C9AB3A931C5A96A70091AEDD /* View.swift in Sources */,
 				D4E19F2C1C2CDAE900470561 /* SelectionHookTabBarController.swift in Sources */,
 				884076131C1BB68A00EBF319 /* SessionTableViewCell.swift in Sources */,
 				C9ED385D1C56D3810011B6AB /* Label.swift in Sources */,

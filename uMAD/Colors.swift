@@ -8,6 +8,8 @@ enum Color: String {
     case Gray1 = "Gray1"
     case Grey2 = "Gray2"
     case Grey3 = "Gray3"
+    case GreyBackground = "GreyBackground"
+    case Red = "Red"
     
     func getUIColor() -> UIColor {
         switch self {
@@ -23,6 +25,10 @@ enum Color: String {
             return UIColor.colorWithHex(0x808080)
         case .White:
             return UIColor.whiteColor()
+        case .GreyBackground:
+            return UIColor.colorWithHex(0xeff0f4)
+        case .Red:
+            return UIColor.redColor()
         }
     }
 }
