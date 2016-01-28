@@ -28,6 +28,28 @@ class Session: PFObject, PFSubclassing, Separable, CustomDebugStringConvertible 
         }
     }
 
+    // MARK:- Favorites
+
+    func addToFavorites(completion: (Bool, NSError?) -> ()) {
+        incrementKey("favoriteCount")
+        saveInBackground()
+
+        let favorites = PFUser.currentUser()?.relationForKey("favorites")
+        favorites?.addObject(self)
+        PFUser.currentUser()?.saveInBackgroundWithBlock(completion)
+    }
+
+    func removeFromFavorites(completion: (Bool, NSError?) -> ()) {
+        incrementKey("favoriteCount", byAmount: -1)
+        saveInBackground()
+
+        let favorites = PFUser.currentUser()?.relationForKey("favorites")
+        favorites?.removeObject(self)
+        PFUser.currentUser()?.saveInBackgroundWithBlock(completion)
+    }
+    
+    // MARK:- Seperable
+
     func shouldBeSeparated(from: Session) -> Bool {
         let calendar = NSCalendar.currentCalendar()
         return !calendar.isDate(startTime, equalToDate: from.startTime, toUnitGranularity: .Hour)

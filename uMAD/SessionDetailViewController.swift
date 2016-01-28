@@ -14,14 +14,19 @@ class SessionDetailViewController: UIViewController {
     
     weak var session: Session!
     var eventURL: NSURL?
-    
+
+    private let addFavoriteText = "Add to Favorites"
+    private let removeFavoriteText = "Remove from Favorites"
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpData(session.company)
         
         favoriteButton.addTarget(self, action: "didTapFavoriteButton", forControlEvents: .TouchUpInside)
         websiteButton.addTarget(self, action: "didTapWebsiteButton", forControlEvents: .TouchUpInside)
-        
+
+        favoriteButton.setTitle(self.removeFavoriteText, forState: .Selected)
+        favoriteButton.setTitle(self.addFavoriteText, forState: .Normal)
         
         session.company?.fetchIfNeededInBackgroundWithBlock { (company, error) -> Void in
             guard let company = company as? Company else {
@@ -63,35 +68,6 @@ class SessionDetailViewController: UIViewController {
         }
     }
     
-    //MARK: - Favorite Functions
-    
-    private func addToFavorites() {
-        session.incrementKey("favoriteCount")
-        session.saveInBackground()
-        
-        let favorites = PFUser.currentUser()?.relationForKey("favorites")
-        favorites?.addObject(session)
-        PFUser.currentUser()?.saveInBackgroundWithBlock { success, error in
-            self.favoriteButton.selected = success
-            
-        }
-    }
-    
-    private func removeFromFavorites() {
-        session.incrementKey("favoriteCount", byAmount: -1)
-        session.saveInBackground()
-        
-        let favorites = PFUser.currentUser()?.relationForKey("favorites")
-        favorites?.removeObject(session)
-        PFUser.currentUser()?.saveInBackgroundWithBlock { success, error in
-            if success {
-                self.favoriteButton.selected = false
-            } else {
-                self.favoriteButton.selected = true
-            }
-        }
-    }
-    
     //MARK: - Button Functions
     
     func didTapWebsiteButton() {
@@ -106,10 +82,23 @@ class SessionDetailViewController: UIViewController {
     func didTapFavoriteButton() {
         if favoriteButton.selected == false {
             favoriteButton.selected = true
-            addToFavorites()
+            session?.addToFavorites { success, error in
+                if success && error == nil {
+                    self.favoriteButton.setTitle(self.removeFavoriteText, forState: UIControlState.init(rawValue: 5))
+                } else {
+                    self.favoriteButton.selected = false
+                }
+            }
         } else {
             favoriteButton.selected = false
-            removeFromFavorites()
+            session?.removeFromFavorites{ success, error in
+                if success && error == nil {
+                    self.favoriteButton.setTitle(self.addFavoriteText, forState: UIControlState.init(rawValue: 5))
+                } else {
+                    self.favoriteButton.selected = true
+                }
+            }
+
         }
     }
 }

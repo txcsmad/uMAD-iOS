@@ -28,14 +28,14 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.scopeButtonTitles = ["All"]
-        searchController.searchBar.placeholder = "Search Events"
+        searchController.searchBar.placeholder = "Search Sessions"
         searchController.searchBar.delegate = self
         searchController.delegate = self
         tableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
 
         sectionHeaderFormatter.timeZone = NSTimeZone.localTimeZone()
-        sectionHeaderFormatter.dateFormat = "EEEE – hh:mm a"
+        sectionHeaderFormatter.dateFormat = "hh:mm a"
 
         pullToRefreshEnabled = true
         automaticallyAdjustsScrollViewInsets = true
