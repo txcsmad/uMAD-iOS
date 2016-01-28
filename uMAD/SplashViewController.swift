@@ -159,7 +159,7 @@ class SplashViewController: UIViewController, PFLogInViewControllerDelegate, Spl
         }
         oldConstraint.active = false
         eventImage.removeConstraint(oldConstraint)
-        let top = eventImage.topAnchor.constraintEqualToAnchor(view.topAnchor, constant: 50.0)
+        let top = eventImage.topAnchor.constraintEqualToAnchor(view.topAnchor, constant: 40.0)
         top.active = true
     }
 
@@ -167,8 +167,7 @@ class SplashViewController: UIViewController, PFLogInViewControllerDelegate, Spl
         view.addSubview(content)
         let left = view.leftAnchor.constraintEqualToAnchor(content.leftAnchor, constant: -30.0)
         let right = view.rightAnchor.constraintEqualToAnchor(content.rightAnchor, constant: 30.0)
-        let bottom = content.bottomAnchor.constraintLessThanOrEqualToAnchor(view.bottomAnchor, constant: -10.0)
-        bottom.priority = 10
+        let bottom = content.bottomAnchor.constraintLessThanOrEqualToAnchor(view.bottomAnchor, constant: -30.0)
         let top = content.topAnchor.constraintEqualToAnchor(eventImage.bottomAnchor, constant: 50.0)
 
         NSLayoutConstraint.activateConstraints([left, right, bottom, top])

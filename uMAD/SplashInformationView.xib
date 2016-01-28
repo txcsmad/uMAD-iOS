@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" id="iqQ-EV-5Lx" customClass="SplashInformationView" customModule="uMAD" customModuleProvider="target">
+        <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" id="iqQ-EV-5Lx" customClass="SplashInformationView" customModule="uMAD" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -31,7 +31,7 @@
                         <action selector="signInOut:" destination="iqQ-EV-5Lx" eventType="touchUpInside" id="nmt-FZ-7RG"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8c-HT-ZIX">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8c-HT-ZIX">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="61"/>
                     <string key="text">University of MAD (uMAD) is an annual daylong conference providing UTCS students with key insights into mobile, web, and cloud technologies used in the industry everyday.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -42,7 +42,7 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="ucG-jw-ydF" secondAttribute="bottom" id="3pT-eU-J04"/>
-                <constraint firstItem="hyN-fh-zUl" firstAttribute="top" secondItem="g8c-HT-ZIX" secondAttribute="bottom" priority="750" constant="30" id="HAK-bT-aB4"/>
+                <constraint firstItem="hyN-fh-zUl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="g8c-HT-ZIX" secondAttribute="bottom" constant="20" id="HAK-bT-aB4"/>
                 <constraint firstItem="g8c-HT-ZIX" firstAttribute="top" secondItem="iqQ-EV-5Lx" secondAttribute="top" id="UmM-RZ-oTD"/>
                 <constraint firstItem="hyN-fh-zUl" firstAttribute="centerX" secondItem="iqQ-EV-5Lx" secondAttribute="centerX" id="Xl5-RI-x8t"/>
                 <constraint firstItem="g8c-HT-ZIX" firstAttribute="centerX" secondItem="iqQ-EV-5Lx" secondAttribute="centerX" id="bG9-wh-1dI"/>
