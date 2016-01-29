@@ -48,6 +48,20 @@ class Session: PFObject, PFSubclassing, Separable, CustomDebugStringConvertible 
         PFUser.currentUser()?.saveInBackgroundWithBlock(completion)
     }
     
+    func isFavorited(completion: (Bool, NSError?) -> ()) {
+        guard let objectId = objectId else {
+            completion(false, nil)
+            return
+        }
+        let favorites = PFUser.currentUser()?.relationForKey("favorites")
+        let query = favorites?.query()
+        query?.cachePolicy = .CacheElseNetwork
+        query?.whereKey("objectId", equalTo: objectId)
+        query?.countObjectsInBackgroundWithBlock { count, error in
+            completion(count == 1, error)
+        }
+    }
+    
     // MARK:- Seperable
 
     func shouldBeSeparated(from: Session) -> Bool {

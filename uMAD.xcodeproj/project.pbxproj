@@ -188,15 +188,13 @@
 		64CD92341A7A074400659946 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D4D6693F1C5B18A2004650B8 /* Support */,
 				D4F7ADD61C5490950078CBD7 /* Splash */,
 				C9ED38531C56CBA90011B6AB /* CustomButton.swift */,
-				C9AB3A961C5ABEB50091AEDD /* ImageView.swift */,
-				C9ED385C1C56D3810011B6AB /* Label.swift */,
 				D4171D641C27F3DD00E2975C /* Profile.storyboard */,
 				C9ED38511C56C79D0011B6AB /* Sessions.storyboard */,
 				884076121C1BB68A00EBF319 /* SessionTableViewCell.swift */,
 				C9AB3A941C5A99090091AEDD /* SessionTableViewCell.xib */,
-				C9AB3A921C5A96A70091AEDD /* View.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -282,6 +280,16 @@
 				D4280C0F1B2DE6070090F8C6 /* Info.plist */,
 			);
 			path = UITests;
+			sourceTree = "<group>";
+		};
+		D4D6693F1C5B18A2004650B8 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				C9AB3A961C5ABEB50091AEDD /* ImageView.swift */,
+				C9ED385C1C56D3810011B6AB /* Label.swift */,
+				C9AB3A921C5A96A70091AEDD /* View.swift */,
+			);
+			name = Support;
 			sourceTree = "<group>";
 		};
 		D4F7ADD51C54908A0078CBD7 /* Splash */ = {

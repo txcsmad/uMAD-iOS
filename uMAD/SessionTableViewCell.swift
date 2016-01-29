@@ -13,9 +13,10 @@ class SessionTableViewCell: UITableViewCell {
     func configureForSession(session: Session) {
         titleLabel.text = session.name
         
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "h:mm a"
-        timeLabel.text = "\(formatter.stringFromDate(session.startTime)) - \(formatter.stringFromDate(session.endTime))"
+        
+        let startTime = NSDateFormatter.localizedStringFromDate(session.startTime, dateStyle: .NoStyle, timeStyle: .ShortStyle)
+        let endTime = NSDateFormatter.localizedStringFromDate(session.endTime, dateStyle: .NoStyle, timeStyle: .ShortStyle)
+        timeLabel.text = "\(startTime) - \(endTime)"
         
         if !session.room.isEmpty {
             locationLabel.text = " - \(session.room)"
@@ -33,8 +34,11 @@ class SessionTableViewCell: UITableViewCell {
             self.logoImageView.image = UIImage(data: imageData)
         }
         
-        //TODO: Turn on if the cell is favorited
         favoritedImageView.alpha = 0
+        session.isFavorited { favorited, error in
+            self.favoritedImageView.alpha = favorited ? 1.0 : 0.0
+        }
+        
     }
 
 }
