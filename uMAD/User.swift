@@ -37,22 +37,5 @@ class User: PFUser {
         }
         
     }
-    
-}
 
-extension PFUser {
-    
-    func fetchFavoritesWithCompletion(completion: [PFObject] -> Void) {
-        let favoritesQuery = relationForKey("favorites").query()
-        // Will hit the cache first for quick results. Techinically could be invalid, but not very likely.
-        favoritesQuery.cachePolicy = .CacheThenNetwork
-        favoritesQuery.findObjectsInBackgroundWithBlock { objects, error in
-            if let favorites = objects {
-                completion(favorites)
-            } else {
-                completion([])
-            }
-        }
-    }
-    
 }

@@ -2,7 +2,7 @@ import UIKit
 import Parse
 import Fabric
 import TwitterKit
-import SnapKit
+
 
 @UIApplicationMain
 
@@ -41,9 +41,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
 
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
 
-        UINavigationBar.appearance().tintColor = Color.AppTint.getUIColor()
+        UINavigationBar.appearance().barTintColor = Config.tintColor
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
 
         let tabBarController = configureTabBarController()
 
@@ -82,16 +84,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarController.viewControllers = [sessionsViewController, twitterViewController, sponsorsViewController, aboutViewController]
 
         sessionsViewController.tabBarItem.title = "Sessions"
-        sessionsViewController.tabBarItem.image = UIImage(named: "sessions")
-        sessionsViewController.tabBarItem.selectedImage = UIImage(named: "sessions-selected")
+        sessionsViewController.tabBarItem.image = UIImage(named: "calendar.png")
+        sessionsViewController.tabBarItem.selectedImage = UIImage(named: "calendar-filled.png")
 
         twitterViewController.tabBarItem.title = "Twitter"
-        twitterViewController.tabBarItem.image = UIImage(named: "twitter")
-        twitterViewController.tabBarItem.selectedImage = UIImage(named: "twitter-selected")
+        twitterViewController.tabBarItem.image = UIImage(named: "twitter.png")
+        twitterViewController.tabBarItem.selectedImage = UIImage(named: "twitter-filled.png")
 
         sponsorsViewController.tabBarItem.title = "Sponsors"
-        sponsorsViewController.tabBarItem.image = UIImage(named: "sponsors")
-        sponsorsViewController.tabBarItem.selectedImage = UIImage(named: "sponsors-selected")
+        sponsorsViewController.tabBarItem.image = UIImage(named: "sponsors.png")
+        sponsorsViewController.tabBarItem.selectedImage = UIImage(named: "sponsors-filled.png")
 
         aboutViewController.tabBarItem.title = "About"
         aboutViewController.tabBarItem.image = UIImage(named: "aboutus.png")

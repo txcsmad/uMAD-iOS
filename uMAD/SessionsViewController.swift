@@ -112,7 +112,7 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate, Log
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let session = sessionAtIndexPath(indexPath)!
-        let sessionViewController = UIStoryboard(name: "Sessions", bundle: nil).instantiateViewControllerWithIdentifier("SessionDetailViewController") as! SessionDetailViewController
+        let sessionViewController = SessionViewController()
         sessionViewController.session = session
         navigationController?.pushViewController(sessionViewController, animated: true)
     }
