@@ -12,7 +12,7 @@ protocol SplashViewDelegate: class {
 }
 
 
-class SplashViewController: UIViewController, PFLogInViewControllerDelegate, SplashViewDelegate {
+class SplashViewController: UIViewController, LogInViewControllerDelegate, SplashViewDelegate {
     @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
     @IBOutlet weak var eventImage: UIImageView!
     
@@ -207,18 +207,16 @@ class SplashViewController: UIViewController, PFLogInViewControllerDelegate, Spl
             return
         }
 
-        let logInViewController = LogInViewController()
-        logInViewController.delegate = self
-        logInViewController.emailAsUsername = true
-        let logoView = UIImageView(image: UIImage(named: "organization-logo.png"))
-        logoView.contentMode = .ScaleAspectFit
-        logInViewController.logInView?.logo = logoView
+        let logInNavController = LogInViewController.loadFromStoryboard()
+        if let logIn = logInNavController.topViewController as? LogInViewController {
+            logIn.delegate = self
+        }
 
-        presentViewController(logInViewController, animated: true, completion: nil)
+        presentViewController(logInNavController, animated: true, completion: nil)
     }
 
     // MARK:- Log In
-    func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {
+    func didLogIn() {
         checkStatus()
         dismissViewControllerAnimated(true, completion: nil)
     }

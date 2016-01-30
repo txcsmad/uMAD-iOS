@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3219C4561A7AD5AD00C3ADEB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3219C4551A7AD5AD00C3ADEB /* Social.framework */; };
+		409C45B421BCB73B3E74C95C /* Pods_uMAD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E58D642F76D941B93756FC97 /* Pods_uMAD.framework */; };
 		64D4AF631A75CDA80040D3CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF621A75CDA80040D3CA /* AppDelegate.swift */; };
 		64D4AF6A1A75CDA80040D3CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64D4AF691A75CDA80040D3CA /* Images.xcassets */; };
 		64D4AF851A75CF020040D3CA /* SponsorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4AF841A75CF020040D3CA /* SponsorsViewController.swift */; };
@@ -20,19 +21,13 @@
 		C9AB3A951C5A99090091AEDD /* SessionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9AB3A941C5A99090091AEDD /* SessionTableViewCell.xib */; };
 		C9AB3A971C5ABEB50091AEDD /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AB3A961C5ABEB50091AEDD /* ImageView.swift */; };
 		C9D3F78E1C57028800EC5CC1 /* SessionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D3F78D1C57028800EC5CC1 /* SessionDetailViewController.swift */; };
-		C9ED38521C56C79D0011B6AB /* Sessions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9ED38511C56C79D0011B6AB /* Sessions.storyboard */; };
-		C9ED38541C56CBA90011B6AB /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED38531C56CBA90011B6AB /* CustomButton.swift */; };
-		C9ED38571C56CD0C0011B6AB /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED38561C56CD0C0011B6AB /* Colors.swift */; };
-		C9ED38591C56CEC30011B6AB /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED38581C56CEC30011B6AB /* TextStyles.swift */; };
-		C9ED385B1C56CFD70011B6AB /* UIColor+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED385A1C56CFD70011B6AB /* UIColor+Helpers.swift */; };
 		C9ED385D1C56D3810011B6AB /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED385C1C56D3810011B6AB /* Label.swift */; };
-		CE2F1CD9F2DE7E00E6A3B1D2 /* Pods_uMAD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7EB28C2BB3A89B5087D5164 /* Pods_uMAD.framework */; };
+		CE2F1CD9F2DE7E00E6A3B1D2 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		D4171D651C27F3DD00E2975C /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4171D641C27F3DD00E2975C /* Profile.storyboard */; };
 		D4171D671C28925800E2975C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4171D661C28925800E2975C /* User.swift */; };
 		D4171D691C28A83D00E2975C /* UMADApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4171D681C28A83D00E2975C /* UMADApplication.swift */; };
 		D4171D6B1C28AACE00E2975C /* UMAD.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4171D6A1C28AACE00E2975C /* UMAD.swift */; };
 		D4280C0E1B2DE6070090F8C6 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C0D1B2DE6070090F8C6 /* UITests.swift */; };
-		D429C6A41C223F4B002AA3E6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D429C6A31C223F4B002AA3E6 /* ProfileViewController.swift */; };
 		D43561501AC62EDA00F7789D /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = D435614F1AC62EDA00F7789D /* Company.swift */; };
 		D46D47951C05109500B333AF /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D478D1081AB7422000563A8A /* Config.swift */; };
 		D46D47971C05157700B333AF /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D47961C05157700B333AF /* TimelineViewController.swift */; };
@@ -45,7 +40,11 @@
 		D4E19F2A1C2CA86D00470561 /* UMADApplicationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F291C2CA86D00470561 /* UMADApplicationStatus.swift */; };
 		D4E19F2C1C2CDAE900470561 /* SelectionHookTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F2B1C2CDAE900470561 /* SelectionHookTabBarController.swift */; };
 		D4E19F2E1C2D1D5A00470561 /* CredentialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E19F2D1C2D1D5A00470561 /* CredentialsViewController.swift */; };
-		D4F4CEDB1C2A39C700220E39 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F4CEDA1C2A39C700220E39 /* LogInViewController.swift */; };
+		D4F03A3C1C5D47EB00FF14B0 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F03A3B1C5D47EB00FF14B0 /* Colors.swift */; };
+		D4F03A3E1C5D47F200FF14B0 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F03A3D1C5D47F200FF14B0 /* TextStyles.swift */; };
+		D4F03A401C5D47F800FF14B0 /* UIColor+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F03A3F1C5D47F800FF14B0 /* UIColor+Helpers.swift */; };
+		D4F03A431C5D481B00FF14B0 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F03A421C5D481B00FF14B0 /* CustomButton.swift */; };
+		D4F03A441C5D4EBD00FF14B0 /* Sessions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9ED38511C56C79D0011B6AB /* Sessions.storyboard */; };
 		D4F7ADD21C54903C0078CBD7 /* SplashInformationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F7ADD11C54903C0078CBD7 /* SplashInformationView.xib */; };
 		D4F7ADD41C5490720078CBD7 /* SplashStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F7ADD31C5490720078CBD7 /* SplashStatusView.xib */; };
 		D4F7ADD81C5491650078CBD7 /* SplashInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F7ADD71C5491650078CBD7 /* SplashInformationView.swift */; };
@@ -54,6 +53,9 @@
 		D4FB7B421C2E364D000D7283 /* CheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB7B411C2E364D000D7283 /* CheckInViewController.swift */; };
 		D4FB7B441C2F2847000D7283 /* QRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB7B431C2F2847000D7283 /* QRScanViewController.swift */; };
 		D4FF2D3A1B5DF5EE00A8E2A2 /* Seperable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF2D381B5DEA1600A8E2A2 /* Seperable.swift */; };
+		D98F279E1C55A23D0078E54A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98F279D1C55A23D0078E54A /* ProfileViewController.swift */; };
+		D9D30BD11C58375E00FB599F /* Log-in.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9D30BD01C58375E00FB599F /* Log-in.storyboard */; };
+		D9D30BD31C5839CC00FB599F /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D30BD21C5839CC00FB599F /* LogInViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,8 +69,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C1A45FE5BC50EC2B5EB0A04 /* Pods-uMAD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uMAD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-uMAD/Pods-uMAD.debug.xcconfig"; sourceTree = "<group>"; };
 		3219C4551A7AD5AD00C3ADEB /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		5E4A359A448B5DE384108D40 /* Pods-uMAD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uMAD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-uMAD/Pods-uMAD.debug.xcconfig"; sourceTree = "<group>"; };
 		64D4AF5D1A75CDA80040D3CA /* uMAD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uMAD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D4AF611A75CDA80040D3CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64D4AF621A75CDA80040D3CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,16 +80,12 @@
 		880FA4701C1D1C3B00898B19 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		8840760E1C1BAFB600EBF319 /* SessionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsViewController.swift; sourceTree = "<group>"; };
 		884076121C1BB68A00EBF319 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
-		B4B501413CA171B81EE1593C /* Pods-uMAD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uMAD.release.xcconfig"; path = "Pods/Target Support Files/Pods-uMAD/Pods-uMAD.release.xcconfig"; sourceTree = "<group>"; };
 		C9AB3A921C5A96A70091AEDD /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		C9AB3A941C5A99090091AEDD /* SessionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SessionTableViewCell.xib; sourceTree = "<group>"; };
 		C9AB3A961C5ABEB50091AEDD /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		C9D3F78D1C57028800EC5CC1 /* SessionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailViewController.swift; sourceTree = "<group>"; };
 		C9ED38511C56C79D0011B6AB /* Sessions.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Sessions.storyboard; sourceTree = "<group>"; };
 		C9ED38531C56CBA90011B6AB /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		C9ED38561C56CD0C0011B6AB /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		C9ED38581C56CEC30011B6AB /* TextStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
-		C9ED385A1C56CFD70011B6AB /* UIColor+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Helpers.swift"; sourceTree = "<group>"; };
 		C9ED385C1C56D3810011B6AB /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		D4171D641C27F3DD00E2975C /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		D4171D661C28925800E2975C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -96,7 +94,6 @@
 		D4280C0B1B2DE6070090F8C6 /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4280C0D1B2DE6070090F8C6 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
 		D4280C0F1B2DE6070090F8C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D429C6A31C223F4B002AA3E6 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D435614D1AC62ACE00F7789D /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		D435614F1AC62EDA00F7789D /* Company.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		D46D47931C050B2A00B333AF /* fabricscript.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = fabricscript.sh; path = ../fabricscript.sh; sourceTree = "<group>"; };
@@ -112,7 +109,10 @@
 		D4E19F291C2CA86D00470561 /* UMADApplicationStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMADApplicationStatus.swift; sourceTree = "<group>"; };
 		D4E19F2B1C2CDAE900470561 /* SelectionHookTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionHookTabBarController.swift; sourceTree = "<group>"; };
 		D4E19F2D1C2D1D5A00470561 /* CredentialsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsViewController.swift; sourceTree = "<group>"; };
-		D4F4CEDA1C2A39C700220E39 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		D4F03A3B1C5D47EB00FF14B0 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		D4F03A3D1C5D47F200FF14B0 /* TextStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
+		D4F03A3F1C5D47F800FF14B0 /* UIColor+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Helpers.swift"; sourceTree = "<group>"; };
+		D4F03A421C5D481B00FF14B0 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		D4F7ADD11C54903C0078CBD7 /* SplashInformationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashInformationView.xib; sourceTree = "<group>"; };
 		D4F7ADD31C5490720078CBD7 /* SplashStatusView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashStatusView.xib; sourceTree = "<group>"; };
 		D4F7ADD71C5491650078CBD7 /* SplashInformationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashInformationView.swift; sourceTree = "<group>"; };
@@ -122,7 +122,11 @@
 		D4FB7B411C2E364D000D7283 /* CheckInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInViewController.swift; sourceTree = "<group>"; };
 		D4FB7B431C2F2847000D7283 /* QRScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScanViewController.swift; sourceTree = "<group>"; };
 		D4FF2D381B5DEA1600A8E2A2 /* Seperable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seperable.swift; sourceTree = "<group>"; };
-		F7EB28C2BB3A89B5087D5164 /* Pods_uMAD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_uMAD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D81563F939CA006D2D94E9F0 /* Pods-uMAD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uMAD.release.xcconfig"; path = "Pods/Target Support Files/Pods-uMAD/Pods-uMAD.release.xcconfig"; sourceTree = "<group>"; };
+		D98F279D1C55A23D0078E54A /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D9D30BD01C58375E00FB599F /* Log-in.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Log-in.storyboard"; sourceTree = "<group>"; };
+		D9D30BD21C5839CC00FB599F /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		E58D642F76D941B93756FC97 /* Pods_uMAD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_uMAD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +138,8 @@
 				D4D48A7A1ACB9A4400E03D22 /* MapKit.framework in Frameworks */,
 				3219C4561A7AD5AD00C3ADEB /* Social.framework in Frameworks */,
 				B2695256847C25E85CCF8DBB /* (null) in Frameworks */,
-				CE2F1CD9F2DE7E00E6A3B1D2 /* Pods_uMAD.framework in Frameworks */,
+				CE2F1CD9F2DE7E00E6A3B1D2 /* (null) in Frameworks */,
+				409C45B421BCB73B3E74C95C /* Pods_uMAD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,11 +153,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		103B5DFE7F83BEB623457CAD /* Pods */ = {
+		35637EEBB4E5838DF357ACA8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5E4A359A448B5DE384108D40 /* Pods-uMAD.debug.xcconfig */,
-				B4B501413CA171B81EE1593C /* Pods-uMAD.release.xcconfig */,
+				0C1A45FE5BC50EC2B5EB0A04 /* Pods-uMAD.debug.xcconfig */,
+				D81563F939CA006D2D94E9F0 /* Pods-uMAD.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -166,7 +171,7 @@
 				D4D48A781ACB969700E03D22 /* MapKit.framework */,
 				D435614D1AC62ACE00F7789D /* libsqlite3.dylib */,
 				3219C4551A7AD5AD00C3ADEB /* Social.framework */,
-				F7EB28C2BB3A89B5087D5164 /* Pods_uMAD.framework */,
+				E58D642F76D941B93756FC97 /* Pods_uMAD.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -191,6 +196,7 @@
 				D4D6693F1C5B18A2004650B8 /* Support */,
 				D4F7ADD61C5490950078CBD7 /* Splash */,
 				C9ED38531C56CBA90011B6AB /* CustomButton.swift */,
+				D9D30BD01C58375E00FB599F /* Log-in.storyboard */,
 				D4171D641C27F3DD00E2975C /* Profile.storyboard */,
 				C9ED38511C56C79D0011B6AB /* Sessions.storyboard */,
 				884076121C1BB68A00EBF319 /* SessionTableViewCell.swift */,
@@ -221,7 +227,7 @@
 				D4280C0C1B2DE6070090F8C6 /* UITests */,
 				64D4AF5E1A75CDA80040D3CA /* Products */,
 				40810CBC9317D6633548B7B7 /* Frameworks */,
-				103B5DFE7F83BEB623457CAD /* Pods */,
+				35637EEBB4E5838DF357ACA8 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -237,8 +243,9 @@
 		64D4AF5F1A75CDA80040D3CA /* uMAD */ = {
 			isa = PBXGroup;
 			children = (
-				C9ED38551C56CCFD0011B6AB /* Styles */,
 				64D4AF621A75CDA80040D3CA /* AppDelegate.swift */,
+				D4F03A421C5D481B00FF14B0 /* CustomButton.swift */,
+				D4F03A411C5D47FC00FF14B0 /* Styles */,
 				64CD92351A7A075B00659946 /* Models */,
 				64CD92341A7A074400659946 /* Views */,
 				64CD92331A7A073100659946 /* View Controllers */,
@@ -263,16 +270,6 @@
 			path = uMAD;
 			sourceTree = "<group>";
 		};
-		C9ED38551C56CCFD0011B6AB /* Styles */ = {
-			isa = PBXGroup;
-			children = (
-				C9ED38561C56CD0C0011B6AB /* Colors.swift */,
-				C9ED38581C56CEC30011B6AB /* TextStyles.swift */,
-				C9ED385A1C56CFD70011B6AB /* UIColor+Helpers.swift */,
-			);
-			name = Styles;
-			sourceTree = "<group>";
-		};
 		D4280C0C1B2DE6070090F8C6 /* UITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +287,16 @@
 				C9AB3A921C5A96A70091AEDD /* View.swift */,
 			);
 			name = Support;
+			sourceTree = "<group>";
+		};
+		D4F03A411C5D47FC00FF14B0 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				D4F03A3B1C5D47EB00FF14B0 /* Colors.swift */,
+				D4F03A3F1C5D47F800FF14B0 /* UIColor+Helpers.swift */,
+				D4F03A3D1C5D47F200FF14B0 /* TextStyles.swift */,
+			);
+			name = Styles;
 			sourceTree = "<group>";
 		};
 		D4F7ADD51C54908A0078CBD7 /* Splash */ = {
@@ -315,8 +322,8 @@
 		D4FB7B3C1C2E2B4C000D7283 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				D429C6A31C223F4B002AA3E6 /* ProfileViewController.swift */,
-				D4F4CEDA1C2A39C700220E39 /* LogInViewController.swift */,
+				D98F279D1C55A23D0078E54A /* ProfileViewController.swift */,
+				D9D30BD21C5839CC00FB599F /* LogInViewController.swift */,
 				D4FB7B411C2E364D000D7283 /* CheckInViewController.swift */,
 				D4E19F2D1C2D1D5A00470561 /* CredentialsViewController.swift */,
 			);
@@ -330,14 +337,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 64D4AF7C1A75CDA80040D3CA /* Build configuration list for PBXNativeTarget "uMAD" */;
 			buildPhases = (
-				228106E943DD5A3C77EA4A7A /* Check Pods Manifest.lock */,
+				68F74EC94E7CBBAA8327548B /* Check Pods Manifest.lock */,
+				2815F5DB9ED70A1F4510C569 /* Copy Pods Resources */,
 				64D4AF591A75CDA80040D3CA /* Sources */,
 				64D4AF5A1A75CDA80040D3CA /* Frameworks */,
 				64D4AF5B1A75CDA80040D3CA /* Resources */,
 				D46D47921C05099500B333AF /* ShellScript */,
 				D4171D6C1C28ADC700E2975C /* ShellScript */,
-				7C14841546E61A2EA3049B9D /* Embed Pods Frameworks */,
-				0B604EEC4C16ECE6F3F68B8E /* Copy Pods Resources */,
+				D1C8ED5C8290969B78F0A06C /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -424,12 +431,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4F03A441C5D4EBD00FF14B0 /* Sessions.storyboard in Resources */,
 				C9AB3A951C5A99090091AEDD /* SessionTableViewCell.xib in Resources */,
+				D9D30BD11C58375E00FB599F /* Log-in.storyboard in Resources */,
 				D4171D651C27F3DD00E2975C /* Profile.storyboard in Resources */,
 				D4F7ADD41C5490720078CBD7 /* SplashStatusView.xib in Resources */,
 				D4B6B60C1C4F3E8B003D382F /* Splash.xib in Resources */,
 				64D4AF6A1A75CDA80040D3CA /* Images.xcassets in Resources */,
-				C9ED38521C56C79D0011B6AB /* Sessions.storyboard in Resources */,
 				880FA4711C1D1C3B00898B19 /* Settings.bundle in Resources */,
 				D478D10B1AB7533500563A8A /* LaunchScreen.xib in Resources */,
 				D4F7ADD21C54903C0078CBD7 /* SplashInformationView.xib in Resources */,
@@ -446,7 +454,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0B604EEC4C16ECE6F3F68B8E /* Copy Pods Resources */ = {
+		2815F5DB9ED70A1F4510C569 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -461,7 +469,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-uMAD/Pods-uMAD-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		228106E943DD5A3C77EA4A7A /* Check Pods Manifest.lock */ = {
+		68F74EC94E7CBBAA8327548B /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -476,7 +484,7 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		7C14841546E61A2EA3049B9D /* Embed Pods Frameworks */ = {
+		D1C8ED5C8290969B78F0A06C /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -524,33 +532,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D429C6A41C223F4B002AA3E6 /* ProfileViewController.swift in Sources */,
-				D4F4CEDB1C2A39C700220E39 /* LogInViewController.swift in Sources */,
 				64D4AF851A75CF020040D3CA /* SponsorsViewController.swift in Sources */,
 				D4FB7B421C2E364D000D7283 /* CheckInViewController.swift in Sources */,
 				D46D47951C05109500B333AF /* Config.swift in Sources */,
-				C9ED38571C56CD0C0011B6AB /* Colors.swift in Sources */,
 				D4E19F281C2CA80100470561 /* UMADSponsor.swift in Sources */,
+				D4F03A431C5D481B00FF14B0 /* CustomButton.swift in Sources */,
 				D4FF2D3A1B5DF5EE00A8E2A2 /* Seperable.swift in Sources */,
 				C9AB3A971C5ABEB50091AEDD /* ImageView.swift in Sources */,
 				64D4AF631A75CDA80040D3CA /* AppDelegate.swift in Sources */,
 				C9D3F78E1C57028800EC5CC1 /* SessionDetailViewController.swift in Sources */,
 				D4F7ADDA1C54932A0078CBD7 /* SplashStatusView.swift in Sources */,
+				D4F03A401C5D47F800FF14B0 /* UIColor+Helpers.swift in Sources */,
 				D43561501AC62EDA00F7789D /* Company.swift in Sources */,
 				D4FB7B3E1C2E2BA4000D7283 /* QRCode.swift in Sources */,
 				D4171D6B1C28AACE00E2975C /* UMAD.swift in Sources */,
-				C9ED385B1C56CFD70011B6AB /* UIColor+Helpers.swift in Sources */,
+				D4F03A3E1C5D47F200FF14B0 /* TextStyles.swift in Sources */,
 				D4FB7B441C2F2847000D7283 /* QRScanViewController.swift in Sources */,
 				D4F7ADD81C5491650078CBD7 /* SplashInformationView.swift in Sources */,
 				D4171D671C28925800E2975C /* User.swift in Sources */,
 				D4B6B60E1C4F3EEC003D382F /* SplashViewController.swift in Sources */,
 				D4E19F2E1C2D1D5A00470561 /* CredentialsViewController.swift in Sources */,
+				D98F279E1C55A23D0078E54A /* ProfileViewController.swift in Sources */,
 				64FD63791A76FB0700D89106 /* Session.swift in Sources */,
 				D4171D691C28A83D00E2975C /* UMADApplication.swift in Sources */,
+				D4F03A3C1C5D47EB00FF14B0 /* Colors.swift in Sources */,
+				D9D30BD31C5839CC00FB599F /* LogInViewController.swift in Sources */,
 				D46D47971C05157700B333AF /* TimelineViewController.swift in Sources */,
 				8840760F1C1BAFB600EBF319 /* SessionsViewController.swift in Sources */,
-				C9ED38541C56CBA90011B6AB /* CustomButton.swift in Sources */,
-				C9ED38591C56CEC30011B6AB /* TextStyles.swift in Sources */,
 				D4E19F2A1C2CA86D00470561 /* UMADApplicationStatus.swift in Sources */,
 				C9AB3A931C5A96A70091AEDD /* View.swift in Sources */,
 				D4E19F2C1C2CDAE900470561 /* SelectionHookTabBarController.swift in Sources */,
@@ -658,7 +666,7 @@
 		};
 		64D4AF7D1A75CDA80040D3CA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E4A359A448B5DE384108D40 /* Pods-uMAD.debug.xcconfig */;
+			baseConfigurationReference = 0C1A45FE5BC50EC2B5EB0A04 /* Pods-uMAD.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -682,7 +690,7 @@
 		};
 		64D4AF7E1A75CDA80040D3CA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4B501413CA171B81EE1593C /* Pods-uMAD.release.xcconfig */;
+			baseConfigurationReference = D81563F939CA006D2D94E9F0 /* Pods-uMAD.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

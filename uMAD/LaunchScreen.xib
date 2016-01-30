@@ -12,7 +12,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="event_logo" translatesAutoresizingMaskIntoConstraints="NO" id="ATm-QE-xZl">
-                    <rect key="frame" x="174" y="173" width="253" height="253"/>
+                    <rect key="frame" x="176" y="175" width="250" height="250"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="250" id="Frq-fa-hPE"/>
                         <constraint firstAttribute="width" constant="250" id="mgS-Lg-e5i"/>
