@@ -27,7 +27,6 @@
 		D4171D671C28925800E2975C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4171D661C28925800E2975C /* User.swift */; };
 		D4171D691C28A83D00E2975C /* UMADApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4171D681C28A83D00E2975C /* UMADApplication.swift */; };
 		D4171D6B1C28AACE00E2975C /* UMAD.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4171D6A1C28AACE00E2975C /* UMAD.swift */; };
-		D4280C0E1B2DE6070090F8C6 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C0D1B2DE6070090F8C6 /* UITests.swift */; };
 		D43561501AC62EDA00F7789D /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = D435614F1AC62EDA00F7789D /* Company.swift */; };
 		D46D47951C05109500B333AF /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D478D1081AB7422000563A8A /* Config.swift */; };
 		D46D47971C05157700B333AF /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D47961C05157700B333AF /* TimelineViewController.swift */; };
@@ -92,8 +91,6 @@
 		D4171D681C28A83D00E2975C /* UMADApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMADApplication.swift; sourceTree = "<group>"; };
 		D4171D6A1C28AACE00E2975C /* UMAD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMAD.swift; sourceTree = "<group>"; };
 		D4280C0B1B2DE6070090F8C6 /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4280C0D1B2DE6070090F8C6 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
-		D4280C0F1B2DE6070090F8C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D435614D1AC62ACE00F7789D /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		D435614F1AC62EDA00F7789D /* Company.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		D46D47931C050B2A00B333AF /* fabricscript.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = fabricscript.sh; path = ../fabricscript.sh; sourceTree = "<group>"; };
@@ -179,6 +176,7 @@
 		64CD92331A7A073100659946 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D4FB7B431C2F2847000D7283 /* QRScanViewController.swift */,
 				D4F7ADD51C54908A0078CBD7 /* Splash */,
 				D4FB7B3C1C2E2B4C000D7283 /* Profile */,
 				8840760E1C1BAFB600EBF319 /* SessionsViewController.swift */,
@@ -187,12 +185,14 @@
 				C9D3F78D1C57028800EC5CC1 /* SessionDetailViewController.swift */,
 				D4E19F2B1C2CDAE900470561 /* SelectionHookTabBarController.swift */,
 			);
-			name = "View Controllers";
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		64CD92341A7A074400659946 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D4F03A421C5D481B00FF14B0 /* CustomButton.swift */,
+				D478D10A1AB7533500563A8A /* LaunchScreen.xib */,
 				D4D6693F1C5B18A2004650B8 /* Support */,
 				D4F7ADD61C5490950078CBD7 /* Splash */,
 				C9ED38531C56CBA90011B6AB /* CustomButton.swift */,
@@ -202,7 +202,7 @@
 				884076121C1BB68A00EBF319 /* SessionTableViewCell.swift */,
 				C9AB3A941C5A99090091AEDD /* SessionTableViewCell.xib */,
 			);
-			name = Views;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		64CD92351A7A075B00659946 /* Models */ = {
@@ -217,6 +217,7 @@
 				D4171D6A1C28AACE00E2975C /* UMAD.swift */,
 			);
 			name = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		64D4AF541A75CDA80040D3CA = {
@@ -224,7 +225,6 @@
 			children = (
 				64D4AF5F1A75CDA80040D3CA /* uMAD */,
 				64D4AF601A75CDA80040D3CA /* Supporting Files */,
-				D4280C0C1B2DE6070090F8C6 /* UITests */,
 				64D4AF5E1A75CDA80040D3CA /* Products */,
 				40810CBC9317D6633548B7B7 /* Frameworks */,
 				35637EEBB4E5838DF357ACA8 /* Pods */,
@@ -244,17 +244,14 @@
 			isa = PBXGroup;
 			children = (
 				64D4AF621A75CDA80040D3CA /* AppDelegate.swift */,
-				D4F03A421C5D481B00FF14B0 /* CustomButton.swift */,
 				D4F03A411C5D47FC00FF14B0 /* Styles */,
 				64CD92351A7A075B00659946 /* Models */,
 				64CD92341A7A074400659946 /* Views */,
 				64CD92331A7A073100659946 /* View Controllers */,
 				64D4AF691A75CDA80040D3CA /* Images.xcassets */,
-				D478D10A1AB7533500563A8A /* LaunchScreen.xib */,
 				D478D1081AB7422000563A8A /* Config.swift */,
 				D4FF2D381B5DEA1600A8E2A2 /* Seperable.swift */,
 				D4FB7B3D1C2E2BA4000D7283 /* QRCode.swift */,
-				D4FB7B431C2F2847000D7283 /* QRScanViewController.swift */,
 			);
 			path = uMAD;
 			sourceTree = "<group>";
@@ -268,15 +265,6 @@
 			);
 			name = "Supporting Files";
 			path = uMAD;
-			sourceTree = "<group>";
-		};
-		D4280C0C1B2DE6070090F8C6 /* UITests */ = {
-			isa = PBXGroup;
-			children = (
-				D4280C0D1B2DE6070090F8C6 /* UITests.swift */,
-				D4280C0F1B2DE6070090F8C6 /* Info.plist */,
-			);
-			path = UITests;
 			sourceTree = "<group>";
 		};
 		D4D6693F1C5B18A2004650B8 /* Support */ = {
@@ -303,8 +291,6 @@
 			isa = PBXGroup;
 			children = (
 				D4B6B60D1C4F3EEC003D382F /* SplashViewController.swift */,
-				D4F7ADD71C5491650078CBD7 /* SplashInformationView.swift */,
-				D4F7ADD91C54932A0078CBD7 /* SplashStatusView.swift */,
 			);
 			name = Splash;
 			sourceTree = "<group>";
@@ -312,6 +298,8 @@
 		D4F7ADD61C5490950078CBD7 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
+				D4F7ADD71C5491650078CBD7 /* SplashInformationView.swift */,
+				D4F7ADD91C54932A0078CBD7 /* SplashStatusView.swift */,
 				D4B6B60B1C4F3E8B003D382F /* Splash.xib */,
 				D4F7ADD11C54903C0078CBD7 /* SplashInformationView.xib */,
 				D4F7ADD31C5490720078CBD7 /* SplashStatusView.xib */,
@@ -571,7 +559,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4280C0E1B2DE6070090F8C6 /* UITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
