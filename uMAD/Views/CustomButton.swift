@@ -53,9 +53,8 @@ class CustomButton: UIButton {
     }
     
     private func setValues() {
-        self.tintColor = self.tintColorForCurrentState()
-        self.backgroundColor = self.backgroundColorForCurrentState()
-        self.layer.borderColor = self.borderColorForCurrentState()
+        backgroundColor = self.backgroundColorForCurrentState()
+        layer.borderColor = self.borderColorForCurrentState()
         
         if selected || highlighted {
             customImageView.image = customImageHighlighted
