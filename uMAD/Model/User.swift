@@ -40,17 +40,30 @@ class User: PFUser {
 
     }
 
-    func fetchFavoritesWithCompletion(completion: ([Session], NSError?) -> ()) {
+    func fetchFavoritesWithCompletion(completion: (Set<Session>, NSError?) -> ()) {
         let favoritesQuery = relationForKey("favorites").query()
         // Will hit the cache first for quick results. Techinically could be invalid, but not very likely.
         favoritesQuery.cachePolicy = .CacheThenNetwork
         favoritesQuery.findObjectsInBackgroundWithBlock { objects, error in
-            if let favorites = objects as? [Session] {
-                self.favorites = Set<Session>(favorites)
-                completion(favorites, nil)
-            } else {
+            guard let favorites = objects as? [Session] else {
                 completion([], error)
+                return
             }
+            let favSet =  Set<Session>(favorites)
+            // Detect duplicates and remove all if they occur
+
+            if favSet.count != favorites.count {
+                let favoritesRelation = User.currentUser()!.relationForKey("favorites")
+                for fav in favorites {
+                    favoritesRelation.removeObject(fav)
+                }
+                User.currentUser()!.saveInBackground()
+                completion([], nil)
+            } else {
+                self.favorites = favSet
+                completion(favSet, nil)
+            }
+
         }
     }
 

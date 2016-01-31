@@ -53,7 +53,7 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         navigationController?.setToolbarHidden(true, animated: true)
     }
 
@@ -82,11 +82,18 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
 
         sessions?.removeAll()
         sections.removeAll()
-        
+
         sessions = casted
         sections = sessions!.createSectionedRepresentation()
 
         searchController.searchBar.scopeButtonTitles = getTopTags()
+    }
+
+    override func objectsWillLoad() {
+        super.objectsWillLoad()
+        User.currentUser()?.fetchFavoritesWithCompletion { favs, error in
+            self.tableView.reloadData()
+        }
     }
 
     override func objectAtIndexPath(indexPath: NSIndexPath?) -> PFObject? {
@@ -167,7 +174,7 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
         // User is logged in. Present profile view
         presentViewController(navController, animated: true, completion: nil)
     }
-    
+
     func userDidExitProfile() {
         dismissViewControllerAnimated(true, completion: nil)
     }

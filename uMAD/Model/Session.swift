@@ -46,7 +46,6 @@ class Session: PFObject, PFSubclassing, Separable, CustomDebugStringConvertible 
             completion(false, nil)
             return
         }
-
         user.favorites?.insert(self)
 
         if sessionsOverlap(user.favorites!) {
@@ -54,15 +53,17 @@ class Session: PFObject, PFSubclassing, Separable, CustomDebugStringConvertible 
             completion(false, nil)
             return
         }
-        user.postFavoritesDidChange()
 
-        incrementKey("favoriteCount")
-        saveInBackground()
-
-
-        let favorites = user.relationForKey("favorites")
-        favorites.addObject(self)
-        user.saveInBackgroundWithBlock(completion)
+        user.saveInBackgroundWithBlock { success, error in
+            if success {
+                self.incrementKey("favoriteCount")
+                self.saveInBackground()
+                let favorites = user.relationForKey("favorites")
+                favorites.addObject(self)
+                user.postFavoritesDidChange()
+            }
+            completion(success, error)
+        }
     }
 
     func removeFromFavorites(completion: (Bool, NSError?) -> ()) {
@@ -70,14 +71,20 @@ class Session: PFObject, PFSubclassing, Separable, CustomDebugStringConvertible 
             where user.favorites != nil && user.favorites!.contains(self) == true else {
             return
         }
-        incrementKey("favoriteCount", byAmount: -1)
-        saveInBackground()
 
         let favorites = user.relationForKey("favorites")
         favorites.removeObject(self)
-        user.saveInBackgroundWithBlock(completion)
-        user.favorites?.remove(self)
-        user.postFavoritesDidChange()
+        user.saveInBackgroundWithBlock { success, error in
+            if success {
+                self.incrementKey("favoriteCount", byAmount: -1)
+                self.saveInBackground()
+                user.favorites?.remove(self)
+                user.postFavoritesDidChange()
+            }
+            completion(success, error)
+        }
+
+
     }
 
     func isFavorited() -> Bool {
@@ -123,5 +130,10 @@ class Session: PFObject, PFSubclassing, Separable, CustomDebugStringConvertible 
             return false
         }
     }
+
+    override var hashValue: Int {
+        return objectId!.hashValue
+    }
+
 
 }

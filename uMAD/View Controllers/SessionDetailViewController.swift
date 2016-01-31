@@ -54,8 +54,9 @@ class SessionDetailViewController: UIViewController {
 
         if session.bio == nil {
             speakerSectionHead.hidden = true
-            speakerSectionHead.heightAnchor.constraintEqualToConstant(0.0).active = true
-            speakerBioLabel.heightAnchor.constraintEqualToConstant(0.0).active = true
+            speakerSectionHead.removeFromSuperview()
+            speakerBioLabel.removeFromSuperview()
+            descriptionLabel.bottomAnchor.constraintEqualToAnchor(dateLabel.topAnchor, constant: -8.0).active = true
         }
 
         let formatter = NSDateFormatter()
@@ -75,7 +76,8 @@ class SessionDetailViewController: UIViewController {
             capacityWarningLabel.alpha = 1.0
         } else {
             capacityWarningLabel.alpha = 0.0
-            capacityWarningLabel.heightAnchor.constraintEqualToConstant(0.0)
+            capacityWarningLabel.removeFromSuperview()
+            infoLabel.bottomAnchor.constraintEqualToAnchor(descriptionLabel.topAnchor, constant: -8.0).active = true
         }
     }
 
@@ -106,7 +108,7 @@ class SessionDetailViewController: UIViewController {
             }
         } else {
             favoriteButton.selected = false
-            session.removeFromFavorites{ success, error in
+            session.removeFromFavorites { success, error in
                 if success && error == nil {
                     self.favoriteButton.setTitle(self.addFavoriteText, forState: UIControlState.init(rawValue: 5))
                 } else {
