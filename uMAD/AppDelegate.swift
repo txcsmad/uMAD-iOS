@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         installation.setDeviceTokenFromData(deviceToken)
         installation.saveInBackground()
     }
-    
+
     func registerParseSubclasses() {
         Session.registerSubclass()
         Company.registerSubclass()

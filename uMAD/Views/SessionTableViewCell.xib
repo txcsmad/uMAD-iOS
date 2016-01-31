@@ -13,26 +13,26 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NED-6P-oe0" id="4Xw-Up-HV3">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YAT-Wb-fbz" userLabel="Capacity Indicator">
-                        <rect key="frame" x="292" y="6" width="10" height="10"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YAT-Wb-fbz" userLabel="Capacity Indicator">
+                        <rect key="frame" x="292" y="7" width="8" height="8"/>
                         <color key="backgroundColor" red="0.82745098039999998" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="10" id="n76-2a-5VG"/>
-                            <constraint firstAttribute="width" constant="10" id="qcB-Lb-qYm"/>
+                            <constraint firstAttribute="height" constant="8" id="n76-2a-5VG"/>
+                            <constraint firstAttribute="width" constant="8" id="qcB-Lb-qYm"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="5"/>
+                                <integer key="value" value="4"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wpn-iS-WWT">
                         <rect key="frame" x="75" y="9" width="230" height="42"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="10:00 AM - 12:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YhH-db-6bi" customClass="Label" customModule="uMAD" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="10:00 AM - 12:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YhH-db-6bi" customClass="Label" customModule="uMAD" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="21" width="128" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -41,7 +41,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyleCode" value="CellTime"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text=" - GDC 2.403" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HdJ-7t-2d6" customClass="Label" customModule="uMAD" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text=" - GDC 2.403" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HdJ-7t-2d6" customClass="Label" customModule="uMAD" customModuleProvider="target">
                                 <rect key="frame" x="128" y="21" width="102" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -92,6 +92,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="4M9-SX-IDj" secondAttribute="trailing" constant="5" id="0AL-ag-dZc"/>
+                    <constraint firstItem="YAT-Wb-fbz" firstAttribute="top" secondItem="4Xw-Up-HV3" secondAttribute="top" constant="7" id="A06-34-LCE"/>
                     <constraint firstItem="Tuz-IP-x9I" firstAttribute="centerY" secondItem="4Xw-Up-HV3" secondAttribute="centerY" id="Evh-vZ-P08"/>
                     <constraint firstItem="4M9-SX-IDj" firstAttribute="top" secondItem="4Xw-Up-HV3" secondAttribute="top" constant="5" id="Nl4-iB-Nyb"/>
                     <constraint firstItem="4M9-SX-IDj" firstAttribute="leading" secondItem="YAT-Wb-fbz" secondAttribute="trailing" constant="5" id="b98-RM-HrA"/>
@@ -99,12 +100,15 @@
                     <constraint firstItem="Tuz-IP-x9I" firstAttribute="leading" secondItem="wpn-iS-WWT" secondAttribute="trailing" constant="10" id="cMt-s8-I1o"/>
                     <constraint firstItem="Tuz-IP-x9I" firstAttribute="leading" secondItem="4Xw-Up-HV3" secondAttribute="leading" constant="15" id="cdv-32-vhl"/>
                     <constraint firstItem="wpn-iS-WWT" firstAttribute="leading" secondItem="Tuz-IP-x9I" secondAttribute="trailing" constant="10" id="hl2-e1-9pd"/>
+                    <constraint firstItem="4M9-SX-IDj" firstAttribute="top" secondItem="4Xw-Up-HV3" secondAttribute="top" constant="5" id="mEX-We-Xng"/>
                     <constraint firstAttribute="trailing" secondItem="wpn-iS-WWT" secondAttribute="trailing" constant="15" id="nF8-dL-YWH"/>
                     <constraint firstItem="wpn-iS-WWT" firstAttribute="centerY" secondItem="4Xw-Up-HV3" secondAttribute="centerY" id="sp4-Yk-7DH"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="cMt-s8-I1o"/>
+                        <exclude reference="bqL-Zx-jE3"/>
+                        <exclude reference="Nl4-iB-Nyb"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>

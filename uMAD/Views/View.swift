@@ -10,7 +10,7 @@ class View: UIView {
                 assertionFailure("Invalid backgroundColorCode for View")
                 return
             }
-            
+
             self.backgroundColor = color.getUIColor()
             self.layoutIfNeeded()
         }
