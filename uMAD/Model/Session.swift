@@ -29,6 +29,15 @@ class Session: PFObject, PFSubclassing, Separable, CustomDebugStringConvertible 
         }
     }
 
+    var atCapacity: Bool {
+        if let capacity = capacity as? Int
+            where favoriteCount > capacity {
+                return true
+        } else {
+            return false
+        }
+    }
+
     // MARK:- Favorites
 
     func addToFavorites(completion: (Bool, NSError?) -> ()) {

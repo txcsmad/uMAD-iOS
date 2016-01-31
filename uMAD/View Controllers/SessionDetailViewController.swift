@@ -7,6 +7,7 @@ class SessionDetailViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: Label!
     @IBOutlet weak var infoLabel: Label!
+    @IBOutlet weak var capacityWarningLabel: UILabel!
     @IBOutlet weak var descriptionLabel: Label!
     @IBOutlet weak var speakerSectionHead: UILabel!
     @IBOutlet weak var speakerBioLabel: Label!
@@ -70,6 +71,12 @@ class SessionDetailViewController: UIViewController {
         }
 
         favoriteButton.selected = session.isFavorited()
+        if session.atCapacity {
+            capacityWarningLabel.alpha = 1.0
+        } else {
+            capacityWarningLabel.alpha = 0.0
+            capacityWarningLabel.heightAnchor.constraintEqualToConstant(0.0)
+        }
     }
 
     //MARK: - Button Functions

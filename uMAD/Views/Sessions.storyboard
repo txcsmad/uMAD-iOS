@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -22,18 +22,18 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VLY-jw-iZz">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="352"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="523"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Session Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNC-dt-Gr1" customClass="Label" customModule="uMAD" customModuleProvider="target">
                                                 <rect key="frame" x="17" y="20" width="566" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyleCode" value="EventTitle"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Session Info | Location" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iH1-wa-WEL" customClass="Label" customModule="uMAD" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speaker Name | Location" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iH1-wa-WEL" customClass="Label" customModule="uMAD" customModuleProvider="target">
                                                 <rect key="frame" x="17" y="46" width="566" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -43,26 +43,26 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWD-th-xtD" customClass="Label" customModule="uMAD" customModuleProvider="target">
-                                                <rect key="frame" x="17" y="76" width="566" height="115"/>
+                                                <rect key="frame" x="17" y="96" width="566" height="115"/>
                                                 <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyleCode" value="Description"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day, Month 31, 12:00 - 12:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vgh-Ic-A3V" customClass="Label" customModule="uMAD" customModuleProvider="target">
-                                                <rect key="frame" x="17" y="201" width="566" height="20"/>
+                                                <rect key="frame" x="17" y="372" width="566" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyleCode" value="AdditionalInfo"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w13-6f-7ce" customClass="CustomButton" customModule="uMAD" customModuleProvider="target">
-                                                <rect key="frame" x="7" y="292" width="586" height="40"/>
+                                                <rect key="frame" x="7" y="463" width="586" height="40"/>
                                                 <state key="normal" title="Visit website"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="image" keyPath="customImage" value="compass"/>
@@ -71,7 +71,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIJ-92-jZ8" customClass="CustomButton" customModule="uMAD" customModuleProvider="target">
-                                                <rect key="frame" x="7" y="237" width="586" height="40"/>
+                                                <rect key="frame" x="7" y="408" width="586" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="HNW-0t-boC"/>
                                                 </constraints>
@@ -82,14 +82,45 @@
                                                     <userDefinedRuntimeAttribute type="image" keyPath="customImageHighlighted" value="favorite"/>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6RJ-1p-0iS" customClass="Label" customModule="uMAD" customModuleProvider="target">
+                                                <rect key="frame" x="17" y="249" width="566" height="115"/>
+                                                <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyleCode" value="Description"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About the Speaker" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4g-4v-R28" customClass="Label" customModule="uMAD" customModuleProvider="target">
+                                                <rect key="frame" x="17" y="221" width="566" height="20"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyleCode" value="AdditionalInfo"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Many people have put this session on their schedule. Please be early." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fHS-Gd-EiW">
+                                                <rect key="frame" x="17" y="74" width="528" height="14"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                <color key="textColor" red="0.82745098039999998" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="Vgh-Ic-A3V" firstAttribute="top" secondItem="EWD-th-xtD" secondAttribute="bottom" constant="10" id="0ct-cv-nf2"/>
+                                            <constraint firstItem="6RJ-1p-0iS" firstAttribute="top" secondItem="A4g-4v-R28" secondAttribute="bottom" constant="8" id="1q4-N2-BCQ"/>
                                             <constraint firstItem="iH1-wa-WEL" firstAttribute="top" secondItem="yNC-dt-Gr1" secondAttribute="bottom" constant="5" id="2xd-M8-vgr"/>
                                             <constraint firstItem="yIJ-92-jZ8" firstAttribute="leading" secondItem="VLY-jw-iZz" secondAttribute="leading" constant="7" id="39T-Wn-rPZ"/>
                                             <constraint firstAttribute="trailing" secondItem="yIJ-92-jZ8" secondAttribute="trailing" constant="7" id="3kz-Gb-KGC"/>
+                                            <constraint firstItem="fHS-Gd-EiW" firstAttribute="top" secondItem="iH1-wa-WEL" secondAttribute="bottom" constant="8" id="8so-BN-mXi"/>
+                                            <constraint firstAttribute="trailing" secondItem="fHS-Gd-EiW" secondAttribute="trailing" constant="55" id="9yF-WN-coA"/>
+                                            <constraint firstItem="Vgh-Ic-A3V" firstAttribute="top" secondItem="6RJ-1p-0iS" secondAttribute="bottom" constant="8" id="Au2-pK-GpV"/>
+                                            <constraint firstItem="EWD-th-xtD" firstAttribute="top" secondItem="fHS-Gd-EiW" secondAttribute="bottom" constant="8" id="Blq-78-CWg"/>
                                             <constraint firstItem="w13-6f-7ce" firstAttribute="leading" secondItem="yIJ-92-jZ8" secondAttribute="leading" id="FEz-Vb-21m"/>
+                                            <constraint firstItem="6RJ-1p-0iS" firstAttribute="leading" secondItem="VLY-jw-iZz" secondAttribute="leading" constant="17" id="JYf-DP-WuQ"/>
                                             <constraint firstAttribute="trailing" secondItem="iH1-wa-WEL" secondAttribute="trailing" constant="17" id="N8o-Ud-m5z"/>
                                             <constraint firstAttribute="trailing" secondItem="EWD-th-xtD" secondAttribute="trailing" constant="17" id="RcE-yN-FcH"/>
                                             <constraint firstItem="yNC-dt-Gr1" firstAttribute="top" secondItem="VLY-jw-iZz" secondAttribute="top" constant="20" id="Rlc-XX-OAW"/>
@@ -98,9 +129,13 @@
                                             <constraint firstItem="Vgh-Ic-A3V" firstAttribute="leading" secondItem="VLY-jw-iZz" secondAttribute="leading" constant="17" id="WKf-Sn-wOF"/>
                                             <constraint firstItem="EWD-th-xtD" firstAttribute="leading" secondItem="VLY-jw-iZz" secondAttribute="leading" constant="17" id="XYI-Qh-PbT"/>
                                             <constraint firstAttribute="trailing" secondItem="Vgh-Ic-A3V" secondAttribute="trailing" constant="17" id="ZqY-uf-EaI"/>
+                                            <constraint firstItem="A4g-4v-R28" firstAttribute="top" secondItem="EWD-th-xtD" secondAttribute="bottom" constant="10" id="aOH-Zs-BJr"/>
+                                            <constraint firstAttribute="trailing" secondItem="6RJ-1p-0iS" secondAttribute="trailing" constant="17" id="bKh-CI-Wgo"/>
                                             <constraint firstItem="yIJ-92-jZ8" firstAttribute="top" secondItem="Vgh-Ic-A3V" secondAttribute="bottom" constant="16" id="bKi-ji-55Y"/>
+                                            <constraint firstItem="fHS-Gd-EiW" firstAttribute="leading" secondItem="VLY-jw-iZz" secondAttribute="leading" constant="17" id="bOY-rM-gTk"/>
                                             <constraint firstItem="yNC-dt-Gr1" firstAttribute="leading" secondItem="VLY-jw-iZz" secondAttribute="leading" constant="17" id="cVM-XA-MUw"/>
-                                            <constraint firstItem="EWD-th-xtD" firstAttribute="top" secondItem="iH1-wa-WEL" secondAttribute="bottom" constant="10" id="gAd-r1-an4"/>
+                                            <constraint firstItem="A4g-4v-R28" firstAttribute="leading" secondItem="VLY-jw-iZz" secondAttribute="leading" constant="17" id="fC0-Lq-XQC"/>
+                                            <constraint firstAttribute="trailing" secondItem="A4g-4v-R28" secondAttribute="trailing" constant="17" id="fVF-op-C4O"/>
                                             <constraint firstAttribute="bottom" secondItem="w13-6f-7ce" secondAttribute="bottom" constant="20" id="uNc-Yi-Qfm"/>
                                             <constraint firstItem="w13-6f-7ce" firstAttribute="trailing" secondItem="yIJ-92-jZ8" secondAttribute="trailing" id="uau-y7-lxe"/>
                                             <constraint firstItem="iH1-wa-WEL" firstAttribute="leading" secondItem="VLY-jw-iZz" secondAttribute="leading" constant="17" id="uy7-Oz-QoH"/>
@@ -110,6 +145,7 @@
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="UCM-T7-AHh"/>
+                                                <exclude reference="0ct-cv-nf2"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -161,10 +197,13 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="capacityWarningLabel" destination="fHS-Gd-EiW" id="RYq-ck-pkU"/>
                         <outlet property="dateLabel" destination="Vgh-Ic-A3V" id="KLX-zw-isZ"/>
                         <outlet property="descriptionLabel" destination="EWD-th-xtD" id="JiX-wK-tff"/>
                         <outlet property="favoriteButton" destination="yIJ-92-jZ8" id="x3I-pW-VgE"/>
                         <outlet property="infoLabel" destination="iH1-wa-WEL" id="9bM-i5-TVo"/>
+                        <outlet property="speakerBioLabel" destination="6RJ-1p-0iS" id="rbw-E5-gOd"/>
+                        <outlet property="speakerSectionHead" destination="A4g-4v-R28" id="RCu-TX-BLe"/>
                         <outlet property="titleLabel" destination="yNC-dt-Gr1" id="1HW-yW-biW"/>
                         <outlet property="websiteButton" destination="w13-6f-7ce" id="9jg-ty-Cjv"/>
                     </connections>
