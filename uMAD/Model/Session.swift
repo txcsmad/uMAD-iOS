@@ -2,8 +2,9 @@ import Parse
 
 class Session: PFObject, PFSubclassing, Separable, CustomDebugStringConvertible {
 
-    @NSManaged var bio: String
-    @NSManaged var capacity: Int
+    @NSManaged var bio: String?
+    @NSManaged var capacity: NSNumber?
+    @NSManaged var favoriteCount: Int
     @NSManaged var company: Company?
     @NSManaged var descriptionText: String
     @NSManaged var email: String
@@ -31,42 +32,87 @@ class Session: PFObject, PFSubclassing, Separable, CustomDebugStringConvertible 
     // MARK:- Favorites
 
     func addToFavorites(completion: (Bool, NSError?) -> ()) {
-        incrementKey("favoriteCount")
-        saveInBackground()
-
-        let favorites = PFUser.currentUser()?.relationForKey("favorites")
-        favorites?.addObject(self)
-        PFUser.currentUser()?.saveInBackgroundWithBlock(completion)
-    }
-
-    func removeFromFavorites(completion: (Bool, NSError?) -> ()) {
-        incrementKey("favoriteCount", byAmount: -1)
-        saveInBackground()
-
-        let favorites = PFUser.currentUser()?.relationForKey("favorites")
-        favorites?.removeObject(self)
-        PFUser.currentUser()?.saveInBackgroundWithBlock(completion)
-    }
-    
-    func isFavorited(completion: (Bool, NSError?) -> ()) {
-        guard let objectId = objectId else {
+        guard let user = User.currentUser()
+           where user.favorites != nil && user.favorites!.contains(self) == false else {
             completion(false, nil)
             return
         }
-        let favorites = PFUser.currentUser()?.relationForKey("favorites")
-        let query = favorites?.query()
-        query?.cachePolicy = .CacheElseNetwork
-        query?.whereKey("objectId", equalTo: objectId)
-        query?.countObjectsInBackgroundWithBlock { count, error in
-            completion(count == 1, error)
+
+        user.favorites?.insert(self)
+
+        if sessionsOverlap(user.favorites!) {
+            user.favorites?.remove(self)
+            completion(false, nil)
+            return
         }
+        user.postFavoritesDidChange()
+
+        incrementKey("favoriteCount")
+        saveInBackground()
+
+
+        let favorites = user.relationForKey("favorites")
+        favorites.addObject(self)
+        user.saveInBackgroundWithBlock(completion)
     }
-    
+
+    func removeFromFavorites(completion: (Bool, NSError?) -> ()) {
+        guard let user = User.currentUser()
+            where user.favorites != nil && user.favorites!.contains(self) == true else {
+            return
+        }
+        incrementKey("favoriteCount", byAmount: -1)
+        saveInBackground()
+
+        let favorites = user.relationForKey("favorites")
+        favorites.removeObject(self)
+        user.saveInBackgroundWithBlock(completion)
+        user.favorites?.remove(self)
+        user.postFavoritesDidChange()
+    }
+
+    func isFavorited() -> Bool {
+        guard let user = User.currentUser(),
+           let localFavs = user.favorites else {
+            return false
+        }
+        return localFavs.contains(self)
+    }
+
+    private func sessionsOverlap(sessions: Set<Session>) -> Bool {
+        let chronologicalFavs = sessions.sort { $0.0.startTime.compare($0.1.startTime) == .OrderedAscending  }
+
+        var i = 0
+        var j = 1
+        // Check every pair for overlap
+        while i <= chronologicalFavs.count - 2 && j <= chronologicalFavs.count - 1 {
+            let first = chronologicalFavs[i]
+            let second = chronologicalFavs[j]
+
+            let comparison = first.endTime.compare(second.startTime)
+            // Is the starttime before/equal to the end time of the event after it?
+            if comparison == .OrderedAscending || comparison == .OrderedSame {
+                i++
+                j++
+            } else {
+                return true
+            }
+        }
+        return false
+    }
     // MARK:- Seperable
 
     func shouldBeSeparated(from: Session) -> Bool {
         let calendar = NSCalendar.currentCalendar()
         return !calendar.isDate(startTime, equalToDate: from.startTime, toUnitGranularity: .Hour)
+    }
+
+    override func isEqual(object: AnyObject?) -> Bool {
+        if let second = object as? Session {
+            return self.objectId == second.objectId
+        } else {
+            return false
+        }
     }
 
 }
