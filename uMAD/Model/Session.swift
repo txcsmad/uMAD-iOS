@@ -61,6 +61,10 @@ class Session: PFObject, PFSubclassing, Separable, CustomDebugStringConvertible 
                 let favorites = user.relationForKey("favorites")
                 favorites.addObject(self)
                 user.postFavoritesDidChange()
+                let installation = PFInstallation.currentInstallation()
+                installation.addUniqueObject("session" + self.objectId!, forKey: "channels")
+                installation.saveInBackground()
+
             }
             completion(success, error)
         }
@@ -80,6 +84,10 @@ class Session: PFObject, PFSubclassing, Separable, CustomDebugStringConvertible 
                 self.saveInBackground()
                 user.favorites?.remove(self)
                 user.postFavoritesDidChange()
+                let installation = PFInstallation.currentInstallation()
+                installation.removeObjectForKey("session" + self.objectId!)
+                installation.addUniqueObject("session" + self.objectId!, forKey: "channels")
+                installation.saveInBackground()
             }
             completion(success, error)
         }
