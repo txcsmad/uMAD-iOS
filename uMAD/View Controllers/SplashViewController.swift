@@ -60,7 +60,6 @@ class SplashViewController: UIViewController, LogInViewControllerDelegate, Splas
     }
 
     override func viewWillAppear(animated: Bool) {
-        checkStatus()
         setNeedsStatusBarAppearanceUpdate()
     }
 
