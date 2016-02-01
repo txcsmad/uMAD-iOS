@@ -66,15 +66,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func configureTabBarController() -> UITabBarController {
         let sessionsViewController = UINavigationController(rootViewController: SessionsViewController())
+        
+        let myScheduleViewController = UINavigationController(rootViewController:
+            UIStoryboard(name: "MySchedule", bundle: nil)
+            .instantiateViewControllerWithIdentifier("MyScheduleViewController") as! MyScheduleViewController)
+        
         let twitterViewController = UINavigationController(rootViewController: TimelineViewController())
         let sponsorsViewController = UINavigationController(rootViewController: SponsorsViewController())
 
         let tabBarController = SelectionHookTabBarController()
-        tabBarController.viewControllers = [sessionsViewController, twitterViewController, sponsorsViewController]
+        tabBarController.viewControllers = [sessionsViewController, myScheduleViewController, twitterViewController, sponsorsViewController]
 
         sessionsViewController.tabBarItem.title = "Sessions"
         sessionsViewController.tabBarItem.image = UIImage(named: "sessions")
         sessionsViewController.tabBarItem.selectedImage = UIImage(named: "sessions-selected")
+        
+        myScheduleViewController.tabBarItem.title = "Schedule"
+        myScheduleViewController.tabBarItem.image = UIImage(named: "favorite-stroked")
+        myScheduleViewController.tabBarItem.selectedImage = UIImage(named: "favorite")
 
         twitterViewController.tabBarItem.title = "Twitter"
         twitterViewController.tabBarItem.image = UIImage(named: "twitter")
