@@ -93,16 +93,22 @@ class SessionDetailViewController: UIViewController {
     }
 
     func didTapFavoriteButton() {
-        guard let session = session else {
+        guard let session = session,
+           favorites = User.currentUser()?.favorites else {
             return
         }
+
+        if let overlapsWith = session.wouldCreateNewOverlapWith(favorites) {
+            presentFavoritesOverlapAlert(overlapsWith)
+            return
+        }
+
         if favoriteButton.selected == false {
             favoriteButton.selected = true
             session.addToFavorites { success, error in
                 if success && error == nil {
                     self.favoriteButton.setTitle(self.removeFavoriteText, forState: UIControlState.init(rawValue: 5))
                 } else {
-                    self.presentFavoritesOverlapAlert()
                     self.favoriteButton.selected = false
                 }
             }
@@ -118,11 +124,25 @@ class SessionDetailViewController: UIViewController {
 
         }
     }
+    /**
+     Presents an alert notifying the user that adding a favorite
+     would create a conflict with the passed in session. Allows
+     them to unfavorite the session, or acknowledge
 
-    func presentFavoritesOverlapAlert() {
-        let controller = UIAlertController(title: "Overlapping favorites",
-            message: "This session overlaps with one of your favorites. Unfavorite the other one first.", preferredStyle: .Alert)
-        controller.addAction(UIAlertAction(title: "Okay", style: .Default, handler: nil))
+     - parameter session: the session that would conflict with the desired favorite
+     */
+    func presentFavoritesOverlapAlert(session: Session) {
+        let controller = UIAlertController(title: "Overlapping Sessions",
+            message: "This session overlaps with another on your schedule, \"\(session.name).\"", preferredStyle: .Alert)
+        controller.addAction(UIAlertAction(title: "Remove conflicting session", style: .Default) { _ in
+            session.removeFromFavorites { success, error -> () in
+                if success && error == nil {
+                    // Run the action as if they were retapping the button, just with no conflict now!
+                    self.didTapFavoriteButton()
+                }
+            }
+        })
+        controller.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         presentViewController(controller, animated: true, completion: nil)
     }
 }
