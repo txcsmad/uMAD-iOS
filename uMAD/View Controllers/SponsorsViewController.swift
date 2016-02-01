@@ -7,7 +7,8 @@ import ParseUI
 class SponsorsViewController: PFQueryCollectionViewController {
 
     private let cellIdentifier = "sponsorCell"
-
+    private var sponsors: [UMADSponsor]?
+    private var sectionedSponsors: [[UMADSponsor]]?
     // MARK: - Initializers
 
     init() {
@@ -24,8 +25,8 @@ class SponsorsViewController: PFQueryCollectionViewController {
     // MARK: - SponsorsViewController
 
     private func companyAtIndexPath(indexPath: NSIndexPath) -> Company? {
-        let sponsors = objects as? [UMADSponsor]
-        let sponsorAtIndexPath = sponsors?[indexPath.row]
+        //let sponsorAtIndexPath = sectionedSponsors?[indexPath.section][indexPath.item]
+        let sponsorAtIndexPath = sponsors?[indexPath.item]
         return sponsorAtIndexPath?.company
     }
 
@@ -41,6 +42,17 @@ class SponsorsViewController: PFQueryCollectionViewController {
         return query
     }
 
+    override func objectsDidLoad(error: NSError?) {
+        super.objectsDidLoad(error)
+        guard error == nil,
+            let sponsors = objects as? [UMADSponsor] else {
+            return
+        }
+
+        self.sponsors = sponsors.sort {$1.sponsorLevel < $0.sponsorLevel}
+        sectionedSponsors = self.sponsors!.createSectionedRepresentation()
+    }
+
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFCollectionViewCell? {
 
         guard let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier, forIndexPath: indexPath) as? PFCollectionViewCell,
@@ -49,6 +61,7 @@ class SponsorsViewController: PFQueryCollectionViewController {
         }
         cell.imageView.image = UIImage(named: "placeholder")
         cell.imageView.file = company.image
+        cell.imageView.contentMode = .ScaleAspectFit
         cell.imageView.loadInBackground()
         return cell
     }
@@ -64,16 +77,32 @@ class SponsorsViewController: PFQueryCollectionViewController {
         presentViewController(safariViewController, animated: true, completion: nil)
     }
 
+
     // MARK: - UICollectionViewDelegateFlowLayout
 
     override func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        return UIEdgeInsets(top: 15, left: 20, bottom: 15, right: 20)
     }
 
     override func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: (view.frame.width / 2.3) - 10, height: 100)
+            guard let sponsor = sponsors?[indexPath.item] else {
+                return CGSizeZero
+            }
+            let nToRow: Int
+            switch sponsor.sponsorLevel {
+            case .Gold:
+                nToRow = 1
+                break
+            case .Silver:
+                nToRow = 2
+                break
+            case .Bronze:
+                nToRow = 3
+                break
+            }
+            return CGSize(width: (view.frame.width / 2.3) - 10, height: 100)
     }
 
 }
