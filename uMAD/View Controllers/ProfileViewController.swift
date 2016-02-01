@@ -42,7 +42,7 @@ class ProfileViewController: UITableViewController {
         }
         profileImage.layer.cornerRadius = profileImage.bounds.width / 2.0
         nameLabel.text = currentUser.name
-        
+
         currentUser.checkIfIsVolunteer { (volunteer) -> () in
             self.volunteer = volunteer
         }

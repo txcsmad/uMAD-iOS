@@ -9,7 +9,7 @@ class Label: UILabel {
                 assertionFailure("Invalid TextStyleCode for Label")
                 return
             }
-            
+
             self.font = textStyle.getUIFont()
             self.textColor = textStyle.getUIColor()
         }

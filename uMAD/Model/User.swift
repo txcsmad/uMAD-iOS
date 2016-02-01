@@ -9,6 +9,8 @@ class User: PFUser {
     @NSManaged var githubUsername: String?
     @NSManaged var name: String
 
+    var favorites: Set<Session>?
+
     private let volunteerRole = "UMAD Volunteer"
     private var roles: [String]?
 
@@ -35,24 +37,38 @@ class User: PFUser {
             // Try the function again
             self.checkIfIsVolunteer(callback)
         }
-        
-    }
-    
-}
 
-extension PFUser {
-    
-    func fetchFavoritesWithCompletion(completion: [PFObject] -> Void) {
+    }
+
+    func fetchFavoritesWithCompletion(completion: (Set<Session>, NSError?) -> ()) {
         let favoritesQuery = relationForKey("favorites").query()
         // Will hit the cache first for quick results. Techinically could be invalid, but not very likely.
         favoritesQuery.cachePolicy = .CacheThenNetwork
         favoritesQuery.findObjectsInBackgroundWithBlock { objects, error in
-            if let favorites = objects {
-                completion(favorites)
-            } else {
-                completion([])
+            guard let favorites = objects as? [Session] else {
+                completion([], error)
+                return
             }
+            let favSet =  Set<Session>(favorites)
+            // Detect duplicates and remove all if they occur
+
+            if favSet.count != favorites.count {
+                let favoritesRelation = User.currentUser()!.relationForKey("favorites")
+                for fav in favorites {
+                    favoritesRelation.removeObject(fav)
+                }
+                User.currentUser()!.saveInBackground()
+                completion([], nil)
+            } else {
+                self.favorites = favSet
+                completion(favSet, nil)
+            }
+
         }
     }
-    
+
+    func postFavoritesDidChange() {
+        NSNotificationCenter.defaultCenter().postNotificationName("favoritesDidChange", object: nil)
+    }
+
 }

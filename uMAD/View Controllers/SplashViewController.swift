@@ -15,7 +15,7 @@ protocol SplashViewDelegate: class {
 class SplashViewController: UIViewController, LogInViewControllerDelegate, SplashViewDelegate {
     @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
     @IBOutlet weak var eventImage: UIImageView!
-    
+
     // Centering constraints for the event emblem
     @IBOutlet weak var eventImageCenterYConstraint: NSLayoutConstraint?
 
