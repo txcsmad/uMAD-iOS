@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--My Schedule View Controller-->
+        <!--My Schedule-->
         <scene sceneID="s4V-da-PeL">
             <objects>
-                <viewController storyboardIdentifier="MyScheduleViewController" id="SP3-wT-aNp" customClass="MyScheduleViewController" customModule="uMAD" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyScheduleViewController" title="My Schedule" id="SP3-wT-aNp" customClass="MyScheduleViewController" customModule="uMAD" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QBX-7c-N72"/>
                         <viewControllerLayoutGuide type="bottom" id="VL5-GH-uQw"/>
@@ -31,7 +31,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="tintColorCode" value="Grey4"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Sessions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JUV-Zk-hPs" customClass="Label" customModule="uMAD" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="No Sessions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JUV-Zk-hPs" customClass="Label" customModule="uMAD" customModuleProvider="target">
                                         <rect key="frame" x="207" y="153" width="187" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -74,6 +74,7 @@
                             <constraint firstAttribute="bottomMargin" secondItem="YDC-8e-vLH" secondAttribute="bottom" id="Vkl-Dg-QiR"/>
                         </constraints>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cj6-f7-IXz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -64,6 +64,7 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
         query.cachePolicy = .CacheThenNetwork
 
         query.includeKey("company")
+
         // If we know the current uMAD, only list sessions for it.
         if let currentUMAD = AppDelegate.currentUMAD {
             query.whereKey("umad", equalTo: currentUMAD)
