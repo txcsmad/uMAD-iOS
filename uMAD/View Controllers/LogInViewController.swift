@@ -44,7 +44,7 @@ class LogInViewController: UITableViewController, UITextFieldDelegate {
                 return
         }
 
-        PFUser.logInWithUsernameInBackground(username, password: password) { user, error in
+        PFUser.logInWithUsernameInBackground(username.lowercaseString, password: password) { user, error in
             if let _ = user {
                 dispatch_async(dispatch_get_main_queue()) {
                     self.delegate?.didLogIn()
