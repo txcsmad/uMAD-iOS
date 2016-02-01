@@ -46,24 +46,31 @@ class Session: PFObject, PFSubclassing, Separable, CustomDebugStringConvertible 
             completion(false, nil)
             return
         }
-        user.favorites?.insert(self)
 
-        if sessionsOverlap(user.favorites!) {
-            user.favorites?.remove(self)
+        if wouldCreateNewOverlapWith(user.favorites!) != nil {
             completion(false, nil)
             return
         }
 
+
+        // Update user relation
+        let favorites = user.relationForKey("favorites")
+        favorites.addObject(self)
+
         user.saveInBackgroundWithBlock { success, error in
             if success {
+                // Update session fav count
                 self.incrementKey("favoriteCount")
                 self.saveInBackground()
-                let favorites = user.relationForKey("favorites")
-                favorites.addObject(self)
-                user.postFavoritesDidChange()
+
+                // Subscribe to new notifications
                 let installation = PFInstallation.currentInstallation()
                 installation.addUniqueObject("session" + self.objectId!, forKey: "channels")
                 installation.saveInBackground()
+
+                // Add the session to the local store
+                user.favorites?.insert(self)
+                user.postFavoritesDidChange()
 
             }
             completion(success, error)
@@ -76,17 +83,23 @@ class Session: PFObject, PFSubclassing, Separable, CustomDebugStringConvertible 
             return
         }
 
+        // Update relation
         let favorites = user.relationForKey("favorites")
         favorites.removeObject(self)
+
         user.saveInBackgroundWithBlock { success, error in
             if success {
+                // Update the session favCount
                 self.incrementKey("favoriteCount", byAmount: -1)
                 self.saveInBackground()
+
+                // Add to local store
                 user.favorites?.remove(self)
                 user.postFavoritesDidChange()
+
+                // Unsubscribe from push channels
                 let installation = PFInstallation.currentInstallation()
-                installation.removeObjectForKey("session" + self.objectId!)
-                installation.addUniqueObject("session" + self.objectId!, forKey: "channels")
+                installation.removeObjectsInArray(["session" + self.objectId!], forKey: "channels")
                 installation.saveInBackground()
             }
             completion(success, error)
@@ -103,7 +116,41 @@ class Session: PFObject, PFSubclassing, Separable, CustomDebugStringConvertible 
         return localFavs.contains(self)
     }
 
-    private func sessionsOverlap(sessions: Set<Session>) -> Bool {
+
+    //MARK:- Overlap detection
+
+    /**
+    Detect if adding self to a set of sessions would create a new overlap that
+    isn't already present
+
+    - parameter sessions: a set of sessions
+
+    - returns: the first session that the added session would conflict with, or nil if none
+    */
+    func wouldCreateNewOverlapWith(sessions: Set<Session>) -> Session? {
+        // If the set already contains the session, we can't create a new conflict
+        if sessions.contains(self) {
+            return nil
+        }
+        var sessionsCopy = sessions
+        sessionsCopy.insert(self)
+        if let (firstOverlap, secondOverlap) = sessionsOverlap(sessionsCopy) {
+            // Return the session that _isn't_ the one that was passed in
+            return firstOverlap == self ? secondOverlap : firstOverlap
+        } else {
+            return nil
+        }
+
+    }
+
+    /**
+     Detect if any sessions overlap
+
+     - parameter sessions: a set of sessions
+
+     - returns: the first overlap (chronologically), or nil if there are no overlaps
+     */
+    private func sessionsOverlap(sessions: Set<Session>) -> (Session, Session)? {
         let chronologicalFavs = sessions.sort { $0.0.startTime.compare($0.1.startTime) == .OrderedAscending  }
 
         var i = 0
@@ -119,10 +166,10 @@ class Session: PFObject, PFSubclassing, Separable, CustomDebugStringConvertible 
                 i++
                 j++
             } else {
-                return true
+                return (first, second)
             }
         }
-        return false
+        return nil
     }
     // MARK:- Seperable
 
