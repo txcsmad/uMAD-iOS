@@ -15,7 +15,7 @@ public class QRScanViewController: UIViewController, AVCaptureMetadataOutputObje
         get {
             return maxQRCodes
         }
-        set(newValue){
+        set(newValue) {
             if newValue < 1 || 4 < newValue {
                 maxQRCodes = newValue
             }

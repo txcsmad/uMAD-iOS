@@ -10,7 +10,7 @@ enum Color: String {
     case Grey3 = "Gray3"
     case GreyBackground = "GreyBackground"
     case Red = "Red"
-    
+
     func getUIColor() -> UIColor {
         switch self {
         case .AppTint:

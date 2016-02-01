@@ -10,7 +10,7 @@ class ImageView: UIImageView {
                 assertionFailure("Invalid tintColorCode for ImageView")
                 return
             }
-            
+
             self.image = self.image?.imageWithRenderingMode(.AlwaysTemplate)
             self.tintColor = color.getUIColor()
         }

@@ -9,7 +9,6 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
     private var sections = [[Session]]()
     private var filteredSessions: [Session]?
     private var filteredSections = [[Session]]()
-    private let sectionHeaderFormatter = NSDateFormatter()
     private var searchController: UISearchController!
     private let cellIdentifier = "SessionCell"
 
@@ -33,9 +32,6 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
         searchController.delegate = self
         tableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
-        
-        sectionHeaderFormatter.timeZone = NSTimeZone.localTimeZone()
-        sectionHeaderFormatter.dateFormat = "hh:mm a"
 
         pullToRefreshEnabled = true
         automaticallyAdjustsScrollViewInsets = true
@@ -43,11 +39,21 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "user.png"), style: .Plain, target: self, action: "didTapRightBarItem")
         tableView.tableFooterView = UIView()
+
+        User.currentUser()?.fetchFavoritesWithCompletion { favs, error in
+            self.tableView.reloadData()
+        }
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "favoritesChanged", name: "favoritesDidChange", object: nil)
+    }
+
+    func favoritesChanged() {
+        tableView.reloadData()
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         navigationController?.setToolbarHidden(true, animated: true)
     }
 
@@ -76,11 +82,18 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
 
         sessions?.removeAll()
         sections.removeAll()
-        
+
         sessions = casted
         sections = sessions!.createSectionedRepresentation()
 
         searchController.searchBar.scopeButtonTitles = getTopTags()
+    }
+
+    override func objectsWillLoad() {
+        super.objectsWillLoad()
+        User.currentUser()?.fetchFavoritesWithCompletion { favs, error in
+            self.tableView.reloadData()
+        }
     }
 
     override func objectAtIndexPath(indexPath: NSIndexPath?) -> PFObject? {
@@ -130,7 +143,7 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
         let section = (searchController.active) ? filteredSections[section] : sections[section]
         let sectionTime = section[0].startTime
         // Add some left padding. Definitely a hack.
-        return "    " + sectionHeaderFormatter.stringFromDate(sectionTime)
+        return "    " + NSDateFormatter.localizedStringFromDate(sectionTime, dateStyle: .NoStyle, timeStyle: .ShortStyle)
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -146,7 +159,6 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
     }
 
     func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {
-        // TODO: Change the icon?
         // Dismiss the login view controller
         dismissViewControllerAnimated(true, completion: nil)
         // Present the profile!
@@ -162,7 +174,7 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
         // User is logged in. Present profile view
         presentViewController(navController, animated: true, completion: nil)
     }
-    
+
     func userDidExitProfile() {
         dismissViewControllerAnimated(true, completion: nil)
     }

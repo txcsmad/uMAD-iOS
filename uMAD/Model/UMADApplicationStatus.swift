@@ -16,7 +16,7 @@ class UMADApplicationStatus: PFObject, PFSubclassing {
             guard let application = application else {
                 completion(nil, error)
                 return
-            }   
+            }
             UMADApplicationStatus.fetchApplicationStatus(application) { status, error in
                 completion(status, error)
             }
