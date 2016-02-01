@@ -68,8 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let sessionsViewController = UINavigationController(rootViewController: SessionsViewController())
         
         let myScheduleViewController = UINavigationController(rootViewController:
-            UIStoryboard(name: "MySchedule", bundle: nil)
-            .instantiateViewControllerWithIdentifier("MyScheduleViewController") as! MyScheduleViewController)
+        MyScheduleViewController.fromStoryboard())
         
         let twitterViewController = UINavigationController(rootViewController: TimelineViewController())
         let sponsorsViewController = UINavigationController(rootViewController: SponsorsViewController())
@@ -81,9 +80,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         sessionsViewController.tabBarItem.image = UIImage(named: "sessions")
         sessionsViewController.tabBarItem.selectedImage = UIImage(named: "sessions-selected")
         
-        myScheduleViewController.tabBarItem.title = "Schedule"
-        myScheduleViewController.tabBarItem.image = UIImage(named: "favorite-stroked")
-        myScheduleViewController.tabBarItem.selectedImage = UIImage(named: "favorite")
+        myScheduleViewController.tabBarItem.title = "My Schedule"
+        myScheduleViewController.tabBarItem.image = UIImage(named: "favorites")
+        myScheduleViewController.tabBarItem.selectedImage = UIImage(named: "favorites-selected")
 
         twitterViewController.tabBarItem.title = "Twitter"
         twitterViewController.tabBarItem.image = UIImage(named: "twitter")
