@@ -11,6 +11,8 @@ enum TextStyle: String {
     case CellTime = "CellTime"
     case CellLocation = "CellLocation"
     case CellNotification = "CellNotification"
+    case EmptyTitle = "EmptyTitle"
+    case EmptyDescription = "EmptyDescription"
 
     func getUIColor() -> UIColor {
         switch self {
@@ -32,6 +34,10 @@ enum TextStyle: String {
             return Color.Grey3.getUIColor()
         case .CellNotification:
             return Color.Red.getUIColor()
+        case .EmptyTitle:
+            return Color.Grey4.getUIColor()
+        case .EmptyDescription:
+            return Color.Grey4.getUIColor()
         }
     }
 
@@ -54,6 +60,10 @@ enum TextStyle: String {
         case .CellLocation:
             return UIFont.systemFontOfSize(13)
         case .CellNotification:
+            return UIFont.systemFontOfSize(17)
+        case .EmptyTitle:
+            return UIFont.systemFontOfSize(35, weight: UIFontWeightLight)
+        case .EmptyDescription:
             return UIFont.systemFontOfSize(17)
         }
     }

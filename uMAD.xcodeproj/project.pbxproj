@@ -20,6 +20,8 @@
 		C9AB3A931C5A96A70091AEDD /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AB3A921C5A96A70091AEDD /* View.swift */; };
 		C9AB3A951C5A99090091AEDD /* SessionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9AB3A941C5A99090091AEDD /* SessionTableViewCell.xib */; };
 		C9AB3A971C5ABEB50091AEDD /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AB3A961C5ABEB50091AEDD /* ImageView.swift */; };
+		C9BF356D1C5F06230042145D /* MySchedule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9BF356C1C5F06230042145D /* MySchedule.storyboard */; };
+		C9BF356F1C5F0FAC0042145D /* MyScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BF356E1C5F0FAB0042145D /* MyScheduleViewController.swift */; };
 		C9D3F78E1C57028800EC5CC1 /* SessionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D3F78D1C57028800EC5CC1 /* SessionDetailViewController.swift */; };
 		C9ED385D1C56D3810011B6AB /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED385C1C56D3810011B6AB /* Label.swift */; };
 		CE2F1CD9F2DE7E00E6A3B1D2 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -82,6 +84,8 @@
 		C9AB3A921C5A96A70091AEDD /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		C9AB3A941C5A99090091AEDD /* SessionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SessionTableViewCell.xib; sourceTree = "<group>"; };
 		C9AB3A961C5ABEB50091AEDD /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		C9BF356C1C5F06230042145D /* MySchedule.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MySchedule.storyboard; sourceTree = "<group>"; };
+		C9BF356E1C5F0FAB0042145D /* MyScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyScheduleViewController.swift; sourceTree = "<group>"; };
 		C9D3F78D1C57028800EC5CC1 /* SessionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailViewController.swift; sourceTree = "<group>"; };
 		C9ED38511C56C79D0011B6AB /* Sessions.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Sessions.storyboard; sourceTree = "<group>"; };
 		C9ED38531C56CBA90011B6AB /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -184,6 +188,7 @@
 				D46D47961C05157700B333AF /* TimelineViewController.swift */,
 				C9D3F78D1C57028800EC5CC1 /* SessionDetailViewController.swift */,
 				D4E19F2B1C2CDAE900470561 /* SelectionHookTabBarController.swift */,
+				C9BF356E1C5F0FAB0042145D /* MyScheduleViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -201,6 +206,7 @@
 				C9ED38511C56C79D0011B6AB /* Sessions.storyboard */,
 				884076121C1BB68A00EBF319 /* SessionTableViewCell.swift */,
 				C9AB3A941C5A99090091AEDD /* SessionTableViewCell.xib */,
+				C9BF356C1C5F06230042145D /* MySchedule.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -429,6 +435,7 @@
 				880FA4711C1D1C3B00898B19 /* Settings.bundle in Resources */,
 				D478D10B1AB7533500563A8A /* LaunchScreen.xib in Resources */,
 				D4F7ADD21C54903C0078CBD7 /* SplashInformationView.xib in Resources */,
+				C9BF356D1C5F06230042145D /* MySchedule.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,6 +556,7 @@
 				8840760F1C1BAFB600EBF319 /* SessionsViewController.swift in Sources */,
 				D4E19F2A1C2CA86D00470561 /* UMADApplicationStatus.swift in Sources */,
 				C9AB3A931C5A96A70091AEDD /* View.swift in Sources */,
+				C9BF356F1C5F0FAC0042145D /* MyScheduleViewController.swift in Sources */,
 				D4E19F2C1C2CDAE900470561 /* SelectionHookTabBarController.swift in Sources */,
 				884076131C1BB68A00EBF319 /* SessionTableViewCell.swift in Sources */,
 				C9ED385D1C56D3810011B6AB /* Label.swift in Sources */,

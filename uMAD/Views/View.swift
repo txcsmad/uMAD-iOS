@@ -12,7 +12,6 @@ class View: UIView {
             }
 
             self.backgroundColor = color.getUIColor()
-            self.layoutIfNeeded()
         }
     }
 }
