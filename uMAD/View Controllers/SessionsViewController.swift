@@ -5,9 +5,9 @@ import SafariServices
 class SessionsViewController: PFQueryTableViewController, UISearchControllerDelegate,
 UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
 
-    private var sessions: [Session]?
+    private var sessions = [Session]()
     private var sections = [[Session]]()
-    private var filteredSessions: [Session]?
+    private var filteredSessions = [Session]()
     private var filteredSections = [[Session]]()
     private var searchController: UISearchController!
     private let cellIdentifier = "SessionCell"
@@ -30,6 +30,7 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
         searchController.searchBar.placeholder = "Search Sessions"
         searchController.searchBar.delegate = self
         searchController.delegate = self
+        searchController.searchBar.tintColor = UIColor.grayColor()
         tableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
 
@@ -53,6 +54,9 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        if sessions.count == 0 {
+            loadObjects()
+        }
 
         navigationController?.setToolbarHidden(true, animated: true)
     }
@@ -81,11 +85,11 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
             return
         }
 
-        sessions?.removeAll()
+        sessions.removeAll()
         sections.removeAll()
 
         sessions = casted
-        sections = sessions!.createSectionedRepresentation()
+        sections = sessions.createSectionedRepresentation()
 
         searchController.searchBar.scopeButtonTitles = getTopTags()
     }
@@ -121,8 +125,9 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = (searchController.active) ? filteredSections[section] : sections[section]
-        return section.count
+        let sectionList = (searchController.active) ? filteredSections[section] : sections[section]
+        print("Section \(section) has \(sectionList.count)")
+        return sectionList.count
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -193,12 +198,9 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
     }
 
     func getTopTags() -> [String]? {
-        guard sessions != nil else {
-            return nil
-        }
 
         var tags = [String: Int]()
-        for event in sessions! {
+        for event in sessions {
             for tag in event.topicTagsSet {
                 let oldValue = tags[tag] ?? 0
                 tags[tag] = 1 + oldValue
@@ -229,7 +231,7 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
     func filterContentForSearchText(searchText: String, scope: Int) {
         let buttonTitles = searchController.searchBar.scopeButtonTitles!
         let scopeString = buttonTitles[scope]
-        filteredSessions = sessions!.filter { event in
+        filteredSessions = sessions.filter { event in
             let categoryMatch = (scopeString == "All") || (event.topicTagsSet.contains(scopeString))
             if searchText != "" {
                 let stringMatch = event.name.rangeOfString(searchText, options: .CaseInsensitiveSearch)
@@ -239,7 +241,7 @@ UISearchResultsUpdating, UISearchBarDelegate, ProfileViewControllerDelegate {
             }
         }
 
-        filteredSections = filteredSessions!.createSectionedRepresentation()
+        filteredSections = filteredSessions.createSectionedRepresentation()
     }
 
 }
