@@ -18,9 +18,11 @@ class CredentialsViewController: UIViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         previousBrightness = UIScreen.mainScreen().brightness
-        UIScreen.mainScreen().brightness = 0.8
+        if previousBrightness < 0.8 {
+         UIScreen.mainScreen().brightness = 0.8
+        }
     }
 
     override func viewWillDisappear(animated: Bool) {
