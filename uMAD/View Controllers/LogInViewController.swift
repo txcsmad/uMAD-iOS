@@ -16,6 +16,7 @@ class LogInViewController: UITableViewController, UITextFieldDelegate {
 
     enum Section: Int {
         case Fields
+        case SignIn
         case Actions
     }
 
@@ -65,7 +66,11 @@ class LogInViewController: UITableViewController, UITextFieldDelegate {
     // MARK:- TextField Delegate
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        signIn()
+        if textField == passwordTextField {
+            signIn()
+        } else {
+            passwordTextField.becomeFirstResponder()
+        }
         return true
     }
 
@@ -74,8 +79,10 @@ class LogInViewController: UITableViewController, UITextFieldDelegate {
         guard let section = Section(rawValue: indexPath.section) else {
             return
         }
-		if section == .Actions && indexPath.row == 1 {
+		if section == .Actions {
 			signUp()
+        } else if section == .SignIn {
+            signIn()
         }
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 	}
@@ -84,7 +91,7 @@ class LogInViewController: UITableViewController, UITextFieldDelegate {
         guard let section = Section(rawValue: indexPath.section) else {
             return false
         }
-		return section == .Actions
+		return section == .Actions || section == .SignIn
 	}
 
 	// MARK: - Bar Button Item IBActions

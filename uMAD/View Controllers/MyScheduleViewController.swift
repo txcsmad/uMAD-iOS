@@ -13,7 +13,8 @@ class MyScheduleViewController: UIViewController, UITableViewDataSource, UITable
 
     // MARK:- Init
     static func fromStoryboard() -> MyScheduleViewController {
-        return UIStoryboard(name: "MySchedule", bundle: nil).instantiateViewControllerWithIdentifier("MyScheduleViewController") as! MyScheduleViewController
+        return UIStoryboard(name: "MySchedule", bundle: nil)
+            .instantiateViewControllerWithIdentifier("MyScheduleViewController") as! MyScheduleViewController
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -74,6 +75,8 @@ class MyScheduleViewController: UIViewController, UITableViewDataSource, UITable
                 view.rightAnchor.constraintEqualToAnchor(tableView.rightAnchor).active = true
                 view.heightAnchor.constraintEqualToAnchor(tableView.heightAnchor).active = true
                 view.widthAnchor.constraintEqualToAnchor(tableView.widthAnchor).active = true
+                // So that we don't display the extra empty cells
+                tableView.tableFooterView = UIView()
                 tableView.reloadData()
         }
         tableView.reloadData()
